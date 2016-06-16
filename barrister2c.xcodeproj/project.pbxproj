@@ -171,6 +171,7 @@
 		95CA1E011D10F97F00AAE490 /* FindViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95CA1E001D10F97F00AAE490 /* FindViewController.m */; };
 		95CA1E031D10F9EA00AAE490 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 95CA1E021D10F9EA00AAE490 /* libsqlite3.tbd */; };
 		95CA1E051D10F9F500AAE490 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 95CA1E041D10F9F500AAE490 /* libz.tbd */; };
+		95CA1E081D123F6A00AAE490 /* FindNetProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 95CA1E071D123F6A00AAE490 /* FindNetProxy.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -475,6 +476,8 @@
 		95CA1E001D10F97F00AAE490 /* FindViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FindViewController.m; sourceTree = "<group>"; };
 		95CA1E021D10F9EA00AAE490 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		95CA1E041D10F9F500AAE490 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		95CA1E061D123F6A00AAE490 /* FindNetProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FindNetProxy.h; sourceTree = "<group>"; };
+		95CA1E071D123F6A00AAE490 /* FindNetProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FindNetProxy.m; sourceTree = "<group>"; };
 		BB2FAA4FB209AF9A57D3750A /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -608,6 +611,8 @@
 				95CA1BFE1D10F77F00AAE490 /* AccountProxy.m */,
 				95CA1BFF1D10F77F00AAE490 /* HomePageProxy.h */,
 				95CA1C001D10F77F00AAE490 /* HomePageProxy.m */,
+				95CA1E061D123F6A00AAE490 /* FindNetProxy.h */,
+				95CA1E071D123F6A00AAE490 /* FindNetProxy.m */,
 				95CA1C011D10F77F00AAE490 /* LearnCenterProxy.h */,
 				95CA1C021D10F77F00AAE490 /* LearnCenterProxy.m */,
 				95CA1C031D10F77F00AAE490 /* LoginProxy.h */,
@@ -1642,6 +1647,7 @@
 				95CA1D5E1D10F7C900AAE490 /* YYImage.m in Sources */,
 				95CA1D301D10F7C900AAE490 /* MJRefreshStateHeader.m in Sources */,
 				95CA1D2C1D10F7C900AAE490 /* MJRefreshFooter.m in Sources */,
+				95CA1E081D123F6A00AAE490 /* FindNetProxy.m in Sources */,
 				95CA1D481D10F7C900AAE490 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
 				95CA1D361D10F7C900AAE490 /* AJPhotoGroupCell.m in Sources */,
 				95CA1DA11D10F85500AAE490 /* UIImage+Additions.m in Sources */,
