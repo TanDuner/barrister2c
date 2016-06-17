@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		242C6CF2A427FE9AB164E737 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CE61524527A7610BA559202 /* libPods.a */; };
+		955610871D136E2100366D4C /* LawBooksModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 955610861D136E2100366D4C /* LawBooksModel.m */; };
 		95CA1BD31D10F03900AAE490 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 95CA1BD21D10F03900AAE490 /* main.m */; };
 		95CA1BD61D10F03900AAE490 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 95CA1BD51D10F03900AAE490 /* AppDelegate.m */; };
 		95CA1BDC1D10F03A00AAE490 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95CA1BDA1D10F03A00AAE490 /* Main.storyboard */; };
@@ -177,6 +178,8 @@
 /* Begin PBXFileReference section */
 		3CE61524527A7610BA559202 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		86316290D8B7B144F0F16CE2 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		955610851D136E2100366D4C /* LawBooksModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LawBooksModel.h; sourceTree = "<group>"; };
+		955610861D136E2100366D4C /* LawBooksModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LawBooksModel.m; sourceTree = "<group>"; };
 		95CA1BCE1D10F03900AAE490 /* barrister2c.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = barrister2c.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		95CA1BD21D10F03900AAE490 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		95CA1BD41D10F03900AAE490 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -1345,6 +1348,8 @@
 		95CA1DB91D10F8C900AAE490 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				955610851D136E2100366D4C /* LawBooksModel.h */,
+				955610861D136E2100366D4C /* LawBooksModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1536,6 +1541,7 @@
 				95CA1C641D10F7B700AAE490 /* TabItemView.m in Sources */,
 				95CA1C631D10F7B700AAE490 /* XuPointLoadingView.m in Sources */,
 				95CA1D2E1D10F7C900AAE490 /* MJRefreshHeader.m in Sources */,
+				955610871D136E2100366D4C /* LawBooksModel.m in Sources */,
 				95CA1C661D10F7B700AAE490 /* RefreshTableView.m in Sources */,
 				95CA1D1D1D10F7C900AAE490 /* HYMDatePicker.m in Sources */,
 				95CA1D2F1D10F7C900AAE490 /* MJRefreshNormalHeader.m in Sources */,
