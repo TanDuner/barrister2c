@@ -9,6 +9,8 @@
 #import "FindViewController.h"
 #import "FindNetProxy.h"
 #import "UIButton+EnlargeEdge.h"
+#import "LawerListViewController.h"
+
 #define ImageWidth 28
 
 #define LawButtonWidth 38
@@ -18,12 +20,17 @@
 #define LawVerSpacing (SCREENHEIGHT/640.0) *45
 #define LawNumOfLine 4
 
+@class ZXItemView;
+typedef void(^ClickZXItemBlock)(ZXItemView *itemView);
+
 @interface ZXItemView : UIView
 
 @property (nonatomic,strong) UIImageView *leftImageView;
 @property (nonatomic,strong) UILabel *titleLabel;
 @property (nonatomic,strong) UILabel *subtitleLabel;
 @property (nonatomic,strong) UIButton *clickButton;
+@property (nonatomic,copy) ClickZXItemBlock block;
+
 @end
 
 @implementation ZXItemView
@@ -49,7 +56,9 @@
 
 -(void)clickAciton:(UIButton *)button
 {
-    NSLog(@"xxx");
+    if (self.block) {
+        self.block(self);
+    }
 }
 
 #pragma -mark ---Getter-------
@@ -122,6 +131,11 @@
     [self configData];
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self showTabbar:YES];
+}
 
 #pragma -mark --UI--
 -(void)configView
@@ -210,6 +224,11 @@
         _LeftItem.leftImageView.image = [UIImage imageNamed:@"common_icon_succeed"];
         _LeftItem.titleLabel.text = @"即时咨询";
         _LeftItem.subtitleLabel.text = @"立即与律师沟通";
+        __weak typeof(*&self) weakSelf = self;
+        _LeftItem.block = ^(ZXItemView *itemView)
+        {
+            [weakSelf toLawerList];
+        };
         
         UIView *sepView = [[UIView alloc] initWithFrame:RECT(ItemWidth, 0, 1, ItemHeight)];
         sepView.backgroundColor = RGBCOLOR(204, 205, 206);
@@ -219,7 +238,10 @@
         _rightItem.leftImageView.image = [UIImage imageNamed:@"common_icon_succeed"];
         _rightItem.titleLabel.text = @"预约咨询";
         _rightItem.subtitleLabel.text = @"约定时间与律师沟通";
-
+        _rightItem.block = ^(ZXItemView *itemView)
+        {
+            [weakSelf toLawerList];
+        };
         
         UIView *horSpeView = [[UIView alloc] initWithFrame:RECT(0, ItemHeight, SCREENWIDTH, 10)];
         horSpeView.backgroundColor = RGBCOLOR(239, 239, 246);
@@ -259,5 +281,14 @@
     return _bottomCategoryView;
 
 }
+
+
+-(void)toLawerList
+{
+    LawerListViewController *lawerListVC = [[LawerListViewController alloc] init];
+    [self.navigationController pushViewController:lawerListVC animated:YES];
+}
+
+
 
 @end

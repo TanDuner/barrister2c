@@ -6,8 +6,8 @@
 //  Copyright © 2016年 Xu. All rights reserved.
 //
 
-#import "BaseViewController.h"
+#import "BaseTableViewController.h"
 
-@interface PersonCenterViewController : BaseViewController
+@interface PersonCenterViewController : BaseTableViewController
 
 @end

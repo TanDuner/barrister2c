@@ -21,4 +21,10 @@
 
 -(void)loadItems;
 
+-(void)loadMoreData;
+
+-(void)endRefreshing;
+
+-(void)endLoadMoreWithNoMoreData:(BOOL)noMoreData;
+
 @end

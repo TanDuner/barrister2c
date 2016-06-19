@@ -28,6 +28,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self configTableView];
+    
+    [self loadItems];
 }
 
 
@@ -64,6 +66,23 @@
     self.tableView.mj_footer = footerTemp;
 }
 
+
+-(void)endRefreshing
+{
+    [self.tableView.mj_header endRefreshing];
+}
+
+-(void)endLoadMoreWithNoMoreData:(BOOL)noMoreData
+{
+    if (noMoreData) {
+        [self.tableView.mj_footer endRefreshingWithNoMoreData];
+    }
+    else
+    {
+        self.tableView.mj_footer.state = MJRefreshStateIdle;
+    }
+
+}
 
 #pragma -mark -----UITableView Delegate Methods-----
 

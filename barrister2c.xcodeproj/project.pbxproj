@@ -9,6 +9,53 @@
 /* Begin PBXBuildFile section */
 		242C6CF2A427FE9AB164E737 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CE61524527A7610BA559202 /* libPods.a */; };
 		955610871D136E2100366D4C /* LawBooksModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 955610861D136E2100366D4C /* LawBooksModel.m */; };
+		955610BA1D14B4BD00366D4C /* LearnCenterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 955610B91D14B4BD00366D4C /* LearnCenterModel.m */; };
+		955610BD1D14B4C900366D4C /* LearnCenterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 955610BC1D14B4C900366D4C /* LearnCenterCell.m */; };
+		955610C01D14B5C600366D4C /* PersonCenterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 955610BF1D14B5C600366D4C /* PersonCenterModel.m */; };
+		955610C71D14B5E400366D4C /* PersonCenterAccountCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 955610C21D14B5E400366D4C /* PersonCenterAccountCell.m */; };
+		955610C81D14B5E400366D4C /* PersonCenterCustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 955610C41D14B5E400366D4C /* PersonCenterCustomCell.m */; };
+		955610C91D14B5E400366D4C /* PersonInfoCustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 955610C61D14B5E400366D4C /* PersonInfoCustomCell.m */; };
+		955610CC1D14B67100366D4C /* MyMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 955610CB1D14B67100366D4C /* MyMessageViewController.m */; };
+		955610CF1D14B69900366D4C /* PersonInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 955610CE1D14B69900366D4C /* PersonInfoViewController.m */; };
+		955610D21D14B6C000366D4C /* MyMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 955610D11D14B6C000366D4C /* MyMessageModel.m */; };
+		955610D51D14B6DA00366D4C /* MyMessgeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 955610D41D14B6DA00366D4C /* MyMessgeCell.m */; };
+		955610D81D14B71900366D4C /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 955610D71D14B71900366D4C /* SettingViewController.m */; };
+		955610DB1D14B74700366D4C /* ModifyInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 955610DA1D14B74700366D4C /* ModifyInfoViewController.m */; };
+		955610EF1D14B7B200366D4C /* dingdan.png in Resources */ = {isa = PBXBuildFile; fileRef = 955610DC1D14B7B200366D4C /* dingdan.png */; };
+		955610F01D14B7B200366D4C /* jiedan.png in Resources */ = {isa = PBXBuildFile; fileRef = 955610DD1D14B7B200366D4C /* jiedan.png */; };
+		955610F11D14B7B200366D4C /* my-account_card@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 955610DE1D14B7B200366D4C /* my-account_card@2x.png */; };
+		955610F21D14B7B200366D4C /* my-account_card@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 955610DF1D14B7B200366D4C /* my-account_card@3x.png */; };
+		955610F31D14B7B200366D4C /* my-account_cash@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 955610E01D14B7B200366D4C /* my-account_cash@2x.png */; };
+		955610F41D14B7B200366D4C /* my-account_cash@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 955610E11D14B7B200366D4C /* my-account_cash@3x.png */; };
+		955610F51D14B7B200366D4C /* pingjia.png in Resources */ = {isa = PBXBuildFile; fileRef = 955610E21D14B7B200366D4C /* pingjia.png */; };
+		955610F61D14B7B200366D4C /* renzheng.png in Resources */ = {isa = PBXBuildFile; fileRef = 955610E31D14B7B200366D4C /* renzheng.png */; };
+		955610F71D14B7B200366D4C /* rightRow.png in Resources */ = {isa = PBXBuildFile; fileRef = 955610E41D14B7B200366D4C /* rightRow.png */; };
+		955610F81D14B7B200366D4C /* Selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 955610E51D14B7B200366D4C /* Selected@2x.png */; };
+		955610F91D14B7B200366D4C /* Selected@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 955610E61D14B7B200366D4C /* Selected@3x.png */; };
+		955610FA1D14B7B200366D4C /* shezhi.png in Resources */ = {isa = PBXBuildFile; fileRef = 955610E71D14B7B200366D4C /* shezhi.png */; };
+		955610FB1D14B7B200366D4C /* unSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 955610E81D14B7B200366D4C /* unSelected@2x.png */; };
+		955610FC1D14B7B200366D4C /* unSelected@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 955610E91D14B7B200366D4C /* unSelected@3x.png */; };
+		955610FD1D14B7B200366D4C /* uploadImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 955610EA1D14B7B200366D4C /* uploadImage@2x.png */; };
+		955610FE1D14B7B200366D4C /* uploadImage@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 955610EB1D14B7B200366D4C /* uploadImage@3x.png */; };
+		955610FF1D14B7B200366D4C /* xiaoxi.png in Resources */ = {isa = PBXBuildFile; fileRef = 955610EC1D14B7B200366D4C /* xiaoxi.png */; };
+		955611001D14B7B200366D4C /* zhanghao.png in Resources */ = {isa = PBXBuildFile; fileRef = 955610ED1D14B7B200366D4C /* zhanghao.png */; };
+		955611011D14B7B200366D4C /* zhanghu.png in Resources */ = {isa = PBXBuildFile; fileRef = 955610EE1D14B7B200366D4C /* zhanghu.png */; };
+		955611041D14C29100366D4C /* MyLikeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 955611031D14C29100366D4C /* MyLikeViewController.m */; };
+		955611071D14CD6500366D4C /* BarristerLawerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 955611061D14CD6500366D4C /* BarristerLawerModel.m */; };
+		9556110A1D14CEDB00366D4C /* LawerListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 955611091D14CEDB00366D4C /* LawerListViewController.m */; };
+		9556111E1D15854000366D4C /* MyAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9556111D1D15854000366D4C /* MyAccountViewController.m */; };
+		955611211D1585A200366D4C /* MyAccountHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 955611201D1585A200366D4C /* MyAccountHeadView.m */; };
+		955611261D1588A200366D4C /* MyAccountDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 955611231D1588A200366D4C /* MyAccountDetailCell.m */; };
+		955611271D1588A200366D4C /* MyAccountDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 955611251D1588A200366D4C /* MyAccountDetailModel.m */; };
+		955611301D158BA500366D4C /* MyAccountDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9556112F1D158BA500366D4C /* MyAccountDetailViewController.m */; };
+		955611331D158BBB00366D4C /* MyAccountHomeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 955611321D158BBB00366D4C /* MyAccountHomeCell.m */; };
+		955611361D15929000366D4C /* MyAccountRechargeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 955611351D15929000366D4C /* MyAccountRechargeVC.m */; };
+		9556113A1D159ED300366D4C /* TiXianViewControlleer.m in Sources */ = {isa = PBXBuildFile; fileRef = 955611391D159ED300366D4C /* TiXianViewControlleer.m */; };
+		955611421D159FBB00366D4C /* AddBankCardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9556113D1D159FBB00366D4C /* AddBankCardViewController.m */; };
+		955611431D159FBB00366D4C /* BankCardModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9556113F1D159FBB00366D4C /* BankCardModel.m */; };
+		955611441D159FBB00366D4C /* MyBankCardController.m in Sources */ = {isa = PBXBuildFile; fileRef = 955611411D159FBB00366D4C /* MyBankCardController.m */; };
+		955611471D15A86300366D4C /* LawerListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 955611461D15A86300366D4C /* LawerListCell.m */; };
+		9556114B1D161A2400366D4C /* IMPullDownMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 9556114A1D161A2400366D4C /* IMPullDownMenu.m */; };
 		95CA1BD31D10F03900AAE490 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 95CA1BD21D10F03900AAE490 /* main.m */; };
 		95CA1BD61D10F03900AAE490 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 95CA1BD51D10F03900AAE490 /* AppDelegate.m */; };
 		95CA1BDC1D10F03A00AAE490 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95CA1BDA1D10F03A00AAE490 /* Main.storyboard */; };
@@ -180,6 +227,81 @@
 		86316290D8B7B144F0F16CE2 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		955610851D136E2100366D4C /* LawBooksModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LawBooksModel.h; sourceTree = "<group>"; };
 		955610861D136E2100366D4C /* LawBooksModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LawBooksModel.m; sourceTree = "<group>"; };
+		955610B81D14B4BD00366D4C /* LearnCenterModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LearnCenterModel.h; sourceTree = "<group>"; };
+		955610B91D14B4BD00366D4C /* LearnCenterModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LearnCenterModel.m; sourceTree = "<group>"; };
+		955610BB1D14B4C900366D4C /* LearnCenterCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LearnCenterCell.h; sourceTree = "<group>"; };
+		955610BC1D14B4C900366D4C /* LearnCenterCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LearnCenterCell.m; sourceTree = "<group>"; };
+		955610BE1D14B5C600366D4C /* PersonCenterModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonCenterModel.h; sourceTree = "<group>"; };
+		955610BF1D14B5C600366D4C /* PersonCenterModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonCenterModel.m; sourceTree = "<group>"; };
+		955610C11D14B5E400366D4C /* PersonCenterAccountCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonCenterAccountCell.h; sourceTree = "<group>"; };
+		955610C21D14B5E400366D4C /* PersonCenterAccountCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonCenterAccountCell.m; sourceTree = "<group>"; };
+		955610C31D14B5E400366D4C /* PersonCenterCustomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonCenterCustomCell.h; sourceTree = "<group>"; };
+		955610C41D14B5E400366D4C /* PersonCenterCustomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonCenterCustomCell.m; sourceTree = "<group>"; };
+		955610C51D14B5E400366D4C /* PersonInfoCustomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonInfoCustomCell.h; sourceTree = "<group>"; };
+		955610C61D14B5E400366D4C /* PersonInfoCustomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonInfoCustomCell.m; sourceTree = "<group>"; };
+		955610CA1D14B67100366D4C /* MyMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyMessageViewController.h; sourceTree = "<group>"; };
+		955610CB1D14B67100366D4C /* MyMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyMessageViewController.m; sourceTree = "<group>"; };
+		955610CD1D14B69900366D4C /* PersonInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonInfoViewController.h; sourceTree = "<group>"; };
+		955610CE1D14B69900366D4C /* PersonInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonInfoViewController.m; sourceTree = "<group>"; };
+		955610D01D14B6C000366D4C /* MyMessageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyMessageModel.h; sourceTree = "<group>"; };
+		955610D11D14B6C000366D4C /* MyMessageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyMessageModel.m; sourceTree = "<group>"; };
+		955610D31D14B6DA00366D4C /* MyMessgeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyMessgeCell.h; sourceTree = "<group>"; };
+		955610D41D14B6DA00366D4C /* MyMessgeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyMessgeCell.m; sourceTree = "<group>"; };
+		955610D61D14B71900366D4C /* SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
+		955610D71D14B71900366D4C /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
+		955610D91D14B74700366D4C /* ModifyInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModifyInfoViewController.h; sourceTree = "<group>"; };
+		955610DA1D14B74700366D4C /* ModifyInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModifyInfoViewController.m; sourceTree = "<group>"; };
+		955610DC1D14B7B200366D4C /* dingdan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dingdan.png; sourceTree = "<group>"; };
+		955610DD1D14B7B200366D4C /* jiedan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = jiedan.png; sourceTree = "<group>"; };
+		955610DE1D14B7B200366D4C /* my-account_card@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "my-account_card@2x.png"; sourceTree = "<group>"; };
+		955610DF1D14B7B200366D4C /* my-account_card@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "my-account_card@3x.png"; sourceTree = "<group>"; };
+		955610E01D14B7B200366D4C /* my-account_cash@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "my-account_cash@2x.png"; sourceTree = "<group>"; };
+		955610E11D14B7B200366D4C /* my-account_cash@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "my-account_cash@3x.png"; sourceTree = "<group>"; };
+		955610E21D14B7B200366D4C /* pingjia.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pingjia.png; sourceTree = "<group>"; };
+		955610E31D14B7B200366D4C /* renzheng.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = renzheng.png; sourceTree = "<group>"; };
+		955610E41D14B7B200366D4C /* rightRow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rightRow.png; sourceTree = "<group>"; };
+		955610E51D14B7B200366D4C /* Selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Selected@2x.png"; sourceTree = "<group>"; };
+		955610E61D14B7B200366D4C /* Selected@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Selected@3x.png"; sourceTree = "<group>"; };
+		955610E71D14B7B200366D4C /* shezhi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shezhi.png; sourceTree = "<group>"; };
+		955610E81D14B7B200366D4C /* unSelected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "unSelected@2x.png"; sourceTree = "<group>"; };
+		955610E91D14B7B200366D4C /* unSelected@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "unSelected@3x.png"; sourceTree = "<group>"; };
+		955610EA1D14B7B200366D4C /* uploadImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "uploadImage@2x.png"; sourceTree = "<group>"; };
+		955610EB1D14B7B200366D4C /* uploadImage@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "uploadImage@3x.png"; sourceTree = "<group>"; };
+		955610EC1D14B7B200366D4C /* xiaoxi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = xiaoxi.png; sourceTree = "<group>"; };
+		955610ED1D14B7B200366D4C /* zhanghao.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zhanghao.png; sourceTree = "<group>"; };
+		955610EE1D14B7B200366D4C /* zhanghu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zhanghu.png; sourceTree = "<group>"; };
+		955611021D14C29100366D4C /* MyLikeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyLikeViewController.h; sourceTree = "<group>"; };
+		955611031D14C29100366D4C /* MyLikeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyLikeViewController.m; sourceTree = "<group>"; };
+		955611051D14CD6500366D4C /* BarristerLawerModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BarristerLawerModel.h; sourceTree = "<group>"; };
+		955611061D14CD6500366D4C /* BarristerLawerModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BarristerLawerModel.m; sourceTree = "<group>"; };
+		955611081D14CEDB00366D4C /* LawerListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LawerListViewController.h; sourceTree = "<group>"; };
+		955611091D14CEDB00366D4C /* LawerListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LawerListViewController.m; sourceTree = "<group>"; };
+		9556111C1D15854000366D4C /* MyAccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyAccountViewController.h; sourceTree = "<group>"; };
+		9556111D1D15854000366D4C /* MyAccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyAccountViewController.m; sourceTree = "<group>"; };
+		9556111F1D1585A200366D4C /* MyAccountHeadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyAccountHeadView.h; sourceTree = "<group>"; };
+		955611201D1585A200366D4C /* MyAccountHeadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyAccountHeadView.m; sourceTree = "<group>"; };
+		955611221D1588A200366D4C /* MyAccountDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyAccountDetailCell.h; sourceTree = "<group>"; };
+		955611231D1588A200366D4C /* MyAccountDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyAccountDetailCell.m; sourceTree = "<group>"; };
+		955611241D1588A200366D4C /* MyAccountDetailModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyAccountDetailModel.h; sourceTree = "<group>"; };
+		955611251D1588A200366D4C /* MyAccountDetailModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyAccountDetailModel.m; sourceTree = "<group>"; };
+		9556112E1D158BA500366D4C /* MyAccountDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyAccountDetailViewController.h; sourceTree = "<group>"; };
+		9556112F1D158BA500366D4C /* MyAccountDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyAccountDetailViewController.m; sourceTree = "<group>"; };
+		955611311D158BBB00366D4C /* MyAccountHomeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyAccountHomeCell.h; sourceTree = "<group>"; };
+		955611321D158BBB00366D4C /* MyAccountHomeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyAccountHomeCell.m; sourceTree = "<group>"; };
+		955611341D15929000366D4C /* MyAccountRechargeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyAccountRechargeVC.h; sourceTree = "<group>"; };
+		955611351D15929000366D4C /* MyAccountRechargeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyAccountRechargeVC.m; sourceTree = "<group>"; };
+		955611381D159ED300366D4C /* TiXianViewControlleer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TiXianViewControlleer.h; sourceTree = "<group>"; };
+		955611391D159ED300366D4C /* TiXianViewControlleer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TiXianViewControlleer.m; sourceTree = "<group>"; };
+		9556113C1D159FBB00366D4C /* AddBankCardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddBankCardViewController.h; sourceTree = "<group>"; };
+		9556113D1D159FBB00366D4C /* AddBankCardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddBankCardViewController.m; sourceTree = "<group>"; };
+		9556113E1D159FBB00366D4C /* BankCardModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BankCardModel.h; sourceTree = "<group>"; };
+		9556113F1D159FBB00366D4C /* BankCardModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BankCardModel.m; sourceTree = "<group>"; };
+		955611401D159FBB00366D4C /* MyBankCardController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyBankCardController.h; sourceTree = "<group>"; };
+		955611411D159FBB00366D4C /* MyBankCardController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyBankCardController.m; sourceTree = "<group>"; };
+		955611451D15A86300366D4C /* LawerListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LawerListCell.h; sourceTree = "<group>"; };
+		955611461D15A86300366D4C /* LawerListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LawerListCell.m; sourceTree = "<group>"; };
+		955611491D161A2400366D4C /* IMPullDownMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMPullDownMenu.h; sourceTree = "<group>"; };
+		9556114A1D161A2400366D4C /* IMPullDownMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMPullDownMenu.m; sourceTree = "<group>"; };
 		95CA1BCE1D10F03900AAE490 /* barrister2c.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = barrister2c.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		95CA1BD21D10F03900AAE490 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		95CA1BD41D10F03900AAE490 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -507,6 +629,67 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		9556111A1D15852900366D4C /* Login */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		9556111B1D15852900366D4C /* MyAccount */ = {
+			isa = PBXGroup;
+			children = (
+				9556113B1D159FBB00366D4C /* BankCard */,
+				955611371D159ED300366D4C /* Tixian */,
+				9556111C1D15854000366D4C /* MyAccountViewController.h */,
+				9556111D1D15854000366D4C /* MyAccountViewController.m */,
+				9556112E1D158BA500366D4C /* MyAccountDetailViewController.h */,
+				9556112F1D158BA500366D4C /* MyAccountDetailViewController.m */,
+				955611341D15929000366D4C /* MyAccountRechargeVC.h */,
+				955611351D15929000366D4C /* MyAccountRechargeVC.m */,
+				955611311D158BBB00366D4C /* MyAccountHomeCell.h */,
+				955611321D158BBB00366D4C /* MyAccountHomeCell.m */,
+				9556111F1D1585A200366D4C /* MyAccountHeadView.h */,
+				955611201D1585A200366D4C /* MyAccountHeadView.m */,
+				955611221D1588A200366D4C /* MyAccountDetailCell.h */,
+				955611231D1588A200366D4C /* MyAccountDetailCell.m */,
+				955611241D1588A200366D4C /* MyAccountDetailModel.h */,
+				955611251D1588A200366D4C /* MyAccountDetailModel.m */,
+			);
+			path = MyAccount;
+			sourceTree = "<group>";
+		};
+		955611371D159ED300366D4C /* Tixian */ = {
+			isa = PBXGroup;
+			children = (
+				955611381D159ED300366D4C /* TiXianViewControlleer.h */,
+				955611391D159ED300366D4C /* TiXianViewControlleer.m */,
+			);
+			path = Tixian;
+			sourceTree = "<group>";
+		};
+		9556113B1D159FBB00366D4C /* BankCard */ = {
+			isa = PBXGroup;
+			children = (
+				9556113C1D159FBB00366D4C /* AddBankCardViewController.h */,
+				9556113D1D159FBB00366D4C /* AddBankCardViewController.m */,
+				9556113E1D159FBB00366D4C /* BankCardModel.h */,
+				9556113F1D159FBB00366D4C /* BankCardModel.m */,
+				955611401D159FBB00366D4C /* MyBankCardController.h */,
+				955611411D159FBB00366D4C /* MyBankCardController.m */,
+			);
+			path = BankCard;
+			sourceTree = "<group>";
+		};
+		955611481D161A2400366D4C /* PullDownMenuView */ = {
+			isa = PBXGroup;
+			children = (
+				955611491D161A2400366D4C /* IMPullDownMenu.h */,
+				9556114A1D161A2400366D4C /* IMPullDownMenu.m */,
+			);
+			path = PullDownMenuView;
+			sourceTree = "<group>";
+		};
 		95CA1BC51D10F03900AAE490 = {
 			isa = PBXGroup;
 			children = (
@@ -560,6 +743,8 @@
 		95CA1BE81D10F3ED00AAE490 /* Account */ = {
 			isa = PBXGroup;
 			children = (
+				9556111A1D15852900366D4C /* Login */,
+				9556111B1D15852900366D4C /* MyAccount */,
 			);
 			path = Account;
 			sourceTree = "<group>";
@@ -704,6 +889,7 @@
 		95CA1BF41D10F4AF00AAE490 /* BaseView */ = {
 			isa = PBXGroup;
 			children = (
+				955611481D161A2400366D4C /* PullDownMenuView */,
 				95CA1C381D10F7B700AAE490 /* BadgeNumBerView */,
 				95CA1C3B1D10F7B700AAE490 /* BannerView */,
 				95CA1C401D10F7B700AAE490 /* BaseNoDataView */,
@@ -793,6 +979,25 @@
 		95CA1BFC1D10F77400AAE490 /* PersonCenter */ = {
 			isa = PBXGroup;
 			children = (
+				955610DC1D14B7B200366D4C /* dingdan.png */,
+				955610DD1D14B7B200366D4C /* jiedan.png */,
+				955610DE1D14B7B200366D4C /* my-account_card@2x.png */,
+				955610DF1D14B7B200366D4C /* my-account_card@3x.png */,
+				955610E01D14B7B200366D4C /* my-account_cash@2x.png */,
+				955610E11D14B7B200366D4C /* my-account_cash@3x.png */,
+				955610E21D14B7B200366D4C /* pingjia.png */,
+				955610E31D14B7B200366D4C /* renzheng.png */,
+				955610E41D14B7B200366D4C /* rightRow.png */,
+				955610E51D14B7B200366D4C /* Selected@2x.png */,
+				955610E61D14B7B200366D4C /* Selected@3x.png */,
+				955610E71D14B7B200366D4C /* shezhi.png */,
+				955610E81D14B7B200366D4C /* unSelected@2x.png */,
+				955610E91D14B7B200366D4C /* unSelected@3x.png */,
+				955610EA1D14B7B200366D4C /* uploadImage@2x.png */,
+				955610EB1D14B7B200366D4C /* uploadImage@3x.png */,
+				955610EC1D14B7B200366D4C /* xiaoxi.png */,
+				955610ED1D14B7B200366D4C /* zhanghao.png */,
+				955610EE1D14B7B200366D4C /* zhanghu.png */,
 			);
 			path = PersonCenter;
 			sourceTree = "<group>";
@@ -1302,6 +1507,8 @@
 		95CA1DB31D10F89700AAE490 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				955610B81D14B4BD00366D4C /* LearnCenterModel.h */,
+				955610B91D14B4BD00366D4C /* LearnCenterModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1309,6 +1516,8 @@
 		95CA1DB41D10F89700AAE490 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				955610BB1D14B4C900366D4C /* LearnCenterCell.h */,
+				955610BC1D14B4C900366D4C /* LearnCenterCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1318,6 +1527,16 @@
 			children = (
 				95CA1DFC1D10F95E00AAE490 /* PersonCenterViewController.h */,
 				95CA1DFD1D10F95E00AAE490 /* PersonCenterViewController.m */,
+				955610CD1D14B69900366D4C /* PersonInfoViewController.h */,
+				955610CE1D14B69900366D4C /* PersonInfoViewController.m */,
+				955610CA1D14B67100366D4C /* MyMessageViewController.h */,
+				955610CB1D14B67100366D4C /* MyMessageViewController.m */,
+				955610D61D14B71900366D4C /* SettingViewController.h */,
+				955610D71D14B71900366D4C /* SettingViewController.m */,
+				955610D91D14B74700366D4C /* ModifyInfoViewController.h */,
+				955610DA1D14B74700366D4C /* ModifyInfoViewController.m */,
+				955611021D14C29100366D4C /* MyLikeViewController.h */,
+				955611031D14C29100366D4C /* MyLikeViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1325,6 +1544,10 @@
 		95CA1DB61D10F8B000AAE490 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				955610BE1D14B5C600366D4C /* PersonCenterModel.h */,
+				955610BF1D14B5C600366D4C /* PersonCenterModel.m */,
+				955610D01D14B6C000366D4C /* MyMessageModel.h */,
+				955610D11D14B6C000366D4C /* MyMessageModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1332,6 +1555,14 @@
 		95CA1DB71D10F8B000AAE490 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				955610C11D14B5E400366D4C /* PersonCenterAccountCell.h */,
+				955610C21D14B5E400366D4C /* PersonCenterAccountCell.m */,
+				955610C31D14B5E400366D4C /* PersonCenterCustomCell.h */,
+				955610C41D14B5E400366D4C /* PersonCenterCustomCell.m */,
+				955610C51D14B5E400366D4C /* PersonInfoCustomCell.h */,
+				955610C61D14B5E400366D4C /* PersonInfoCustomCell.m */,
+				955610D31D14B6DA00366D4C /* MyMessgeCell.h */,
+				955610D41D14B6DA00366D4C /* MyMessgeCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1341,6 +1572,8 @@
 			children = (
 				95CA1DFF1D10F97F00AAE490 /* FindViewController.h */,
 				95CA1E001D10F97F00AAE490 /* FindViewController.m */,
+				955611081D14CEDB00366D4C /* LawerListViewController.h */,
+				955611091D14CEDB00366D4C /* LawerListViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1350,6 +1583,8 @@
 			children = (
 				955610851D136E2100366D4C /* LawBooksModel.h */,
 				955610861D136E2100366D4C /* LawBooksModel.m */,
+				955611051D14CD6500366D4C /* BarristerLawerModel.h */,
+				955611061D14CD6500366D4C /* BarristerLawerModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1357,6 +1592,8 @@
 		95CA1DBA1D10F8C900AAE490 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				955611451D15A86300366D4C /* LawerListCell.h */,
+				955611461D15A86300366D4C /* LawerListCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1455,6 +1692,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				95CA1DE91D10F91900AAE490 /* commom_default_head@2x.png in Resources */,
+				955610F81D14B7B200366D4C /* Selected@2x.png in Resources */,
 				95CA1BE11D10F03A00AAE490 /* LaunchScreen.storyboard in Resources */,
 				95CA1DCC1D10F8F800AAE490 /* Tab01Highlighted@2x.png in Resources */,
 				95CA1DD31D10F8F800AAE490 /* Tab02Normal@3x.png in Resources */,
@@ -1463,33 +1701,51 @@
 				95CA1DEB1D10F91900AAE490 /* common_icon_info@2x.png in Resources */,
 				95CA1DEA1D10F91900AAE490 /* commom_default_head@3x.png in Resources */,
 				95CA1D1F1D10F7C900AAE490 /* MBProgressHUD.bundle in Resources */,
+				955610F51D14B7B200366D4C /* pingjia.png in Resources */,
 				95CA1DD51D10F8F800AAE490 /* Tab03Highlighted@3x.png in Resources */,
 				95CA1DD41D10F8F800AAE490 /* Tab03Highlighted@2x.png in Resources */,
 				95CA1DCF1D10F8F800AAE490 /* Tab01Normal@3x.png in Resources */,
+				955610F41D14B7B200366D4C /* my-account_cash@3x.png in Resources */,
+				955610FC1D14B7B200366D4C /* unSelected@3x.png in Resources */,
+				955610FB1D14B7B200366D4C /* unSelected@2x.png in Resources */,
+				955610F31D14B7B200366D4C /* my-account_cash@2x.png in Resources */,
+				955610F91D14B7B200366D4C /* Selected@3x.png in Resources */,
+				955610F11D14B7B200366D4C /* my-account_card@2x.png in Resources */,
+				955610F21D14B7B200366D4C /* my-account_card@3x.png in Resources */,
 				95CA1DF51D10F91900AAE490 /* timeline_image_loading.png in Resources */,
 				95CA1DD01D10F8F800AAE490 /* Tab02Highlighted@2x.png in Resources */,
 				95CA1DF21D10F91900AAE490 /* navigationbar_back_icon_hl@3x.png in Resources */,
+				955611011D14B7B200366D4C /* zhanghu.png in Resources */,
 				95CA1DF11D10F91900AAE490 /* navigationbar_back_icon_hl@2x.png in Resources */,
+				955610F01D14B7B200366D4C /* jiedan.png in Resources */,
+				955610FA1D14B7B200366D4C /* shezhi.png in Resources */,
 				95CA1BDE1D10F03A00AAE490 /* Assets.xcassets in Resources */,
+				955610FE1D14B7B200366D4C /* uploadImage@3x.png in Resources */,
 				95CA1DCD1D10F8F800AAE490 /* Tab01Highlighted@3x.png in Resources */,
 				95CA1DDB1D10F8F800AAE490 /* Tab04Normal@3x.png in Resources */,
+				955610FF1D14B7B200366D4C /* xiaoxi.png in Resources */,
 				95CA1DEF1D10F91900AAE490 /* common_icon_warning@2x.png in Resources */,
 				95CA1DD81D10F8F800AAE490 /* Tab04Highlighted@2x.png in Resources */,
 				95CA1DD21D10F8F800AAE490 /* Tab02Normal@2x.png in Resources */,
+				955610F61D14B7B200366D4C /* renzheng.png in Resources */,
 				95CA1DCE1D10F8F800AAE490 /* Tab01Normal@2x.png in Resources */,
 				95CA1DD91D10F8F800AAE490 /* Tab04Highlighted@3x.png in Resources */,
 				95CA1DDA1D10F8F800AAE490 /* Tab04Normal@2x.png in Resources */,
 				95CA1DF41D10F91900AAE490 /* navigationbar_back_icon@3x.png in Resources */,
 				95CA1DEC1D10F91900AAE490 /* common_icon_info@3x.png in Resources */,
 				95CA1DAB1D10F85500AAE490 /* city.plist in Resources */,
+				955610FD1D14B7B200366D4C /* uploadImage@2x.png in Resources */,
 				95CA1DD71D10F8F800AAE490 /* Tab03Normal@3x.png in Resources */,
 				95CA1DEE1D10F91900AAE490 /* common_icon_succeed@3x.png in Resources */,
 				95CA1DED1D10F91900AAE490 /* common_icon_succeed@2x.png in Resources */,
+				955610F71D14B7B200366D4C /* rightRow.png in Resources */,
 				95CA1D211D10F7C900AAE490 /* MJRefresh.bundle in Resources */,
 				95CA1DD61D10F8F800AAE490 /* Tab03Normal@2x.png in Resources */,
+				955610EF1D14B7B200366D4C /* dingdan.png in Resources */,
 				95CA1BDC1D10F03A00AAE490 /* Main.storyboard in Resources */,
 				95CA1DF01D10F91900AAE490 /* common_icon_warning@3x.png in Resources */,
 				95CA1DD11D10F8F800AAE490 /* Tab02Highlighted@3x.png in Resources */,
+				955611001D14B7B200366D4C /* zhanghao.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1540,6 +1796,7 @@
 				95CA1C361D10F7AD00AAE490 /* BaseNetProxy.m in Sources */,
 				95CA1C641D10F7B700AAE490 /* TabItemView.m in Sources */,
 				95CA1C631D10F7B700AAE490 /* XuPointLoadingView.m in Sources */,
+				955610C91D14B5E400366D4C /* PersonInfoCustomCell.m in Sources */,
 				95CA1D2E1D10F7C900AAE490 /* MJRefreshHeader.m in Sources */,
 				955610871D136E2100366D4C /* LawBooksModel.m in Sources */,
 				95CA1C661D10F7B700AAE490 /* RefreshTableView.m in Sources */,
@@ -1550,29 +1807,38 @@
 				95CA1D3E1D10F7C900AAE490 /* AJPhotoTapDetectingImageView.m in Sources */,
 				95CA1DF81D10F92E00AAE490 /* HomeViewController.m in Sources */,
 				95CA1DA01D10F85500AAE490 /* UIColorAdditions.m in Sources */,
+				9556111E1D15854000366D4C /* MyAccountViewController.m in Sources */,
+				9556110A1D14CEDB00366D4C /* LawerListViewController.m in Sources */,
 				95CA1D4B1D10F7C900AAE490 /* NinaPagerView.m in Sources */,
 				95CA1D4F1D10F7C900AAE490 /* YYDiskCache.m in Sources */,
 				95CA1C371D10F7AD00AAE490 /* XuNetWorking.m in Sources */,
 				95CA1D271D10F7C900AAE490 /* MJRefreshBackGifFooter.m in Sources */,
 				95CA1C5F1D10F7B700AAE490 /* DCWebImageManager.m in Sources */,
 				95CA1DA51D10F85500AAE490 /* UIImage+GIF.m in Sources */,
+				955610C01D14B5C600366D4C /* PersonCenterModel.m in Sources */,
 				95CA1C5D1D10F7B700AAE490 /* BadgeNumberView.m in Sources */,
 				95CA1D591D10F7C900AAE490 /* UIImage+YYWebImage.m in Sources */,
 				95CA1C681D10F7B700AAE490 /* XuAlertView.m in Sources */,
 				95CA1C2E1D10F7A500AAE490 /* BarristerOrderModel.m in Sources */,
 				95CA1D291D10F7C900AAE490 /* MJRefreshBackStateFooter.m in Sources */,
 				95CA1C0D1D10F77F00AAE490 /* MeNetProxy.m in Sources */,
+				955610D21D14B6C000366D4C /* MyMessageModel.m in Sources */,
 				95CA1D4D1D10F7C900AAE490 /* UIView+ViewController.m in Sources */,
 				95CA1D251D10F7C900AAE490 /* MJRefreshAutoStateFooter.m in Sources */,
+				955611071D14CD6500366D4C /* BarristerLawerModel.m in Sources */,
 				95CA1D381D10F7C900AAE490 /* AJPhotoListCell.m in Sources */,
 				95CA1C691D10F7B700AAE490 /* ZToastView.m in Sources */,
 				95CA1D221D10F7C900AAE490 /* MJRefreshAutoFooter.m in Sources */,
 				95CA1C201D10F79700AAE490 /* BaseTableViewController.m in Sources */,
+				955610CF1D14B69900366D4C /* PersonInfoViewController.m in Sources */,
 				95CA1C651D10F7B700AAE490 /* BaseTableView.m in Sources */,
 				95CA1C601D10F7B700AAE490 /* BaseNoDataView.m in Sources */,
 				95CA1C211D10F79700AAE490 /* BaseNavigaitonController.m in Sources */,
+				955611361D15929000366D4C /* MyAccountRechargeVC.m in Sources */,
 				95CA1C0B1D10F77F00AAE490 /* LearnCenterProxy.m in Sources */,
 				95CA1D341D10F7C900AAE490 /* OpenUDID.m in Sources */,
+				955610DB1D14B74700366D4C /* ModifyInfoViewController.m in Sources */,
+				9556114B1D161A2400366D4C /* IMPullDownMenu.m in Sources */,
 				95CA1D561D10F7C900AAE490 /* UIButton+YYWebImage.m in Sources */,
 				95CA1DAD1D10F85500AAE490 /* XuUItlity.m in Sources */,
 				95CA1C231D10F79700AAE490 /* BaseTabbarController.m in Sources */,
@@ -1595,19 +1861,23 @@
 				95CA1DFB1D10F95100AAE490 /* LearnCenterViewController.m in Sources */,
 				95CA1BD61D10F03900AAE490 /* AppDelegate.m in Sources */,
 				95CA1DA31D10F85500AAE490 /* UIImage+CompressImage.m in Sources */,
+				955611331D158BBB00366D4C /* MyAccountHomeCell.m in Sources */,
 				95CA1C0C1D10F77F00AAE490 /* LoginProxy.m in Sources */,
 				95CA1D3B1D10F7C900AAE490 /* AJPhotoPickerViewController.m in Sources */,
 				95CA1D4A1D10F7C900AAE490 /* NinaBaseView.m in Sources */,
+				955611471D15A86300366D4C /* LawerListCell.m in Sources */,
 				95CA1D2A1D10F7C900AAE490 /* MJRefreshComponent.m in Sources */,
 				95CA1D9B1D10F85500AAE490 /* NSDate+Addition.m in Sources */,
 				95CA1D411D10F7C900AAE490 /* MASCompositeConstraint.m in Sources */,
 				95CA1D581D10F7C900AAE490 /* UIGestureRecognizer+YYAdd.m in Sources */,
 				95CA1DAA1D10F85500AAE490 /* UIView+FormAdditions.m in Sources */,
+				955610D51D14B6DA00366D4C /* MyMessgeCell.m in Sources */,
 				95CA1C091D10F77F00AAE490 /* AccountProxy.m in Sources */,
 				95CA1D9E1D10F85500AAE490 /* NSString+Addition.m in Sources */,
 				95CA1C0E1D10F77F00AAE490 /* OrderProxy.m in Sources */,
 				95CA1D2D1D10F7C900AAE490 /* MJRefreshGifHeader.m in Sources */,
 				95CA1C671D10F7B700AAE490 /* TFSButton.m in Sources */,
+				955611271D1588A200366D4C /* MyAccountDetailModel.m in Sources */,
 				95CA1D321D10F7C900AAE490 /* UIScrollView+MJRefresh.m in Sources */,
 				95CA1D9A1D10F85500AAE490 /* NSData+ImageContentType.m in Sources */,
 				95CA1DA91D10F85500AAE490 /* UIView+Addition.m in Sources */,
@@ -1626,14 +1896,18 @@
 				95CA1D6A1D10F7C900AAE490 /* YYWebImageManager.m in Sources */,
 				95CA1DA81D10F85500AAE490 /* UINavigationBar+Background.m in Sources */,
 				95CA1DFE1D10F95E00AAE490 /* PersonCenterViewController.m in Sources */,
+				955611431D159FBB00366D4C /* BankCardModel.m in Sources */,
 				95CA1DA21D10F85500AAE490 /* UIImage+Cache.m in Sources */,
 				95CA1D5D1D10F7C900AAE490 /* YYFrameImage.m in Sources */,
 				95CA1D501D10F7C900AAE490 /* YYKVStorage.m in Sources */,
 				95CA1D691D10F7C900AAE490 /* YYImageCache.m in Sources */,
+				955611301D158BA500366D4C /* MyAccountDetailViewController.m in Sources */,
 				95CA1DA61D10F85500AAE490 /* UIImage+ImageEffects.m in Sources */,
 				95CA1D401D10F7C900AAE490 /* AJTapDetectingView.m in Sources */,
 				95CA1D541D10F7C900AAE490 /* CALayer+YYWebImage.m in Sources */,
+				955610CC1D14B67100366D4C /* MyMessageViewController.m in Sources */,
 				95CA1D431D10F7C900AAE490 /* MASConstraintMaker.m in Sources */,
+				955610C81D14B5E400366D4C /* PersonCenterCustomCell.m in Sources */,
 				95CA1D261D10F7C900AAE490 /* MJRefreshBackFooter.m in Sources */,
 				95CA1D351D10F7C900AAE490 /* AJGradientView.m in Sources */,
 				95CA1D5F1D10F7C900AAE490 /* YYImageCoder.m in Sources */,
@@ -1645,21 +1919,31 @@
 				95CA1D461D10F7C900AAE490 /* MASViewConstraint.m in Sources */,
 				95CA1D9D1D10F85500AAE490 /* NSObject+Additions.m in Sources */,
 				95CA1C301D10F7A500AAE490 /* BaseDataSingleton.m in Sources */,
+				955610BD1D14B4C900366D4C /* LearnCenterCell.m in Sources */,
 				95CA1D331D10F7C900AAE490 /* UIView+MJExtension.m in Sources */,
+				955610BA1D14B4BD00366D4C /* LearnCenterModel.m in Sources */,
 				95CA1D521D10F7C900AAE490 /* _YYWebImageSetter.m in Sources */,
 				95CA1C621D10F7B700AAE490 /* BorderTextFieldView.m in Sources */,
 				95CA1BD31D10F03900AAE490 /* main.m in Sources */,
+				955610D81D14B71900366D4C /* SettingViewController.m in Sources */,
+				955611041D14C29100366D4C /* MyLikeViewController.m in Sources */,
 				95CA1D4E1D10F7C900AAE490 /* YYCache.m in Sources */,
 				95CA1D5E1D10F7C900AAE490 /* YYImage.m in Sources */,
 				95CA1D301D10F7C900AAE490 /* MJRefreshStateHeader.m in Sources */,
 				95CA1D2C1D10F7C900AAE490 /* MJRefreshFooter.m in Sources */,
 				95CA1E081D123F6A00AAE490 /* FindNetProxy.m in Sources */,
 				95CA1D481D10F7C900AAE490 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
+				955611421D159FBB00366D4C /* AddBankCardViewController.m in Sources */,
+				955610C71D14B5E400366D4C /* PersonCenterAccountCell.m in Sources */,
+				955611261D1588A200366D4C /* MyAccountDetailCell.m in Sources */,
 				95CA1D361D10F7C900AAE490 /* AJPhotoGroupCell.m in Sources */,
 				95CA1DA11D10F85500AAE490 /* UIImage+Additions.m in Sources */,
 				95CA1DAE1D10F85500AAE490 /* XuUtlity.m in Sources */,
 				95CA1D571D10F7C900AAE490 /* UIControl+YYAdd.m in Sources */,
+				955611211D1585A200366D4C /* MyAccountHeadView.m in Sources */,
+				955611441D159FBB00366D4C /* MyBankCardController.m in Sources */,
 				95CA1D3F1D10F7C900AAE490 /* AJPhotoZoomingScrollView.m in Sources */,
+				9556113A1D159ED300366D4C /* TiXianViewControlleer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

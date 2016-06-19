@@ -74,7 +74,7 @@
 #pragma mark -
 #pragma mark - 导航栏
 
-#define kNavigationBarColor     RGBCOLOR(55, 114, 174)
+#define kNavigationBarColor     RGBCOLOR(27, 162, 232)
 #define kNavigationTitleColor   UIColorFromRGB(0xFFFFFFFF)
 #define kBaseViewBackgroundColor    UIColorFromRGB(0xFFF2F2F2)
 
