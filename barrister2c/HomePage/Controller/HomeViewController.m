@@ -9,12 +9,17 @@
 #import "HomeViewController.h"
 #import "DCPicScrollView.h"
 #import "HomePageProxy.h"
+#import "HomeMonenyCell.h"
+#import "HomeAreaCell.h"
+#import "BussinessAreaModel.h"
+#import "HomeTypeCell.h"
 
 @interface HomeViewController ()
 
 @property (nonatomic,strong) NSMutableArray *areaItems;
 @property (nonatomic,strong) NSMutableArray *typeItems;
 @property (nonatomic,strong) HomePageProxy *proxy;
+
 
 @end
 
@@ -39,6 +44,8 @@
 -(void)createView
 {
     [self createBaseView];
+    
+    [self createTableView];
 }
 
 -(void)createBaseView
@@ -73,6 +80,24 @@
 -(void)loadData
 {
 
+    for (int i = 0; i < 10; i ++) {
+        BussinessAreaModel *model = [[BussinessAreaModel alloc] init];
+        model.title = @"婚姻家庭";
+        model.imageUrl = @"http://img4.duitang.com/uploads/item/201508/26/20150826212734_ST5BC.thumb.224_0.jpeg";
+        model.areaId = @"1";
+        [self.areaItems addObject:model];
+    }
+    
+    for (int i = 0; i < 6; i ++) {
+        BussinessTypeModel *model = [[BussinessTypeModel alloc] init];
+        model.title = @"婚姻家庭";
+        model.imageUrl = @"http://img4.duitang.com/uploads/item/201508/26/20150826212734_ST5BC.thumb.224_0.jpeg";
+        model.typeId = @"1";
+        [self.typeItems addObject:model];
+    }
+    
+    
+    
     [self.proxy getHomePageDataWithParams:nil Block:^(id returnData, BOOL success) {
         if (success) {
             [self handleDataWithDict:nil];
@@ -87,6 +112,86 @@
 -(void)handleDataWithDict:(NSMutableDictionary *)dict
 {
 
+}
+
+
+#pragma -mark ---UITableView Delegate Methods------
+
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 2;
+}
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    if (section == 0) {
+        return 2;
+    }
+    else if(section == 1)
+    {
+        return 1;
+    }
+    else
+    {
+        return 0;
+    }
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == 0) {
+        if (indexPath.row == 0) {
+            HomeMonenyCell *cell = [[HomeMonenyCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+            return cell;
+        }
+        else if(indexPath.row == 1)
+        {
+            HomeAreaCell *areaCell = [[HomeAreaCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+            areaCell.items = self.areaItems;
+            [areaCell createAreaViews];
+            return areaCell;
+        }
+        else
+        {
+            return [UITableViewCell new];
+        }
+
+    }
+    else if (indexPath.section == 1) {
+        HomeTypeCell *cell = [[HomeTypeCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+        cell.items = self.typeItems;
+        [cell createTypeDatas];
+        return cell;
+    }
+    else
+    {
+        return [UITableViewCell new];
+    }
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == 0) {
+        if (indexPath.row == 0) {
+            return [HomeMonenyCell getCellHeight];
+        }
+        else if (indexPath.row == 1)
+        {
+            return  [HomeAreaCell getCellHeightWithArray:self.areaItems];
+        }
+        else
+        {
+            return 0;
+        }
+    }
+    else if (indexPath.row == 1)
+    {
+        return [HomeTypeCell getCellHeightWithArray:self.typeItems];
+    }
+    else
+    {
+        return 0;
+    }
 }
 
 #pragma -mark -Action-

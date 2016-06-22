@@ -23,13 +23,9 @@ typedef struct PhoneSate PhoneSate;
 
 @property (nonatomic,assign) BOOL isAccountLogin; //是否登录
 
-@property (nonatomic,strong) NSString *appointStatus;//预约状态
-
-@property (nonatomic,strong) NSString *orderQty;//订单数
-
 @property (nonatomic,strong) NSString *remainingBalance;//余额
 
-@property (nonatomic,strong) NSString *totalIncome;//总收入
+@property (nonatomic,strong) NSString *cost;//总收入
 
 @property (nonatomic,strong)BarristerUserModel *userModel; //用户
 

@@ -25,7 +25,7 @@
 {
     if (self = [super init]) {
         self.remainingBalance = @"300";
-        self.totalIncome = @"0";
+        self.cost = @"0";
     }
     return self;
 }
