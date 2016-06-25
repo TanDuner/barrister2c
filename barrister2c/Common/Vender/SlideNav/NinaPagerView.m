@@ -20,7 +20,6 @@ static NSString *const kObserverPage = @"currentPage";
 @implementation NinaPagerView
 {
     NinaBaseView *pagerView;
-    NSArray *myArray;
     NSArray *classArray;
     NSArray *colorArray;
     NSMutableArray *viewNumArray;
@@ -34,11 +33,11 @@ static NSString *const kObserverPage = @"currentPage";
 - (instancetype)initWithTitles:(NSArray *)titles WithVCs:(NSArray *)childVCs WithColorArrays:(NSArray *)colors {
     if (self = [super init]) {
         //Need You Edit,title for the toptabbar
-        self.frame = CGRectMake(0, 0, FUll_VIEW_WIDTH, FUll_CONTENT_HEIGHT);
-        myArray = titles;
+        self.frame = CGRectMake(0, 30.5, FUll_VIEW_WIDTH, FUll_CONTENT_HEIGHT - 30.5);
+        self.myArray = titles;
         classArray = childVCs;
         colorArray = colors;
-         [self createPagerView:myArray WithVCs:classArray WithColors:colorArray];
+         [self createPagerView:self.myArray WithVCs:classArray WithColors:colorArray];
     }
     return self;
 }
@@ -94,11 +93,11 @@ static NSString *const kObserverPage = @"currentPage";
     }
     if (titles.count > 0 && childVCs.count > 0) {
         pagerView = [[NinaBaseView alloc] initWithFrame:CGRectMake(0, 0, FUll_VIEW_WIDTH, FUll_CONTENT_HEIGHT) WithSelectColor:_selectColor WithUnselectorColor:_unselectColor WithUnderLineColor:_underlineColor WithtopTabColor:_topTabColor];
-        pagerView.titleArray = myArray;
+        pagerView.titleArray = self.myArray;
         [pagerView addObserver:self forKeyPath:@"currentPage" options:NSKeyValueObservingOptionOld | NSKeyValueObservingOptionNew context:nil];
         [self addSubview:pagerView];
         //First ViewController present to the screen
-        if (classArray.count > 0 && myArray.count > 0) {
+        if (classArray.count > 0 && self.myArray.count > 0) {
             if ([classArray[0] isKindOfClass:[NSString class]]) {
                 NSString *className = classArray[0];
                 Class class = NSClassFromString(className);
@@ -134,14 +133,14 @@ static NSString *const kObserverPage = @"currentPage";
             NSLog(@"现在是控制器%li",(long)page + 1);
         }
         self.PageIndex = @(page + 1).stringValue;
-        if (myArray.count > 5) {
+        if (self.myArray.count > 5) {
             CGFloat topTabOffsetX = 0;
             if (page >= 2) {
-                if (page <= myArray.count - 3) {
+                if (page <= self.myArray.count - 3) {
                     topTabOffsetX = (page - 2) * More5LineWidth;
                 }
                 else {
-                    if (page == myArray.count - 2) {
+                    if (page == self.myArray.count - 2) {
                         topTabOffsetX = (page - 3) * More5LineWidth;
                     }else {
                         topTabOffsetX = (page - 4) * More5LineWidth;
@@ -157,7 +156,7 @@ static NSString *const kObserverPage = @"currentPage";
             }
             [pagerView.topTab setContentOffset:CGPointMake(topTabOffsetX, 0) animated:YES];
         }
-        for (NSInteger i = 0; i < myArray.count; i++) {
+        for (NSInteger i = 0; i < self.myArray.count; i++) {
             if (page == i && i <= classArray.count - 1) {
                 if ([classArray[i] isKindOfClass:[NSString class]]) {
                     NSString *className = classArray[i];

@@ -13,6 +13,7 @@
 #import "HomeAreaCell.h"
 #import "BussinessAreaModel.h"
 #import "HomeTypeCell.h"
+#import "LawerListViewController.h"
 
 @interface HomeViewController ()
 
@@ -148,6 +149,11 @@
         {
             HomeAreaCell *areaCell = [[HomeAreaCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
             areaCell.items = self.areaItems;
+            __weak typeof(*&self)weakSelf = self;
+            areaCell.block = ^(NSInteger index)
+            {
+                [weakSelf toLawerListVCWithIndex:index isArea:YES];
+            };
             [areaCell createAreaViews];
             return areaCell;
         }
@@ -161,6 +167,12 @@
         HomeTypeCell *cell = [[HomeTypeCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
         cell.items = self.typeItems;
         [cell createTypeDatas];
+        __weak typeof(*&self)weakSelf = self;
+
+        cell.block = ^(NSInteger index)
+        {
+            [weakSelf toLawerListVCWithIndex:index isArea:NO];
+        };
         return cell;
     }
     else
@@ -184,7 +196,7 @@
             return 0;
         }
     }
-    else if (indexPath.row == 1)
+    else if (indexPath.section == 1)
     {
         return [HomeTypeCell getCellHeightWithArray:self.typeItems];
     }
@@ -194,11 +206,27 @@
     }
 }
 
+
 #pragma -mark -Action-
 
 -(void)toLoginAction:(UIButton *)button
 {
     
+}
+
+
+-(void)toLawerListVCWithIndex:(NSInteger)index isArea:(BOOL)isArea
+{
+    if (isArea) {
+        LawerListViewController *lawerList = [[LawerListViewController alloc] init];
+        [self.navigationController pushViewController:lawerList animated:YES];
+    }
+    else
+    {
+        LawerListViewController *lawerList = [[LawerListViewController alloc] init];
+        [self.navigationController pushViewController:lawerList animated:YES];
+        
+    }
 }
 
 #pragma -mark ---Proxy----

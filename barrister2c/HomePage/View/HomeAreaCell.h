@@ -8,9 +8,14 @@
 
 #import "BaseTableViewCell.h"
 
+typedef void(^ClickBtnBlock)(NSInteger index);
+
 @interface HomeAreaCell : BaseTableViewCell
 
 @property (nonatomic,strong) NSMutableArray *items;
+
+@property (nonatomic,copy) ClickBtnBlock block;
+
 
 -(void)createAreaViews;
 

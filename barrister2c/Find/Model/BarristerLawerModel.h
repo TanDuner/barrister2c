@@ -39,7 +39,26 @@
 
 @property (nonatomic,strong) NSString *goodAt;
 
+@property (nonatomic,strong) NSString *introduceStr;
 
 @property (nonatomic,strong) NSString *workYears;//工作年限
+
+@property (nonatomic,assign) BOOL isShowAll;
+
+@property (nonatomic,assign) CGFloat showAllIntroduceViewHeight; //展示全部的高度
+
+@property (nonatomic,assign) CGFloat showIntroduceViewHeight; //展示全部的高度
+
+@property (nonatomic,assign) CGFloat introducestrHeight;
+
+@property (nonatomic,assign) CGFloat allIntroduceStrHeight;
+
+@property (nonatomic,assign) NSInteger appraiseCount;//收到的评价数量
+
+@property (nonatomic,assign) BOOL isNeedShowAll;
+
+
+-(void)handleProprety;
+
 
 @end

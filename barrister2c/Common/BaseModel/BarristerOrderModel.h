@@ -35,6 +35,15 @@ typedef NS_ENUM(NSInteger, BarristerOrderState)
 
 @interface BarristerOrderModel : BaseModel
 
+@property (nonatomic,strong) NSString *userIcon;//律师头像
+
+@property (nonatomic,strong) NSString *name;//律师姓名
+
+@property (nonatomic,strong) NSString *date;//日期
+
+@property (nonatomic,strong) NSString *phone;//律师手机号
+
+
 @property (nonatomic,strong) NSString *customerName;
 
 @property (nonatomic,strong) NSString *orderNo;//订单号
@@ -59,7 +68,7 @@ typedef NS_ENUM(NSInteger, BarristerOrderState)
 
 @property (nonatomic,strong) NSString *userHeder;//用户头像
 
-@property (nonatomic,strong) NSString *markStr;//医生备注的内容
+@property (nonatomic,strong) NSString *markStr;//律师备注的内容
 
 @property (nonatomic,assign) CGFloat markHeight;//备注区域的高度
 
@@ -68,5 +77,4 @@ typedef NS_ENUM(NSInteger, BarristerOrderState)
 @property (nonatomic,strong) NSString *customPhone;//用户的手机号
 
 @property (nonatomic,strong) NSString *talkTime;//通话时长
-
 @end

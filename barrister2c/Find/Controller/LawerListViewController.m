@@ -9,7 +9,7 @@
 #import "RefreshTableView.h"
 #import "LawerListCell.h"
 #import "IMPullDownMenu.h"
-
+#import "LawerDetailViewController.h"
 
 @interface LawerListViewController ()<UITableViewDataSource,UITableViewDelegate,IMPullDownMenuDelegate>
 
@@ -193,6 +193,14 @@
     return [LawerListCell getCellHeight];
 }
 
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    LawerDetailViewController *detailVC = [[LawerDetailViewController alloc] init];
+    [self.navigationController pushViewController:detailVC animated:YES];
+}
 
 
 @end

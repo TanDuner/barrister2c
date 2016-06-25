@@ -58,6 +58,21 @@
 		9556114B1D161A2400366D4C /* IMPullDownMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 9556114A1D161A2400366D4C /* IMPullDownMenu.m */; };
 		9556114E1D175D3500366D4C /* HomeMonenyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9556114D1D175D3500366D4C /* HomeMonenyCell.m */; };
 		955611511D17855900366D4C /* HomeAreaCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 955611501D17855900366D4C /* HomeAreaCell.m */; };
+		955A7AA91D1ACE2B00D1DEAC /* LawerDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 955A7AA81D1ACE2B00D1DEAC /* LawerDetailViewController.m */; };
+		955A7AAC1D1AD20D00D1DEAC /* LawerDetailMidCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 955A7AAB1D1AD20D00D1DEAC /* LawerDetailMidCell.m */; };
+		955A7AAF1D1B7C9700D1DEAC /* LawerDetailBottomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 955A7AAE1D1B7C9700D1DEAC /* LawerDetailBottomCell.m */; };
+		955A7AB51D1C3C2000D1DEAC /* LawerSelectTimeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 955A7AB41D1C3C2000D1DEAC /* LawerSelectTimeViewController.m */; };
+		955A7AB81D1C3E1700D1DEAC /* LawerSelectContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 955A7AB71D1C3E1700D1DEAC /* LawerSelectContentViewController.m */; };
+		955A7ABE1D1CFE2800D1DEAC /* BaseAppointmentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 955A7ABD1D1CFE2800D1DEAC /* BaseAppointmentModel.m */; };
+		955A7AEA1D1D7A3100D1DEAC /* unSelectedable@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 955A7AE81D1D7A3100D1DEAC /* unSelectedable@2x.png */; };
+		955A7AEB1D1D7A3100D1DEAC /* unSelectedable@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 955A7AE91D1D7A3100D1DEAC /* unSelectedable@3x.png */; };
+		955A7AEE1D1D885000D1DEAC /* OrderListItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 955A7AED1D1D885000D1DEAC /* OrderListItem.m */; };
+		955A7AF11D1D887C00D1DEAC /* MyOrderListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 955A7AF01D1D887C00D1DEAC /* MyOrderListViewController.m */; };
+		955A7AF71D1D8D5400D1DEAC /* OrderViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 955A7AF61D1D8D5400D1DEAC /* OrderViewCell.m */; };
+		955A7AFD1D1D8EC000D1DEAC /* OrderDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 955A7AFC1D1D8EC000D1DEAC /* OrderDetailViewController.m */; };
+		955A7B001D1D8EE100D1DEAC /* OrderDetailOrderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 955A7AFF1D1D8EE100D1DEAC /* OrderDetailOrderCell.m */; };
+		955A7B051D1D8EFB00D1DEAC /* OrderDetailCallRecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 955A7B021D1D8EFB00D1DEAC /* OrderDetailCallRecordCell.m */; };
+		955A7B061D1D8EFB00D1DEAC /* OrderDetailCustomInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 955A7B041D1D8EFB00D1DEAC /* OrderDetailCustomInfoCell.m */; };
 		95B0D80F1D1835F20054567D /* HomeTypeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 95B0D80E1D1835F20054567D /* HomeTypeCell.m */; };
 		95B0D8121D1836450054567D /* BussinessAreaModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 95B0D8111D1836450054567D /* BussinessAreaModel.m */; };
 		95B0D8151D1836AC0054567D /* BussinessTypeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 95B0D8141D1836AC0054567D /* BussinessTypeModel.m */; };
@@ -311,6 +326,34 @@
 		9556114D1D175D3500366D4C /* HomeMonenyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeMonenyCell.m; sourceTree = "<group>"; };
 		9556114F1D17855900366D4C /* HomeAreaCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeAreaCell.h; sourceTree = "<group>"; };
 		955611501D17855900366D4C /* HomeAreaCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeAreaCell.m; sourceTree = "<group>"; };
+		955A7AA71D1ACE2B00D1DEAC /* LawerDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LawerDetailViewController.h; sourceTree = "<group>"; };
+		955A7AA81D1ACE2B00D1DEAC /* LawerDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LawerDetailViewController.m; sourceTree = "<group>"; };
+		955A7AAA1D1AD20D00D1DEAC /* LawerDetailMidCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LawerDetailMidCell.h; sourceTree = "<group>"; };
+		955A7AAB1D1AD20D00D1DEAC /* LawerDetailMidCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LawerDetailMidCell.m; sourceTree = "<group>"; };
+		955A7AAD1D1B7C9700D1DEAC /* LawerDetailBottomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LawerDetailBottomCell.h; sourceTree = "<group>"; };
+		955A7AAE1D1B7C9700D1DEAC /* LawerDetailBottomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LawerDetailBottomCell.m; sourceTree = "<group>"; };
+		955A7AB31D1C3C2000D1DEAC /* LawerSelectTimeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LawerSelectTimeViewController.h; sourceTree = "<group>"; };
+		955A7AB41D1C3C2000D1DEAC /* LawerSelectTimeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LawerSelectTimeViewController.m; sourceTree = "<group>"; };
+		955A7AB61D1C3E1700D1DEAC /* LawerSelectContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LawerSelectContentViewController.h; sourceTree = "<group>"; };
+		955A7AB71D1C3E1700D1DEAC /* LawerSelectContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LawerSelectContentViewController.m; sourceTree = "<group>"; };
+		955A7ABC1D1CFE2800D1DEAC /* BaseAppointmentModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseAppointmentModel.h; sourceTree = "<group>"; };
+		955A7ABD1D1CFE2800D1DEAC /* BaseAppointmentModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseAppointmentModel.m; sourceTree = "<group>"; };
+		955A7AE81D1D7A3100D1DEAC /* unSelectedable@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "unSelectedable@2x.png"; sourceTree = "<group>"; };
+		955A7AE91D1D7A3100D1DEAC /* unSelectedable@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "unSelectedable@3x.png"; sourceTree = "<group>"; };
+		955A7AEC1D1D885000D1DEAC /* OrderListItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderListItem.h; sourceTree = "<group>"; };
+		955A7AED1D1D885000D1DEAC /* OrderListItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderListItem.m; sourceTree = "<group>"; };
+		955A7AEF1D1D887C00D1DEAC /* MyOrderListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyOrderListViewController.h; sourceTree = "<group>"; };
+		955A7AF01D1D887C00D1DEAC /* MyOrderListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyOrderListViewController.m; sourceTree = "<group>"; };
+		955A7AF51D1D8D5400D1DEAC /* OrderViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderViewCell.h; sourceTree = "<group>"; };
+		955A7AF61D1D8D5400D1DEAC /* OrderViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderViewCell.m; sourceTree = "<group>"; };
+		955A7AFB1D1D8EC000D1DEAC /* OrderDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderDetailViewController.h; sourceTree = "<group>"; };
+		955A7AFC1D1D8EC000D1DEAC /* OrderDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderDetailViewController.m; sourceTree = "<group>"; };
+		955A7AFE1D1D8EE100D1DEAC /* OrderDetailOrderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderDetailOrderCell.h; sourceTree = "<group>"; };
+		955A7AFF1D1D8EE100D1DEAC /* OrderDetailOrderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderDetailOrderCell.m; sourceTree = "<group>"; };
+		955A7B011D1D8EFB00D1DEAC /* OrderDetailCallRecordCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderDetailCallRecordCell.h; sourceTree = "<group>"; };
+		955A7B021D1D8EFB00D1DEAC /* OrderDetailCallRecordCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderDetailCallRecordCell.m; sourceTree = "<group>"; };
+		955A7B031D1D8EFB00D1DEAC /* OrderDetailCustomInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderDetailCustomInfoCell.h; sourceTree = "<group>"; };
+		955A7B041D1D8EFB00D1DEAC /* OrderDetailCustomInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderDetailCustomInfoCell.m; sourceTree = "<group>"; };
 		95B0D80D1D1835F20054567D /* HomeTypeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeTypeCell.h; sourceTree = "<group>"; };
 		95B0D80E1D1835F20054567D /* HomeTypeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeTypeCell.m; sourceTree = "<group>"; };
 		95B0D8101D1836450054567D /* BussinessAreaModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BussinessAreaModel.h; sourceTree = "<group>"; };
@@ -886,6 +929,8 @@
 				95CA1C2B1D10F7A500AAE490 /* BaseDataSingleton.m */,
 				95CA1C2C1D10F7A500AAE490 /* BaseModel.h */,
 				95CA1C2D1D10F7A500AAE490 /* BaseModel.m */,
+				955A7ABC1D1CFE2800D1DEAC /* BaseAppointmentModel.h */,
+				955A7ABD1D1CFE2800D1DEAC /* BaseAppointmentModel.m */,
 			);
 			path = BaseModel;
 			sourceTree = "<group>";
@@ -1008,6 +1053,8 @@
 				955610E71D14B7B200366D4C /* shezhi.png */,
 				955610E81D14B7B200366D4C /* unSelected@2x.png */,
 				955610E91D14B7B200366D4C /* unSelected@3x.png */,
+				955A7AE81D1D7A3100D1DEAC /* unSelectedable@2x.png */,
+				955A7AE91D1D7A3100D1DEAC /* unSelectedable@3x.png */,
 				955610EA1D14B7B200366D4C /* uploadImage@2x.png */,
 				955610EB1D14B7B200366D4C /* uploadImage@3x.png */,
 				955610EC1D14B7B200366D4C /* xiaoxi.png */,
@@ -1562,6 +1609,10 @@
 				955610DA1D14B74700366D4C /* ModifyInfoViewController.m */,
 				955611021D14C29100366D4C /* MyLikeViewController.h */,
 				955611031D14C29100366D4C /* MyLikeViewController.m */,
+				955A7AEF1D1D887C00D1DEAC /* MyOrderListViewController.h */,
+				955A7AF01D1D887C00D1DEAC /* MyOrderListViewController.m */,
+				955A7AFB1D1D8EC000D1DEAC /* OrderDetailViewController.h */,
+				955A7AFC1D1D8EC000D1DEAC /* OrderDetailViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1573,6 +1624,8 @@
 				955610BF1D14B5C600366D4C /* PersonCenterModel.m */,
 				955610D01D14B6C000366D4C /* MyMessageModel.h */,
 				955610D11D14B6C000366D4C /* MyMessageModel.m */,
+				955A7AEC1D1D885000D1DEAC /* OrderListItem.h */,
+				955A7AED1D1D885000D1DEAC /* OrderListItem.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1588,6 +1641,14 @@
 				955610C61D14B5E400366D4C /* PersonInfoCustomCell.m */,
 				955610D31D14B6DA00366D4C /* MyMessgeCell.h */,
 				955610D41D14B6DA00366D4C /* MyMessgeCell.m */,
+				955A7AF51D1D8D5400D1DEAC /* OrderViewCell.h */,
+				955A7AF61D1D8D5400D1DEAC /* OrderViewCell.m */,
+				955A7AFE1D1D8EE100D1DEAC /* OrderDetailOrderCell.h */,
+				955A7AFF1D1D8EE100D1DEAC /* OrderDetailOrderCell.m */,
+				955A7B011D1D8EFB00D1DEAC /* OrderDetailCallRecordCell.h */,
+				955A7B021D1D8EFB00D1DEAC /* OrderDetailCallRecordCell.m */,
+				955A7B031D1D8EFB00D1DEAC /* OrderDetailCustomInfoCell.h */,
+				955A7B041D1D8EFB00D1DEAC /* OrderDetailCustomInfoCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1599,6 +1660,12 @@
 				95CA1E001D10F97F00AAE490 /* FindViewController.m */,
 				955611081D14CEDB00366D4C /* LawerListViewController.h */,
 				955611091D14CEDB00366D4C /* LawerListViewController.m */,
+				955A7AA71D1ACE2B00D1DEAC /* LawerDetailViewController.h */,
+				955A7AA81D1ACE2B00D1DEAC /* LawerDetailViewController.m */,
+				955A7AB31D1C3C2000D1DEAC /* LawerSelectTimeViewController.h */,
+				955A7AB41D1C3C2000D1DEAC /* LawerSelectTimeViewController.m */,
+				955A7AB61D1C3E1700D1DEAC /* LawerSelectContentViewController.h */,
+				955A7AB71D1C3E1700D1DEAC /* LawerSelectContentViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1619,6 +1686,10 @@
 			children = (
 				955611451D15A86300366D4C /* LawerListCell.h */,
 				955611461D15A86300366D4C /* LawerListCell.m */,
+				955A7AAA1D1AD20D00D1DEAC /* LawerDetailMidCell.h */,
+				955A7AAB1D1AD20D00D1DEAC /* LawerDetailMidCell.m */,
+				955A7AAD1D1B7C9700D1DEAC /* LawerDetailBottomCell.h */,
+				955A7AAE1D1B7C9700D1DEAC /* LawerDetailBottomCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1743,6 +1814,7 @@
 				955611011D14B7B200366D4C /* zhanghu.png in Resources */,
 				95CA1DF11D10F91900AAE490 /* navigationbar_back_icon_hl@2x.png in Resources */,
 				955610F01D14B7B200366D4C /* jiedan.png in Resources */,
+				955A7AEB1D1D7A3100D1DEAC /* unSelectedable@3x.png in Resources */,
 				955610FA1D14B7B200366D4C /* shezhi.png in Resources */,
 				95CA1BDE1D10F03A00AAE490 /* Assets.xcassets in Resources */,
 				955610FE1D14B7B200366D4C /* uploadImage@3x.png in Resources */,
@@ -1750,6 +1822,7 @@
 				95CA1DDB1D10F8F800AAE490 /* Tab04Normal@3x.png in Resources */,
 				955610FF1D14B7B200366D4C /* xiaoxi.png in Resources */,
 				95CA1DEF1D10F91900AAE490 /* common_icon_warning@2x.png in Resources */,
+				955A7AEA1D1D7A3100D1DEAC /* unSelectedable@2x.png in Resources */,
 				95CA1DD81D10F8F800AAE490 /* Tab04Highlighted@2x.png in Resources */,
 				95CA1DD21D10F8F800AAE490 /* Tab02Normal@2x.png in Resources */,
 				955610F61D14B7B200366D4C /* renzheng.png in Resources */,
@@ -1814,9 +1887,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				955A7B051D1D8EFB00D1DEAC /* OrderDetailCallRecordCell.m in Sources */,
 				95CA1D471D10F7C900AAE490 /* NSArray+MASAdditions.m in Sources */,
 				955611511D17855900366D4C /* HomeAreaCell.m in Sources */,
 				95CA1DA71D10F85500AAE490 /* UIImage+ImagePickerCrop.m in Sources */,
+				955A7B001D1D8EE100D1DEAC /* OrderDetailOrderCell.m in Sources */,
 				95CA1DAC1D10F85500AAE490 /* CityChooseViewController.m in Sources */,
 				95CA1E011D10F97F00AAE490 /* FindViewController.m in Sources */,
 				95CA1C361D10F7AD00AAE490 /* BaseNetProxy.m in Sources */,
@@ -1840,11 +1915,14 @@
 				95CA1C371D10F7AD00AAE490 /* XuNetWorking.m in Sources */,
 				95CA1D271D10F7C900AAE490 /* MJRefreshBackGifFooter.m in Sources */,
 				95CA1C5F1D10F7B700AAE490 /* DCWebImageManager.m in Sources */,
+				955A7B061D1D8EFB00D1DEAC /* OrderDetailCustomInfoCell.m in Sources */,
 				95CA1DA51D10F85500AAE490 /* UIImage+GIF.m in Sources */,
 				955610C01D14B5C600366D4C /* PersonCenterModel.m in Sources */,
 				95CA1C5D1D10F7B700AAE490 /* BadgeNumberView.m in Sources */,
 				95CA1D591D10F7C900AAE490 /* UIImage+YYWebImage.m in Sources */,
+				955A7AAF1D1B7C9700D1DEAC /* LawerDetailBottomCell.m in Sources */,
 				95CA1C681D10F7B700AAE490 /* XuAlertView.m in Sources */,
+				955A7AAC1D1AD20D00D1DEAC /* LawerDetailMidCell.m in Sources */,
 				95CA1C2E1D10F7A500AAE490 /* BarristerOrderModel.m in Sources */,
 				95CA1D291D10F7C900AAE490 /* MJRefreshBackStateFooter.m in Sources */,
 				95CA1C0D1D10F77F00AAE490 /* MeNetProxy.m in Sources */,
@@ -1858,18 +1936,22 @@
 				95CA1C201D10F79700AAE490 /* BaseTableViewController.m in Sources */,
 				955610CF1D14B69900366D4C /* PersonInfoViewController.m in Sources */,
 				95CA1C651D10F7B700AAE490 /* BaseTableView.m in Sources */,
+				955A7AFD1D1D8EC000D1DEAC /* OrderDetailViewController.m in Sources */,
 				95CA1C601D10F7B700AAE490 /* BaseNoDataView.m in Sources */,
 				95CA1C211D10F79700AAE490 /* BaseNavigaitonController.m in Sources */,
+				955A7AF71D1D8D5400D1DEAC /* OrderViewCell.m in Sources */,
 				955611361D15929000366D4C /* MyAccountRechargeVC.m in Sources */,
 				95CA1C0B1D10F77F00AAE490 /* LearnCenterProxy.m in Sources */,
 				95CA1D341D10F7C900AAE490 /* OpenUDID.m in Sources */,
 				955610DB1D14B74700366D4C /* ModifyInfoViewController.m in Sources */,
 				9556114B1D161A2400366D4C /* IMPullDownMenu.m in Sources */,
 				95B0D8121D1836450054567D /* BussinessAreaModel.m in Sources */,
+				955A7AB81D1C3E1700D1DEAC /* LawerSelectContentViewController.m in Sources */,
 				95CA1D561D10F7C900AAE490 /* UIButton+YYWebImage.m in Sources */,
 				95CA1DAD1D10F85500AAE490 /* XuUItlity.m in Sources */,
 				95CA1C231D10F79700AAE490 /* BaseTabbarController.m in Sources */,
 				95CA1C251D10F79700AAE490 /* BaseViewController.m in Sources */,
+				955A7AB51D1C3C2000D1DEAC /* LawerSelectTimeViewController.m in Sources */,
 				95CA1C241D10F79700AAE490 /* BaseTransparentViewController.m in Sources */,
 				95CA1C221D10F79700AAE490 /* BaseSegmentViewController.m in Sources */,
 				95CA1D4C1D10F7C900AAE490 /* SlideHeadView.m in Sources */,
@@ -1885,6 +1967,7 @@
 				95CA1C611D10F7B700AAE490 /* BaseTableViewCell.m in Sources */,
 				95CA1D6B1D10F7C900AAE490 /* YYWebImageOperation.m in Sources */,
 				95CA1D2B1D10F7C900AAE490 /* MJRefreshConst.m in Sources */,
+				955A7AF11D1D887C00D1DEAC /* MyOrderListViewController.m in Sources */,
 				95CA1D391D10F7C900AAE490 /* AJPhotoListCellTapView.m in Sources */,
 				95CA1DFB1D10F95100AAE490 /* LearnCenterViewController.m in Sources */,
 				95CA1BD61D10F03900AAE490 /* AppDelegate.m in Sources */,
@@ -1907,6 +1990,7 @@
 				95CA1C671D10F7B700AAE490 /* TFSButton.m in Sources */,
 				955611271D1588A200366D4C /* MyAccountDetailModel.m in Sources */,
 				95CA1D321D10F7C900AAE490 /* UIScrollView+MJRefresh.m in Sources */,
+				955A7AA91D1ACE2B00D1DEAC /* LawerDetailViewController.m in Sources */,
 				95CA1D9A1D10F85500AAE490 /* NSData+ImageContentType.m in Sources */,
 				95CA1DA91D10F85500AAE490 /* UIView+Addition.m in Sources */,
 				95CA1D311D10F7C900AAE490 /* UIScrollView+MJExtension.m in Sources */,
@@ -1919,6 +2003,7 @@
 				95CA1D441D10F7C900AAE490 /* MASLayoutConstraint.m in Sources */,
 				95CA1D511D10F7C900AAE490 /* YYMemoryCache.m in Sources */,
 				95CA1D241D10F7C900AAE490 /* MJRefreshAutoNormalFooter.m in Sources */,
+				955A7AEE1D1D885000D1DEAC /* OrderListItem.m in Sources */,
 				95CA1D531D10F7C900AAE490 /* CALayer+YYAdd.m in Sources */,
 				95CA1C2F1D10F7A500AAE490 /* BarristerUserModel.m in Sources */,
 				95CA1D3D1D10F7C900AAE490 /* AJPhotoBrowserViewController.m in Sources */,
@@ -1965,6 +2050,7 @@
 				95CA1D481D10F7C900AAE490 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
 				955611421D159FBB00366D4C /* AddBankCardViewController.m in Sources */,
 				955610C71D14B5E400366D4C /* PersonCenterAccountCell.m in Sources */,
+				955A7ABE1D1CFE2800D1DEAC /* BaseAppointmentModel.m in Sources */,
 				955611261D1588A200366D4C /* MyAccountDetailCell.m in Sources */,
 				95CA1D361D10F7C900AAE490 /* AJPhotoGroupCell.m in Sources */,
 				95CA1DA11D10F85500AAE490 /* UIImage+Additions.m in Sources */,

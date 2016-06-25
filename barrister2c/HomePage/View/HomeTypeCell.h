@@ -9,8 +9,11 @@
 #import "BaseTableViewCell.h"
 #import "BussinessTypeModel.h"
 
+typedef void(^TypeSelectBlock)(NSInteger index);
+
 @interface HomeTypeCell : BaseTableViewCell
 
+@property (nonatomic,copy) TypeSelectBlock block;
 
 @property (nonatomic,strong) NSMutableArray *items;
 

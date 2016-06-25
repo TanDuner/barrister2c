@@ -19,7 +19,7 @@
 @interface HomeTypeCellItemView : UIView
 
 @property (nonatomic,strong) UILabel *titleLabel;
-@property (nonatomic,strong) UIButton *button;
+@property (nonatomic,strong) UIImageView *rightImageView;
 @property (nonatomic,strong) UIButton *clickButton;
 @end
 
@@ -31,8 +31,10 @@
     self = [super initWithFrame:frame];
     if (self) {
         [self addSubview:self.titleLabel];
-        [self addSubview:self.button];
+        [self addSubview:self.rightImageView];
         self.backgroundColor = [UIColor whiteColor];
+        [self addSubview:self.clickButton];
+        self.userInteractionEnabled = YES;
     }
     return self;
 }
@@ -41,7 +43,6 @@
 -(void)layoutSubviews
 {
     [super layoutSubviews];
-    [self.clickButton setFrame:RECT(0, 0, self.width, self.height)];
 }
 
 #pragma -narj -Getter--
@@ -56,22 +57,27 @@
     return _titleLabel;
 }
 
--(UIButton *)button
+-(UIImageView *)rightImageView
 {
-    if (!_button) {
-        _button = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_button setFrame:RECT((SCREENWIDTH - 1)/2.0 - 15 - 35, (49 - 35)/2.0, 35, 35)];
+    if (!_rightImageView) {
+        _rightImageView = [[UIImageView alloc] init];
+        _rightImageView.userInteractionEnabled = YES;
+        [_rightImageView setFrame:RECT((SCREENWIDTH - 1)/2.0 - 15 - 35, (49 - 35)/2.0, 35, 35)];
     }
-    return _button;
+    return _rightImageView;
 }
 
 -(UIButton *)clickButton
 {
     if (!_clickButton) {
         _clickButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_clickButton setFrame:RECT(0, 0, ButtonWidth, ButtonHeight)];
     }
     return _clickButton;
 }
+
+
+
 @end
 
 
@@ -104,9 +110,8 @@
         
         [self addSubview:self.tipLabel];
         
-        [self addSubview:[self getLineViewWithRect:RECT(0, 45, SCREENWIDTH, .5)]];
-        
-        
+        [self addSubview:[self getLineViewWithRect:RECT(0, 44.5, SCREENWIDTH, .5)]];
+
         
         self.backgroundColor = [UIColor whiteColor];
     }
@@ -123,20 +128,17 @@
     for (int i = 0; i< self.items.count; i ++) {
         BussinessTypeModel *model = [self.items objectAtIndex:i];
         
-        HomeTypeCellItemView *itemView  = [[HomeTypeCellItemView alloc] init];
-        
-        [itemView setFrame:RECT((i%2) *ButtonWidth, (i/2) *(ButtonHeight + .5) + 45, ButtonWidth, ButtonHeight)];
+        HomeTypeCellItemView *itemView  = [[HomeTypeCellItemView alloc] initWithFrame:RECT((i%2) *ButtonWidth, (i/2) *(ButtonHeight + .5) + 45, ButtonWidth, ButtonHeight - .5)];
         
         
         itemView.titleLabel.text  = model.title;
         
-        [itemView.button setImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
+        [itemView.rightImageView setImage:[UIImage imageNamed:@""]];
         
-//        itemView.backgroundColor = [UIColor whiteColor];
+        itemView.rightImageView.backgroundColor = [UIColor redColor];
+        itemView.rightImageView.tag = i;
         
-        itemView.button.backgroundColor = [UIColor redColor];
-        
-        [itemView.button addTarget:self action:@selector(buttonClickAction) forControlEvents:UIControlEventTouchUpInside];
+        [itemView.clickButton addTarget:self action:@selector(buttonClickAction:) forControlEvents:UIControlEventTouchUpInside];
 
         [self addSubview:itemView];
         
@@ -147,14 +149,16 @@
     }
     
     [self addSubview:[self getLineViewWithRect:RECT(ButtonWidth, 45, .5, [HomeTypeCell getCellHeightWithArray:self.items] - 45)]];
-
     
-
 }
 
--(void)buttonClickAction
+
+
+-(void)buttonClickAction:(UIButton *)button
 {
-    
+    if (self.block) {
+        self.block(button.tag);
+    }
 
 }
 

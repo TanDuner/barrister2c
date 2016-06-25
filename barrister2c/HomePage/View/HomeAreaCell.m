@@ -78,7 +78,9 @@
 
 -(void)clickLawBooksAciton:(UIButton *)button
 {
-    
+    if (self.block) {
+        self.block(button.tag);
+    }
 }
 
 

@@ -15,6 +15,7 @@
 #import "SettingViewController.h"
 #import "MyLikeViewController.h"
 #import "MyAccountViewController.h"
+#import "MyOrderListViewController.h"
 
 
 @implementation PersonCenterViewController
@@ -216,6 +217,8 @@
                 break;
             case 1:
             {
+                MyOrderListViewController *orderListVC = [[MyOrderListViewController alloc] init];
+                [self.navigationController pushViewController:orderListVC animated:YES];
             }
                 break;
             case 2:
