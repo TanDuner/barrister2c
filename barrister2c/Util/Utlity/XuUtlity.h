@@ -253,5 +253,14 @@ typedef enum
 +(BOOL)validateNumber:(NSString*)number;
 
 
+/**
+ *  判断是否是有效的数组
+ *
+ *  @param object
+ *
+ *  @return 
+ */
++(BOOL)isValidArray:(id)object;
+
 
 @end

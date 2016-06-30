@@ -17,8 +17,17 @@
     if(self= [super init])
     {
         [self objectFromDictionary:jsonObject];
+        if ([jsonObject respondsToSelector:@selector(objectForKey:)]) {
+            [self handlePropretyWithDict:jsonObject];            
+        }
+
     }
     return self;
+}
+
+-(void)handlePropretyWithDict:(NSDictionary *)dict
+{
+    
 }
 
 -(NSString *) className

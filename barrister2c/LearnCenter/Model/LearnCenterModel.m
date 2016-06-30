@@ -10,4 +10,13 @@
 
 @implementation LearnCenterModel
 
+
+-(void)handlePropretyWithDict:(NSDictionary *)dict{
+    self.learnId = [dict objectForKey:@"id"];
+    
+//[XuUtlity NSStringDateToNSDate:[dict objectForKey:@"date"] forDateFormatterStyle:DateFormatterDateAndTime]
+    self.date = [dict objectForKey:@"date"];
+    
+}
 @end
+

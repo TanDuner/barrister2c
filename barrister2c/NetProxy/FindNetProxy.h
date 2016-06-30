@@ -17,5 +17,6 @@
  *  @param aBlock 回调
  */
 
--(void)getLawBooksWithParams:(NSMutableDictionary *)params WithBlock:(ServiceCallBlock)aBlock;
+//-(void)getLawBooksWithParams:(NSMutableDictionary *)params WithBlock:(ServiceCallBlock)aBlock;
+
 @end

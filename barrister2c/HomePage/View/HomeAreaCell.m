@@ -9,6 +9,8 @@
 #import "HomeAreaCell.h"
 #import "UIButton+EnlargeEdge.h"
 #import "BussinessAreaModel.h"
+#import "YYWebImage.h"
+#import "UIImage+Additions.h"
 
 
 #define TopSpace 10
@@ -53,12 +55,15 @@
 -(void)createAreaViews
 {
     for (int i = 0; i < self.items.count; i ++) {
+        BussinessAreaModel *areaModel = [self.items objectAtIndex:i];
+        
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
         button.backgroundColor = [UIColor blueColor];
         button.layer.cornerRadius = LawButtonWidth/2.0f;
         button.layer.masksToBounds = YES;
         [button setEnlargeEdge:8];
         button.tag = i;
+        [button yy_setImageWithURL:[NSURL URLWithString:areaModel.icon] forState:UIControlStateNormal placeholder:[UIImage createImageWithColor:KColorGray333]];
         button.titleLabel.font = SystemFont(10.0f);
         [button addTarget:self action:@selector(clickLawBooksAciton:) forControlEvents:UIControlEventTouchUpInside];
         [button setFrame:RECT(LawLeftPadding + (LawButtonWidth + LawHorSpacing) *(i%LawNumOfLine), LawTopPadding + (LawButtonWidth + LawVerSpacing)*(i/LawNumOfLine), LawButtonWidth, LawButtonWidth)];
@@ -67,8 +72,7 @@
         tipLabel.textColor = KColorGray666;
         tipLabel.textAlignment =  NSTextAlignmentCenter;
         tipLabel.font = SystemFont(12.0f);
-        BussinessAreaModel *areaModel = [self.items objectAtIndex:i];
-        tipLabel.text = areaModel.title;
+        tipLabel.text = areaModel.name;
         
         [self addSubview:button];
         [self addSubview:tipLabel];

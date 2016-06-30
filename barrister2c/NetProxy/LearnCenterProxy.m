@@ -8,8 +8,8 @@
 
 #import "LearnCenterProxy.h"
 
-#define LearnCenterListUrl @"getStudyList"
-#define LearnCenterChannelUrl @"getStudyChannelList"
+#define LearnCenterListUrl @"getStudyList.do"
+#define LearnCenterChannelUrl @"getStudyChannelList.do"
 
 @implementation LearnCenterProxy
 
@@ -22,12 +22,15 @@
 -(void)getLearnCenterListWithParams:(NSMutableDictionary *)params block:(ServiceCallBlock)aBlock
 {
     [XuNetWorking getWithUrl:LearnCenterListUrl params:params success:^(id response) {
-        if (aBlock) {
-            aBlock(response,YES);
+        if ([self isCommonCorrectResultCodeWithResponse:response]) {
+            if (aBlock) {
+                aBlock(response,YES);
+            }
         }
+
     } fail:^(NSError *error) {
         if (aBlock) {
-            aBlock(error,NO);
+            aBlock(CommonNetErrorTip,NO);
         }
     }];
 }

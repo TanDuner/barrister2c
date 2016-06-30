@@ -21,7 +21,7 @@
 {
     NSDictionary *dict = (NSDictionary *)response;
     NSString *resultCode = [dict objectForKey:@"resultCode"];
-    if (resultCode.integerValue == 0) {
+    if (resultCode.integerValue == 200) {
         return YES;
     }
     else

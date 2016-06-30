@@ -1,13 +1,13 @@
 //
 //  LearnCenterViewController.h
-//  barrister2c
+//  barrister
 //
-//  Created by 徐书传 on 16/6/15.
+//  Created by 徐书传 on 16/3/22.
 //  Copyright © 2016年 Xu. All rights reserved.
 //
 
-#import "BaseTableViewController.h"
+#import "BaseViewController.h"
 
-@interface LearnCenterViewController : BaseTableViewController
+@interface LearnCenterViewController : BaseViewController
 
 @end

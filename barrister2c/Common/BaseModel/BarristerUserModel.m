@@ -10,4 +10,14 @@
 
 @implementation BarristerUserModel
 
+
+-(void)handlePropretyWithDict:(NSDictionary *)jsoObject
+{
+    self.userId = [jsoObject objectForKey:@"id"];
+    if (self.nickName == nil) {
+        self.nickName = [NSString stringWithFormat:@"用户%@",self.phone];
+    }
+}
+
+
 @end

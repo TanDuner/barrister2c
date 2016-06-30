@@ -10,6 +10,9 @@
 #import "UIButton+EnlargeEdge.h"
 #import "UIImage+Additions.h"
 
+#import "YYWebImage.h"
+#import "UIImage+Additions.h"
+
 #define ButtonWidth (SCREENWIDTH - 1)/2.0
 #define ButtonHeight 49
 
@@ -128,22 +131,21 @@
     for (int i = 0; i< self.items.count; i ++) {
         BussinessTypeModel *model = [self.items objectAtIndex:i];
         
-        HomeTypeCellItemView *itemView  = [[HomeTypeCellItemView alloc] initWithFrame:RECT((i%2) *ButtonWidth, (i/2) *(ButtonHeight + .5) + 45, ButtonWidth, ButtonHeight - .5)];
+        HomeTypeCellItemView *itemView  = [[HomeTypeCellItemView alloc] initWithFrame:RECT((i%2) *ButtonWidth, (i/2) *(ButtonHeight + .5) + 46.5, ButtonWidth, ButtonHeight - .5)];
+        
+
+        itemView.titleLabel.text  = model.desc;
         
         
-        itemView.titleLabel.text  = model.title;
-        
-        [itemView.rightImageView setImage:[UIImage imageNamed:@""]];
-        
-        itemView.rightImageView.backgroundColor = [UIColor redColor];
+        itemView.rightImageView.backgroundColor = [UIColor whiteColor];
         itemView.rightImageView.tag = i;
-        
+        [itemView.rightImageView yy_setImageWithURL:[NSURL URLWithString:model.icon] placeholder:[UIImage createImageWithColor:KColorGray333]];
         [itemView.clickButton addTarget:self action:@selector(buttonClickAction:) forControlEvents:UIControlEventTouchUpInside];
 
         [self addSubview:itemView];
         
         if (i %2 == 0) {
-            [self addSubview:[self getLineViewWithRect:RECT(0, itemView.height + itemView.y + .5, SCREENWIDTH, .5)]];
+            [self addSubview:[self getLineViewWithRect:RECT(0, CGRectGetMaxY(itemView.frame) + .5, SCREENWIDTH, .5)]];
         }
         
     }
@@ -170,7 +172,7 @@
 {
     if (!_flagImageView) {
         _flagImageView = [[UIImageView alloc] initWithFrame:RECT(LeftPadding, 10, 25, 25)];
-        _flagImageView.backgroundColor = [UIColor redColor];
+        _flagImageView.image = [UIImage imageNamed:@"typeFlag"];
     }
     return _flagImageView;
 }

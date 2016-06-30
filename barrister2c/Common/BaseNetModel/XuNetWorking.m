@@ -351,7 +351,7 @@ static XuRequestType  sg_requestType  = kXuRequestTypeJSON;
     
     switch (sg_requestType) {
         case kXuRequestTypeJSON: {
-            manager.requestSerializer = [AFJSONRequestSerializer serializer];
+//            manager.requestSerializer = [AFJSONRequestSerializer serializer];
             [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
             [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
             break;

@@ -17,5 +17,7 @@
 
 -(void)selectTabWithIndex:(NSInteger)index;
 
+-(void)createTabbar;
+
 @end
 

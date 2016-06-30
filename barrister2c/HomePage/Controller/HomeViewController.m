@@ -14,13 +14,16 @@
 #import "BussinessAreaModel.h"
 #import "HomeTypeCell.h"
 #import "LawerListViewController.h"
+#import "HomeBannerModel.h"
+#import "DCWebImageManager.h"
+#import "BarristerLoginManager.h"
 
 @interface HomeViewController ()
 
 @property (nonatomic,strong) NSMutableArray *areaItems;
 @property (nonatomic,strong) NSMutableArray *typeItems;
 @property (nonatomic,strong) HomePageProxy *proxy;
-
+@property (nonatomic,strong) DCPicScrollView *bannerView;
 
 @end
 
@@ -29,8 +32,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initData];
-    [self configData];
-    [self createView];
 }
 
 
@@ -38,70 +39,48 @@
 {
     [super viewWillAppear:animated];
     [self showTabbar:YES];
+    
+
 }
 
-#pragma -mark ----UI---------
-
--(void)createView
-{
-    [self createBaseView];
-    
-    [self createTableView];
-}
-
--(void)createBaseView
-{
-    [self initNavigationRightTextButton:@"登录" action:@selector(toLoginAction:)];
-}
-
--(void)createTableView
-{
-    NSArray *UrlStringArray = @[@"http://e.hiphotos.baidu.com/lvpics/h=800/sign=61e9995c972397ddc97995046983b216/35a85edf8db1cb134d859ca8db54564e93584b98.jpg", @"http://e.hiphotos.baidu.com/lvpics/h=800/sign=1d1cc1876a81800a71e5840e813533d6/5366d0160924ab185b6fd93f33fae6cd7b890bb8.jpg", @"http://f.hiphotos.baidu.com/lvpics/h=800/sign=8430a8305cee3d6d3dc68acb73176d41/9213b07eca806538d9da1f8492dda144ad348271.jpg", @"http://d.hiphotos.baidu.com/lvpics/w=1000/sign=81bf893e12dfa9ecfd2e521752e0f603/242dd42a2834349b705785a7caea15ce36d3bebb.jpg", @"http://f.hiphotos.baidu.com/lvpics/w=1000/sign=4d69c022ea24b899de3c7d385e361c95/f31fbe096b63f6240e31d3218444ebf81a4ca3a0.jpg"];
-    
-    DCPicScrollView  *picView = [DCPicScrollView picScrollViewWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 140) WithImageUrls:UrlStringArray];
-    
-    self.tableView.tableHeaderView = picView;
-    
-}
 
 #pragma -mark -------Data---------
 
 -(void)initData
 {
     self.areaItems = [NSMutableArray arrayWithCapacity:1];
-    self.typeItems = [NSMutableArray arrayWithCapacity:1];}
+    self.typeItems = [NSMutableArray arrayWithCapacity:1];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(LoginSuccessAciton:) name:NOTIFICATION_LOGIN_SUCCESS object:nil];
+    [BarristerLoginManager shareManager].showController  = self;
+    [[BarristerLoginManager shareManager] userAutoLogin];
+
+}
+
+
+-(void)LoginSuccessAciton:(NSNotification *)nsnotifi
+{
+    [self loadData];
+}
+
 
 -(void)configData
 {
-    
+    [self.areaItems removeAllObjects];
+    [self.typeItems removeAllObjects];
+    _bannerView = nil;
     [self loadData];
     
 }
 
+
+
 -(void)loadData
 {
-
-    for (int i = 0; i < 10; i ++) {
-        BussinessAreaModel *model = [[BussinessAreaModel alloc] init];
-        model.title = @"婚姻家庭";
-        model.imageUrl = @"http://img4.duitang.com/uploads/item/201508/26/20150826212734_ST5BC.thumb.224_0.jpeg";
-        model.areaId = @"1";
-        [self.areaItems addObject:model];
-    }
-    
-    for (int i = 0; i < 6; i ++) {
-        BussinessTypeModel *model = [[BussinessTypeModel alloc] init];
-        model.title = @"婚姻家庭";
-        model.imageUrl = @"http://img4.duitang.com/uploads/item/201508/26/20150826212734_ST5BC.thumb.224_0.jpeg";
-        model.typeId = @"1";
-        [self.typeItems addObject:model];
-    }
-    
-    
-    
     [self.proxy getHomePageDataWithParams:nil Block:^(id returnData, BOOL success) {
         if (success) {
-            [self handleDataWithDict:nil];
+            NSDictionary *dict = (NSDictionary *)returnData;
+            [self handleDataWithDict:dict];
         }
         else
         {
@@ -110,10 +89,65 @@
     }];
 }
 
--(void)handleDataWithDict:(NSMutableDictionary *)dict
+-(void)handleDataWithDict:(NSDictionary *)dict
 {
+    NSArray *bizAreasArray = [dict objectForKey:@"bizAreas"];
+    NSArray *bizTypesArray = [dict objectForKey:@"bizTypes"];
+    NSArray *bannerListArray = [dict objectForKey:@"list"];
+    
+    for ( int i = 0; i < bizAreasArray.count; i ++) {
+        NSDictionary *dictTemp = [bizAreasArray objectAtIndex:i];
+        BussinessAreaModel *model = [[BussinessAreaModel alloc] initWithDictionary:dictTemp];
+        [self.areaItems addObject:model];
+    }
+    
+    for ( int i = 0; i < bizTypesArray.count; i ++) {
+        NSDictionary *dictTemp = [bizTypesArray objectAtIndex:i];
+        BussinessTypeModel *model = [[BussinessTypeModel alloc] initWithDictionary:dictTemp];
+        [self.typeItems addObject:model];
+    }
+    
+    NSMutableArray *imageUrls = [NSMutableArray arrayWithCapacity:1];
+    for (int i = 0; i < bannerListArray.count; i ++) {
+        NSDictionary *dict = [bannerListArray objectAtIndex:i];
+        HomeBannerModel *model = [[HomeBannerModel alloc] initWithDictionary:dict];
+        [imageUrls addObject:model.image];
+        [imageUrls addObject:model.image];
+    }
+    
+    [self.tableView reloadData];
+    
+    [self setBannerViewWithUrls:imageUrls];
 
 }
+
+-(DCPicScrollView *)setBannerViewWithUrls:(NSArray *)urlStrings
+{
+    if (!_bannerView) {
+        _bannerView = [DCPicScrollView picScrollViewWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 140) WithImageUrls:urlStrings];
+        _bannerView.placeImage = [UIImage imageNamed:@"timeline_image_loading.png"];
+        
+        [_bannerView setImageViewDidTapAtIndex:^(NSInteger index) {
+            printf("第%zd张图片\n",index);
+        }];
+        
+        _bannerView.AutoScrollDelay = 2.0f;
+        
+        //下载失败重复下载次数,默认不重复,
+        [[DCWebImageManager shareManager] setDownloadImageRepeatCount:1];
+        
+        //图片下载失败会调用该block(如果设置了重复下载次数,则会在重复下载完后,假如还没下载成功,就会调用该block)
+        [[DCWebImageManager shareManager] setDownLoadImageError:^(NSError *error, NSString *url) {
+            
+        }];
+        
+        self.tableView.tableHeaderView = _bannerView;
+        
+        [self.tableView reloadData];
+    }
+    return _bannerView;
+}
+
 
 
 #pragma -mark ---UITableView Delegate Methods------
@@ -138,11 +172,35 @@
     }
 }
 
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    if (section == 1) {
+        UIView *headVIew = [self getLineViewWithFrame:RECT(0, 0, SCREENWIDTH, 10)];
+        headVIew.backgroundColor = RGBCOLOR(239, 239, 246);
+        return headVIew;
+    }
+    else{
+        return nil;
+    }
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    if (section == 1) {
+        return 10;
+    }
+    else
+    {
+        return 0;
+    }
+}
+
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
             HomeMonenyCell *cell = [[HomeMonenyCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
             return cell;
         }
         else if(indexPath.row == 1)

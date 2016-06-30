@@ -10,4 +10,10 @@
 
 @implementation BussinessAreaModel
 
+-(void)handlePropretyWithDict:(NSDictionary *)dict
+{
+    self.areaId = [dict objectForKey:@"id"];
+}
+
 @end
+

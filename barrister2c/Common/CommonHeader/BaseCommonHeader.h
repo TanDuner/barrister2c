@@ -13,8 +13,14 @@
 #import "BaseDataSingleton.h"
 #import "XuUtlity.h"
 #import "XuUItlity.h"
+#import "NSArray+CommonAdd.h"
+#import "CommonMacros.h"
 
-#define BaseUrl  @"http://119.254.167.200:8080/lawerservice/"
+
+//#define BaseUrl  @"http://192.168.1.25:8080/clientservice/"
+
+#define BaseUrl  @"http://119.254.167.200:8080/clientservice/"
+
 
 #define kLoadingViewTag 100000      // LoadingView tag
 #define kNetworkErrorViewTag 100001 // NetworkErrorView.xib tag

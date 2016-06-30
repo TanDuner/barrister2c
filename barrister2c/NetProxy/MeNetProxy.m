@@ -10,6 +10,9 @@
 #define GetAppointDataUrl @""
 #define SetAppointDataUrl @""
 #define UploadHeadImageUrl @"uploadUserIcon.do"
+#define MyMessageUrl @"getMyMsgs.do"
+#define FeedBackUrl @"addFeedback.do"
+
 
 @implementation MeNetProxy
 /**
@@ -62,31 +65,80 @@
                           fileName:(NSString *)fileName
                              Block:(ServiceCallBlock)aBlock
 {
-    [XuNetWorking uploadWithImage:image url:UploadHeadImageUrl filename:@"uploadUserIcon.jpg" name:@"xxx" mimeType:@"" parameters:nil progress:nil success:^(id response) {
-        if (aBlock) {
-            aBlock(response,YES);
+    [XuNetWorking uploadWithImage:image url:UploadHeadImageUrl filename:@"userIcon" name:@"userIcon" mimeType:@"image/jpeg" parameters:params progress:nil success:^(id response) {
+        if ([self isCommonCorrectResultCodeWithResponse:response]) {
+            if (aBlock) {
+                aBlock(response,YES);
+            }
         }
+        else
+        {
+            aBlock(CommonNetErrorTip,NO);
+        }
+
     } fail:^(NSError *error) {
         if (aBlock) {
             aBlock(error,NO);
         }
     }];
 }
-
+/**
+ *  我的消息列表
+ *
+ *  @param params 参数
+ *  @param aBlock 回调block
+ */
 -(void)getMyMessageWithParams:(NSMutableDictionary *)params block:(ServiceCallBlock)aBlock
 {
-    [XuNetWorking postWithUrl:@"" params:params success:^(id response) {
-        if (aBlock) {
-            NSArray *list = [response objectForKey:@"msgs"];
-            aBlock(list,YES);
+    [XuNetWorking postWithUrl:MyMessageUrl params:params success:^(id response) {
+        if ([self isCommonCorrectResultCodeWithResponse:response]) {
+            if (aBlock) {
+                aBlock(response,YES);
+            }
         }
-
+        else
+        {
+            aBlock(CommonNetErrorTip,NO);
+        }
+        
+        
     } fail:^(NSError *error) {
         if (aBlock) {
             aBlock(error,NO);
         }
-
+        
     }];
+}
+
+
+
+/**
+ *  填写反馈接口
+ *
+ *  @param params <#params description#>
+ *  @param aBlock <#aBlock description#>
+ */
+-(void)feedBackWithParams:(NSMutableDictionary *)params block:(ServiceCallBlock)aBlock
+{
+    [XuNetWorking postWithUrl:FeedBackUrl params:params success:^(id response) {
+        if ([self isCommonCorrectResultCodeWithResponse:response]) {
+            if (aBlock) {
+                aBlock(response,YES);
+            }
+        }
+        else
+        {
+            aBlock(CommonNetErrorTip,NO);
+        }
+        
+        
+    } fail:^(NSError *error) {
+        if (aBlock) {
+            aBlock(error,NO);
+        }
+        
+    }];
+    
 }
 
 @end

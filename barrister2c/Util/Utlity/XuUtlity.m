@@ -1607,6 +1607,16 @@ typedef struct PhoneSate PhoneSate;
 }
 
 
++(BOOL)isValidArray:(id)object
+{
+    if ([object isKindOfClass:[NSArray class]] ||[object isKindOfClass:[NSMutableArray class]]) {
+        return YES;
+    }
+    else
+    {
+        return NO;
+    }
+}
 
 
 

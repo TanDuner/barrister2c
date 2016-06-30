@@ -377,6 +377,8 @@
         _noContentLabel.text = self.noContentString;
         
         [_noContentView addSubview:_noContentLabel];
+        
+        [self.view addSubview:_noContentView];
     }
     
     return _noContentView;

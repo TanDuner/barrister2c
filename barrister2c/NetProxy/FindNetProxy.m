@@ -7,7 +7,8 @@
 //
 
 #import "FindNetProxy.h"
-#define LawBookUrl @""
+#define LawBookUrl @"lawAppList"
+
 @implementation FindNetProxy
 /**
  *  获取中国应用大全接口
@@ -15,16 +16,16 @@
  *  @param params 参数
  *  @param aBlock 回调
  */
--(void)getLawBooksWithParams:(NSMutableDictionary *)params WithBlock:(ServiceCallBlock)aBlock
-{
-    [XuNetWorking getWithUrl:LawBookUrl params:params success:^(id response) {
-        if (aBlock) {
-            aBlock(response,YES);
-        }
-    } fail:^(NSError *error) {
-        if (aBlock) {
-            aBlock(error,NO);
-        }
-    }];
-}
+//-(void)getLawBooksWithParams:(NSMutableDictionary *)params WithBlock:(ServiceCallBlock)aBlock
+//{
+//    [XuNetWorking getWithUrl:LawBookUrl params:params success:^(id response) {
+//        if (aBlock) {
+//            aBlock(response,YES);
+//        }
+//    } fail:^(NSError *error) {
+//        if (aBlock) {
+//            aBlock(error,NO);
+//        }
+//    }];
+//}
 @end

@@ -8,7 +8,7 @@
 
 #import "HomePageProxy.h"
 
-#define HomePageDataUrl @"appHome"
+#define HomePageDataUrl @"appHome.do"
 
 @implementation HomePageProxy
 
@@ -22,9 +22,15 @@
 -(void)getHomePageDataWithParams:(NSDictionary *)params Block:(ServiceCallBlock)aBlock
 {
     [XuNetWorking getWithUrl:HomePageDataUrl params:params success:^(id response) {
-        
+        if ([self isCommonCorrectResultCodeWithResponse:response]) {
+            aBlock(response,YES);
+        }
+        else
+        {
+            aBlock(CommonNetErrorTip,NO);
+        }
     } fail:^(NSError *error) {
-        
+        aBlock(CommonNetErrorTip,NO);
     }];
 }
 

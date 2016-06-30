@@ -15,8 +15,6 @@
 
 @property (nonatomic,strong) UILabel *titleLabel;
 
-@property (nonatomic,strong) UILabel *subTitlelabel;
-
 @property (nonatomic,strong) UILabel *timeLabel;
 
 @end
@@ -28,7 +26,6 @@
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         [self addSubview:self.leftImageView];
         [self addSubview:self.titleLabel];
-        [self addSubview:self.subTitlelabel];
         [self addSubview:self.timeLabel];
     }
     return self;
@@ -40,7 +37,6 @@
     [self.leftImageView setFrame:RECT(LeftPadding, LeftPadding + 5, 45, 45)];
     [self.titleLabel setFrame:RECT(self.leftImageView.x + self.leftImageView.width + 10, self.leftImageView.y, 150, 15)];
     [self.timeLabel setFrame:CGRectMake(SCREENWIDTH - 160, LeftPadding + 5, 150, 15)];
-    [self.subTitlelabel setFrame:CGRectMake(self.titleLabel.x, self.titleLabel.y + self.titleLabel.height + 10, 250, 15)];
 }
 
 
@@ -49,10 +45,9 @@
     [super configData];
     
     if (self.model) {
-        [self.leftImageView yy_setImageWithURL:[NSURL URLWithString:self.model.imageUrl] placeholder:[UIImage imageNamed:@"timeline_image_loading"]];
-        self.titleLabel.text = self.model.learnTitle;
-        self.subTitlelabel.text = self.model.learnSubtitle;
-        self.timeLabel.text = [NSString stringWithFormat:@"%@",self.model.publishTime];
+        [self.leftImageView yy_setImageWithURL:[NSURL URLWithString:self.model.thumb] placeholder:[UIImage imageNamed:@"timeline_image_loading"]];
+        self.titleLabel.text = self.model.title;
+        self.timeLabel.text = [NSString stringWithFormat:@"%@",self.model.date];
     }
 }
 
@@ -91,17 +86,6 @@
     return _titleLabel;
 }
 
-
--(UILabel*)subTitlelabel
-{
-    if (!_subTitlelabel) {
-        _subTitlelabel = [[UILabel alloc] init];
-        _subTitlelabel.textColor = KColorGray999;
-        _subTitlelabel.font = SystemFont(13.0f);
-        _subTitlelabel.textAlignment = NSTextAlignmentLeft;
-    }
-    return _subTitlelabel;
-}
 
 
 

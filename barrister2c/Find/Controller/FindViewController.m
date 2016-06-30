@@ -10,6 +10,7 @@
 #import "FindNetProxy.h"
 #import "UIButton+EnlargeEdge.h"
 #import "LawerListViewController.h"
+#import "BaseWebViewController.h"
 
 #define ImageWidth 28
 
@@ -118,6 +119,11 @@ typedef void(^ClickZXItemBlock)(ZXItemView *itemView);
 @property (nonatomic,strong) ZXItemView *rightItem;
 
 @property (nonatomic,strong) FindNetProxy *proxy;
+
+@property (nonatomic,strong) NSArray *urlArray;
+
+@property (nonatomic,strong) NSArray *titleArray;
+
 @end
 
 @implementation FindViewController
@@ -160,11 +166,12 @@ typedef void(^ClickZXItemBlock)(ZXItemView *itemView);
 
 -(void)configData
 {
-    NSArray *array = @[@"中国法律",@"中国法规",@"地方法规",@"司法解释",@"实用案例",@"国际条约",@"合同范本",@"法律文书",@"百姓法律",@"英文法律",@"法律考试",@"WTO/白皮书"];
     
-    [self.bottomCategoryView setFrame:RECT(0, 78 + 10, SCREENWIDTH, ceil(array.count/4) * (LawTopPadding + LawButtonWidth))];
+
     
-    for (int i = 0; i < array.count; i ++) {
+    [self.bottomCategoryView setFrame:RECT(0, 78 + 10, SCREENWIDTH, ceil(self.titleArray.count/4) * (LawTopPadding + LawButtonWidth))];
+    
+    for (int i = 0; i < self.titleArray.count; i ++) {
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
         button.backgroundColor = [UIColor blueColor];
         button.layer.cornerRadius = LawButtonWidth/2.0f;
@@ -179,49 +186,61 @@ typedef void(^ClickZXItemBlock)(ZXItemView *itemView);
         UILabel *tipLabel = [[UILabel alloc] initWithFrame:RECT(button.x - 10, button.y + button.height + 15, LawButtonWidth + 20, 12)];
         tipLabel.textColor = KColorGray666;
         tipLabel.font = SystemFont(12.0f);
-        tipLabel.text = array[i];
+        tipLabel.text = self.titleArray[i];
         
         [self.bottomCategoryView addSubview:button];
         [self.bottomCategoryView addSubview:tipLabel];
     }
     
-    [self.proxy getLawBooksWithParams:nil WithBlock:^(id returnData, BOOL success) {
-        if (success) {
-        
-        }
-        else
-        {
-        
-        }
-    }];
+  
 }
 
 #pragma -mark --Aciton----
 
 -(void)clickLawBooksAciton:(UIButton *)btn
 {
+    if (self.titleArray.count != self.urlArray.count) {
+        return;
+    }
     
+    if (self.urlArray.count > btn.tag) {
+        NSString *url = [self.urlArray objectAtIndex:btn.tag];
+        BaseWebViewController *webView = [[BaseWebViewController alloc] init];
+        webView.url = url;
+        webView.showTitle = self.titleArray[btn.tag];
+        [self.navigationController pushViewController:webView animated:YES];
+    }
+  
+
 }
 
 #pragma -mark ----Getter-------
 
+-(NSArray *)titleArray
+{
+    if (!_titleArray) {
+        _titleArray = @[@"中国法律",@"中国法规",@"地方法规",@"司法解释",@"实用案例",@"国际条约",@"合同范本",@"法律文书",@"百姓法律",@"英文法律",@"法律考试",@"WTO/白皮书"];
+    }
+    return _titleArray;
+}
+
+-(NSArray *)urlArray
+{
+    if (!_urlArray) {
+        _urlArray = @[@"http://sjtj.flgw.com.cn/zgfl/default.asp",@"http://sjtj.flgw.com.cn/zgfg/default.asp",@"http://sjtj.flgw.com.cn/dffg/default.asp",@"http://sjtj.flgw.com.cn/sfjs/default.asp",@"http://sjtj.flgw.com.cn/flks/default.asp",@"http://sjtj.flgw.com.cn/syal/default.asp",@"http://sjtj.flgw.com.cn/htfb/default.asp",@"http://sjtj.flgw.com.cn/flws/default.asp",@"http://sjtj.flgw.com.cn/gjty/default.asp",@"http://sjtj.flgw.com.cn/bxfl/default.asp",@"http://sjtj.flgw.com.cn/wto/default.asp",@"http://sjtj.flgw.com.cn/ywfl/default.asp"];
+    }
+    return _urlArray;
+}
+
 #define ItemWidth (SCREENWIDTH - 1)/2.0
 #define ItemHeight 78
-
--(FindNetProxy *)proxy
-{
-    if (!_proxy) {
-        _proxy = [[FindNetProxy alloc] init];
-    }
-    return _proxy;
-}
 
 -(UIView *)topSelectView
 {
     if (!_topSelectView) {
         _topSelectView = [[UIView alloc] initWithFrame:RECT(0, 0, SCREENWIDTH, ItemHeight + 10)];
         _LeftItem = [[ZXItemView alloc] initWithFrame:RECT(0, 0, ItemWidth, ItemHeight)];
-        _LeftItem.leftImageView.image = [UIImage imageNamed:@"common_icon_succeed"];
+        _LeftItem.leftImageView.image = [UIImage imageNamed:@"JSZX"];
         _LeftItem.titleLabel.text = @"即时咨询";
         _LeftItem.subtitleLabel.text = @"立即与律师沟通";
         __weak typeof(*&self) weakSelf = self;
@@ -235,7 +254,7 @@ typedef void(^ClickZXItemBlock)(ZXItemView *itemView);
         
         
         _rightItem = [[ZXItemView alloc] initWithFrame:RECT(ItemWidth + 1, 0, ItemWidth, ItemHeight)];
-        _rightItem.leftImageView.image = [UIImage imageNamed:@"common_icon_succeed"];
+        _rightItem.leftImageView.image = [UIImage imageNamed:@"YYZX"];
         _rightItem.titleLabel.text = @"预约咨询";
         _rightItem.subtitleLabel.text = @"约定时间与律师沟通";
         _rightItem.block = ^(ZXItemView *itemView)

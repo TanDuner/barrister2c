@@ -8,8 +8,11 @@
 
 #import <Foundation/Foundation.h>
 #import "XuNetWorking.h"
-
+#import "AFNetWorking.h"
 typedef void(^ServiceCallBlock)(id returnData, BOOL success);
+
+#define CommonNetErrorTip @"网络错误,请稍后再试"
+
 
 @interface BaseNetProxy : NSObject
 

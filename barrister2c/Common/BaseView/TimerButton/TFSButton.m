@@ -9,10 +9,8 @@
 #import "TFSButton.h"
 #import "UIImage+Additions.h"
 #define MaxSeconds 60  //设置您需要倒计时的最大事件
-typedef void(^TouchBtn)(TFSButton* btn);
 @interface TFSButton()
 {
-    TouchBtn  _touchBlock;
     NSTimer*  _timer;
     NSInteger _times;
 }
@@ -21,14 +19,11 @@ typedef void(^TouchBtn)(TFSButton* btn);
 
 @implementation TFSButton
 
-- (TFSButton* )initWithFrame:(CGRect)rect touchBlock:(void (^)(TFSButton *))touchBlock {
-    if (self = [super init]) {
-        _touchBlock = touchBlock;
+- (TFSButton* )initWithFrame:(CGRect)rect {
+    if (self = [super initWithFrame:rect]) {
         self.frame = rect;
         
         self.backgroundColor = [UIColor whiteColor];
-//        self.layer.cornerRadius = 5;
-//        self.layer.masksToBounds = YES;
         
         [self initBtnStatus];
         [self setTitleColor:KColorGray666 forState:UIControlStateNormal];
@@ -37,7 +32,6 @@ typedef void(^TouchBtn)(TFSButton* btn);
         [self setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
         
         [self setBackgroundImage:[UIImage createImageWithColor:KColorGray999] forState:UIControlStateSelected];
-        [self addTarget:self action:@selector(clickSelfBtn:) forControlEvents:UIControlEventTouchUpInside];
     }
     return self;
 }
@@ -58,7 +52,8 @@ typedef void(^TouchBtn)(TFSButton* btn);
     }
     
     [self startTimer];
-    _touchBlock(self);  // 回调block向服务器请求验证码
+
+
 }
 
 - (void)startTimer {

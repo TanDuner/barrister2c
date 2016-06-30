@@ -58,17 +58,35 @@
     for (int i = 0; i < titleArray.count; i ++) {
         PersonCenterModel *model = [[PersonCenterModel alloc] init];
         model.titleStr = [titleArray objectAtIndex:i];
-        if (i == 0) {
-            model.cellType = PersonCenterModelTypeInfoTX;
-        }
-        else
-        {
-            model.cellType = PersonCenterModelTypeInfoCommon;
-            model.subtitleStr = @"未填写";
+
+        switch (i) {
+            case 0:
+            {
+                model.cellType = PersonCenterModelTypeInfoTX;
+                model.userIcon = [BaseDataSingleton shareInstance].userModel.userIcon;
+
+            }
+                break;
+            case 1:
+            {
+                model.cellType = PersonCenterModelTypeInfoNickName;
+                model.subtitleStr = [BaseDataSingleton shareInstance].userModel.nickName?[BaseDataSingleton shareInstance].userModel.nickName:@"未填写";
+
+            }
+                break;
+            case 2:
+            {
+            
+            }
+                break;
+            case 3:
+            {
+                
+            }
+            default:
+                break;
         }
         
-        model.isShowArrow = (i == 1)?NO:YES;
-
         [self.items addObject:model];
     }
 }
@@ -231,15 +249,20 @@
     }
 }
 
+
 #pragma -mark ----UploadHeaderImage------
 
 -(void)uploadHeadImage
 {
-    [self.proxy UploadHeadImageUrlWithImage:self.headImage params:nil fileName:@"userIcon" Block:^(id returnData, BOOL success) {
+    
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setObject:[BaseDataSingleton shareInstance].userModel.userId forKey:@"userId"];
+    [params setObject:[BaseDataSingleton shareInstance].userModel.verifyCode forKey:@"verifyCode"];
+    [XuUItlity showLoading:@"正在上传.."];
+    [self.proxy UploadHeadImageUrlWithImage:self.headImage params:params fileName:@"userIcon" Block:^(id returnData, BOOL success) {
+        [XuUItlity hideLoading];
         if (success) {
             [XuUItlity showSucceedHint:@"上传成功" completionBlock:nil];
-            PersonCenterModel *model = (PersonCenterModel *)[self.items objectAtIndex:0];
-            model.headImage = self.headImage;
             [self.tableView reloadData];
 
         }

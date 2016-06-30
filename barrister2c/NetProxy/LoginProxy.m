@@ -20,12 +20,20 @@
 -(void)loginWithParams:(NSDictionary *)params Block:(ServiceCallBlock)aBlock
 {
     [XuNetWorking postWithUrl:LoginUrl params:params success:^(id response) {
+        NSString  *resultCode = [response objectForKey:@"resultCode"];
+        NSString *resultMsg = [response objectForKey:@"resultMsg"];
         if (aBlock) {
-            aBlock(response,YES);
+            if (resultCode.intValue == 200) {
+                aBlock(response,YES);
+            }
+            else
+            {
+                aBlock(resultMsg,NO);
+            }
         }
     } fail:^(NSError *error) {
         if (aBlock) {
-            aBlock(error,YES);
+            aBlock(@"网络有问题，稍后重试",NO);
         }
     }];
 }
@@ -54,7 +62,8 @@
         if (aBlock) {
             aBlock(error,NO);
         }
-   }];
+    }];
 }
+
 
 @end

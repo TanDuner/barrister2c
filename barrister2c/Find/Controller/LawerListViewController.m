@@ -10,10 +10,14 @@
 #import "LawerListCell.h"
 #import "IMPullDownMenu.h"
 #import "LawerDetailViewController.h"
+#import "LawerListProxy.h"
+
 
 @interface LawerListViewController ()<UITableViewDataSource,UITableViewDelegate,IMPullDownMenuDelegate>
 
 @property (nonatomic,strong) IMPullDownMenu *pullDownMenu;
+
+@property (nonatomic,strong) LawerListProxy *proxy;
 
 @end
 
@@ -30,11 +34,23 @@
     [super viewDidLoad];
     
     [self configView];
+    
+
 }
 
 -(void)loadItems
 {
 
+    [self.proxy getLawerListWithParams:nil block:^(id returnData, BOOL success) {
+        if (success) {
+            
+        }
+        else{
+        
+        }
+    }];
+    
+    
     BarristerLawerModel *model = [[BarristerLawerModel alloc] init];
     model.name = @"张大强";
     model.workingStartYear = @"1990";
@@ -202,5 +218,14 @@
     [self.navigationController pushViewController:detailVC animated:YES];
 }
 
+#pragma -mark ---Getter----
+
+-(LawerListProxy *)proxy
+{
+    if (!_proxy) {
+        _proxy = [[LawerListProxy alloc] init];
+    }
+    return _proxy;
+}
 
 @end

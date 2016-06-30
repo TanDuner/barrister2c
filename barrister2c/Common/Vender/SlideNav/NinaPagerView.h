@@ -23,6 +23,4 @@
 @property (copy, nonatomic) NSString *PageIndex; /**< 所在的控制器index或点击上方button的index **/
 @property (assign, nonatomic) CGFloat titleScale; /**<  标题缩放比例   **/
 @property (weak, nonatomic) id<NinaPagerViewDelegate>delegate; /**< NinaPagerView代理 **/
-@property (nonatomic,strong)  NSArray *myArray;
-
 @end

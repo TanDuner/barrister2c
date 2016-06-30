@@ -7,6 +7,7 @@
 //
 
 #import "PersonCenterAccountCell.h"
+#import "YYWebImage.h"
 
 #define IconWidht 65
 
@@ -17,7 +18,7 @@
 @property (nonatomic,strong) UILabel *titleLabel;
 @property (nonatomic,strong) UIImageView *rightRow;
 
-@property (nonatomic,strong) UILabel *subtitleLabel;
+//@property (nonatomic,strong) UILabel *subtitleLabel;
 
 @end
 
@@ -38,7 +39,7 @@
         [self addSubview:self.iconImageIVew];
         [self addSubview:self.titleLabel];
         [self addSubview:self.rightRow];
-        [self addSubview:self.subtitleLabel];
+//        [self addSubview:self.subtitleLabel];
     }
     return self;
 }
@@ -47,20 +48,28 @@
 {
     [super layoutSubviews];
     
-    if (self.model.isAccountLogin) {
-        [self.titleLabel setFrame:RECT(self.iconImageIVew.x + self.iconImageIVew.width + 15, self.iconImageIVew.y + 5, SCREENWIDTH - self.iconImageIVew.width - LeftPadding - 5 - 15 - 30, 15)];
-        [self.subtitleLabel setFrame:RECT(self.titleLabel.x, self.iconImageIVew.y + self.iconImageIVew.height - 20 , self.titleLabel.width, 10)];
-        _titleLabel.textColor = KColorGray333;
-        self.rightRow.hidden = NO;
-    }
-    else
-    {
-        [self.iconImageIVew setFrame:RECT(LeftPadding + 5, ([PersonCenterAccountCell getCellHeight] - IconWidht)/2.0, IconWidht, IconWidht)];
-        [self.titleLabel setFrame:RECT(self.iconImageIVew.x + self.iconImageIVew.width + 15, ([PersonCenterAccountCell getCellHeight] - 15)/2.0, SCREENWIDTH - 100, 15)];
-        _titleLabel.textColor = KColorGray666;
-        self.rightRow.hidden = YES;
+    [self.iconImageIVew setFrame:RECT(LeftPadding + 5, ([PersonCenterAccountCell getCellHeight] - IconWidht)/2.0, IconWidht, IconWidht)];
+    [self.titleLabel setFrame:RECT(self.iconImageIVew.x + self.iconImageIVew.width + 15, ([PersonCenterAccountCell getCellHeight] - 15)/2.0, SCREENWIDTH - 100, 15)];
+    _titleLabel.textColor = KColorGray666;
+    self.rightRow.hidden = YES;
 
-    }
+    
+    
+    
+//    if (self.model.isAccountLogin) {
+//        [self.titleLabel setFrame:RECT(self.iconImageIVew.x + self.iconImageIVew.width + 15, self.iconImageIVew.y + 5, SCREENWIDTH - self.iconImageIVew.width - LeftPadding - 5 - 15 - 30, 15)];
+//        [self.subtitleLabel setFrame:RECT(self.titleLabel.x, self.iconImageIVew.y + self.iconImageIVew.height - 20 , self.titleLabel.width, 10)];
+//        _titleLabel.textColor = KColorGray333;
+//        self.rightRow.hidden = NO;
+//    }
+//    else
+//    {
+//        [self.iconImageIVew setFrame:RECT(LeftPadding + 5, ([PersonCenterAccountCell getCellHeight] - IconWidht)/2.0, IconWidht, IconWidht)];
+//        [self.titleLabel setFrame:RECT(self.iconImageIVew.x + self.iconImageIVew.width + 15, ([PersonCenterAccountCell getCellHeight] - 15)/2.0, SCREENWIDTH - 100, 15)];
+//        _titleLabel.textColor = KColorGray666;
+//        self.rightRow.hidden = YES;
+//
+//    }
     
     [self.rightRow setFrame:CGRectMake(SCREENWIDTH - 15 - 15, ([PersonCenterAccountCell getCellHeight] - 15)/2.0, 15, 15)];
 }
@@ -70,30 +79,43 @@
 {
     if (self.model) {
    
-        if (self.model.isAccountLogin) {
-            self.subtitleLabel.hidden = NO;
-            self.subtitleLabel.text = @"律所：振华律师事务所";
-            self.titleLabel.text = @"张大千";
-            UIImage *image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"temlvshi.jpg" ofType:nil]];
-            self.iconImageIVew.image = image;
-            self.titleLabel.text = self.model.titleStr;
+//        self.subtitleLabel.hidden = YES;
+        
+        [self.iconImageIVew yy_setImageWithURL:[NSURL URLWithString:self.model.iconNameStr] placeholder:[UIImage imageNamed:@"zhanghao.png"]];
+        self.titleLabel.text = self.model.titleStr;
+        
+        if (self.model.isShowArrow) {
+            self.rightRow.hidden = NO;
+        }
+        else {
+            self.rightRow.hidden = YES;
+        }
 
-        }
-        else{
-            self.subtitleLabel.hidden = YES;
-            
-            UIImage *image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:self.model.iconNameStr ofType:nil]];
-            self.iconImageIVew.image = image;
-            self.titleLabel.text = self.model.titleStr;
-            
-            if (self.model.isShowArrow) {
-                self.rightRow.hidden = NO;
-            }
-            else {
-                self.rightRow.hidden = YES;
-            }
-            
-        }
+        
+//        if (self.model.isAccountLogin) {
+//            self.subtitleLabel.hidden = NO;
+//            self.subtitleLabel.text =
+//            self.titleLabel.text = @"张大千";
+//            UIImage *image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"temlvshi.jpg" ofType:nil]];
+//            self.iconImageIVew.image = image;
+//            self.titleLabel.text = self.model.titleStr;
+//
+//        }
+//        else{
+//            self.subtitleLabel.hidden = YES;
+//            
+//            UIImage *image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:self.model.iconNameStr ofType:nil]];
+//            self.iconImageIVew.image = image;
+//            self.titleLabel.text = self.model.titleStr;
+//            
+//            if (self.model.isShowArrow) {
+//                self.rightRow.hidden = NO;
+//            }
+//            else {
+//                self.rightRow.hidden = YES;
+//            }
+//            
+//        }
     }
 }
 
@@ -149,15 +171,15 @@
 }
 
 
--(UILabel *)subtitleLabel
-{
-    if (!_subtitleLabel) {
-        _subtitleLabel = [[UILabel alloc] init];
-        _subtitleLabel.font = SystemFont(13.0f);
-        _subtitleLabel.textColor = KColorGray666;
-        _subtitleLabel.hidden = YES;
-    }
-    return _subtitleLabel;
-}
+//-(UILabel *)subtitleLabel
+//{
+//    if (!_subtitleLabel) {
+//        _subtitleLabel = [[UILabel alloc] init];
+//        _subtitleLabel.font = SystemFont(13.0f);
+//        _subtitleLabel.textColor = KColorGray666;
+//        _subtitleLabel.hidden = YES;
+//    }
+//    return _subtitleLabel;
+//}
 
 @end

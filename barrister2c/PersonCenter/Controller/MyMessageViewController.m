@@ -40,6 +40,7 @@
     self.title = @"我的消息";
     
     self.tableView = [[RefreshTableView alloc] initWithFrame:RECT(0, 0, SCREENWIDTH, SCREENHEIGHT - NAVBAR_DEFAULT_HEIGHT) style:UITableViewStylePlain];
+    self.tableView.backgroundColor = kBaseViewBackgroundColor;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.refreshDelegate = self;
@@ -50,62 +51,70 @@
 -(void)configData
 {
     
-    MyMessageModel *model1 = [[MyMessageModel alloc] init];
-    model1.titleStr = @"充值成功";
-    model1.subTitleStr = @"于06 月 14 日充值成功 金额40元";
-    model1.timeStr =  @"2016-06-14";
     
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setObject:[BaseDataSingleton shareInstance].userModel.userId forKey:@"userId"];
+    [params setObject:[BaseDataSingleton shareInstance].userModel.verifyCode forKey:@"verifyCode"];
+    [params setObject:[NSString stringWithFormat:@"%ld",self.tableView.pageSize] forKey:@"pageSize"];
+    [params setObject:[NSString stringWithFormat:@"%ld",self.tableView.pageNum] forKey:@"page"];
+    
+    __weak typeof(*&self) weakSelf = self;
+    [self.proxy getMyMessageWithParams:params block:^(id returnData, BOOL success) {
+        if (success) {
+            NSDictionary *msg = (NSDictionary *)returnData;
+            NSArray *array = [msg objectForKey:@"msg"];
+            if ([XuUtlity isValidArray:array]) {
+                [weakSelf praiseDataWithArray:array];
+            }
+            else
+            {
+                [weakSelf praiseDataWithArray:@[]];
+            }
+            
 
-    MyMessageModel *model2 = [[MyMessageModel alloc] init];
-    model2.titleStr = @"收到评价";
-    model2.subTitleStr = @"订单2016060403998收到用户评价 快去看看吧";
-    model2.timeStr =  @"2016-06-12";
-
-    
-    MyMessageModel *model3 = [[MyMessageModel alloc] init];
-    model3.titleStr = @"认证通过";
-    model3.subTitleStr = @"恭喜20160601提交的认证申请通过认证！";
-    model3.timeStr =  @"2016-06-01";
-
-    [self.items addObject:model1];
-    [self.items addObject:model2];
-    [self.items addObject:model3];
-    
-    [self.tableView reloadData];
-    
-    
-    [self.tableView endRefreshing];
-
-//    __weak typeof(*&self) weakSelf = self;
-//    [self.proxy getMyMessageWithParams:nil block:^(id returnData, BOOL success) {
-//        if (success) {
-//            NSArray *array = (NSArray *)returnData;
-//            if (array.count > 0) {
-//                [weakSelf praiseDataWithArray:array];
-//            }
-//            else
-//            {
-//                [weakSelf showNoContentView];
-//            }
-//
-//        }
-//        else
-//        {
-//            [XuUItlity showFailedHint:@"加载失败" completionBlock:^{
-//                [self.navigationController popViewControllerAnimated:YES];
-//            }];
-//        }
-//    }];
+        }
+        else
+        {
+            [XuUItlity showFailedHint:@"加载失败" completionBlock:^{
+                [self.navigationController popViewControllerAnimated:YES];
+            }];
+        }
+    }];
 }
+
+
+
 
 -(void)praiseDataWithArray:(NSArray *)array
 {
-    for (int i = 0; i < array.count; i ++ ) {
-        NSDictionary *dict = [array objectAtIndex:i];
-        MyMessageModel *model = [[MyMessageModel alloc] initWithDictionary:dict];
-        [self.items addObject:model];
+    if (self.tableView.pageNum == 1) {
+        [self.tableView endRefreshing];
+        [self.items removeAllObjects];
     }
-    [self.tableView reloadData];
+    else{
+        if (array.count < self.tableView.pageSize) {
+            [self.tableView endLoadMoreWithNoMoreData:YES];
+        }
+        else
+        {
+            [self.tableView endLoadMoreWithNoMoreData:NO];
+        }
+    }
+    if (array.count == 0) {
+        [self showNoContentView];
+    }
+    else
+    {
+        [self hideNoContentView];
+        for (int i = 0; i < array.count; i ++ ) {
+            NSDictionary *dict = [array objectAtIndex:i];
+            MyMessageModel *model = [[MyMessageModel alloc] initWithDictionary:dict];
+            [self.items addObject:model];
+        }
+        [self.tableView reloadData];
+
+    }
+    
 }
 
 #pragma  -mark Delegate Methods---

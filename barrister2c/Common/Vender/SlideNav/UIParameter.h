@@ -12,12 +12,12 @@
 //是否需要打印调试
 #define isDebug NO
 //全屏宽和高大小
-#define FUll_VIEW_WIDTH (SCREENWIDTH - 30)
-#define FUll_VIEW_HEIGHT 360
-#define FUll_CONTENT_HEIGHT FUll_VIEW_HEIGHT 
+#define FUll_VIEW_WIDTH ([[UIScreen mainScreen] bounds].size.width)
+#define FUll_VIEW_HEIGHT ([[UIScreen mainScreen] bounds].size.height)
+#define FUll_CONTENT_HEIGHT FUll_VIEW_HEIGHT - 64 - 49
 //十六进制颜色值
 #define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
-#define PageBtn 40 //6s下高度45
+#define PageBtn .0735 * FUll_VIEW_HEIGHT //6s下高度45
 //tabbar的高度
 #define TabbarHeight 49
 //TopTab相关参数

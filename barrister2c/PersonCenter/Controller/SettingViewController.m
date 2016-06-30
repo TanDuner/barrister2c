@@ -10,6 +10,7 @@
 #import "BaseDataSingleton.h"
 #import "AppDelegate.h"
 #import "LoginProxy.h"
+#import "FeedBackViewController.h"
 
 @interface SettingViewController ()
 
@@ -54,7 +55,7 @@
     
     _bottomBtn = [[UIButton alloc] initWithFrame:CGRectMake(15, 60, SCREENWIDTH - 30, 44)];
     
-    if ([BaseDataSingleton shareInstance].isAccountLogin) {
+    if ([BaseDataSingleton shareInstance].loginState.integerValue == 1) {
         [_bottomBtn setTitle:@"退出登录" forState:UIControlStateNormal];\
         _bottomBtn.backgroundColor = [UIColor whiteColor];
         [_bottomBtn setTitleColor:KColorGray333 forState:UIControlStateNormal];
@@ -105,13 +106,16 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (indexPath.row == 2) {
+        FeedBackViewController *feedbackVC = [[FeedBackViewController alloc] init];
+        [self.navigationController pushViewController:feedbackVC animated:YES];
+    }
 }
-
 #pragma -mark -----Action-------
 
 -(void)logoutAction:(UIButton *)button
 {
-    if ([BaseDataSingleton shareInstance].isAccountLogin) {
+    if ([BaseDataSingleton shareInstance].loginState.integerValue == 1) {
         
         NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:1];
         [params setObject:[BaseDataSingleton shareInstance].userModel.userId forKey:@"id"];

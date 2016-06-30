@@ -40,19 +40,22 @@
                             params:(NSMutableDictionary *)params
                           fileName:(NSString *)fileName
                              Block:(ServiceCallBlock)aBlock;
-/**
- *  上传资格认证相关图片接口
- *
- *  @param params 参数
- *  @param aBlock 回调block
- */
--(void)UploadAuthFilesWithParams:(NSMutableDictionary *)params block:(ServiceCallBlock)aBlock;
 
 /**
  *  我的消息
  */
 
 -(void)getMyMessageWithParams:(NSMutableDictionary *)params block:(ServiceCallBlock)aBlock;
+
+
+/**
+ *  填写反馈接口
+ *
+ *  @param params <#params description#>
+ *  @param aBlock <#aBlock description#>
+ */
+-(void)feedBackWithParams:(NSMutableDictionary *)params block:(ServiceCallBlock)aBlock;
+
 @end
 
 

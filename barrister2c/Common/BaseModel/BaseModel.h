@@ -24,6 +24,18 @@
 
 - (void)objectFromDictionary:(NSDictionary*)dict;
 
+
+/**
+ *  处理一些需要特殊处理的参数
+ *
+ *  @param NSArray
+ *
+ *  @return
+ */
+
+-(void)handlePropretyWithDict:(NSDictionary *)dict;
+
+
 /*
  * 返回obj所有keypath   字符串数组
  */

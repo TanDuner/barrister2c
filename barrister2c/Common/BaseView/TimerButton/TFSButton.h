@@ -8,7 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+@class TFSButton;
+
+
 @interface TFSButton : UIButton
+
 
 @property (strong, nonatomic) NSString* title_normal;
 
@@ -16,7 +20,13 @@
  * @brief  创建一个倒计是Button并添加回调Block
  */
 
-- (TFSButton* )initWithFrame:(CGRect)rect touchBlock:(void(^)(TFSButton* btn))touchBlock;
+- (TFSButton* )initWithFrame:(CGRect)rect;
 
 
+/**
+ *  点击事件
+ *
+ *  @param btn 
+ */
+- (void)clickSelfBtn:(TFSButton*)btn;
 @end

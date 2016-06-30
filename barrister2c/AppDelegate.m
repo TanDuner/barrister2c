@@ -9,7 +9,11 @@
 #import "AppDelegate.h"
 #import "XuNetWorking.h"
 #import "OpenUDID.h"
+#import "YKSplashView.h"
+
 @interface AppDelegate ()
+
+@property (nonatomic,strong) YKSplashView *splashView;
 
 @end
 
@@ -29,11 +33,27 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+    
+    if (![YKSplashView getIsOpenGuideView]) {
+        YKSplashView *gudeView = [[YKSplashView alloc] initWithFrame:CGRectMake(0, 0, SCREENWIDTH,SCREENHEIGHT)];
+        self.splashView = gudeView;
+        [self.window addSubview:self.splashView];
+        [self.window makeKeyAndVisible];
+    }
+    else
+    {
+        [self createTabbar];
+
+    }
+    
+}
+
+-(void)createTabbar
+{
     _tabBarCTL = [[BaseTabbarController alloc] init];
     self.window.rootViewController = _tabBarCTL;
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
-    
 }
 
 -(void)initNetWorkingData
@@ -58,8 +78,11 @@
     [XuNetWorking enableInterfaceDebug:YES];
 }
 
+
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
+    
     [self initControllersAndConfig];
     
     

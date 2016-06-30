@@ -10,11 +10,13 @@
 
 @interface BussinessTypeModel : BaseModel
 
+@property (nonatomic,strong) NSString *desc;
 
-@property (nonatomic,strong) NSString *typeId;
+@property (nonatomic,strong) NSString *name;
 
-@property (nonatomic,strong) NSString *title;
+@property (nonatomic,strong) NSString *areaId;
 
-@property (nonatomic,strong) NSString *imageUrl;
+@property (nonatomic,strong) NSString *icon;
+
 
 @end

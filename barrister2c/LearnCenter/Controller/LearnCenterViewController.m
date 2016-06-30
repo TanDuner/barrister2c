@@ -1,20 +1,39 @@
 //
 //  LearnCenterViewController.m
-//  barrister2c
+//  barrister
 //
-//  Created by 徐书传 on 16/6/15.
+//  Created by 徐书传 on 16/3/22.
 //  Copyright © 2016年 Xu. All rights reserved.
 //
 
 #import "LearnCenterViewController.h"
-#import "LearnCenterCell.h"
 #import "LearnCenterModel.h"
+#import "LearnCenterCell.h"
+#import "LearnCenterProxy.h"
+#import "LearnCenterChannelModel.h"
+#import "LearnCenterContentView.h"
+#import "NinaPagerView.h"
+
+
+@interface LearnCenterViewController ()
+
+@property (nonatomic,strong) LearnCenterProxy *proxy;
+
+@property (nonatomic,strong) NSMutableArray *chanelItems;
+
+@property (nonatomic,strong) NSMutableArray *titleStrArray;
+
+@property (nonatomic,strong) NinaPagerView *slideView;
+
+
+@end
 
 @implementation LearnCenterViewController
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self configView];
-    [self loadItems];
+
+    [self configData];
 }
 
 
@@ -25,69 +44,101 @@
 }
 
 #pragma -mark -----UI-------
--(void)configView
+-(void)createSlideView
 {
     
+    NSMutableArray *vcArray = [NSMutableArray array];
+    for (int i = 0; i < self.titleStrArray.count; i ++) {
+        if (self.chanelItems.count > i) {
+            LearnCenterChannelModel *model =(LearnCenterChannelModel *)[self.chanelItems objectAtIndex:i];
+            LearnCenterContentView *contentVC = [[LearnCenterContentView alloc] init];
+            contentVC.chanelId = model.channelId;
+            [vcArray addObject:contentVC];
+        }
+    }
+    
+    NSArray *colorArray = @[
+                            kNavigationBarColor, /**< 选中的标题颜色 Title SelectColor  **/
+                            KColorGray666, /**< 未选中的标题颜色  Title UnselectColor **/
+                            kNavigationBarColor, /**< 下划线颜色 Underline Color   **/
+                            [UIColor whiteColor], /**<  上方菜单栏的背景颜色 TopTab Background Color   **/
+                            ];
+    
+    _slideView = [[NinaPagerView alloc] initWithTitles:self.titleStrArray WithVCs:vcArray WithColorArrays:colorArray];
+    [self.view addSubview:_slideView];
+
 }
 
 
 
 #pragma -mark -----Data-----
--(void)loadItems
+
+-(void)configData
 {
-    LearnCenterModel *model = [[LearnCenterModel alloc] init];
-    model.learnTitle = @"法律知识法规学习";
-    model.imageUrl = @"http://img4.duitang.com/uploads/item/201508/26/20150826212734_ST5BC.thumb.224_0.jpeg";
-    model.learnSubtitle = @"深入贯彻党的行动路线";
-    model.publishTime = @"2016/03/24";
     
-    
-    LearnCenterModel *model1 = [[LearnCenterModel alloc] init];
-    model1.imageUrl = @"https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=327417392,2097894166&fm=116&gp=0.jpg";
-    model1.learnTitle = @"刑法相关知识讲座";
-    model1.publishTime = @"2016/04/25";
-    model1.learnSubtitle = @"更好的理解刑法的相关知识";
-    
-    
-    LearnCenterModel *model2 = [[LearnCenterModel alloc] init];
-    model2.imageUrl = @"https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=731016823,2238050103&fm=116&gp=0.jpg";
-    model2.learnTitle = @"婚姻法的始末";
-    model2.publishTime = @"2016/04/26 15:00";
-    model2.learnSubtitle = @"帮助你在婚姻法中立于不败之地";
-    
-    [self.items addObject:model];
-    [self.items addObject:model1];
-    [self.items addObject:model2];
-    
-    [self.tableView reloadData];
+    __weak typeof(*&self)weakself = self;
+    [self.proxy getLearnChannelWithParams:nil block:^(id returnData, BOOL success) {
+        if (success) {
+            NSDictionary *dict = (NSDictionary *)returnData;
+            NSArray *items = [dict objectForKey:@"items"];
+            if ([XuUtlity isValidArray:items]) {
+                [weakself handleChannelDataWithArray:items];
+            }else
+            {
+                [weakself showNoContentView];
+            }
+
+        }
+        else
+        {
+            [XuUItlity showFailedHint:CommonNetErrorTip completionBlock:nil];
+        }
+    }];
 }
 
-#pragma -mark -----UITableVIewDelegate Methods------
 
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+-(void)handleChannelDataWithArray:(NSArray *)arrray
 {
-    static NSString *CellIdentifier = @"learnCenterCell";
-    
-    LearnCenterCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        
-        cell = [[LearnCenterCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
+    for (int i = 0; i < arrray.count; i ++) {
+        NSDictionary *dict = [arrray objectAtIndex:i];
+        LearnCenterChannelModel *model = [[LearnCenterChannelModel alloc] initWithDictionary:dict];
+        [self.chanelItems addObject:model];
+        [self.titleStrArray addObject:model.title];
     }
     
-    LearnCenterModel *model =  (LearnCenterModel *)[self.items objectAtIndex:indexPath.row];
-    cell.model = model;
-    return cell;
+
+    [self createSlideView];
     
 }
 
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+
+
+
+#pragma -mark --Getter---
+
+-(LearnCenterProxy *)proxy
 {
-    return 75;
+    if (!_proxy) {
+        _proxy = [[LearnCenterProxy alloc] init];
+    }
+    return _proxy;
+    
 }
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+-(NSMutableArray *)chanelItems
 {
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (!_chanelItems) {
+        _chanelItems = [NSMutableArray arrayWithCapacity:0];
+    }
+    return _chanelItems;
+}
+
+-(NSMutableArray *)titleStrArray
+{
+    if (!_titleStrArray) {
+        _titleStrArray = [NSMutableArray arrayWithCapacity:1];
+    }
+    return _titleStrArray;
 }
 
 @end

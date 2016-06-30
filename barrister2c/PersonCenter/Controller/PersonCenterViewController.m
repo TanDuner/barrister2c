@@ -16,6 +16,8 @@
 #import "MyLikeViewController.h"
 #import "MyAccountViewController.h"
 #import "MyOrderListViewController.h"
+#import "BarristerLoginManager.h"
+
 
 
 @implementation PersonCenterViewController
@@ -41,18 +43,31 @@
 -(void)configData
 {
     PersonCenterModel *model1 = [[PersonCenterModel alloc] init];
-    model1.titleStr = @"注册/登录";
     model1.cellType = PersonCenterModelTypeZH;
-    model1.iconNameStr = @"zhanghao.png";
-    model1.isShowArrow = NO;
-    model1.isAccountLogin = NO;
+
+    if ([BaseDataSingleton shareInstance].loginState.integerValue == 1) {
+        model1.titleStr = [BaseDataSingleton shareInstance].userModel.nickName;
+        model1.iconNameStr = [BaseDataSingleton shareInstance].userModel.userIcon;
+        model1.isShowArrow = NO;
+        model1.isAccountLogin = YES;
+
+    }
+    else
+    {
+        model1.titleStr = @"注册/登录";
+        model1.cellType = PersonCenterModelTypeZH;
+        model1.iconNameStr = @"zhanghao.png";
+        model1.isShowArrow = NO;
+        model1.isAccountLogin = NO;
+
+    }
+    
     
     PersonCenterModel *model = [[PersonCenterModel alloc] init];
     model.titleStr = @"我的收藏";
-    model.cellType = PersonCenterModelTypeSC;
+    model.cellType = PersonCenterModelTypeSZ;
     model.iconNameStr = @"zhanghu.png";
     model.isShowArrow = YES;
-    model.isAccountLogin = NO;
 
     
     PersonCenterModel *model2 = [[PersonCenterModel alloc] init];
@@ -60,14 +75,12 @@
     model2.cellType = PersonCenterModelTypeZHU;
     model2.iconNameStr = @"zhanghu.png";
     model2.isShowArrow = YES;
-    model2.isAccountLogin = NO;
     
     PersonCenterModel *model5 = [[PersonCenterModel alloc] init];
     model5.titleStr = @"我的订单";
     model5.cellType = PersonCenterModelTypeDD;
     model5.iconNameStr = @"jiedan.png";
     model5.isShowArrow = YES;
-    model5.isAccountLogin = NO;
 
     
     PersonCenterModel *model3 = [[PersonCenterModel alloc] init];
@@ -75,10 +88,6 @@
     model3.cellType = PersonCenterModelTypeXX;
     model3.iconNameStr = @"xiaoxi.png";
     model3.isShowArrow = YES;
-    model3.isAccountLogin = NO;
-    
-    
-    
     
     
     PersonCenterModel *model6 = [[PersonCenterModel alloc] init];
@@ -86,7 +95,6 @@
     model6.cellType = PersonCenterModelTypeSZ;
     model6.iconNameStr = @"shezhi.png";
     model6.isShowArrow = YES;
-    model6.isAccountLogin = NO;
     
     [self.items addObject:model1];
     [self.items addObject:model];
@@ -200,19 +208,32 @@
 {
     [super tableView:tableView didSelectRowAtIndexPath:indexPath];
     
+    
     if (indexPath.section == 0) {
+        
+        if (![BaseDataSingleton shareInstance].loginState.integerValue  == 1) {
+            [[BarristerLoginManager shareManager] showLoginViewControllerWithController:self];
+            return;
+        }
+        
         PersonInfoViewController *personInfo = [[PersonInfoViewController alloc] init];
         [self.navigationController pushViewController:personInfo animated:YES];
     }
     else if (indexPath.section == 1)
     {
         
+        if (![BaseDataSingleton shareInstance].loginState.integerValue == 1) {
+            [[BarristerLoginManager shareManager] showLoginViewControllerWithController:self];
+            return;
+        }
         
         switch (indexPath.row) {
             case 0:
             {
+             
                 MyLikeViewController *likeVC = [[MyLikeViewController alloc] init];
                 [self.navigationController pushViewController:likeVC animated:YES];
+
             }
                 break;
             case 1:

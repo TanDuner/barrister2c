@@ -10,16 +10,17 @@
 
 typedef NS_ENUM(NSInteger, PersonCenterModelType)
 {
-    PersonCenterModelTypeZH,//账号
-    PersonCenterModelTypeSC,//收藏
-    PersonCenterModelTypeZHU,//账户
-    PersonCenterModelTypeDD,//我的订单
-    PersonCenterModelTypeXX,//消息
-    PersonCenterModelTypeRZZT,//认证状态
-    PersonCenterModelTypeJDSZ,//接单设置
-    PersonCenterModelTypeSZ,//设置
-    PersonCenterModelTypeInfoTX,//个人信息界面 头像
-    PersonCenterModelTypeInfoCommon,//个人信息界面 通用 左边title 右边subtitle 箭头
+    PersonCenterModelTypeZH = 0,//账号
+    PersonCenterModelTypeSC = 1,//收藏
+    PersonCenterModelTypeZHU = 2,//账户
+    PersonCenterModelTypeDD = 3,//我的订单
+    PersonCenterModelTypeXX = 4,//消息
+    PersonCenterModelTypeSZ = 5,//设置
+    PersonCenterModelTypeInfoTX = 6,//个人信息界面 头像
+    PersonCenterModelTypeInfoNickName = 7,//姓名
+    PersonCenterModelTypeInfoPhone = 8,//手机
+    PersonCenterModelTypeInfoGender = 9,//性别
+    PersonCenterModelTypeInfoArea = 10,//地区
 };
 
 typedef void (^ModelActionBlock)(NSInteger PersonCenterModelType);
@@ -36,8 +37,12 @@ typedef void (^ModelActionBlock)(NSInteger PersonCenterModelType);
 @property (nonatomic,strong) UIImage *headImage;
 @property (nonatomic,strong) NSString *headImageUrl;
 
+
 /**
  *  for 个人资料页面 头像回显
  */
+
+@property (nonatomic,strong) NSString *userIcon;
+
 
 @end
