@@ -11,8 +11,38 @@
 #define AccountDetialUrl @""
 #define TixianUrl @""
 #define BindBankCardUrl @"bindBankCard"
+#define MyAccountUrl @"myAccount.do"
 
 @implementation AccountProxy
+
+
+/**
+ *  获取我的账户信息
+ *
+ *  @param params 参数
+ *  @param aBlock nil
+ */
+-(void)getMyAccountDataWithParams:(NSMutableDictionary *)params Block:(ServiceCallBlock)aBlock
+{
+    [self appendCommonParamsWithDict:params];
+    [XuNetWorking postWithUrl:MyAccountUrl params:params success:^(id response) {
+        if ([self isCommonCorrectResultCodeWithResponse:response]) {
+            if (aBlock) {
+                aBlock(response,YES);
+            }
+        }
+        else
+        {
+            aBlock(CommonNetErrorTip,NO);
+        }
+        
+    } fail:^(NSError *error) {
+        
+        aBlock(CommonNetErrorTip,NO);
+    }];
+
+
+}
 
 
 /**
@@ -51,9 +81,16 @@
 -(void)tiXianActionWithMoney:(NSDictionary *)params Block:(ServiceCallBlock)aBlock
 {
     [XuNetWorking postWithUrl:TixianUrl params:params success:^(id response) {
-        aBlock(response ,YES);
+        if ([self isCommonCorrectResultCodeWithResponse:response]) {
+            aBlock(response ,YES);
+        }
+        else
+        {
+            aBlock(CommonNetErrorTip,NO);
+        }
+
     } fail:^(NSError *error) {
-        aBlock(nil,NO);
+        aBlock(CommonNetErrorTip,NO);
     }];
 }
 

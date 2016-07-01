@@ -31,6 +31,15 @@ typedef NS_ENUM(NSInteger, BarristerOrderState)
 };
 
 
+//String id;
+//String type;//订单类型：即时、预约
+//String userIcon;//律师头像
+//String name;//律师姓名
+//String date;//日期
+//String status;//订单状态
+//String caseType;//案件类型：财产纠纷，离婚，……
+//String phone;//律师手机号
+
 
 
 @interface BarristerOrderModel : BaseModel

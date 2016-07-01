@@ -12,7 +12,8 @@
 #define MyMessageUrl @"getMyMsgs.do"
 #define FeedBackUrl @"addFeedback.do"
 #define UpdateUserInfo @"updateUserInfo.do"
-
+#define OrderListUrl @"myOrderList.do"
+#define MyLikeListUrl @"myFavoriteList.do"
 
 @implementation MeNetProxy
 /**
@@ -112,8 +113,41 @@
 -(void)updateUserInfoWithParams:(NSMutableDictionary *)params block:(ServiceCallBlock)aBlock
 {
     [XuNetWorking postWithUrl:UpdateUserInfo params:params success:^(id response) {
+        if ([self isCommonCorrectResultCodeWithResponse:response]) {
+            if (aBlock) {
+                aBlock(response,YES);
+            }
+        }
+        else{
+            aBlock(CommonNetErrorTip,NO);
+        }
+
+    } fail:^(NSError *error) {
         if (aBlock) {
-            aBlock(response,YES);
+            aBlock(error,NO);
+        }
+        
+    }];
+    
+}
+
+
+/**
+ *  获取订单列表
+ *
+ *  @param params
+ *  @param aBlock
+ */
+-(void)getOrderListWithParams:(NSMutableDictionary *)params block:(ServiceCallBlock)aBlock
+{
+    [XuNetWorking postWithUrl:OrderListUrl params:params success:^(id response) {
+        if ([self isCommonCorrectResultCodeWithResponse:response]) {
+            if (aBlock) {
+                aBlock(response,YES);
+            }
+        }
+        else{
+            aBlock(CommonNetErrorTip,NO);
         }
         
     } fail:^(NSError *error) {
@@ -124,5 +158,36 @@
     }];
     
 }
+
+
+
+/**
+ *  我的收藏列表
+ *
+ *  @param params
+ *  @param aBlock
+ */
+-(void)getMyLikeListWithParams:(NSMutableDictionary *)params block:(ServiceCallBlock)aBlock
+{
+    [self appendCommonParamsWithDict:params];
+    [XuNetWorking postWithUrl:MyLikeListUrl params:params success:^(id response) {
+        if ([self isCommonCorrectResultCodeWithResponse:response]) {
+            if (aBlock) {
+                aBlock(response,YES);
+            }
+        }
+        else{
+            aBlock(CommonNetErrorTip,NO);
+        }
+        
+    } fail:^(NSError *error) {
+        if (aBlock) {
+            aBlock(error,NO);
+        }
+        
+    }];
+
+}
+
 
 @end

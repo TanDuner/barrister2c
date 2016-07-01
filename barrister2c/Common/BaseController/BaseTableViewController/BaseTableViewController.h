@@ -15,6 +15,10 @@
 
 @property (nonatomic,strong) BaseTableView *tableView;
 
+@property (nonatomic,assign) NSInteger pageSize;
+
+@property (nonatomic,assign) NSInteger pageNum;
+
 -(void)addRefreshHeader;
 
 -(void)addLoadMoreFooter;

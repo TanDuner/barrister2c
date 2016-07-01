@@ -11,6 +11,12 @@
 
 @implementation BaseNetProxy
 
+-(void)appendCommonParamsWithDict:(NSMutableDictionary *)params
+{
+    [params setObject:[BaseDataSingleton shareInstance].userModel.userId forKey:@"userId"];
+    [params setObject:[BaseDataSingleton shareInstance].userModel.verifyCode forKey:@"verifyCode"];
+}
+
 -(NSString *)appendUrlWithString:(NSString *)urlString
 {
     NSString *retString = [NSString stringWithFormat:@"%@%@",BaseDomainUrl,urlString];
@@ -21,7 +27,7 @@
 {
     NSDictionary *dict = (NSDictionary *)response;
     NSString *resultCode = [dict objectForKey:@"resultCode"];
-    if (resultCode.integerValue == 200) {
+    if (resultCode.integerValue == 200 || resultCode.integerValue == 1006) {
         return YES;
     }
     else

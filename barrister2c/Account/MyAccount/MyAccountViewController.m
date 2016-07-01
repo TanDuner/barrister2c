@@ -23,12 +23,7 @@
  */
 @property (nonatomic,strong) MyAccountHeadView *headView;
 
-@property (nonatomic,strong) UITableView *detailTableView;
 
-/**
- *  明细的数组
- */
-@property (nonatomic,strong) NSMutableArray *detailArray;
 
 @property (nonatomic,strong) AccountProxy *proxy;
 
@@ -41,6 +36,7 @@
 {
     [super viewDidLoad];
     [self configView];
+    [self requestAccountData];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -48,6 +44,40 @@
     [super viewWillAppear:animated];
     [self showTabbar:NO];
 }
+
+
+-(void)requestAccountData
+{
+    __weak typeof(*&self) weakSelf = self;
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [self.proxy getMyAccountDataWithParams:params Block:^(id returnData, BOOL success) {
+        if (success) {
+            NSDictionary *dict = (NSDictionary *)returnData;
+            if ([dict respondsToSelector:@selector(objectForKey:)]) {
+                [weakSelf handleMyAccountDataWithDict:dict];
+            }
+
+        }
+        else
+        {
+            [XuUItlity showFailedHint:@"加载账户信息失败" completionBlock:nil];
+        }
+    }];
+}
+
+-(void)handleMyAccountDataWithDict:(NSDictionary *)dict
+{
+    
+    NSDictionary *accountDict = [dict objectForKey:@"account"];
+    [BaseDataSingleton shareInstance].bankCardDict = [accountDict objectForKey:@"bankCard"];
+    [BaseDataSingleton shareInstance].bankCardBindStatus = [accountDict objectForKey:@"bankCardBindStatus"];
+    [BaseDataSingleton shareInstance].remainingBalance = [accountDict objectForKey:@"remainingBalance"];
+    [BaseDataSingleton shareInstance].totalConsume = [accountDict objectForKey:@"totalIncome"];
+    
+    [self.headView setNeedsLayout];
+    
+}
+
 
 #pragma -mark ----UI----
 
@@ -65,9 +95,9 @@
 - (void)initTableView
 {
     
-    [self.view addSubview:self.detailTableView];
+    self.tableView.tableHeaderView = self.headView;
     
-    [XuUItlity clearTableViewEmptyCellWithTableView:self.detailTableView];
+    [XuUItlity clearTableViewEmptyCellWithTableView:self.tableView];
 
 }
 
@@ -117,6 +147,8 @@
 }
 
 
+
+
 #pragma -mark ---Getter----
 
 -(MyAccountHeadView *)headView
@@ -127,21 +159,7 @@
     return _headView;
 }
 
--(UITableView *)detailTableView
-{
-    if (!_detailTableView) {
-        _detailTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREENWIDTH, SCREENHEIGHT - NAVBAR_DEFAULT_HEIGHT) style:UITableViewStylePlain];
-        _detailTableView.delegate = self;
-        _detailTableView.dataSource = self;
-        _detailTableView.tableHeaderView = self.headView;
-        _detailTableView.backgroundColor = [UIColor clearColor];
-        _detailTableView.backgroundView = nil;
-        _detailTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        _detailTableView.showsVerticalScrollIndicator = NO;
-        
-    }
-    return _detailTableView;
-}
+
 
 -(AccountProxy *)proxy
 {

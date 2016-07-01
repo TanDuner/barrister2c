@@ -9,6 +9,13 @@
 #import "MyLikeViewController.h"
 #import "BarristerLawerModel.h"
 #import "LawerListCell.h"
+#import "MeNetProxy.h"
+
+@interface MyLikeViewController ()
+
+@property (nonatomic,strong) MeNetProxy *proxy;
+
+@end
 
 @implementation MyLikeViewController
 
@@ -25,9 +32,76 @@
     
     [self configView];
     
+    
 }
 
 #pragma -mark ---ConfigData-----
+
+-(void)configData
+{
+    __weak typeof(*&self) weakSelf = self;
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setObject:[NSString stringWithFormat:@"%ld",self.pageSize] forKey:@"pageSize"];
+    [params setObject:[NSString stringWithFormat:@"%ld",self.pageNum] forKey:@"page"];
+    [params setObject:[BaseDataSingleton shareInstance].userModel.userId forKey:@"userId"];
+    [params setObject:[BaseDataSingleton shareInstance].userModel.verifyCode forKey:@"verifyCode"];
+    [self.proxy getMyLikeListWithParams:params block:^(id returnData, BOOL success) {
+        if (success) {
+            NSDictionary *dict = (NSDictionary *)returnData;
+            NSArray *array = [dict objectForKey:@"favoriteItemList"];
+            if ([XuUtlity isValidArray:array]) {
+                [weakSelf handleDetailDataWithArray:array];
+            }
+            else
+            {
+                [weakSelf handleDetailDataWithArray:@[]];
+            }
+            
+        }
+        else
+        {
+            [XuUItlity showFailedHint:@"加载失败" completionBlock:^{
+                [weakSelf.navigationController popViewControllerAnimated:YES];
+            }];
+        }
+    }];
+
+}
+
+-(void)handleDetailDataWithArray:(NSArray *)array
+{
+    if (self.pageNum == 1) {
+        [self.items removeAllObjects];
+        [self endRefreshing];
+    }
+    if (array.count == 0) {
+        [self showNoContentView];
+        [self endLoadMoreWithNoMoreData:YES];
+    }
+    else
+    {
+        if (array.count < self.pageSize) {
+            [self endLoadMoreWithNoMoreData:YES];
+        }
+        else
+        {
+            [self endLoadMoreWithNoMoreData:NO];
+        }
+    }
+    
+    for (int i = 0; i < array.count; i ++) {
+        NSDictionary *dict = [array objectAtIndex:i];
+        BarristerLawerModel *model = [[BarristerLawerModel alloc] initWithDictionary:dict];
+        [self.items addObject:model];
+    }
+    
+    [self.tableView reloadData];
+
+}
+
+#pragma -mark --UI--
+
+
 
 -(void)configView
 {
@@ -41,79 +115,15 @@
 
 -(void)loadItems
 {
-    
-    BarristerLawerModel *model = [[BarristerLawerModel alloc] init];
-    model.name = @"张大强";
-    model.workingStartYear = @"1990";
-    model.workYears = @"17";
-    model.rating = 4.5;
-    model.area = @"北京朝阳";
-    model.company = @"振华律师事务所";
-    model.userIcon = @"http://img4.duitang.com/uploads/item/201508/26/20150826212734_ST5BC.thumb.224_0.jpeg";
-    model.goodAt = @"民事诉讼|金融|财产纠纷";
-    
-    BarristerLawerModel *model1 = [[BarristerLawerModel alloc] init];
-    model1.name = @"李言";
-    model1.workingStartYear = @"2008";
-    model1.workYears = @"8";
-    model1.rating = 3.5;
-    model1.goodAt = @"经济犯罪|法律顾问|家庭";
-    model1.area = @"北京丰台";
-    model1.company = @"京城律师事务所";
-    model1.userIcon = @"https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=327417392,2097894166&fm=116&gp=0.jpg";
-    
-    
-    
-    [self.items addObject:model];
-    [self.items addObject:model1];
-    
-    [self.tableView reloadData];
-    
-    [self endRefreshing];
+    [super loadItems];
+    [self configData];
 }
 
 
 -(void)loadMoreData
 {
-    
-    BarristerLawerModel *model = [[BarristerLawerModel alloc] init];
-    model.name = @"张大强";
-    model.workingStartYear = @"1990";
-    model.workYears = @"17";
-    model.rating = 4.5;
-    model.area = @"北京朝阳";
-    model.company = @"振华律师事务所";
-    model.userIcon = @"http://img4.duitang.com/uploads/item/201508/26/20150826212734_ST5BC.thumb.224_0.jpeg";
-    model.goodAt = @"民事诉讼|金融|财产纠纷";
-    
-    BarristerLawerModel *model1 = [[BarristerLawerModel alloc] init];
-    model1.name = @"李言";
-    model1.workingStartYear = @"2008";
-    model1.workYears = @"8";
-    model1.rating = 3.5;
-    model.goodAt = @"经济犯罪|法律顾问|家庭";
-    model1.area = @"北京丰台";
-    model1.company = @"京城律师事务所";
-    model1.userIcon = @"https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=327417392,2097894166&fm=116&gp=0.jpg";
-    
-    BarristerLawerModel *model2 = [[BarristerLawerModel alloc] init];
-    model2.name = @"李言";
-    model2.workingStartYear = @"2008";
-    model2.workYears = @"8";
-    model2.rating = 3.5;
-    model2.goodAt = @"经济犯罪|法律顾问|家庭";
-    model2.area = @"北京丰台";
-    model2.company = @"京城律师事务所";
-    model2.userIcon = @"https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=327417392,2097894166&fm=116&gp=0.jpg";
-    
-    [self.items addObject:model];
-    [self.items addObject:model1];
-    [self.items addObject:model2];
-    
-    [self.tableView reloadData];
-    
-    [self endLoadMoreWithNoMoreData:NO];
-    
+    [super loadMoreData];
+    [self configData];
 }
 
 
@@ -146,5 +156,14 @@
 }
 
 
+#pragma -mark --Getter--
+
+-(MeNetProxy *)proxy
+{
+    if (!_proxy) {
+        _proxy = [[MeNetProxy alloc] init];
+    }
+    return _proxy;
+}
 
 @end

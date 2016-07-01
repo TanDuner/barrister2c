@@ -17,6 +17,8 @@
 #import "HomeBannerModel.h"
 #import "DCWebImageManager.h"
 #import "BarristerLoginManager.h"
+#import "AccountProxy.h"
+
 
 @interface HomeViewController ()
 
@@ -24,6 +26,7 @@
 @property (nonatomic,strong) NSMutableArray *typeItems;
 @property (nonatomic,strong) HomePageProxy *proxy;
 @property (nonatomic,strong) DCPicScrollView *bannerView;
+@property (nonatomic,strong) AccountProxy *accountProxy;
 
 @end
 
@@ -38,6 +41,10 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    if (self.tableView) {
+        [self.tableView reloadData];
+    }
+
     [self showTabbar:YES];
     
 
@@ -87,7 +94,38 @@
             [XuUItlity showFailedHint:@"请求失败" completionBlock:nil];
         }
     }];
+    
+    
+    __weak typeof(*&self) weakSelf = self;
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [self.accountProxy getMyAccountDataWithParams:params Block:^(id returnData, BOOL success) {
+        if (success) {
+            NSDictionary *dict = (NSDictionary *)returnData;
+            if ([dict respondsToSelector:@selector(objectForKey:)]) {
+                [weakSelf handleMyAccountDataWithDict:dict];
+            }
+            
+        }
+        else
+        {
+            [XuUItlity showFailedHint:@"加载账户信息失败" completionBlock:nil];
+        }
+    }];
 }
+
+-(void)handleMyAccountDataWithDict:(NSDictionary *)dict
+{
+    
+    NSDictionary *accountDict = [dict objectForKey:@"account"];
+    [BaseDataSingleton shareInstance].bankCardDict = [accountDict objectForKey:@"bankCard"];
+    [BaseDataSingleton shareInstance].bankCardBindStatus = [accountDict objectForKey:@"bankCardBindStatus"];
+    [BaseDataSingleton shareInstance].remainingBalance = [accountDict objectForKey:@"remainingBalance"];
+    [BaseDataSingleton shareInstance].totalConsume = [accountDict objectForKey:@"totalIncome"];
+    
+    [self.tableView reloadData];
+    
+}
+
 
 -(void)handleDataWithDict:(NSDictionary *)dict
 {
@@ -297,6 +335,14 @@
     return _proxy;
 }
 
+
+-(AccountProxy *)accountProxy
+{
+    if (!_accountProxy) {
+        _accountProxy = [[AccountProxy alloc] init];
+    }
+    return _accountProxy;
+}
 
 
 @end

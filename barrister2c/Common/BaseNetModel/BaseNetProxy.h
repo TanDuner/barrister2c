@@ -16,6 +16,8 @@ typedef void(^ServiceCallBlock)(id returnData, BOOL success);
 
 @interface BaseNetProxy : NSObject
 
+-(void)appendCommonParamsWithDict:(NSMutableDictionary *)params;
+
 -(NSString *)appendUrlWithString:(NSString *)urlString;
 
 -(BOOL)isCommonCorrectResultCodeWithResponse:(id)response;

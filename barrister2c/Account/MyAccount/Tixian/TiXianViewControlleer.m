@@ -10,7 +10,6 @@
 #import "BorderTextFieldView.h"
 #import "UIButton+EnlargeEdge.h"
 #import "AccountProxy.h"
-#import "MyBankCardController.h"
 
 #define RowHeight 45
 #define LeftSpace 10
@@ -46,8 +45,6 @@
 
 -(void)confiView
 {
-    
-    [self initNavigationRightTextButton:@"银行卡" action:@selector(BankCardAciton:)];
     
     UILabel *tipLabel = [[UILabel alloc] initWithFrame:RECT(LeftSpace, 10, SCREENHEIGHT - 30, 15)];
     tipLabel.font = SystemFont(14.0f);
@@ -160,7 +157,10 @@
         if (self.tixianTextField.text.floatValue <= [BaseDataSingleton shareInstance].remainingBalance.floatValue) {
             
             [XuUItlity showLoading:@"正在提交"];
-            [self.proxy tiXianActionWithMoney:nil Block:^(id returnData, BOOL success) {
+            
+            NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:[BaseDataSingleton shareInstance].userModel.userId,@"userId",[BaseDataSingleton shareInstance].userModel.verifyCode,@"verifyCode",self.tixianTextField.text,@"moneny", nil];
+            
+            [self.proxy tiXianActionWithMoney:params Block:^(id returnData, BOOL success) {
                 [XuUItlity hideLoading];
                 if (success) {
                     [XuUItlity showSucceedHint:@"提交成功" completionBlock:nil];
@@ -191,16 +191,6 @@
     {
         [self.checkButton setImage:[UIImage imageNamed:@"unagree.png"] forState:UIControlStateNormal];
     }
-}
-
-
-#pragma -mark ---
-
--(void)BankCardAciton:(UIButton *)button
-{
-    MyBankCardController *mycardVC = [[MyBankCardController alloc] init];
-    [self.navigationController pushViewController:mycardVC animated:YES];
-    
 }
 
 

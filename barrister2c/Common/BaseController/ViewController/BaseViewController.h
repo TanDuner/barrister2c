@@ -10,6 +10,7 @@
 #import "MBProgressHUD.h"
 #import "BaseDataSingleton.h"
 
+@class RefreshTableView;
 @interface BaseViewController : UIViewController<MBProgressHUDDelegate>
 {
     @private
@@ -89,6 +90,13 @@
 -(void)showTabbar:(BOOL)isShowTabbar;
 
 -(UIView *)getLineViewWithFrame:(CGRect )rect;
+
+/**
+ *  处理tableview 上下拉刷新的 数据问题
+ */
+
+-(void)handleTableRefreshOrLoadMoreWithTableView:(RefreshTableView *)tableView array:(NSArray *)array aBlock:(void(^)())aBlock;
+
 
 
 @end

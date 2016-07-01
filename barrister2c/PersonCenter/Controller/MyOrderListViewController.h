@@ -6,8 +6,8 @@
 //  Copyright © 2016年 Xu. All rights reserved.
 //
 
-#import "BaseTableViewController.h"
+#import "BaseViewController.h"
 
-@interface MyOrderListViewController : BaseTableViewController
+@interface MyOrderListViewController : BaseViewController
 
 @end

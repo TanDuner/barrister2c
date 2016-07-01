@@ -47,83 +47,76 @@
 
 -(void)loadItems
 {
-    MyAccountDetailModel *model1 = [[MyAccountDetailModel alloc] init];
-    model1.titleStr = @"2014443043053";
-    model1.dateStr = @"2016-05-25";
-    model1.handleType = 0;
-    model1.numStr = @"140";
+    [super loadItems];
     
-    MyAccountDetailModel *model2 = [[MyAccountDetailModel alloc] init];
-    model2.titleStr = @"2014443043053";
-    model2.dateStr = @"2016-05-25";
-    model2.handleType = 0;
-    model2.numStr = @"30";
-    
-    MyAccountDetailModel *model3 = [[MyAccountDetailModel alloc] init];
-    model3.titleStr = @"提现";
-    model3.dateStr = @"2016-05-28";
-    model3.handleType = 1;
-    model3.numStr = @"1000";
-    
-    MyAccountDetailModel *model4 = [[MyAccountDetailModel alloc] init];
-    model4.titleStr = @"2014443043053";
-    model4.dateStr = @"2016-05-15";
-    model4.handleType = 0;
-    model4.numStr = @"200";
-    
-    [self.items addObject:model1];
-    [self.items addObject:model2];
-    [self.items addObject:model3];
-    [self.items addObject:model4];
-    
-    [self.tableView reloadData];
-    
-    [self endRefreshing];
-
+    [self requestData];
 }
 
 -(void)loadMoreData
 {
-    
-    MyAccountDetailModel *model1 = [[MyAccountDetailModel alloc] init];
-    model1.titleStr = @"2014443043053";
-    model1.dateStr = @"2016-05-25";
-    model1.handleType = 0;
-    model1.numStr = @"140";
-    
-    MyAccountDetailModel *model2 = [[MyAccountDetailModel alloc] init];
-    model2.titleStr = @"2014443043053";
-    model2.dateStr = @"2016-05-25";
-    model2.handleType = 0;
-    model2.numStr = @"30";
-    
-    MyAccountDetailModel *model3 = [[MyAccountDetailModel alloc] init];
-    model3.titleStr = @"提现";
-    model3.dateStr = @"2016-05-28";
-    model3.handleType = 1;
-    model3.numStr = @"1000";
-    
-    MyAccountDetailModel *model4 = [[MyAccountDetailModel alloc] init];
-    model4.titleStr = @"2014443043053";
-    model4.dateStr = @"2016-05-15";
-    model4.handleType = 0;
-    model4.numStr = @"200";
-    
-    [self.items addObject:model1];
-    [self.items addObject:model2];
-    [self.items addObject:model3];
-    [self.items addObject:model4];
-    
-    [self.tableView reloadData];
-    
-    [self endLoadMoreWithNoMoreData:NO];
-    
+    [super loadMoreData];
+    [self requestData];
+}
+
+
+-(void)requestData
+{
+    __weak typeof(*&self) weakSelf = self;
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setObject:[NSString stringWithFormat:@"%ld",self.pageSize] forKey:@"pageSize"];
+    [params setObject:[NSString stringWithFormat:@"%ld",self.pageNum] forKey:@"page"];
     [self.proxy getAccountDetailDataWithParams:nil Block:^(id returnData, BOOL success) {
         if (success) {
+            NSDictionary *dict = (NSDictionary *)returnData;
+            NSArray *array = [dict objectForKey:@"list"];
+            if ([XuUtlity isValidArray:array]) {
+                [weakSelf handleDetailDataWithArray:array];
+            }
+            else
+            {
+                [weakSelf handleDetailDataWithArray:@[]];
+            }
             
+        }
+        else
+        {
+            [XuUItlity showFailedHint:@"加载明细失败" completionBlock:^{
+                [weakSelf.navigationController popViewControllerAnimated:YES];
+            }];
         }
     }];
 }
+
+
+-(void)handleDetailDataWithArray:(NSArray*)array
+{
+    if (self.pageNum == 1) {
+        [self.items removeAllObjects];
+        [self endRefreshing];
+    }
+    if (array.count == 0) {
+        [self showNoContentView];
+    }
+    else
+    {
+        if (array.count < self.pageSize) {
+            [self endLoadMoreWithNoMoreData:YES];
+        }
+        else
+        {
+            [self endLoadMoreWithNoMoreData:NO];
+        }
+    }
+    
+    for (int i = 0; i < array.count; i ++) {
+        NSDictionary *dict = [array objectAtIndex:i];
+        MyAccountDetailModel *model = [[MyAccountDetailModel alloc] initWithDictionary:dict];
+        [self.items addObject:model];
+    }
+    
+    [self.tableView reloadData];
+}
+
 
 #pragma -mark ----Table Delegate
 

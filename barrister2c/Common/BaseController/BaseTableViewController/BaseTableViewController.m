@@ -21,6 +21,8 @@
 {
     if (self = [super init]) {
         self.items = [NSMutableArray arrayWithCapacity:1];
+        self.pageSize = 20;
+        self.pageNum = 1;
     }
     return self;
 }
@@ -121,12 +123,12 @@
 
 -(void)loadMoreData
 {
-    
+    self.pageNum += 1;
 }
 
 
 -(void)loadItems
 {
-    
+    self.pageNum = 1;
 }
 @end

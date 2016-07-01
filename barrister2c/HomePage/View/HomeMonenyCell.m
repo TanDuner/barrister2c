@@ -40,7 +40,7 @@
     
     self.remainLabel.text = [BaseDataSingleton shareInstance].remainingBalance;
     
-    self.costLabel.text = [BaseDataSingleton shareInstance].cost;
+    self.costLabel.text = [BaseDataSingleton shareInstance].totalConsume?[BaseDataSingleton shareInstance].totalConsume:@"0";
     
     
 }

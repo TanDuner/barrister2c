@@ -11,24 +11,6 @@
 @interface MeNetProxy : BaseNetProxy
 
 
-/**
- *  获取预约设置的数据
- *
- *  @param params 请求参数
- *  @param aBlock 处理block
- */
--(void)getAppointDataWithParams:(NSDictionary *)params Block:(ServiceCallBlock)aBlock;
-
-
-/**
- *  设置预约的数据
- *
- *  @param params nil
- *  @param aBlock nil
- */
--(void)setAppintDataWithParams:(NSDictionary *)params Block:(ServiceCallBlock)aBlock;
-
-
 
 /**
  *  上传头像
@@ -67,6 +49,24 @@
  *  @param aBlock 回调
  */
 -(void)updateUserInfoWithParams:(NSMutableDictionary *)params block:(ServiceCallBlock)aBlock;
+
+
+/**
+ *  获取订单列表
+ *
+ *  @param params
+ *  @param aBlock
+ */
+-(void)getOrderListWithParams:(NSMutableDictionary *)params block:(ServiceCallBlock)aBlock;
+
+
+/**
+ *  我的收藏列表
+ *
+ *  @param params
+ *  @param aBlock 
+ */
+-(void)getMyLikeListWithParams:(NSMutableDictionary *)params block:(ServiceCallBlock)aBlock;
 
 @end
 

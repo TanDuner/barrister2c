@@ -10,7 +10,18 @@
 #import "BarristerOrderModel.h"
 #import "OrderViewCell.h"
 #import "OrderDetailViewController.h"
+#import "MeNetProxy.h"
+#import "RefreshTableView.h"
 
+@interface MyOrderListViewController ()<UITableViewDataSource,UITableViewDelegate,RefreshTableViewDelegate>
+
+@property (nonatomic,strong) MeNetProxy *proxy;
+
+@property (nonatomic,strong) RefreshTableView *tableView;
+
+@property (nonatomic,strong) NSMutableArray *items;
+
+@end
 
 @implementation MyOrderListViewController
 
@@ -29,27 +40,91 @@
 
 -(void)configData
 {
-    BarristerOrderModel *model1 = [[BarristerOrderModel alloc] init];
-    model1.name = @"张振华律师";
-    model1.userIcon = @"http://img4.duitang.com/uploads/item/201508/26/20150826212734_ST5BC.thumb.224_0.jpeg";
-    model1.startTime = @"2016/04/24 13:00";
-    model1.endTime = @"2016/03/24 14:00";
-    model1.date = @"2015 - 06- 08";
-    model1.caseType = @"债务纠纷";
-    model1.orderType = BarristerOrderTypeYYZX;
-    model1.orderState = BarristerOrderStateFinished;
- 
-    [self.items addObject:model1];
+    
+    __weak typeof(*& self) weakSelf  = self;
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+
+    [params setObject:[BaseDataSingleton shareInstance].userModel.userId forKey:@"userId"];
+    [params setObject:[BaseDataSingleton shareInstance].userModel.verifyCode forKey:@"verifyCode"];
+    [params setObject:[NSString stringWithFormat:@"%ld",self.tableView.pageSize] forKey:@"pageSize"];
+    [params setObject:[NSString stringWithFormat:@"%ld",self.tableView.pageNum] forKey:@"page"];
+    
+    
+    [self.proxy getOrderListWithParams:params block:^(id returnData, BOOL success) {
+        if (success) {
+            [weakSelf hideNoContentView];
+            NSDictionary *dict = (NSDictionary *)returnData;
+            NSArray *array = [dict objectForKey:@"list"];
+            if ([XuUtlity isValidArray:array]) {
+                [weakSelf handleListDataWithArray:array];
+            }
+            else
+            {
+                [weakSelf handleListDataWithArray:@[]];
+            }
+        }
+        else
+        {
+            [weakSelf showNoContentView];
+        }
+    }];
 }
+
+-(void)handleListDataWithArray:(NSArray *)array
+{
+    
+    __weak typeof(*&self) weakSelf = self;
+
+    [self handleTableRefreshOrLoadMoreWithTableView:self.tableView array:array aBlock:^{
+        __strong __typeof(weakSelf)strongSelf = weakSelf;
+        [strongSelf.items removeAllObjects];
+    }];
+    
+    for (int i = 0; i < array.count; i ++) {
+        NSDictionary *dict = [array objectAtIndex:i];
+        BarristerOrderModel *model = [[BarristerOrderModel alloc] initWithDictionary:dict];
+        [self.items addObject:model];
+    }
+    [self.tableView reloadData];
+
+    
+}
+
 
 -(void)configView
 {
     self.title = @"我的订单";
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.tableView = [[RefreshTableView alloc] initWithFrame:RECT(0, 0, SCREENWIDTH, SCREENHEIGHT - NAVBAR_DEFAULT_HEIGHT - TABBAR_HEIGHT) style:UITableViewStylePlain];
+    [self.tableView setFootLoadMoreControl];
+    self.tableView.pageSize = 10;
+    self.tableView.backgroundColor = kBaseViewBackgroundColor;
+    self.tableView.refreshDelegate = self;
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
     
 }
 
+#pragma -mark ---RefreshDelegate Methods ----
+
+-(void)circleTableViewDidTriggerRefresh:(RefreshTableView *)tableView
+{
+    [self configData];
+
+}
+
+-(void)circleTableViewDidLoadMoreData:(RefreshTableView *)tableView
+{
+    [self configData];
+    
+}
+
+
 #pragma -mark --UITableVIew Delegate Methods---
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return self.items.count;
+}
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -77,6 +152,23 @@
     OrderDetailViewController *detailVC = [[OrderDetailViewController alloc] initWithModel:model];
     [self.navigationController pushViewController:detailVC animated:YES];
 
+}
+#pragma -mark ---
+
+-(MeNetProxy *)proxy
+{
+    if (!_proxy) {
+        _proxy = [[MeNetProxy alloc] init];
+    }
+    return _proxy;
+}
+
+-(NSMutableArray *)items
+{
+    if (!_items) {
+        _items = [NSMutableArray arrayWithCapacity:10];
+    }
+    return _items;
 }
 
 @end

@@ -24,7 +24,7 @@
 -(void)layoutSubviews
 {
     [super layoutSubviews];
-    self.remainLabel.text = @"689.79";
+    self.remainLabel.text = [BaseDataSingleton shareInstance].remainingBalance;
 }
 
 

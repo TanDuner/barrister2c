@@ -25,10 +25,14 @@ typedef struct PhoneSate PhoneSate;
 
 @property (nonatomic,strong) NSString *remainingBalance;//余额
 
-@property (nonatomic,strong) NSString *cost;//总收入
-
 @property (nonatomic,strong)BarristerUserModel *userModel; //用户
 
+@property (nonatomic,strong) NSString *bankCardBindStatus;//绑定银行卡的状态
+
+@property (nonatomic,strong) NSDictionary *bankCardDict;//银行卡的字典
+
+
+@property (nonatomic,strong) NSString *totalConsume;//累计消费
 
 + (instancetype)shareInstance;
 
