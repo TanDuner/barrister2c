@@ -7,52 +7,14 @@
 //
 
 #import "MeNetProxy.h"
-#define GetAppointDataUrl @""
-#define SetAppointDataUrl @""
+
 #define UploadHeadImageUrl @"uploadUserIcon.do"
 #define MyMessageUrl @"getMyMsgs.do"
 #define FeedBackUrl @"addFeedback.do"
+#define UpdateUserInfo @"updateUserInfo.do"
 
 
 @implementation MeNetProxy
-/**
- *  获取预约设置的数据
- *
- *  @param params 请求参数
- *  @param aBlock 处理block
- */
--(void)getAppointDataWithParams:(NSDictionary *)params Block:(ServiceCallBlock)aBlock
-{
-    [XuNetWorking getWithUrl:GetAppointDataUrl params:params success:^(id response) {
-        if (aBlock) {
-            aBlock(response,YES);
-        }
-    } fail:^(NSError *error) {
-        if (aBlock) {
-            aBlock(error,NO);
-        }
-    }];
-}
-
-/**
- *  设置预约的数据
- *
- *  @param params 参数
- *  @param aBlock 回调
- */
--(void)setAppintDataWithParams:(NSDictionary *)params Block:(ServiceCallBlock)aBlock
-{
-    [XuNetWorking getWithUrl:SetAppointDataUrl params:params success:^(id response) {
-        if (aBlock) {
-            aBlock(response,YES);
-        }
-    } fail:^(NSError *error) {
-        if (aBlock) {
-            aBlock(error,NO);
-        }
-    }];
-}
-
 /**
  *  上传头像
  *
@@ -131,6 +93,28 @@
             aBlock(CommonNetErrorTip,NO);
         }
         
+        
+    } fail:^(NSError *error) {
+        if (aBlock) {
+            aBlock(error,NO);
+        }
+        
+    }];
+}
+
+
+/**
+ *  修改个人信息接口
+ *
+ *  @param params 参数
+ *  @param aBlock 回调
+ */
+-(void)updateUserInfoWithParams:(NSMutableDictionary *)params block:(ServiceCallBlock)aBlock
+{
+    [XuNetWorking postWithUrl:UpdateUserInfo params:params success:^(id response) {
+        if (aBlock) {
+            aBlock(response,YES);
+        }
         
     } fail:^(NSError *error) {
         if (aBlock) {

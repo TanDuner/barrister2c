@@ -41,6 +41,9 @@
                           fileName:(NSString *)fileName
                              Block:(ServiceCallBlock)aBlock;
 
+
+
+
 /**
  *  我的消息
  */
@@ -55,6 +58,15 @@
  *  @param aBlock <#aBlock description#>
  */
 -(void)feedBackWithParams:(NSMutableDictionary *)params block:(ServiceCallBlock)aBlock;
+
+
+/**
+ *  修改个人信息接口
+ *
+ *  @param params 参数
+ *  @param aBlock 回调
+ */
+-(void)updateUserInfoWithParams:(NSMutableDictionary *)params block:(ServiceCallBlock)aBlock;
 
 @end
 

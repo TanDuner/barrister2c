@@ -15,7 +15,8 @@
 #import "ModifyInfoViewController.h"
 #import "XuNetWorking.h"
 #import "MeNetProxy.h"
-@interface PersonInfoViewController ()<AJPhotoPickerProtocol,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
+#import "IMActionSheet.h"
+@interface PersonInfoViewController ()<AJPhotoPickerProtocol,UIImagePickerControllerDelegate,UINavigationControllerDelegate,IMActionSheetDelegate>
 
 @property (nonatomic,strong) UIImage *headImage;
 
@@ -46,8 +47,88 @@
 
 -(void)configView
 {
+ 
     self.title = @"个人信息";
+ 
+    [self initNavigationRightTextButton:@"提交" action:@selector(commitActioin)];
 }
+
+#pragma -mark --Action-----
+
+-(void)commitActioin
+{
+    
+//      参数:userId，verifyCode,nickname、gendar、phone（重新验证 TBD）、email、area（省+市）
+
+    if (self.items.count < 5) {
+        [XuUItlity showFailedHint:@"信息错误" completionBlock:nil];
+        return;
+    }
+    
+    
+    NSMutableDictionary *aParams = [NSMutableDictionary dictionary];
+    [aParams setObject:[BaseDataSingleton shareInstance].userModel.userId forKey:@"userId"];
+    [aParams setObject:[BaseDataSingleton shareInstance].userModel.verifyCode forKey:@"verifyCode"];
+    
+    PersonCenterModel *nameModel = [self.items objectAtIndex:1];
+    if (IS_NOT_EMPTY(nameModel.subtitleStr)) {
+        if (![nameModel.subtitleStr isEqualToString:@"未填写"]) {
+            [aParams setObject:nameModel.subtitleStr forKey:@"nickname"];
+        }
+    }
+    
+    PersonCenterModel *phoneModel = [self.items objectAtIndex:2];
+    if (IS_NOT_EMPTY(phoneModel.subtitleStr)) {
+        if (![phoneModel.subtitleStr isEqualToString:@"未填写"]) {
+            [aParams setObject:phoneModel.subtitleStr forKey:@"phone"];
+        }
+    }
+    
+    PersonCenterModel *genderModel = [self.items objectAtIndex:3];
+    if (IS_NOT_EMPTY(genderModel.subtitleStr)) {
+        if (![genderModel.subtitleStr isEqualToString:@"未填写"]) {
+            [aParams setObject:genderModel.subtitleStr forKey:@"gendar"];
+        }
+    }
+    
+    PersonCenterModel *areaModel = [self.items objectAtIndex:4];
+    if (IS_NOT_EMPTY(areaModel.subtitleStr)) {
+        if (![areaModel.subtitleStr isEqualToString:@"未填写"]) {
+            [aParams setObject:areaModel.subtitleStr forKey:@"area"];
+        }
+    }
+    
+    
+    //缺少极光推送的push id
+    
+    
+    [XuUItlity showLoading:@"正在提交"];
+    
+    __weak typeof(*&self)weakSelf = self;
+    [self.proxy updateUserInfoWithParams:aParams block:^(id returnData, BOOL success) {
+        [XuUItlity hideLoading];
+        if (success) {
+            NSDictionary *dict = (NSDictionary *)returnData;
+            if (dict && [dict respondsToSelector:@selector(objectForKey:)]) {
+                NSDictionary *userDict = [dict objectForKey:@"user"];
+                BarristerUserModel *userModel = [[BarristerUserModel alloc] initWithDictionary:userDict];
+                [BaseDataSingleton shareInstance].userModel = userModel;
+                [weakSelf configData];
+
+                [weakSelf.navigationController popViewControllerAnimated:YES];
+                
+            }
+            
+        }
+        else
+        {
+            
+        }
+    }];
+
+
+}
+
 
 #pragma -mark ---------Data--------
 
@@ -64,6 +145,7 @@
             {
                 model.cellType = PersonCenterModelTypeInfoTX;
                 model.userIcon = [BaseDataSingleton shareInstance].userModel.userIcon;
+                model.isShowArrow = YES;
 
             }
                 break;
@@ -71,18 +153,32 @@
             {
                 model.cellType = PersonCenterModelTypeInfoNickName;
                 model.subtitleStr = [BaseDataSingleton shareInstance].userModel.nickName?[BaseDataSingleton shareInstance].userModel.nickName:@"未填写";
+                model.isShowArrow = YES;
 
             }
                 break;
             case 2:
             {
-            
+                model.cellType = PersonCenterModelTypeInfoPhone;
+                model.subtitleStr = [BaseDataSingleton shareInstance].userModel.phone?[BaseDataSingleton shareInstance].userModel.phone:@"";
+                model.isShowArrow = NO;
             }
                 break;
             case 3:
             {
-                
+                model.cellType = PersonCenterModelTypeInfoGender;
+              model.subtitleStr = @"男";
+                model.isShowArrow = YES;
+                break;
             }
+            case 4:
+            {
+                model.cellType = PersonCenterModelTypeInfoArea;
+                model.subtitleStr = [BaseDataSingleton shareInstance].userModel.area?[BaseDataSingleton shareInstance].userModel.area:@"未填写";
+                model.isShowArrow = YES;
+            }
+                
+                break;
             default:
                 break;
         }
@@ -132,11 +228,6 @@
         }
             break;
         case 1:
-        case 2:
-        case 3:
-        case 5:
-        case 6:
-        case 9:
         {
             ModifyInfoViewController *modifyVC = [[ModifyInfoViewController alloc] initWithModel:modelTemp];
             modifyVC.modifyBlock = ^(PersonCenterModel *model)
@@ -147,9 +238,26 @@
             [self.navigationController pushViewController:modifyVC animated:YES];
         }
             break;
+        case 2:
+        {
+            return;
+        }
+            break;
+        case 3:
+        {
+            IMActionSheet *genderSheet = [[IMActionSheet alloc] initWithTitle:nil delegate:self/*.delegate*/ cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"男",@"女", nil];
+            [genderSheet showInView:self.view];
+            
+        }
+            break;
         case 4:
         {
             CityChooseViewController *cityVC = [[CityChooseViewController alloc] init];
+            cityVC.cityInfo = ^(NSString *province,NSString *area)
+            {
+                modelTemp.subtitleStr = [NSString stringWithFormat:@"%@%@",province,area];
+                [self.tableView reloadData];
+            };
             [self.navigationController pushViewController:cityVC animated:YES];
         }
             break;
@@ -161,6 +269,34 @@
             break;
     }
 }
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    PersonCenterModel *model = [self.items objectAtIndex:3];
+    switch (buttonIndex)
+    {
+        case 0:
+        {
+            //男
+            model.subtitleStr = @"男";
+        }
+            break;
+        case 1:
+        {
+            model.subtitleStr = @"女";
+        }
+            break;
+        case 2:
+        {
+            
+        }
+            break;
+        default:
+            break;
+    }
+    [self.tableView reloadData];
+}
+
 
 
 #pragma -mark ---Photo Picker----
@@ -254,7 +390,6 @@
 
 -(void)uploadHeadImage
 {
-    
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     [params setObject:[BaseDataSingleton shareInstance].userModel.userId forKey:@"userId"];
     [params setObject:[BaseDataSingleton shareInstance].userModel.verifyCode forKey:@"verifyCode"];
@@ -272,6 +407,8 @@
         }
     }];
 }
+
+
 
 #pragma -mark ----getter----
 

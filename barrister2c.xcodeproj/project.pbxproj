@@ -95,6 +95,7 @@
 		95BD99801D2567E5002E5B0D /* LearnCenterContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 95BD997F1D2567E5002E5B0D /* LearnCenterContentView.m */; };
 		95BD99831D2567EE002E5B0D /* LearnCenterChannelModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 95BD99821D2567EE002E5B0D /* LearnCenterChannelModel.m */; };
 		95BD998D1D25DF8E002E5B0D /* FeedBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95BD998C1D25DF8E002E5B0D /* FeedBackViewController.m */; };
+		95BD99911D260681002E5B0D /* IMActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 95BD99901D260681002E5B0D /* IMActionSheet.m */; };
 		95CA1BD31D10F03900AAE490 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 95CA1BD21D10F03900AAE490 /* main.m */; };
 		95CA1BD61D10F03900AAE490 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 95CA1BD51D10F03900AAE490 /* AppDelegate.m */; };
 		95CA1BDC1D10F03A00AAE490 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95CA1BDA1D10F03A00AAE490 /* Main.storyboard */; };
@@ -412,6 +413,8 @@
 		95BD99841D257145002E5B0D /* CommonMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonMacros.h; sourceTree = "<group>"; };
 		95BD998B1D25DF8E002E5B0D /* FeedBackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedBackViewController.h; sourceTree = "<group>"; };
 		95BD998C1D25DF8E002E5B0D /* FeedBackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedBackViewController.m; sourceTree = "<group>"; };
+		95BD998F1D260681002E5B0D /* IMActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMActionSheet.h; sourceTree = "<group>"; };
+		95BD99901D260681002E5B0D /* IMActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMActionSheet.m; sourceTree = "<group>"; };
 		95CA1BCE1D10F03900AAE490 /* barrister2c.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = barrister2c.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		95CA1BD21D10F03900AAE490 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		95CA1BD41D10F03900AAE490 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -840,6 +843,15 @@
 			path = BaseWebViewController;
 			sourceTree = "<group>";
 		};
+		95BD998E1D260681002E5B0D /* ActinoSheet */ = {
+			isa = PBXGroup;
+			children = (
+				95BD998F1D260681002E5B0D /* IMActionSheet.h */,
+				95BD99901D260681002E5B0D /* IMActionSheet.m */,
+			);
+			path = ActinoSheet;
+			sourceTree = "<group>";
+		};
 		95CA1BC51D10F03900AAE490 = {
 			isa = PBXGroup;
 			children = (
@@ -1044,6 +1056,7 @@
 		95CA1BF41D10F4AF00AAE490 /* BaseView */ = {
 			isa = PBXGroup;
 			children = (
+				95BD998E1D260681002E5B0D /* ActinoSheet */,
 				955611481D161A2400366D4C /* PullDownMenuView */,
 				95CA1C381D10F7B700AAE490 /* BadgeNumBerView */,
 				95CA1C3B1D10F7B700AAE490 /* BannerView */,
@@ -2107,6 +2120,7 @@
 				95CA1D4A1D10F7C900AAE490 /* NinaBaseView.m in Sources */,
 				955611471D15A86300366D4C /* LawerListCell.m in Sources */,
 				95CA1D2A1D10F7C900AAE490 /* MJRefreshComponent.m in Sources */,
+				95BD99911D260681002E5B0D /* IMActionSheet.m in Sources */,
 				95CA1D9B1D10F85500AAE490 /* NSDate+Addition.m in Sources */,
 				95CA1D411D10F7C900AAE490 /* MASCompositeConstraint.m in Sources */,
 				95BD99791D255BAB002E5B0D /* IMWebView.m in Sources */,
