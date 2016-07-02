@@ -52,21 +52,7 @@
     return isOneOpen;
 }
 
-- (void)rectTextWithIndex:(NSInteger)index isPhone5H:(BOOL)states imgView:(UIImageView *)theImgView
-{
-    theImgView.userInteractionEnabled = YES;
-    int end = SPLASHCOUNT - 1; //chark add 2015/03/13
-    if (index == end) {//最后一页
-        
-        UIButton *clickBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [clickBtn setImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
-        [clickBtn setImage:[UIImage imageNamed:@""] forState:UIControlStateHighlighted];
-        clickBtn.frame = self.frame;
-        [clickBtn addTarget:self action:@selector(btnGuideClick:) forControlEvents:UIControlEventTouchUpInside];
-        [theImgView addSubview:clickBtn];
-    }
-    
-}
+
 
 //登录主界面
 - (void)btnGuideClick:(UIButton *)sender
@@ -86,15 +72,25 @@
     int num = SPLASHCOUNT;
     for (int i = 0 ; i < num; i++) {
         UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(i*SCREENWIDTH, 0, SCREENWIDTH, SCREENHEIGHT)];
-        NSString *tmpImgName = @"";
-        if (isiPhone5) {
-            [self rectTextWithIndex:i isPhone5H:YES imgView:imgView];
-            tmpImgName = [NSString stringWithFormat:@"guide_0%d_6401136.png",i];
-        } else {
-            [self rectTextWithIndex:i isPhone5H:NO imgView:imgView];
-            tmpImgName = [NSString stringWithFormat:@"guide_0%d_640960.png",i];
+        imgView.userInteractionEnabled = YES;
+        imgView.backgroundColor = RGBCOLOR(232, 233, 234);
+        UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"guide_%d",i + 1]];
+        UIImageView *contentViewImage = [[UIImageView alloc] initWithFrame:RECT((SCREENWIDTH - image.size.width)/2.0, (SCREENHEIGHT - image.size.height)/2.0, image.size.width, image.size.height)];
+        contentViewImage.image = image;
+
+        if (i == 2) {
+            UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+            [btn addTarget:self action:@selector(btnGuideClick:) forControlEvents:UIControlEventTouchUpInside];
+            [btn setFrame:RECT((contentViewImage.width - 180)/2.0, contentViewImage.height - 40, 180, 40)];
+            contentViewImage.userInteractionEnabled = YES;
+            [contentViewImage addSubview:btn];
         }
-        imgView.image = [UIImage createImageWithColor:[UIColor blueColor]];
+        
+        
+        [imgView addSubview:contentViewImage];
+        
+        
+        
         [_scrollView addSubview:imgView];
     }
     

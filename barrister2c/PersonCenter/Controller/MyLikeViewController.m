@@ -10,10 +10,15 @@
 #import "BarristerLawerModel.h"
 #import "LawerListCell.h"
 #import "MeNetProxy.h"
+#import "RefreshTableView.h"
 
-@interface MyLikeViewController ()
+@interface MyLikeViewController ()<UITableViewDataSource,UITableViewDelegate,RefreshTableViewDelegate>
 
 @property (nonatomic,strong) MeNetProxy *proxy;
+
+@property (nonatomic,strong) RefreshTableView *tableView;
+
+@property (nonatomic,strong) NSMutableArray *items;
 
 @end
 
@@ -32,6 +37,8 @@
     
     [self configView];
     
+    [self configData];
+    
     
 }
 
@@ -41,8 +48,8 @@
 {
     __weak typeof(*&self) weakSelf = self;
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    [params setObject:[NSString stringWithFormat:@"%ld",self.pageSize] forKey:@"pageSize"];
-    [params setObject:[NSString stringWithFormat:@"%ld",self.pageNum] forKey:@"page"];
+    [params setObject:[NSString stringWithFormat:@"%ld",self.tableView.pageSize] forKey:@"pageSize"];
+    [params setObject:[NSString stringWithFormat:@"%ld",self.tableView.pageNum] forKey:@"page"];
     [params setObject:[BaseDataSingleton shareInstance].userModel.userId forKey:@"userId"];
     [params setObject:[BaseDataSingleton shareInstance].userModel.verifyCode forKey:@"verifyCode"];
     [self.proxy getMyLikeListWithParams:params block:^(id returnData, BOOL success) {
@@ -70,24 +77,13 @@
 
 -(void)handleDetailDataWithArray:(NSArray *)array
 {
-    if (self.pageNum == 1) {
-        [self.items removeAllObjects];
-        [self endRefreshing];
-    }
-    if (array.count == 0) {
-        [self showNoContentView];
-        [self endLoadMoreWithNoMoreData:YES];
-    }
-    else
-    {
-        if (array.count < self.pageSize) {
-            [self endLoadMoreWithNoMoreData:YES];
-        }
-        else
-        {
-            [self endLoadMoreWithNoMoreData:NO];
-        }
-    }
+    __weak typeof(*&self) weakSelf = self;
+    
+    [self handleTableRefreshOrLoadMoreWithTableView:self.tableView array:array aBlock:^{
+        __strong __typeof(weakSelf)strongSelf = weakSelf;
+        [strongSelf.items removeAllObjects];
+    }];
+
     
     for (int i = 0; i < array.count; i ++) {
         NSDictionary *dict = [array objectAtIndex:i];
@@ -106,26 +102,28 @@
 -(void)configView
 {
     self.title  = @"我的收藏";
-    
-    [self addRefreshHeader];
-    [self addLoadMoreFooter];
+    self.tableView = [[RefreshTableView alloc] initWithFrame:RECT(0, 0, SCREENWIDTH, SCREENHEIGHT - NAVBAR_DEFAULT_HEIGHT - TABBAR_HEIGHT) style:UITableViewStylePlain];
+    [self.tableView setFootLoadMoreControl];
+    self.tableView.pageSize = 10;
+    self.tableView.backgroundColor = kBaseViewBackgroundColor;
+    self.tableView.refreshDelegate = self;
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+
+
 }
 
 #pragma -mark --ConfigData
 
--(void)loadItems
+-(void)circleTableViewDidTriggerRefresh:(RefreshTableView *)tableView
 {
-    [super loadItems];
     [self configData];
 }
 
-
--(void)loadMoreData
+-(void)circleTableViewDidLoadMoreData:(RefreshTableView *)tableView
 {
-    [super loadMoreData];
     [self configData];
 }
-
 
 #pragma -mark --UITableView Delegate 
 
@@ -164,6 +162,14 @@
         _proxy = [[MeNetProxy alloc] init];
     }
     return _proxy;
+}
+
+-(NSMutableArray *)items
+{
+    if (!_items) {
+        _items = [NSMutableArray arrayWithCapacity:10];
+    }
+    return _items;
 }
 
 @end
