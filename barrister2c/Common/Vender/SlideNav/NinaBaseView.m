@@ -25,7 +25,7 @@
     UIColor *topTabColors;
 }
 
-- (instancetype)initWithFrame:(CGRect)frame WithSelectColor:(UIColor *)selectColor WithUnselectorColor:(UIColor *)unselectColor WithUnderLineColor:(UIColor *)underlineColor WithtopTabColor:(UIColor *)topTabColor
+- (instancetype)initWithFrame:(CGRect)frame WithSelectColor:(UIColor *)selectColor WithUnselectorColor:(UIColor *)unselectColor WithUnderLineColor:(UIColor *)underlineColor WithtopTabColor:(UIColor *)topTabColor isAlertShow:(BOOL)isAlertShow
 {
     self = [super initWithFrame:frame];
     if (self) {
@@ -49,7 +49,10 @@
         }else {
             NSLog(@"please change the topTabColor into UIColor!");
         }
+        
+        self.isAlertShow = isAlertShow;
     }
+    
     return self;
 }
 
@@ -57,8 +60,8 @@
 - (void)setTitleArray:(NSArray *)titleArray {
     titlesArray = titleArray;
     arrayCount = titleArray.count;
-    self.topTab.frame = CGRectMake(0, 0, FUll_VIEW_WIDTH, PageBtn);
-    self.scrollView.frame = CGRectMake(0, PageBtn, FUll_VIEW_WIDTH, FUll_CONTENT_HEIGHT - PageBtn);
+    self.topTab.frame = CGRectMake(0, 0, (self.isAlertShow ?(FUll_VIEW_WIDTH - 30):FUll_VIEW_WIDTH), PageBtn);
+    self.scrollView.frame = CGRectMake(0, PageBtn, self.isAlertShow?(FUll_VIEW_WIDTH - 30):FUll_VIEW_WIDTH, FUll_CONTENT_HEIGHT - PageBtn);
     [self addSubview:self.topTab];
     [self addSubview:self.scrollView];
 }
@@ -78,7 +81,7 @@
         _scrollView.delegate = self;
         _scrollView.tag = 318;
         _scrollView.backgroundColor = UIColorFromRGB(0xfafafa);
-        _scrollView.contentSize = CGSizeMake(FUll_VIEW_WIDTH * titlesArray.count, 0);
+        _scrollView.contentSize = CGSizeMake((self.isAlertShow?(FUll_VIEW_WIDTH - 30):FUll_VIEW_WIDTH) * titlesArray.count, 0);
         _scrollView.pagingEnabled = YES;
         _scrollView.showsHorizontalScrollIndicator = NO;
         _scrollView.alwaysBounceHorizontal = YES;
@@ -104,7 +107,7 @@
         if (arrayCount > 5) {
             additionCount = (arrayCount - 5.0) / 5.0;
         }
-        _topTab.contentSize = CGSizeMake((1 + additionCount) * FUll_VIEW_WIDTH, 0);
+        _topTab.contentSize = CGSizeMake((1 + additionCount) * (self.isAlertShow?(FUll_VIEW_WIDTH - 30):FUll_VIEW_WIDTH), 0);
         btnArray = [NSMutableArray array];
         for (NSInteger i = 0; i < titlesArray.count; i++) {            
             UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -117,9 +120,9 @@
                 NSLog(@"您所提供的标题%li格式不正确。 Your title%li not fit for topTab,please correct it to NSString!",(long)i + 1,(long)i + 1);
             }
             if (titlesArray.count > 5) {
-                button.frame = CGRectMake(FUll_VIEW_WIDTH / 5 * i, 0, FUll_VIEW_WIDTH / 5, PageBtn);
+                button.frame = CGRectMake((self.isAlertShow ?(FUll_VIEW_WIDTH - 30):FUll_VIEW_WIDTH) / 5 * i, 0, (self.isAlertShow ?(FUll_VIEW_WIDTH - 30):FUll_VIEW_WIDTH) / 5, PageBtn);
             }else {
-                button.frame = CGRectMake(FUll_VIEW_WIDTH / titlesArray.count * i, 0, FUll_VIEW_WIDTH / titlesArray.count, PageBtn);
+                button.frame = CGRectMake((self.isAlertShow ?(FUll_VIEW_WIDTH - 30):FUll_VIEW_WIDTH) / titlesArray.count * i, 0, (self.isAlertShow ?(FUll_VIEW_WIDTH - 30):FUll_VIEW_WIDTH) / titlesArray.count, PageBtn);
             }
             [_topTab addSubview:button];
             [button addTarget:self action:@selector(touchAction:) forControlEvents:UIControlEventTouchUpInside];
@@ -159,27 +162,27 @@
 
 #pragma mark - BtnMethod
 - (void)touchAction:(UIButton *)button {
-    [_scrollView setContentOffset:CGPointMake(FUll_VIEW_WIDTH * button.tag, 0) animated:NO];
-    self.currentPage = (FUll_VIEW_WIDTH * button.tag + FUll_VIEW_WIDTH / 2) / FUll_VIEW_WIDTH;
+    [_scrollView setContentOffset:CGPointMake((self.isAlertShow ?(FUll_VIEW_WIDTH - 30):FUll_VIEW_WIDTH) * button.tag, 0) animated:NO];
+    self.currentPage = ((self.isAlertShow ?(FUll_VIEW_WIDTH - 30):FUll_VIEW_WIDTH) * button.tag + (self.isAlertShow ?(FUll_VIEW_WIDTH - 30):FUll_VIEW_WIDTH) / 2) / (self.isAlertShow ?(FUll_VIEW_WIDTH - 30):FUll_VIEW_WIDTH);
     
 }
 
 #pragma mark - UIScrollViewDelegate
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
     if (scrollView.tag == 318) {
-        self.currentPage = (NSInteger)((scrollView.contentOffset.x + FUll_VIEW_WIDTH / 2) / FUll_VIEW_WIDTH);
+        self.currentPage = (NSInteger)((scrollView.contentOffset.x + (self.isAlertShow ?(FUll_VIEW_WIDTH - 30):FUll_VIEW_WIDTH) / 2) / (self.isAlertShow ?(FUll_VIEW_WIDTH - 30):FUll_VIEW_WIDTH));
     }
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     if (scrollView.tag == 318) {
-        NSInteger yourPage = (NSInteger)((scrollView.contentOffset.x + FUll_VIEW_WIDTH / 2) / FUll_VIEW_WIDTH);
+        NSInteger yourPage = (NSInteger)((scrollView.contentOffset.x + (self.isAlertShow ?(FUll_VIEW_WIDTH - 30):FUll_VIEW_WIDTH) / 2) / (self.isAlertShow ?(FUll_VIEW_WIDTH - 30):FUll_VIEW_WIDTH));
         CGFloat yourCount = 1.0 / arrayCount;
         if (arrayCount > 5) {
             yourCount = 1.0 / 5.0;
-            lineBottom.frame = CGRectMake(scrollView.contentOffset.x / 5, PageBtn - 2, yourCount * FUll_VIEW_WIDTH, 1);
+            lineBottom.frame = CGRectMake(scrollView.contentOffset.x / 5, PageBtn - 2, yourCount * (self.isAlertShow ?(FUll_VIEW_WIDTH - 30):FUll_VIEW_WIDTH), 1);
         }else {
-            lineBottom.frame = CGRectMake(scrollView.contentOffset.x / arrayCount, PageBtn - 2, yourCount * FUll_VIEW_WIDTH, 1);
+            lineBottom.frame = CGRectMake(scrollView.contentOffset.x / arrayCount, PageBtn - 2, yourCount * (self.isAlertShow ?(FUll_VIEW_WIDTH - 30):FUll_VIEW_WIDTH), 1);
         }
         for (NSInteger i = 0;  i < btnArray.count; i++) {
             if (unselectBtn) {
@@ -223,8 +226,8 @@
         additionCount = (arrayCount - 5.0) / 5.0;
         yourCount = 1.0 / 5.0;
     }
-    lineBottom.frame = CGRectMake(0, PageBtn - 2,yourCount * FUll_VIEW_WIDTH, 2);
-    topTabBottomLine.frame = CGRectMake(0, PageBtn - 1, (1 + additionCount) * FUll_VIEW_WIDTH, 1);    
+    lineBottom.frame = CGRectMake(0, PageBtn - 2,yourCount * (self.isAlertShow ?(FUll_VIEW_WIDTH - 30):FUll_VIEW_WIDTH), 2);
+    topTabBottomLine.frame = CGRectMake(0, PageBtn - 1, (1 + additionCount) * (self.isAlertShow ?(FUll_VIEW_WIDTH - 30):FUll_VIEW_WIDTH), 1);
 }
 
 @end

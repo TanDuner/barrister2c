@@ -9,7 +9,6 @@
 #import "BaseTableViewController.h"
 #import "BarristerLawerModel.h"
 
-
 @interface LawerDetailViewController : BaseTableViewController
 @property (nonatomic,strong) BarristerLawerModel *model;
 

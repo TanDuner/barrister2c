@@ -64,6 +64,7 @@
 
 @property (nonatomic,strong) NSString *goodAtStr; //擅长的字符串
 
+
 /**
  *  擅长领域
  */

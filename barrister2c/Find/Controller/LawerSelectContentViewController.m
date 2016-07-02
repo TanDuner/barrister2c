@@ -7,7 +7,8 @@
 //
 
 #import "LawerSelectContentViewController.h"
-#import "BaseAppointmentModel.h"
+#import "AppointmentManager.h"
+
 
 #define ButtonNum 48
 
@@ -62,11 +63,11 @@
     [super layoutSubviews];
     
     if (self.state == AppointMentStateSelect) {
-        _checkImageView.image = [UIImage imageNamed:@"Selected.png"];
+        _checkImageView.image = [UIImage imageNamed:@"unSelected.png"];
     }
     else if(self.state == AppointMentStateUnSelect)
     {
-        _checkImageView.image = [UIImage imageNamed:@"unSelected.png"];
+        _checkImageView.image = [UIImage imageNamed:@"Selected.png"];
     }
     else if (self.state == AppointMentStateUnSelectable)
     {
@@ -88,7 +89,6 @@
 
 @property (nonatomic,strong) UIScrollView *bgScrollView;
 
-@property (nonnull, strong) NSMutableArray *statesArray;
 
 @end
 
@@ -97,7 +97,6 @@
 -(instancetype)initWithArray:(NSMutableArray *)aStatesArray
 {
     if (self = [super init]) {
-        _statesArray = aStatesArray;
     }
     return self;
 }
@@ -124,10 +123,7 @@
             break;
         }
         
-        NSString * appointStateStr = [self.statesArray objectAtIndex:i];
-        
         AppointCheckView *checkView = [[AppointCheckView alloc] init];
-        checkView.state = appointStateStr.integerValue;
         
         NSString *startStr = [self getTimeStrWithTimeNum:startTimeNum];
         
@@ -135,12 +131,14 @@
         
         NSString *showStr = [NSString stringWithFormat:@"%@~%@",startStr,endStr];
         
-        
+        NSString *stateStr = [self.model.settingArray objectAtIndex:i];
+        checkView.state = stateStr.integerValue;
+
         
         checkView.startTimeNum = startTimeNum;
         checkView.endTimeNum = endTimeNum;
         
-        checkView.tag = i + 1;
+        checkView.tag = i + 1000;
         [checkView setFrame:CGRectMake(LeftPadding + (i%3)*(CheckWidth + X_CenterPadding), TopPadding + (i / 3)*(Y_CenterPaddng + ButtonWidth), CheckWidth, 25)];
         checkView.showLabel.text = showStr;
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(checkAciton:)];
@@ -152,7 +150,7 @@
         
     }
     
-    self.bgScrollView.contentSize = CGSizeMake(0, TopPadding + (ButtonNum / 3)*(Y_CenterPaddng + ButtonWidth));
+    self.bgScrollView.contentSize = CGSizeMake(0, (ButtonNum / 3)*(Y_CenterPaddng + ButtonWidth));
     [self.view addSubview:self.bgScrollView];
     
     
@@ -170,18 +168,12 @@
 }
 
 
--(void)setAppointmentData:(NSString *)str
-{
-    
-
-}
-
 #pragma -mark ---Getter---
 
 -(UIScrollView *)bgScrollView
 {
     if (!_bgScrollView) {
-        _bgScrollView = [[UIScrollView alloc] initWithFrame:RECT(0, 0, self.view.width, 290 - 40)];
+        _bgScrollView = [[UIScrollView alloc] initWithFrame:RECT(0, 0, self.view.width, 290 - 20)];
     }
     return _bgScrollView;
 }
@@ -191,16 +183,41 @@
 -(void)checkAciton:(UITapGestureRecognizer *)tap
 {
     AppointCheckView *checkView = (AppointCheckView *)[tap view];
+    
+    
     if (checkView.state == AppointMentStateSelect) {
         checkView.state = AppointMentStateUnSelect;
+        [self handleCheckViewDateWithIndex:checkView.tag withState:@"2"];
+
     }
     else if(checkView.state == AppointMentStateUnSelect)
     {
         checkView.state = AppointMentStateSelect;
+        [self handleCheckViewDateWithIndex:checkView.tag withState:@"0"];
+
     }
     
     [checkView setNeedsLayout];
     
+}
+
+
+
+
+-(void)handleCheckViewDateWithIndex:(NSInteger)index withState:(NSString *)state
+{
+    if (self.commitModel.settingArray.count > index - 1000) {
+        [self.commitModel.settingArray replaceObjectAtIndex:index - 1000 withObject:state];
+    }
+
+}
+
+-(AppointmentMoel *)commitModel
+{
+    if (!_commitModel) {
+        _commitModel = [AppointmentMoel getEmptyModelWithInitDateWithModel:self.model];
+    }
+    return _commitModel;
 }
 
 

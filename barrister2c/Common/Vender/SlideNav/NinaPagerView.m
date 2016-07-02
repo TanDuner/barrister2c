@@ -31,14 +31,18 @@ static NSString *const kObserverPage = @"currentPage";
     UIViewController *firstVC;
 }
 
-- (instancetype)initWithTitles:(NSArray *)titles WithVCs:(NSArray *)childVCs WithColorArrays:(NSArray *)colors {
+- (instancetype)initWithTitles:(NSArray *)titles WithVCs:(NSArray *)childVCs WithColorArrays:(NSArray *)colors isAlertShow:(BOOL)isAlertShow {
+    
     if (self = [super init]) {
         //Need You Edit,title for the toptabbar
-        self.frame = CGRectMake(0, 0, FUll_VIEW_WIDTH, FUll_CONTENT_HEIGHT);
+        self.frame = CGRectMake(0, 0, isAlertShow?(FUll_VIEW_WIDTH -30):FUll_VIEW_WIDTH, FUll_CONTENT_HEIGHT);
         myArray = titles;
+        self.isAlertShow = isAlertShow;
         classArray = childVCs;
         colorArray = colors;
          [self createPagerView:myArray WithVCs:classArray WithColors:colorArray];
+        
+        
     }
     return self;
 }
@@ -93,7 +97,7 @@ static NSString *const kObserverPage = @"currentPage";
         }
     }
     if (titles.count > 0 && childVCs.count > 0) {
-        pagerView = [[NinaBaseView alloc] initWithFrame:CGRectMake(0, 0, FUll_VIEW_WIDTH, FUll_CONTENT_HEIGHT) WithSelectColor:_selectColor WithUnselectorColor:_unselectColor WithUnderLineColor:_underlineColor WithtopTabColor:_topTabColor];
+        pagerView = [[NinaBaseView alloc] initWithFrame:CGRectMake(0, 0, self.isAlertShow?(FUll_VIEW_WIDTH - 30):FUll_VIEW_WIDTH, FUll_CONTENT_HEIGHT) WithSelectColor:_selectColor WithUnselectorColor:_unselectColor WithUnderLineColor:_underlineColor WithtopTabColor:_topTabColor isAlertShow:self.isAlertShow];
         pagerView.titleArray = myArray;
         [pagerView addObserver:self forKeyPath:@"currentPage" options:NSKeyValueObservingOptionOld | NSKeyValueObservingOptionNew context:nil];
         [self addSubview:pagerView];
@@ -107,7 +111,7 @@ static NSString *const kObserverPage = @"currentPage";
                     [self createFirstViewController:ctrl];
                 }else if ([class isSubclassOfClass:[UIView class]]) {
                     UIView *singleView =class.new;
-                    singleView.frame = CGRectMake(FUll_VIEW_WIDTH * 0, 0, FUll_VIEW_WIDTH, FUll_CONTENT_HEIGHT - PageBtn);
+                    singleView.frame = CGRectMake(FUll_VIEW_WIDTH * 0, 0, self.isAlertShow?(FUll_VIEW_WIDTH - 30):FUll_VIEW_WIDTH, FUll_CONTENT_HEIGHT - PageBtn);
                     [pagerView.scrollView addSubview:singleView];
                 }
             }else {
@@ -116,7 +120,7 @@ static NSString *const kObserverPage = @"currentPage";
                     [self createFirstViewController:ctrl];
                 }else if ([classArray[0] isKindOfClass:[UIView class]]) {
                     UIView *singleView = classArray[0];
-                    singleView.frame = CGRectMake(FUll_VIEW_WIDTH * 0, 0, FUll_VIEW_WIDTH, FUll_CONTENT_HEIGHT - PageBtn);
+                    singleView.frame = CGRectMake(FUll_VIEW_WIDTH * 0, 0, self.isAlertShow?(FUll_VIEW_WIDTH - 30):FUll_VIEW_WIDTH, FUll_CONTENT_HEIGHT - PageBtn);
                     [pagerView.scrollView addSubview:singleView];
                 }
             }
@@ -168,7 +172,7 @@ static NSString *const kObserverPage = @"currentPage";
                         [self createOtherViewControllers:ctrl WithControllerTag:i];
                     }else if ([class isSubclassOfClass:[UIView class]]) {
                         UIView *singleView =class.new;
-                        singleView.frame = CGRectMake(FUll_VIEW_WIDTH * i, 0, FUll_VIEW_WIDTH, FUll_CONTENT_HEIGHT - PageBtn);
+                        singleView.frame = CGRectMake((self.isAlertShow?(FUll_VIEW_WIDTH - 30):FUll_VIEW_WIDTH) * i, 0, self.isAlertShow?(FUll_VIEW_WIDTH - 30):FUll_VIEW_WIDTH, FUll_CONTENT_HEIGHT - PageBtn);
                         [pagerView.scrollView addSubview:singleView];
                     }else if (!class) {
                         NSLog(@"您所提供的vc%li类并没有找到。  Your Vc%li is not found in this project!",(long)i + 1,(long)i + 1);
@@ -183,7 +187,7 @@ static NSString *const kObserverPage = @"currentPage";
                         }
                     }else if ([classArray[i] isKindOfClass:[UIView class]]) {
                         UIView *singleView = classArray[i];
-                        singleView.frame = CGRectMake(FUll_VIEW_WIDTH * i, 0, FUll_VIEW_WIDTH, FUll_CONTENT_HEIGHT - PageBtn);
+                        singleView.frame = CGRectMake((self.isAlertShow?(FUll_VIEW_WIDTH - 30):FUll_VIEW_WIDTH) * i, 0, self.isAlertShow?(FUll_VIEW_WIDTH - 30):FUll_VIEW_WIDTH, FUll_CONTENT_HEIGHT - PageBtn);
                         [pagerView.scrollView addSubview:singleView];
                     }
                 }
@@ -227,7 +231,7 @@ static NSString *const kObserverPage = @"currentPage";
 /**<  创建第一个控制器   **/
 - (void)createFirstViewController:(UIViewController *)ctrl {
     firstVC = ctrl;
-    ctrl.view.frame = CGRectMake(FUll_VIEW_WIDTH * 0, 0, FUll_VIEW_WIDTH, FUll_CONTENT_HEIGHT - PageBtn);
+    ctrl.view.frame = CGRectMake(FUll_VIEW_WIDTH * 0, 0, self.isAlertShow?(FUll_VIEW_WIDTH - 30):FUll_VIEW_WIDTH, FUll_CONTENT_HEIGHT - PageBtn);
     [pagerView.scrollView addSubview:ctrl.view];
     /**<  新添加测试cache   **/
     if (![self.limitControllerCache objectForKey:@(0)]) {
@@ -272,7 +276,7 @@ static NSString *const kObserverPage = @"currentPage";
             [vcsTagArray removeObjectAtIndex:0];
         }
     }
-    ctrl.view.frame = CGRectMake(FUll_VIEW_WIDTH * i, 0, FUll_VIEW_WIDTH, FUll_CONTENT_HEIGHT - PageBtn);
+    ctrl.view.frame = CGRectMake((self.isAlertShow?(FUll_VIEW_WIDTH - 30):FUll_VIEW_WIDTH) * i, 0, self.isAlertShow?(FUll_VIEW_WIDTH - 30):FUll_VIEW_WIDTH, FUll_CONTENT_HEIGHT - PageBtn);
     [pagerView.scrollView addSubview:ctrl.view];
     viewAlloc[i] = YES;
 }

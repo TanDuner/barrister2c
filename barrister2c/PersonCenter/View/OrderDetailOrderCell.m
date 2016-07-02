@@ -66,23 +66,27 @@
     [self.markLabel setFrame:RECT(LeftPadding, self.orderPriceLabel.y + self.orderPriceLabel.height + 10 + 15, SCREENWIDTH - 20, self.model.markHeight)];
     self.orderNoLabel.text = [NSString stringWithFormat:@"订单号：%@",self.model.orderNo?self.model.orderNo:@""];
     self.orderTypeLabel.text = [NSString stringWithFormat:@"订单类型：%@",self.model.caseType?self.model.caseType:@""];
-    self.orderTimeLabel.text = [NSString stringWithFormat:@"下单时间：%@",self.model.orderTime?self.model.orderTime:@""];
+    self.orderTimeLabel.text = [NSString stringWithFormat:@"下单时间：%@",self.model.date?self.model.date:@""];
     self.orderPriceLabel.text = [NSString stringWithFormat:@"订单金额：%@",self.model.orderPrice?self.model.orderPrice:@""];
     self.markLabel.text = [NSString stringWithFormat:@"备注：%@",self.model.markStr?self.model.markStr:@"无"];
     
-    switch (self.model.orderState) {
-        case BarristerOrderStateFinished:
-            self.stateLabel.text = @"已完成";
-            break;
-        case BarristerOrderStateClosed:
-            self.stateLabel.text = @"已关闭";
-        case BarristerOrderStateCanceled:
-            self.stateLabel.text = @"已取消";
-        case BarristerOrderStateWaiting:
-            self.stateLabel.text = @"待办";
-        default:
-            break;
+    
+    if ([self.model.status isEqualToString:STATUS_CANCELED]) {
+        self.stateLabel.text = @"已取消";
     }
+    else if ([self.model.status isEqualToString:STATUS_DOING])
+    {
+        self.stateLabel.text = @"进行中";
+    }
+    else if([self.model.status isEqualToString:STATUS_DONE])
+    {
+        self.stateLabel.text = @"已完成";
+    }
+    else if ([self.model.status isEqualToString:STATUS_WAITING])
+    {
+        self.stateLabel.text = @"待办";
+    }
+
 }
 
 #pragma -mark ----Getter---

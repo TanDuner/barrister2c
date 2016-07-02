@@ -14,7 +14,7 @@
 @end
 
 @interface NinaPagerView : UIView
-- (instancetype)initWithTitles:(NSArray *)titles WithVCs:(NSArray *)childVCs WithColorArrays:(NSArray *)colors;
+- (instancetype)initWithTitles:(NSArray *)titles WithVCs:(NSArray *)childVCs WithColorArrays:(NSArray *)colors isAlertShow:(BOOL)isAlertShow;
 @property (strong, nonatomic) UIColor *selectColor; /**<  选中时的颜色   **/
 @property (strong, nonatomic) UIColor *unselectColor; /**<  未选中时的颜色   **/
 @property (strong, nonatomic) UIColor *underlineColor; /**<  下划线的颜色   **/
@@ -23,4 +23,6 @@
 @property (copy, nonatomic) NSString *PageIndex; /**< 所在的控制器index或点击上方button的index **/
 @property (assign, nonatomic) CGFloat titleScale; /**<  标题缩放比例   **/
 @property (weak, nonatomic) id<NinaPagerViewDelegate>delegate; /**< NinaPagerView代理 **/
+
+@property (nonatomic,assign) BOOL isAlertShow;//是否是弹框展示
 @end

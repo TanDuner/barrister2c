@@ -8,7 +8,7 @@
 
 #import "PersonCenterCustomCell.h"
 
-#define IconWidht 30
+#define IconWidht 25
 
 @interface PersonCenterCustomCell ()
 
@@ -45,7 +45,7 @@
 -(void)configData
 {
     if (self.model) {
-        UIImage *image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:self.model.iconNameStr ofType:nil]];
+        UIImage *image = [UIImage imageNamed:self.model.iconNameStr];
         self.iconImageIVew.image = image;
         self.titleLabel.text = self.model.titleStr;
         

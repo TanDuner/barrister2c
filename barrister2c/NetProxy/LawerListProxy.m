@@ -12,6 +12,8 @@
 #define LawerDetailUrl @"barristerDetail.do"
 #define CollectLaywerUrl @"addFavoriteBarrister.do"
 #define CancelCollectLaywerUrl @"delFavoriteBarrister.do"
+#define GetLawerAppointmentUrl @"getAppointmentSettings.do"
+#define PlaceOrderUrl @"placeOrder.do"
 
 @implementation LawerListProxy
 
@@ -116,5 +118,53 @@
     }];
 }
 
+/**
+ *  获取律师预约设置接口
+ *
+ *  @param aParams
+ *  @param aBlock
+ */
+-(void)getLawerAppointmentDataWithParams:(NSMutableDictionary *)aParams Block:(ServiceCallBlock)aBlock
+{
+    [XuNetWorking getWithUrl:GetLawerAppointmentUrl params:aParams success:^(id response) {
+        if ([self isCommonCorrectResultCodeWithResponse:response]) {
+            aBlock(response,YES);
+        }
+        else
+        {
+            aBlock(CommonNetErrorTip,NO);
+        }
+    } fail:^(NSError *error) {
+        if (aBlock) {
+            aBlock(error,YES);
+        }
+        
+    }];
+}
+
+/**
+ *  下单接口
+ *
+ *  @param aParams
+ *  @param aBlock
+ */
+-(void)placeOrderOrderWithParams:(NSMutableDictionary *)aParams Block:(ServiceCallBlock)aBlock
+{
+    [self appendCommonParamsWithDict:aParams];
+    [XuNetWorking postWithUrl:PlaceOrderUrl params:aParams success:^(id response) {
+        if ([self isCommonCorrectResultCodeWithResponse:response]) {
+            aBlock(response,YES);
+        }
+        else
+        {
+            aBlock(CommonNetErrorTip,NO);
+        }
+        
+    } fail:^(NSError *error) {
+        if (aBlock) {
+            aBlock(error,YES);
+        }
+    }];
+}
 
 @end

@@ -33,7 +33,7 @@
 
 +(CGFloat)getHeightWithModel:(BarristerOrderModel *)model
 {
-    if (model.orderState == BarristerOrderStateFinished) {
+    if ([model.status isEqualToString:STATUS_DONE]) {
         return 145 + 10;
     }
     return 40 + 10;
@@ -78,7 +78,7 @@
 {
     [super layoutSubviews];
     
-    if (self.model.orderState == BarristerOrderStateFinished) {
+    if ([self.model.status isEqualToString:STATUS_DONE]) {
 
         self.appointTimeLabel.hidden = NO;
         self.playBtn.hidden = NO;

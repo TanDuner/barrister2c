@@ -42,4 +42,23 @@
  */
 -(void)cancelCollectLaywerWithParams:(NSMutableDictionary *)aParams Block:(ServiceCallBlock)aBlock;
 
+
+/**
+ *  获取律师预约信息接口
+ *
+ *  @param aParams
+ *  @param aBlock
+ */
+
+-(void)getLawerAppointmentDataWithParams:(NSMutableDictionary *)aParams Block:(ServiceCallBlock)aBlock;
+
+
+/**
+ *  下单接口
+ *
+ *  @param aParams
+ *  @param aBlock
+ */
+-(void)placeOrderOrderWithParams:(NSMutableDictionary *)aParams Block:(ServiceCallBlock)aBlock;
+
 @end

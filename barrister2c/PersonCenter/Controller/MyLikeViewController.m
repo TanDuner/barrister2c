@@ -7,10 +7,11 @@
 //
 
 #import "MyLikeViewController.h"
-#import "BarristerLawerModel.h"
-#import "LawerListCell.h"
+#import "MyLikeModel.h"
+#import "MyLikeListCell.h"
 #import "MeNetProxy.h"
 #import "RefreshTableView.h"
+
 
 @interface MyLikeViewController ()<UITableViewDataSource,UITableViewDelegate,RefreshTableViewDelegate>
 
@@ -87,7 +88,7 @@
     
     for (int i = 0; i < array.count; i ++) {
         NSDictionary *dict = [array objectAtIndex:i];
-        BarristerLawerModel *model = [[BarristerLawerModel alloc] initWithDictionary:dict];
+        MyLikeModel *model = [[MyLikeModel alloc] initWithDictionary:dict];
         [self.items addObject:model];
     }
     
@@ -110,7 +111,7 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
 
-
+    [self.view addSubview:self.tableView];
 }
 
 #pragma -mark --ConfigData
@@ -135,12 +136,12 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *identif = @"identif";
-    LawerListCell *cell = [tableView dequeueReusableCellWithIdentifier:identif];
+    MyLikeListCell *cell = [tableView dequeueReusableCellWithIdentifier:identif];
     if (!cell) {
-        cell = [[LawerListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identif];
+        cell = [[MyLikeListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identif];
     }
     if (self.items.count > indexPath.row) {
-        BarristerLawerModel *model = [self.items objectAtIndex:indexPath.row];
+        MyLikeModel *model = [self.items objectAtIndex:indexPath.row];
         cell.model = model;
     }
     
@@ -150,9 +151,13 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [LawerListCell getCellHeight];
+    return [MyLikeListCell getCellHeight];
 }
 
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
 
 #pragma -mark --Getter--
 

@@ -12,10 +12,13 @@
 #import "LawerDetailBottomCell.h"
 #import "LawerSelectTimeViewController.h"
 #import "LawerListProxy.h"
+#import "AppointmentManager.h"
+#import "AppointmentMoel.h"
+#import "XuAlertView.h"
 
 typedef void(^ShowTimeSelectBlock)(id object);
 
-@interface LawerDetailViewController ()
+@interface LawerDetailViewController ()<FinishAppoinmentDelegate>
 
 @property (nonatomic,strong) LawerSelectTimeViewController *selectTimeView;
 
@@ -53,9 +56,11 @@ typedef void(^ShowTimeSelectBlock)(id object);
 
 -(void)configData
 {
+    [XuUItlity showLoading:@"正在加载"];
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:self.model.laywerId,@"lawyerId", nil];
     __weak typeof(*&self) weakSelf  = self;
     [self.proxy getOrderDetailWithParams:params Block:^(id returnData, BOOL success) {
+        [XuUItlity hideLoading];
         if (success) {
             NSDictionary *dict = (NSDictionary *)returnData;
             [weakSelf handleLawerDataWithDict:dict];
@@ -84,7 +89,103 @@ typedef void(^ShowTimeSelectBlock)(id object);
 
 -(void)showTimeSelectView
 {
-    [self.selectTimeView show];
+    [XuUItlity showLoading:@"正在加载..."];
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:self.model.laywerId,@"id", nil];
+    __weak typeof(*&self) weakSelf = self;
+    [self.proxy getLawerAppointmentDataWithParams:params Block:^(id returnData, BOOL success) {
+        [XuUItlity hideLoading];
+        __strong __typeof(weakSelf)strongSelf = weakSelf;
+        
+        if (success) {
+            NSDictionary *dict = (NSDictionary *)returnData;
+            NSArray *array = [dict objectForKey:@"appointmentSettings"];
+            if ([XuUtlity isValidArray:array]) {
+                [strongSelf handleAppointmentDataWithArray:array];
+            }
+            else
+            {
+                [strongSelf handleAppointmentDataWithArray:@[]];
+            }
+        }
+        else
+        {
+            [XuUItlity showFailedHint:@"获取设置信息失败" completionBlock:nil];
+        }
+
+    }];
+    
+}
+
+-(void)handleAppointmentDataWithArray:(NSArray *)array
+{
+    for (int i = 0; i < array.count; i ++) {
+        NSDictionary *dict = (NSDictionary *)[array objectAtIndex:i];
+        AppointmentMoel *model = [[AppointmentMoel alloc] initWithDictionary:dict];
+
+        for (int j = 0; j < [AppointmentManager shareInstance].modelArray.count; j ++) {
+            AppointmentMoel *modelTemp = [[AppointmentManager shareInstance].modelArray objectAtIndex:j];
+            if ([modelTemp.date isEqualToString:model.date]) {
+                [[AppointmentManager shareInstance].modelArray replaceObjectAtIndex:j withObject:model];
+            }
+        }
+    }
+    
+    self.selectTimeView = [[LawerSelectTimeViewController alloc] init];
+    self.selectTimeView.lawerModel = self.model;
+    self.selectTimeView.delegate = self;
+    [self.selectTimeView.view setCenter:CGPointMake(self.view.center.x, 1000)];
+    [self.view addSubview:self.selectTimeView.view];
+
+    [self.selectTimeView showWithType:APPOINTMENT];
+}
+
+
+-(void)didFinishChooseAppoinmentWithMoneny:(NSString *)totalPrice
+                                  PerPrice:(NSString *)price
+                      appointmentDateArray:(NSMutableArray *)appointmentArray
+                              Ordercontent:(NSString *)orderContent
+{
+
+    NSMutableArray *array = [NSMutableArray arrayWithCapacity:10];
+    
+    for ( int i = 0; i < appointmentArray.count; i ++) {
+        AppointmentMoel *model = [appointmentArray objectAtIndex:i];
+        NSString *settings = @"";
+        for (int j = 0; j < model.settingArray.count; j ++) {
+            NSString *settringPieceStr = [model.settingArray objectAtIndex:j];
+            settings = [NSString stringWithFormat:@"%@,%@",settings,settringPieceStr];
+        }
+        if ([settings hasPrefix:@","]) {
+            settings = [settings substringFromIndex:1];
+        }
+        
+        NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:model.date,@"date",settings,@"value", nil];
+        
+        [array addObject:dict];
+    }
+
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+
+    if (array.count > 0) {
+        NSString *str =  [[AppointmentManager shareInstance] objectToJsonStr:array];
+        [params setObject:str forKey:@"appointmentDate"];
+        
+    }
+    
+    [params setObject:[NSString stringWithFormat:@"%@",totalPrice] forKey:@"money"];
+    [params setObject:[NSString stringWithFormat:@"%@",price] forKey:@"price"];
+    [params setObject:orderContent forKey:@"orderContent"];
+    [params setObject:self.model.laywerId forKey:@"barristerId"];
+    [self.proxy placeOrderOrderWithParams:params Block:^(id returnData, BOOL success) {
+        if (success) {
+            [XuUItlity showOkAlertView:@"知道了" title:@"提示" mesage:@"可以到我的订单查看" callback:nil];
+ 
+        }
+        else
+        {
+            [XuUItlity showFailedHint:@"预约失败" completionBlock:nil];
+        }
+    }];
 }
 
 
@@ -143,6 +244,17 @@ typedef void(^ShowTimeSelectBlock)(id object);
         if (indexPath.row == 1) {
             
             [self showTimeSelectView];
+        }
+        else
+        {
+            self.selectTimeView = [[LawerSelectTimeViewController alloc] init];
+            self.selectTimeView.lawerModel = self.model;
+            self.selectTimeView.delegate = self;
+            [self.selectTimeView.view setCenter:CGPointMake(self.view.center.x, 1000)];
+            [self.view addSubview:self.selectTimeView.view];
+            
+            [self.selectTimeView showWithType:IM];
+
         }
     }
     

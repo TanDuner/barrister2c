@@ -7,15 +7,30 @@
 //
 
 #import "BaseViewController.h"
+#import "BarristerLawerModel.h"
 
-typedef void(^SelectTimeFinish)(id object);
+
+@protocol FinishAppoinmentDelegate  <NSObject>
+
+//  参数：userId,verifyCode, money 金额, appointmentDate 预约时间（参考律师端预约设置）,barristerId 律师id, orderContent  订单描述, caseType 案例类型
+
+-(void)didFinishChooseAppoinmentWithMoneny:(NSString *)totalPrice
+                                  PerPrice:(NSString *)price
+                           appointmentDateArray:(NSMutableArray *)appointmentArray
+                              Ordercontent:(NSString *)orderContent;
+
+@end
+
 
 @interface LawerSelectTimeViewController : BaseViewController
 
-@property (nonatomic,copy) SelectTimeFinish selectTImeFinishBlock;
+
+@property (nonatomic,weak) id <FinishAppoinmentDelegate> delegate;
+
+@property (nonatomic,strong) BarristerLawerModel *lawerModel;
 
 
--(void)show;
+-(void)showWithType:(NSString *)type;
 
 
 -(void)dismiss;

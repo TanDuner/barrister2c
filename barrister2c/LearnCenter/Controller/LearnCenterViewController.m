@@ -64,7 +64,7 @@
                             [UIColor whiteColor], /**<  上方菜单栏的背景颜色 TopTab Background Color   **/
                             ];
     
-    _slideView = [[NinaPagerView alloc] initWithTitles:self.titleStrArray WithVCs:vcArray WithColorArrays:colorArray];
+    _slideView = [[NinaPagerView alloc] initWithTitles:self.titleStrArray WithVCs:vcArray WithColorArrays:colorArray isAlertShow:NO];
     [self.view addSubview:_slideView];
 
 }

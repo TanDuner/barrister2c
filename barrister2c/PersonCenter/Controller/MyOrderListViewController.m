@@ -54,7 +54,7 @@
         if (success) {
             [weakSelf hideNoContentView];
             NSDictionary *dict = (NSDictionary *)returnData;
-            NSArray *array = [dict objectForKey:@"list"];
+            NSArray *array = [dict objectForKey:@"orders"];
             if ([XuUtlity isValidArray:array]) {
                 [weakSelf handleListDataWithArray:array];
             }
@@ -101,6 +101,7 @@
     self.tableView.refreshDelegate = self;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    [self.view addSubview:self.tableView];
     
 }
 

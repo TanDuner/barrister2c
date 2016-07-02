@@ -7,9 +7,14 @@
 //
 
 #import "BaseViewController.h"
+#import "AppointmentMoel.h"
 
 @interface LawerSelectContentViewController : BaseViewController
 
--(instancetype)initWithArray:(NSMutableArray *)statesArray;
+@property (nonatomic,strong,nullable) AppointmentMoel *model;
+
+@property (nonnull,strong, nonatomic) AppointmentMoel *commitModel;
+
+-(nonnull instancetype)initWithArray:(nullable NSMutableArray *)statesArray;
 
 @end

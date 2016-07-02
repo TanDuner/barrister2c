@@ -66,27 +66,27 @@
     PersonCenterModel *model = [[PersonCenterModel alloc] init];
     model.titleStr = @"我的收藏";
     model.cellType = PersonCenterModelTypeSZ;
-    model.iconNameStr = @"zhanghu.png";
+    model.iconNameStr = @"Me_like";
     model.isShowArrow = YES;
 
     
     PersonCenterModel *model2 = [[PersonCenterModel alloc] init];
     model2.titleStr = @"我的账户";
     model2.cellType = PersonCenterModelTypeZHU;
-    model2.iconNameStr = @"zhanghu.png";
+    model2.iconNameStr = @"Me_Account";
     model2.isShowArrow = YES;
     
     PersonCenterModel *model5 = [[PersonCenterModel alloc] init];
     model5.titleStr = @"我的订单";
     model5.cellType = PersonCenterModelTypeDD;
-    model5.iconNameStr = @"jiedan.png";
+    model5.iconNameStr = @"Me_order";
     model5.isShowArrow = YES;
 
     
     PersonCenterModel *model3 = [[PersonCenterModel alloc] init];
     model3.titleStr = @"我的消息";
     model3.cellType = PersonCenterModelTypeXX;
-    model3.iconNameStr = @"xiaoxi.png";
+    model3.iconNameStr = @"Me_message";
     model3.isShowArrow = YES;
     
     
