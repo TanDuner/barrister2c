@@ -431,6 +431,13 @@ BackGroundViewStatus;
 }
 
 
+-(void)setColumn:(NSInteger)column row:(NSInteger)row
+{
+    _currentSelectedMenudIndex = column;
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:0];
+    [self tableView:_tableView didSelectRowAtIndexPath:indexPath];
+}
+
 #pragma mark - tableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {

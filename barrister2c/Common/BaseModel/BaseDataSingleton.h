@@ -31,8 +31,12 @@ typedef struct PhoneSate PhoneSate;
 
 @property (nonatomic,strong) NSDictionary *bankCardDict;//银行卡的字典
 
-
 @property (nonatomic,strong) NSString *totalConsume;//累计消费
+
+@property (nonatomic,strong) NSMutableArray *bizAreas;//领域
+
+@property (nonatomic,strong) NSMutableArray *bizTypes;//类型
+
 
 + (instancetype)shareInstance;
 

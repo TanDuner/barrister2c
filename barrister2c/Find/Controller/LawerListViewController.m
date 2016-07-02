@@ -11,13 +11,36 @@
 #import "IMPullDownMenu.h"
 #import "LawerDetailViewController.h"
 #import "LawerListProxy.h"
+#import "BussinessAreaModel.h"
+#import "BussinessTypeModel.h"
 
-
-@interface LawerListViewController ()<UITableViewDataSource,UITableViewDelegate,IMPullDownMenuDelegate>
+@interface LawerListViewController ()<UITableViewDataSource,UITableViewDelegate,IMPullDownMenuDelegate,RefreshTableViewDelegate>
 
 @property (nonatomic,strong) IMPullDownMenu *pullDownMenu;
 
 @property (nonatomic,strong) LawerListProxy *proxy;
+
+@property (nonatomic,strong) RefreshTableView *tableView;
+
+@property (nonatomic,strong) NSMutableArray *items;
+
+/**
+ *  用于pullDown Menu
+ */
+
+@property (nonatomic,strong) NSString *city;
+
+//@property (nonatomic,strong) BussinessAreaModel *bussinessAreaModel;
+//
+//@property (nonatomic,strong) BussinessTypeModel *bussinessTypeModel;
+
+@property (nonatomic,strong) NSString *year;
+
+
+@property (nonatomic,strong) NSArray *cityArray;
+
+
+@property (nonatomic,strong) NSArray *yearsArray;
 
 @end
 
@@ -34,16 +57,45 @@
     [super viewDidLoad];
     
     [self configView];
-    
 
+    [self configData];
 }
 
--(void)loadItems
+-(void)configData
 {
-
-    [self.proxy getLawerListWithParams:nil block:^(id returnData, BOOL success) {
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    if (self.type) {
+        [params setObject:self.type forKey:@"type"];
+    }
+    if (self.bussinessAreaModel) {
+        [params setObject:self.bussinessAreaModel.areaId forKey:@"caseType"];
+    }
+    if (self.bussinessTypeModel) {
+        [params setObject:self.bussinessTypeModel.typeId forKey:@"businessType"];
+    }
+    if (self.city) {
+        [params setObject:self.city forKey:@"area"];
+    }
+    
+    if (self.year) {
+        [params setObject:self.year forKey:@"year"];
+    }
+    
+    [params setObject:[NSString stringWithFormat:@"%ld",self.tableView.pageSize] forKey:@"pageSize"];
+    [params setObject:[NSString stringWithFormat:@"%ld",self.tableView.pageNum] forKey:@"page"];
+    
+    __weak typeof(*&self) weakSelf  = self;
+    [self.proxy getLawerListWithParams:params block:^(id returnData, BOOL success) {
         if (success) {
-            
+            NSDictionary *dict = (NSDictionary *)returnData;
+            NSArray *array = [dict objectForKey:@"items"];
+            if ([XuUtlity isValidArray:array]) {
+                [weakSelf handleLawerDataWithArray:array];
+            }
+            else
+            {
+                [weakSelf handleLawerDataWithArray:@[]];
+            }
         }
         else{
         
@@ -51,78 +103,111 @@
     }];
     
     
-    BarristerLawerModel *model = [[BarristerLawerModel alloc] init];
-    model.name = @"张大强";
-    model.workingStartYear = @"1990";
-    model.workYears = @"17";
-    model.rating = 4.5;
-    model.area = @"北京朝阳";
-    model.company = @"振华律师事务所";
-    model.userIcon = @"http://img4.duitang.com/uploads/item/201508/26/20150826212734_ST5BC.thumb.224_0.jpeg";
-    model.goodAt = @"民事诉讼|金融|财产纠纷";
-
-    BarristerLawerModel *model1 = [[BarristerLawerModel alloc] init];
-    model1.name = @"李言";
-    model1.workingStartYear = @"2008";
-    model1.workYears = @"8";
-    model1.rating = 3.5;
-    model1.goodAt = @"经济犯罪|法律顾问|家庭";
-    model1.area = @"北京丰台";
-    model1.company = @"京城律师事务所";
-    model1.userIcon = @"https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=327417392,2097894166&fm=116&gp=0.jpg";
-
-    
-    
-    [self.items addObject:model];
-    [self.items addObject:model1];
-    
     [self.tableView reloadData];
     
-    [self endRefreshing];
+}
+
+-(void)handleLawerDataWithArray:(NSArray *)array
+{
+    __weak typeof(*&self)weakSelf = self;
+    
+    [self.noContentView setFrame:RECT(0, self.pullDownMenu.height, SCREENWIDTH, SCREENHEIGHT - NAVBAR_DEFAULT_HEIGHT - self.pullDownMenu.height)];
+    
+    [self handleTableRefreshOrLoadMoreWithTableView:self.tableView array:array aBlock:^{
+        [weakSelf.items removeAllObjects];
+    }];
+    
+    for ( int i = 0; i < array.count; i ++) {
+        NSDictionary *dict = (NSDictionary *)[array objectAtIndex:i];
+        BarristerLawerModel *model = [[BarristerLawerModel alloc] initWithDictionary:dict];
+    
+        [self.items addObject:model];
+    }
+    [self.tableView reloadData];
 }
 
 
--(void)loadMoreData
+#pragma -mark -----Refreh Delegate Methods-----
+
+-(void)circleTableViewDidTriggerRefresh:(RefreshTableView *)tableView
 {
+    [self configData];
+}
 
-    BarristerLawerModel *model = [[BarristerLawerModel alloc] init];
-    model.name = @"张大强";
-    model.workingStartYear = @"1990";
-    model.workYears = @"17";
-    model.rating = 4.5;
-    model.area = @"北京朝阳";
-    model.company = @"振华律师事务所";
-    model.userIcon = @"http://img4.duitang.com/uploads/item/201508/26/20150826212734_ST5BC.thumb.224_0.jpeg";
-    model.goodAt = @"民事诉讼|金融|财产纠纷";
-    
-    BarristerLawerModel *model1 = [[BarristerLawerModel alloc] init];
-    model1.name = @"李言";
-    model1.workingStartYear = @"2008";
-    model1.workYears = @"8";
-    model1.rating = 3.5;
-    model.goodAt = @"经济犯罪|法律顾问|家庭";
-    model1.area = @"北京丰台";
-    model1.company = @"京城律师事务所";
-    model1.userIcon = @"https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=327417392,2097894166&fm=116&gp=0.jpg";
-    
-    BarristerLawerModel *model2 = [[BarristerLawerModel alloc] init];
-    model2.name = @"李言";
-    model2.workingStartYear = @"2008";
-    model2.workYears = @"8";
-    model2.rating = 3.5;
-    model2.goodAt = @"经济犯罪|法律顾问|家庭";
-    model2.area = @"北京丰台";
-    model2.company = @"京城律师事务所";
-    model2.userIcon = @"https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=327417392,2097894166&fm=116&gp=0.jpg";
-    
-    [self.items addObject:model];
-    [self.items addObject:model1];
-    [self.items addObject:model2];
-    
-    [self.tableView reloadData];
-    
-    [self endLoadMoreWithNoMoreData:NO];
+-(void)circleTableViewDidLoadMoreData:(RefreshTableView *)tableView
+{
+    [self configData];
+}
 
+
+#pragma -mark ----
+- (void)PullDownMenu:(IMPullDownMenu *)pullDownMenu didSelectRowAtColumn:(NSInteger)column row:(NSInteger)row
+{
+    if (column == 0) {
+        if (self.cityArray) {
+            if (row == 0) {
+                self.city = nil;
+            }
+            else
+            {
+                if (self.cityArray.count > row - 1) {
+                    self.city = [self.cityArray objectAtIndex:row - 1];
+                }
+            }
+            
+
+        }
+
+    }
+    else if (column == 1)
+    {
+        if (row == 0) {
+            self.bussinessAreaModel = nil;
+        }
+        else
+        {
+            if ([BaseDataSingleton shareInstance].bizAreas.count > row - 1) {
+                self.bussinessAreaModel = [[BaseDataSingleton shareInstance].bizAreas objectAtIndex:row - 1];
+            }
+        }
+
+    }
+    else if (column == 2)
+    {
+        if (row == 0) {
+            self.bussinessTypeModel = nil;
+        }
+        else
+        {
+            if ([BaseDataSingleton shareInstance].bizTypes.count > row - 1) {
+                self.bussinessTypeModel = [[BaseDataSingleton shareInstance].bizTypes objectAtIndex:row - 1];
+            }
+        }
+    }
+    else if (column == 3)
+    {
+        if (row == 0) {
+            self.year = @"";
+        }
+        else if(row == 1)
+        {
+            self.year = @"3";
+        }
+        else if (row == 2)
+        {
+            self.year = @"5";
+        }
+        else if (row == 3)
+        {
+            self.year = @"10";
+        }
+        else if (row == 4)
+        {
+            self.year = @"11";
+        }
+    }
+    
+    [self configData];
 }
 
 
@@ -136,31 +221,64 @@
     self.pullDownMenu.backgroundColor = [UIColor whiteColor];
     self.pullDownMenu.delegate = self;
 
+    
+    [self.view addSubview:self.tableView];
+    
     NSMutableArray *sortArray = [NSMutableArray arrayWithCapacity:0];
+    
+    NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"city" ofType:@"plist"];
+    NSArray *cityList = [NSArray arrayWithContentsOfFile:plistPath];
+
+    NSMutableArray *cityArray = [NSMutableArray array];
+    
+    for (int i = 0; i < cityList.count; i ++) {
+        NSDictionary *dict = (NSDictionary *)[cityList objectAtIndex:i];
+        NSString *city = [dict objectForKey:@"state"];
+        [cityArray addObject:city];
+    }
+    self.cityArray = [NSArray arrayWithArray:cityArray];
     
     IMPullDownMenuItem *sortItem = [[IMPullDownMenuItem alloc] init];
     sortItem.unlimitedBtnText = @"不限";
-    sortItem.listItemArray =  @[@"北京",@"上海",@"重庆",@"天津"];
+    sortItem.listItemArray =  cityArray;
     sortItem.title = @"地区";
     [sortArray addObject:sortItem];
+
     
     
+    NSMutableArray *areaTitlesArray = [NSMutableArray array];
+    for (int i = 0; i < [BaseDataSingleton shareInstance].bizAreas.count; i ++) {
+        BussinessAreaModel *model = (BussinessAreaModel *)[[BaseDataSingleton shareInstance].bizAreas objectAtIndex:i];
+        [areaTitlesArray addObject:model.name];
+    }
+
+ 
+    
+    NSMutableArray *typeTitlesArray = [NSMutableArray array];
+    for (int i = 0; i < [BaseDataSingleton shareInstance].bizTypes.count; i ++) {
+        BussinessAreaModel *model = (BussinessAreaModel *)[[BaseDataSingleton shareInstance].bizTypes objectAtIndex:i];
+        [typeTitlesArray addObject:model.name];
+    }
+
     
     IMPullDownMenuItem *sortItem1 = [[IMPullDownMenuItem alloc] init];
     sortItem1.unlimitedBtnText = @"不限";
-    sortItem1.listItemArray =  @[@"合同文书",@"经济纠纷",@"民事诉讼",@"财产纠纷"];
+    sortItem1.listItemArray =  areaTitlesArray;
     sortItem1.title = @"领域";
     [sortArray addObject:sortItem1];
     
+    
     IMPullDownMenuItem *sortItem2 = [[IMPullDownMenuItem alloc] init];
     sortItem2.unlimitedBtnText = @"不限";
-    sortItem2.listItemArray =  @[@"合同起草和审核",@"法律文书",@"法律论证",@"案件代理"];
+    sortItem2.listItemArray =  typeTitlesArray;
     sortItem2.title = @"业务";
     [sortArray addObject:sortItem2];
     
+    self.yearsArray = @[@"1-3年",@"3-5年",@"5-10年",@"10年以上"];
+    
     IMPullDownMenuItem *sortItem3 = [[IMPullDownMenuItem alloc] init];
     sortItem3.unlimitedBtnText = @"不限";
-    sortItem3.listItemArray =  @[@"1年以下",@"1-3年",@"3-5年",@"5年以上"];
+    sortItem3.listItemArray =  self.yearsArray;
     sortItem3.title = @"年限";
     [sortArray addObject:sortItem3];
     
@@ -171,18 +289,44 @@
     
     [self.view addSubview:self.pullDownMenu];
     
+    if (self.bussinessAreaModel) {
+        NSInteger index = -999;
+        for (int  i = 0; i < [BaseDataSingleton shareInstance].bizAreas.count; i ++) {
+            BussinessAreaModel *model = [[BaseDataSingleton shareInstance].bizAreas objectAtIndex:i];
+            if ([self.bussinessAreaModel.areaId isEqualToString:model.areaId]) {
+                index = i;
+            }
+        }
+        
+        if (index != -999) {
+            [self.pullDownMenu setColumn:1 row:index + 1];
+        }
+        
+    }
+    
+    if (self.bussinessTypeModel) {
+        NSInteger index = -999;
+        for (int  i = 0; i < [BaseDataSingleton shareInstance].bizTypes.count; i ++) {
+            BussinessTypeModel *model = [[BaseDataSingleton shareInstance].bizTypes objectAtIndex:i];
+            if ([self.bussinessTypeModel.typeId isEqualToString:model.typeId]) {
+                index = i;
+            }
+        }
+        
+        if (index != -999) {
+            [self.pullDownMenu setColumn:2 row:index + 1];
+        }
+        
+    }
     
     
-    
-    
+    [self.view addSubview:self.tableView];
     [self.tableView setFrame:RECT(0, self.pullDownMenu.y + self.pullDownMenu.height, SCREENWIDTH, SCREENHEIGHT - NAVBAR_DEFAULT_HEIGHT - self.pullDownMenu.height)];
     
-    [self addRefreshHeader];
-    [self addLoadMoreFooter];
     
 }
 
-#pragma -mark  --UitableVIew delegate 
+#pragma -mark  --UitableVIew delegate
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return self.items.count;
@@ -215,6 +359,10 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     LawerDetailViewController *detailVC = [[LawerDetailViewController alloc] init];
+    if (self.items.count > indexPath.row) {
+        detailVC.model = [self.items objectAtIndex:indexPath.row];        
+    }
+
     [self.navigationController pushViewController:detailVC animated:YES];
 }
 
@@ -226,6 +374,25 @@
         _proxy = [[LawerListProxy alloc] init];
     }
     return _proxy;
+}
+
+-(NSMutableArray *)items
+{
+    if (!_items) {
+        _items = [NSMutableArray arrayWithCapacity:10];
+    }
+    return _items;
+}
+
+-(RefreshTableView *)tableView
+{
+    if (!_tableView) {
+        _tableView = [[RefreshTableView alloc] initWithFrame:RECT(0, 0, SCREENWIDTH, SCREENHEIGHT - NAVBAR_DEFAULT_HEIGHT) style:UITableViewStylePlain];
+        _tableView.delegate = self;
+        _tableView.dataSource = self;
+        _tableView.refreshDelegate = self;
+    }
+    return _tableView;
 }
 
 @end

@@ -14,7 +14,7 @@
 
 @property (nonatomic,strong) NSString *name;
 
-@property (nonatomic,strong) NSString *areaId;
+@property (nonatomic,strong) NSString *typeId;
 
 @property (nonatomic,strong) NSString *icon;
 

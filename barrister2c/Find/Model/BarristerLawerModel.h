@@ -27,7 +27,7 @@
 
 @property (nonatomic,strong) NSString *name;
 
-@property (nonatomic,assign) float rating;
+@property (nonatomic,assign) NSString *rating;
 
 @property (nonatomic,assign) NSInteger recentServiceTimes;
 
@@ -36,8 +36,6 @@
 @property (nonatomic,strong) NSString *company;
 
 @property (nonatomic,strong) NSString *workingStartYear;
-
-@property (nonatomic,strong) NSString *goodAt;
 
 @property (nonatomic,strong) NSString *introduceStr;
 
@@ -58,7 +56,19 @@
 @property (nonatomic,assign) BOOL isNeedShowAll;
 
 
--(void)handleProprety;
+@property (nonatomic,strong) NSString *goodAtStr; //擅长的字符串
+
+/**
+ *  擅长领域
+ */
+
+@property (nonatomic,strong) NSMutableArray *bizAreaList;
+
+/**
+ *  擅长类型
+ */
+@property (nonatomic,strong) NSMutableArray *bizTypeList;
+
 
 
 @end

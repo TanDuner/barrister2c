@@ -12,7 +12,7 @@
 
 -(void)handlePropretyWithDict:(NSDictionary *)dict
 {
-    self.areaId = [dict objectForKey:@"id"];
+    self.typeId = [NSString stringWithFormat:@"%@",[dict objectForKey:@"id"]];
 }
 
 

@@ -14,18 +14,25 @@
 
 @implementation BarristerLawerModel
 
-
--(id)initWithDictionary:(NSDictionary *)jsonObject
+-(void)handlePropretyWithDict:(NSDictionary *)dict
 {
-    if (self = [super initWithDictionary:jsonObject]) {
-        [self handleProprety];
+    NSString *areaStr = @"";
+    NSArray *array = [dict objectForKey:@"bizAreas"];
+    if ([XuUtlity isValidArray:array]) {
+        for (NSDictionary *dictTmep in [dict objectForKey:@"bizAreas"]) {
+            NSString *nameStr = [dictTmep objectForKey:@"name"];
+            areaStr = [NSString stringWithFormat:@"%@|%@",areaStr,nameStr];
+        }
     }
-    return self;
-}
 
--(void)handleProprety
-{
-    self.workYears = @"1";
+   
+    
+    if ([areaStr hasPrefix:@"|"]) {
+        areaStr = [areaStr substringFromIndex:1];
+    }
+    self.goodAtStr = areaStr;
+    
+    
     
     if (self.introduceStr.length > 0) {
         CGFloat height = [XuUtlity textHeightWithString:self.introduceStr withFont:SystemFont(14.0f) sizeWidth:SCREENWIDTH - 20 WithLineSpace:5];
@@ -40,7 +47,7 @@
             
             self.showAllIntroduceViewHeight = 52 + 35 + self.allIntroduceStrHeight + 10 + 15 + 15  ;
             self.showIntroduceViewHeight = 52 + 35 + self.introducestrHeight + 10 + 15 + 15;
-
+            
         }
         else
         {
@@ -50,7 +57,7 @@
             self.showAllIntroduceViewHeight = height + 35 + 15 + 52;
             self.showIntroduceViewHeight = height + 35 + 15 + 52;
         }
-
+        
     }
     else
     {
@@ -59,6 +66,8 @@
         self.showAllIntroduceViewHeight = 35 + 12 + 15 + 52;
         self.showIntroduceViewHeight = 35 + 12 + 15 + 52;
     }
+ 
 }
+
 
 @end

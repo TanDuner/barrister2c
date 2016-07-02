@@ -15,7 +15,6 @@
 {
     @private
     MBProgressHUD *_HUD;
-    UIView *_noContentView;
     UIImageView *_noContentImageView;
     UILabel *_noContentLabel;
     UIView *_loadingView;
@@ -25,6 +24,7 @@
     
 }
 
+@property (nonatomic,strong)UIView *noContentView;
 @property (nonatomic, copy) NSString *noContentString;
 @property (nonatomic, copy) NSString *loadingString;
 

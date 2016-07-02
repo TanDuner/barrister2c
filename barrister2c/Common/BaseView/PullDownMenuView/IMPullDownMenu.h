@@ -117,6 +117,15 @@
  */
 - (void)rollbackPullDownMenu;
 
+
+/**
+ 设置列 行
+ 
+ - returns:
+ */
+
+-(void)setColumn:(NSInteger)column row:(NSInteger)row;
+
 @end
 
 @interface IMPullDownMenuGroup : NSObject

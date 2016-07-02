@@ -133,6 +133,10 @@
     NSArray *bizTypesArray = [dict objectForKey:@"bizTypes"];
     NSArray *bannerListArray = [dict objectForKey:@"list"];
     
+   
+    
+    
+    
     for ( int i = 0; i < bizAreasArray.count; i ++) {
         NSDictionary *dictTemp = [bizAreasArray objectAtIndex:i];
         BussinessAreaModel *model = [[BussinessAreaModel alloc] initWithDictionary:dictTemp];
@@ -153,6 +157,9 @@
         [imageUrls addObject:model.image];
     }
     
+    [BaseDataSingleton shareInstance].bizAreas = self.areaItems;
+    [BaseDataSingleton shareInstance].bizTypes = self.typeItems;
+
     [self.tableView reloadData];
     
     [self setBannerViewWithUrls:imageUrls];
@@ -315,11 +322,15 @@
 {
     if (isArea) {
         LawerListViewController *lawerList = [[LawerListViewController alloc] init];
+        BussinessAreaModel *model = [[BaseDataSingleton shareInstance].bizAreas objectAtIndex:index];
+        lawerList.bussinessAreaModel = model;
         [self.navigationController pushViewController:lawerList animated:YES];
     }
     else
     {
         LawerListViewController *lawerList = [[LawerListViewController alloc] init];
+        BussinessTypeModel *model = [[BaseDataSingleton shareInstance].bizTypes objectAtIndex:index];
+        lawerList.bussinessTypeModel = model;
         [self.navigationController pushViewController:lawerList animated:YES];
         
     }

@@ -42,6 +42,16 @@
     return self;
 }
 
+//area = "\U5317\U4eac\U5e02,\U5317\U4eac\U5e02";
+//bizAreas = "<null>";
+//company = "<null>";
+//id = 4;
+//name = "\U5415\U4e16\U6c11";
+//rating = 5;
+//userIcon = "http://119.254.167.200:8080/upload/2016/06/26/1466939297447.jpg";
+//workYears = 6;
+
+
 -(void)layoutSubviews{
     [super layoutSubviews];
     
@@ -52,20 +62,21 @@
     self.nameLabel.text = self.model.name;
     
     [self.yearsLabel setFrame:RECT(self.nameLabel.x + self.nameLabel.width + 5, self.nameLabel.y, 30, 13)];
-    [self.yearsLabel setText:[NSString stringWithFormat:@"%@年",self.model.workYears]];
+    [self.yearsLabel setText:[NSString stringWithFormat:@"%@年",self.model.workYears?self.model.workYears:@"1"]];
     
-    [self.areaLabel setFrame:RECT(self.nameLabel.x, self.nameLabel.y + self.nameLabel.height + 5, 240, 12)];
+    [self.areaLabel setFrame:RECT(self.nameLabel.x, self.nameLabel.y + self.nameLabel.height + 6, 240, 12)];
     self.areaLabel.text = self.model.area;
     
-    [self.companyLabel setFrame:RECT(self.nameLabel.x, self.areaLabel.y + self.areaLabel.height + 5, 240, 12)];
+    [self.companyLabel setFrame:RECT(self.nameLabel.x, self.areaLabel.y + self.areaLabel.height + 6, 240, 12)];
     self.companyLabel.text = self.model.company;
     
-    [self.goodAtLabel setFrame:RECT(self.nameLabel.x, self.companyLabel.y + self.companyLabel.height + 5, 260, 12)];
-    self.goodAtLabel.text = self.model.goodAt;
+    [self.goodAtLabel setFrame:RECT(self.nameLabel.x, self.companyLabel.y + self.companyLabel.height + 6, 260, 12)];
+    self.goodAtLabel.text = self.model.goodAtStr;
     
     [self.headImageView yy_setImageWithURL:[NSURL URLWithString:self.model.userIcon] placeholder:[UIImage imageNamed:@"commom_default_head"]];
 
 }
+
 
 +(CGFloat)getCellHeight
 {
@@ -106,6 +117,7 @@
         _nameLabel.textColor = KColorGray333;
         _nameLabel.font = SystemFont(15.0f);
         _nameLabel.textAlignment = NSTextAlignmentLeft;
+        _nameLabel.text = @"未知";
     }
     return _nameLabel;
 }
@@ -131,6 +143,7 @@
         _areaLabel.textColor = KColorGray666;
         _areaLabel.font = SystemFont(14.0f);
         _areaLabel.textAlignment = NSTextAlignmentLeft;
+        _areaLabel.text = @"北京";
     }
     return _areaLabel;
 }

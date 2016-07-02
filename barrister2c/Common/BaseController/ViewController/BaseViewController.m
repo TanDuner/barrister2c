@@ -479,6 +479,7 @@
     }
     else
     {
+        [self hideNoContentView];
         if (array.count < tableView.pageSize) {
             [tableView endLoadMoreWithNoMoreData:YES];
         }

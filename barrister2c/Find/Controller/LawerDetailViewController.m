@@ -51,20 +51,20 @@ typedef void(^ShowTimeSelectBlock)(id object);
 
 -(void)configData
 {
-    self.model = [[BarristerLawerModel alloc] init];
-    self.model.name = @"李言";
-    self.model.workingStartYear = @"2008";
-    self.model.workYears = @"8";
-    self.model.rating = 3.5;
-    self.model.goodAt = @"经济犯罪|法律顾问|家庭";
-    self.model.area = @"北京丰台";
-    self.model.company = @"京城律师事务所";
-    self.model.userIcon = @"https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=327417392,2097894166&fm=116&gp=0.jpg";
-    self.model.appraiseCount = 10;
-    self.model.recentServiceTimes = 20;
-    
-    self.model.introduceStr = @"王律师是个好律师,打过很多著名的案件，王律师是个好律师,打过很多著名的案件，王律师是个好律师,打过很多著名的案件，王律师是个好律师,打过很多著名的案件，王律师是个好律师,打过很多著名的案件，王律师是个好律师,打过很多著名的案件!";
-    [self.model handleProprety];
+//    self.model = [[BarristerLawerModel alloc] init];
+//    self.model.name = @"李言";
+//    self.model.workingStartYear = @"2008";
+//    self.model.workYears = @"8";
+//    self.model.rating = 3.5;
+//    self.model.goodAt = @"经济犯罪|法律顾问|家庭";
+//    self.model.area = @"北京丰台";
+//    self.model.company = @"京城律师事务所";
+//    self.model.userIcon = @"https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=327417392,2097894166&fm=116&gp=0.jpg";
+//    self.model.appraiseCount = 10;
+//    self.model.recentServiceTimes = 20;
+//    
+//    self.model.introduceStr = @"王律师是个好律师,打过很多著名的案件，王律师是个好律师,打过很多著名的案件，王律师是个好律师,打过很多著名的案件，王律师是个好律师,打过很多著名的案件，王律师是个好律师,打过很多著名的案件，王律师是个好律师,打过很多著名的案件!";
+//    [self.model handleProprety];
     
     
 }
