@@ -9,8 +9,11 @@
 #import "BaseTableViewCell.h"
 #import "BarristerLawerModel.h"
 
+typedef void(^ClickBlock)(BarristerLawerModel *model);
 
 @interface LawerDetailMidCell : BaseTableViewCell
+
+@property (nonatomic,copy) ClickBlock block;
 
 @property (nonatomic,strong) BarristerLawerModel *model;
 

@@ -147,13 +147,29 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "barrister2c/Find/Controller/LawerListViewController.m"
-            timestampString = "489123611.405728"
+            filePath = "barrister2c/Find/Controller/LawerDetailViewController.m"
+            timestampString = "489140497.046514"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "146"
-            endingLineNumber = "146"
-            landmarkName = "-PullDownMenu:didSelectRowAtColumn:row:"
+            startingLineNumber = "122"
+            endingLineNumber = "122"
+            landmarkName = "-collectionAction"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "barrister2c/Find/View/LawerDetailMidCell.m"
+            timestampString = "489140236.310252"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "133"
+            endingLineNumber = "133"
+            landmarkName = "-layoutSubviews"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

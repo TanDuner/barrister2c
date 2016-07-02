@@ -16,6 +16,8 @@
 
 -(void)handlePropretyWithDict:(NSDictionary *)dict
 {
+    self.laywerId = [dict objectForKey:@"id"];
+    
     NSString *areaStr = @"";
     NSArray *array = [dict objectForKey:@"bizAreas"];
     if ([XuUtlity isValidArray:array]) {
@@ -34,8 +36,8 @@
     
     
     
-    if (self.introduceStr.length > 0) {
-        CGFloat height = [XuUtlity textHeightWithString:self.introduceStr withFont:SystemFont(14.0f) sizeWidth:SCREENWIDTH - 20 WithLineSpace:5];
+    if (self.intro.length > 0) {
+        CGFloat height = [XuUtlity textHeightWithString:self.intro withFont:SystemFont(14.0f) sizeWidth:SCREENWIDTH - 20 WithLineSpace:5];
         
         self.allIntroduceStrHeight =  height;
         

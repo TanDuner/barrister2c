@@ -21,7 +21,7 @@
 
 @interface BarristerLawerModel : BaseModel
 
-@property (nonatomic,strong) NSString *userId;
+@property (nonatomic,strong) NSString *laywerId;
 
 @property (nonatomic,strong) NSString *userIcon;
 
@@ -37,7 +37,7 @@
 
 @property (nonatomic,strong) NSString *workingStartYear;
 
-@property (nonatomic,strong) NSString *introduceStr;
+@property (nonatomic,strong) NSString *intro;
 
 @property (nonatomic,strong) NSString *workYears;//工作年限
 
@@ -55,6 +55,12 @@
 
 @property (nonatomic,assign) BOOL isNeedShowAll;
 
+@property (nonatomic,strong) NSString *priceAppointment;//预约的每个时间段的价格
+
+@property (nonatomic,strong) NSString *priceIM;//即时咨询价格
+
+
+@property (nonatomic,strong) NSString * isCollect;//是否收藏
 
 @property (nonatomic,strong) NSString *goodAtStr; //擅长的字符串
 

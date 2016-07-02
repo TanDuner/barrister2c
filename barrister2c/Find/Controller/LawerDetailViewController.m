@@ -11,13 +11,15 @@
 #import "LawerListCell.h"
 #import "LawerDetailBottomCell.h"
 #import "LawerSelectTimeViewController.h"
-
+#import "LawerListProxy.h"
 
 typedef void(^ShowTimeSelectBlock)(id object);
 
 @interface LawerDetailViewController ()
 
 @property (nonatomic,strong) LawerSelectTimeViewController *selectTimeView;
+
+@property (nonatomic,strong) LawerListProxy *proxy;
 
 @end
 
@@ -51,22 +53,31 @@ typedef void(^ShowTimeSelectBlock)(id object);
 
 -(void)configData
 {
-//    self.model = [[BarristerLawerModel alloc] init];
-//    self.model.name = @"李言";
-//    self.model.workingStartYear = @"2008";
-//    self.model.workYears = @"8";
-//    self.model.rating = 3.5;
-//    self.model.goodAt = @"经济犯罪|法律顾问|家庭";
-//    self.model.area = @"北京丰台";
-//    self.model.company = @"京城律师事务所";
-//    self.model.userIcon = @"https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=327417392,2097894166&fm=116&gp=0.jpg";
-//    self.model.appraiseCount = 10;
-//    self.model.recentServiceTimes = 20;
-//    
-//    self.model.introduceStr = @"王律师是个好律师,打过很多著名的案件，王律师是个好律师,打过很多著名的案件，王律师是个好律师,打过很多著名的案件，王律师是个好律师,打过很多著名的案件，王律师是个好律师,打过很多著名的案件，王律师是个好律师,打过很多著名的案件!";
-//    [self.model handleProprety];
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:self.model.laywerId,@"lawyerId", nil];
+    __weak typeof(*&self) weakSelf  = self;
+    [self.proxy getOrderDetailWithParams:params Block:^(id returnData, BOOL success) {
+        if (success) {
+            NSDictionary *dict = (NSDictionary *)returnData;
+            [weakSelf handleLawerDataWithDict:dict];
+        }
+        else
+        {
+            [XuUItlity showFailedHint:@"加载失败" completionBlock:^{
+                [weakSelf.navigationController popViewControllerAnimated:YES];
+            }];
+        }
+    }];
     
     
+}
+
+
+-(void)handleLawerDataWithDict:(NSDictionary *)dict
+{
+    NSDictionary *laywerDict = [dict objectForKey:@"detail"];
+    self.model = [[BarristerLawerModel alloc] initWithDictionary:laywerDict];
+    
+    [self.tableView reloadData];
 }
 
 #pragma -mark ----Action----
@@ -76,6 +87,51 @@ typedef void(^ShowTimeSelectBlock)(id object);
     [self.selectTimeView show];
 }
 
+
+-(void)collectionAction
+{
+
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:self.model.laywerId,@"lawyerId", nil];
+    __weak typeof(*&self) weakSelf = self;
+    if (![self.model.isCollect isEqualToString:@"yes"]) {
+        [self.proxy collectLaywerWithParams:params Block:^(id returnData, BOOL success) {
+            if (success) {
+                weakSelf.model.isCollect = @"yes";
+            }
+            else
+            {
+                NSString *resultCode = (NSString *)returnData;
+                if ([[NSString stringWithFormat:@"%@",resultCode] isEqualToString:@"1009"]) {
+                    [XuUItlity showFailedHint:@"已经收藏" completionBlock:nil];
+                    weakSelf.model.isCollect = @"yes";
+                }
+                else
+                {
+                    weakSelf.model.isCollect = @"no";
+                }
+
+
+            }
+            
+            [weakSelf.tableView reloadData];
+        }];
+    }
+    else
+    {
+        [self.proxy cancelCollectLaywerWithParams:params Block:^(id returnData, BOOL success) {
+            if (success) {
+                weakSelf.model.isCollect = @"no";
+            }
+            else
+            {
+                weakSelf.model.isCollect = @"yes";
+            }
+            [weakSelf.tableView reloadData];
+        }];
+    }
+
+    
+}
 
 #pragma -mark ----UITableView Delegate Methods
 
@@ -89,7 +145,6 @@ typedef void(^ShowTimeSelectBlock)(id object);
             [self showTimeSelectView];
         }
     }
-
     
 }
 
@@ -150,7 +205,12 @@ typedef void(^ShowTimeSelectBlock)(id object);
         }
         else
         {
+            __weak typeof(*&self) weakSelf = self;
             LawerDetailMidCell *cell = [[LawerDetailMidCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+            cell.block = ^(BarristerLawerModel *model)
+            {
+                [weakSelf collectionAction];
+            };
             cell.model = self.model;
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             return cell;
@@ -161,6 +221,7 @@ typedef void(^ShowTimeSelectBlock)(id object);
         if (indexPath.row == 0) {
             LawerDetailBottomCell *cell = [[LawerDetailBottomCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
             cell.topLabel.text = @"即时咨询";
+            cell.leftImageView.image = [UIImage imageNamed:@"imService"];
             cell.bottomLabel.text = @"立即与律师沟通";
             return cell;
         }
@@ -168,6 +229,7 @@ typedef void(^ShowTimeSelectBlock)(id object);
         {
             LawerDetailBottomCell *cell = [[LawerDetailBottomCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
             cell.topLabel.text = @"预约咨询";
+            cell.leftImageView.image = [UIImage imageNamed:@"appointmentService"];
             cell.bottomLabel.text = @"约定时间与律师沟通";
 
             return cell;
@@ -192,5 +254,12 @@ typedef void(^ShowTimeSelectBlock)(id object);
     return _selectTimeView;
 }
 
+-(LawerListProxy *)proxy
+{
+    if (!_proxy) {
+        _proxy = [[LawerListProxy alloc] init];
+    }
+    return _proxy;
+}
 
 @end

@@ -8,7 +8,7 @@
 
 #import "OrderProxy.h"
 
-#define GetOrderListUrl @""
+#define GetOrderListUrl @"myOrderList.do"
 #define RequestCancelOrderUrl @"requestCancelOrder"
 #define OrderPraiseUrl @"addOrderStar"
 
@@ -28,6 +28,7 @@
         }
     }];
 }
+
 
 /**
  *  申请取消订单

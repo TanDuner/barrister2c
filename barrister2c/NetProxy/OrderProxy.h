@@ -18,6 +18,13 @@
  */
 -(void)getOrderListWithParams:(NSDictionary *)aParams Block:(ServiceCallBlock)aBlock;
 
+/**
+ *  获取订单详情
+ *
+ *  @param aParams
+ *  @param aBlock
+ */
+-(void)getOrderDetailWithParams:(NSDictionary *)aParams Block:(ServiceCallBlock)aBlock;
 
 /**
  *  申请取消订单

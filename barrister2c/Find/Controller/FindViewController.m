@@ -11,10 +11,14 @@
 #import "UIButton+EnlargeEdge.h"
 #import "LawerListViewController.h"
 #import "BaseWebViewController.h"
+#import "FindNetProxy.h"
+#import "LawBooksModel.h"
+#import "YYWebImage.h"
+#import "UIImage+Additions.h"
 
 #define ImageWidth 28
 
-#define LawButtonWidth 38
+#define LawButtonWidth 50
 #define LawLeftPadding 17.5
 #define LawTopPadding 17.5 + 45
 #define LawHorSpacing (SCREENWIDTH - LawLeftPadding *2 - LawButtonWidth *4)/3
@@ -109,7 +113,6 @@ typedef void(^ClickZXItemBlock)(ZXItemView *itemView);
 @end
 
 
-
 @interface FindViewController ()
 
 @property (nonatomic,strong) UIView *topSelectView;
@@ -120,9 +123,9 @@ typedef void(^ClickZXItemBlock)(ZXItemView *itemView);
 
 @property (nonatomic,strong) FindNetProxy *proxy;
 
-@property (nonatomic,strong) NSArray *urlArray;
+@property (nonatomic,strong) NSMutableArray *urlArray;
 
-@property (nonatomic,strong) NSArray *titleArray;
+@property (nonatomic,strong) NSMutableArray *titleArray;
 
 @end
 
@@ -166,14 +169,40 @@ typedef void(^ClickZXItemBlock)(ZXItemView *itemView);
 
 -(void)configData
 {
+    __weak typeof(*&self)weakSelf = self;
+    [self.proxy getLawBooksWithParams:nil WithBlock:^(id returnData, BOOL success) {
+        if (success) {
+            NSDictionary *dict = (NSDictionary *)returnData;
+            NSArray *array = [dict objectForKey:@"legalList"];
+            if ([XuUtlity isValidArray:array]) {
+                [weakSelf handleLawBookListDataWithArray:array];
+            }
+            else
+            {
+                [weakSelf handleLawBookListDataWithArray:@[]];
+            }
+        }
+        else
+        {
+            [XuUItlity showFailedHint:@"加载应用大全失败" completionBlock:nil];
+        }
+    }];
     
 
     
-    [self.bottomCategoryView setFrame:RECT(0, 78 + 10, SCREENWIDTH, ceil(self.titleArray.count/4) * (LawTopPadding + LawButtonWidth))];
     
-    for (int i = 0; i < self.titleArray.count; i ++) {
+  
+}
+
+-(void)handleLawBookListDataWithArray:(NSArray *)array
+{
+    for (int i = 0; i < array.count; i ++) {
+        NSDictionary *dict = [array objectAtIndex:i];
+        LawBooksModel *model = [[LawBooksModel alloc] initWithDictionary:dict];
+        [self.titleArray addObject:model.name];
+        [self.urlArray addObject:model.url];
+        
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-        button.backgroundColor = [UIColor blueColor];
         button.layer.cornerRadius = LawButtonWidth/2.0f;
         button.layer.masksToBounds = YES;
         [button setEnlargeEdge:8];
@@ -188,12 +217,24 @@ typedef void(^ClickZXItemBlock)(ZXItemView *itemView);
         tipLabel.font = SystemFont(12.0f);
         tipLabel.text = self.titleArray[i];
         
-        [self.bottomCategoryView addSubview:button];
         [self.bottomCategoryView addSubview:tipLabel];
+        
+        UIImageView *imageVIew = [[UIImageView alloc] initWithFrame:button.frame];
+        [imageVIew yy_setImageWithURL:[NSURL URLWithString:model.icon] placeholder:[UIImage createImageWithColor:[UIColor lightGrayColor]]];
+        imageVIew.userInteractionEnabled = YES;
+        
+        [self.bottomCategoryView addSubview:imageVIew];
+        [self.bottomCategoryView addSubview:button];
+
+
     }
     
-  
+    
+    [self.bottomCategoryView setFrame:RECT(0, 78 + 10, SCREENWIDTH, ceil(array.count/4) * (LawTopPadding + LawButtonWidth))];
+
+
 }
+
 
 #pragma -mark --Aciton----
 
@@ -216,18 +257,20 @@ typedef void(^ClickZXItemBlock)(ZXItemView *itemView);
 
 #pragma -mark ----Getter-------
 
--(NSArray *)titleArray
+-(NSMutableArray *)titleArray
 {
     if (!_titleArray) {
-        _titleArray = @[@"中国法律",@"中国法规",@"地方法规",@"司法解释",@"实用案例",@"国际条约",@"合同范本",@"法律文书",@"百姓法律",@"英文法律",@"法律考试",@"WTO/白皮书"];
+        _titleArray = [NSMutableArray arrayWithCapacity:10];
     }
     return _titleArray;
 }
 
--(NSArray *)urlArray
+//@[@"http://sjtj.flgw.com.cn/zgfl/default.asp",@"http://sjtj.flgw.com.cn/zgfg/default.asp",@"http://sjtj.flgw.com.cn/dffg/default.asp",@"http://sjtj.flgw.com.cn/sfjs/default.asp",@"http://sjtj.flgw.com.cn/flks/default.asp",@"http://sjtj.flgw.com.cn/syal/default.asp",@"http://sjtj.flgw.com.cn/htfb/default.asp",@"http://sjtj.flgw.com.cn/flws/default.asp",@"http://sjtj.flgw.com.cn/gjty/default.asp",@"http://sjtj.flgw.com.cn/bxfl/default.asp",@"http://sjtj.flgw.com.cn/wto/default.asp",@"http://sjtj.flgw.com.cn/ywfl/default.asp"]
+
+-(NSMutableArray *)urlArray
 {
     if (!_urlArray) {
-        _urlArray = @[@"http://sjtj.flgw.com.cn/zgfl/default.asp",@"http://sjtj.flgw.com.cn/zgfg/default.asp",@"http://sjtj.flgw.com.cn/dffg/default.asp",@"http://sjtj.flgw.com.cn/sfjs/default.asp",@"http://sjtj.flgw.com.cn/flks/default.asp",@"http://sjtj.flgw.com.cn/syal/default.asp",@"http://sjtj.flgw.com.cn/htfb/default.asp",@"http://sjtj.flgw.com.cn/flws/default.asp",@"http://sjtj.flgw.com.cn/gjty/default.asp",@"http://sjtj.flgw.com.cn/bxfl/default.asp",@"http://sjtj.flgw.com.cn/wto/default.asp",@"http://sjtj.flgw.com.cn/ywfl/default.asp"];
+        _urlArray = [NSMutableArray arrayWithCapacity:10];
     }
     return _urlArray;
 }
@@ -302,11 +345,20 @@ typedef void(^ClickZXItemBlock)(ZXItemView *itemView);
 }
 
 
+-(FindNetProxy *)proxy
+{
+    if (!_proxy) {
+        _proxy = [[FindNetProxy alloc] init];
+    }
+    return _proxy;
+}
+
 -(void)toLawerList
 {
     LawerListViewController *lawerListVC = [[LawerListViewController alloc] init];
     [self.navigationController pushViewController:lawerListVC animated:YES];
 }
+
 
 
 

@@ -10,4 +10,9 @@
 
 @implementation LawBooksModel
 
+-(void)handlePropretyWithDict:(NSDictionary *)dict
+{
+    self.booksId = [dict objectForKey:@"id"];
+}
+
 @end

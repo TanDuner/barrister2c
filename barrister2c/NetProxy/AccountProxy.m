@@ -52,8 +52,12 @@
 -(void)bindCarkWithParams:(NSMutableDictionary *)params block:(ServiceCallBlock)aBlock
 {
     [XuNetWorking getWithUrl:BindBankCardUrl params:params success:^(id response) {
-        if (aBlock) {
+        if ([self isCommonCorrectResultCodeWithResponse:response]) {
             aBlock(response,YES);
+        }
+        else
+        {
+            aBlock(CommonNetErrorTip,NO);
         }
     } fail:^(NSError *error) {
         if (aBlock) {

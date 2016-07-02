@@ -7,7 +7,7 @@
 //
 
 #import "FindNetProxy.h"
-#define LawBookUrl @"lawAppList"
+#define LawBookUrl @"getLegalApplictions.do"
 
 @implementation FindNetProxy
 /**
@@ -16,16 +16,22 @@
  *  @param params 参数
  *  @param aBlock 回调
  */
-//-(void)getLawBooksWithParams:(NSMutableDictionary *)params WithBlock:(ServiceCallBlock)aBlock
-//{
-//    [XuNetWorking getWithUrl:LawBookUrl params:params success:^(id response) {
-//        if (aBlock) {
-//            aBlock(response,YES);
-//        }
-//    } fail:^(NSError *error) {
-//        if (aBlock) {
-//            aBlock(error,NO);
-//        }
-//    }];
-//}
+-(void)getLawBooksWithParams:(NSMutableDictionary *)params WithBlock:(ServiceCallBlock)aBlock
+{
+    [XuNetWorking getWithUrl:LawBookUrl params:params success:^(id response) {
+        if ([self isCommonCorrectResultCodeWithResponse:response]) {
+            if (aBlock) {
+                aBlock(response,YES);
+            }
+        }else
+        {
+            aBlock(CommonNetErrorTip,NO);
+        }
+
+    } fail:^(NSError *error) {
+        if (aBlock) {
+            aBlock(error,NO);
+        }
+    }];
+}
 @end

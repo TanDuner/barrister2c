@@ -44,7 +44,6 @@
 {
     if (!_leftImageView) {
         _leftImageView = [[UIImageView alloc] initWithFrame:RECT(LeftPadding, LeftPadding, ImageWidth, ImageWidth)];
-        _leftImageView.backgroundColor = [UIColor redColor];
         _leftImageView.layer.cornerRadius = 20.5f;
         _leftImageView.layer.masksToBounds = YES;
     }
@@ -55,7 +54,6 @@
 {
     if (!_rightLabel) {
         _rightLabel = [[UILabel alloc] initWithFrame:RECT(self.topLabel.x + self.topLabel.width + 10, LeftPadding , 100, 15)];
-        _rightLabel.text = @"30分钟/100元";
         _rightLabel.font = SystemFont(13.0f);
     }
     return _rightLabel;

@@ -8,7 +8,7 @@
 
 #import "LawerDetailMidCell.h"
 
-#define ButtonWidth (SCREENWIDTH - 1)/3.0
+#define ButtonWidth (SCREENWIDTH - 1)/2.0
 #define ButtonHeight 52
 
 
@@ -16,7 +16,7 @@
 
 @property (nonatomic,strong) UIButton *serviceButton;
 
-@property (nonatomic,strong) UIButton *appraiseButton;
+//@property (nonatomic,strong) UIButton *appraiseButton;
 
 @property (nonatomic,strong) UIButton *collectButton;
 
@@ -47,7 +47,7 @@
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         [self addSubview:self.serviceButton];
         
-        [self addSubview:self.appraiseButton];
+//        [self addSubview:self.appraiseButton];
         
         [self addSubview:self.collectButton];
         
@@ -56,6 +56,7 @@
         [self addSubview:self.introduceLabel];
         
         [self addSubview:self.showAllButton];
+        
     }
     return self;
 }
@@ -80,18 +81,18 @@
     
     [self.serviceButton setTitle:[NSString stringWithFormat:@"服务%ld",self.model.recentServiceTimes] forState:UIControlStateNormal];
     
-    [self.appraiseButton setTitle:[NSString stringWithFormat:@"评价%ld",self.model.appraiseCount] forState:UIControlStateNormal];
+//    [self.appraiseButton setTitle:[NSString stringWithFormat:@"评价%ld",self.model.appraiseCount] forState:UIControlStateNormal];
     
     [self.collectButton setTitle:[NSString stringWithFormat:@"收藏%ld",self.model.appraiseCount] forState:UIControlStateNormal];
     
     
-    if (self.model.introduceStr.length > 0) {
+    if (self.model.intro.length > 0) {
         
         NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
         style.lineBreakMode = NSLineBreakByWordWrapping;
         style.lineSpacing = 5;
-        NSDictionary *attribute = @{NSFontAttributeName : SystemFont(14.0f), NSParagraphStyleAttributeName : style, NSForegroundColorAttributeName:[UIColor colorWithString:@"#333333" colorAlpha:1]};
-        NSMutableAttributedString *attributeStr = [[NSMutableAttributedString alloc] initWithString:self.model.introduceStr attributes:attribute];
+        NSDictionary *attribute = @{NSFontAttributeName : SystemFont(14.0f), NSParagraphStyleAttributeName : style, NSForegroundColorAttributeName:[UIColor colorWithString:@"#666666" colorAlpha:1]};
+        NSMutableAttributedString *attributeStr = [[NSMutableAttributedString alloc] initWithString:self.model.intro attributes:attribute];
         
         if (self.model.isShowAll) {
             [_introduceLabel setFrame:RECT(10,  52 + 35, SCREENWIDTH - 30, self.model.allIntroduceStrHeight)];
@@ -128,9 +129,20 @@
     
     
     [_showAllButton setFrame:RECT((SCREENWIDTH - 120)/2.0, self.height - 15 - 15, 120, 15)];
-
-
     
+    if ([self.model.isCollect isEqualToString:@"yes"]) {
+        [_collectButton setImage:[UIImage imageNamed:@"collect"] forState:UIControlStateNormal];
+    }
+    else{
+        [_collectButton setImage:[UIImage imageNamed:@"uncollect"] forState:UIControlStateNormal];
+    }
+}
+
+-(void)collectAcitonButton:(UIButton *)btn
+{
+    if (self.block) {
+        self.block(self.model);
+    }
 }
 
 #pragma -mark ---Getter----
@@ -141,23 +153,16 @@
         _serviceButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [_serviceButton setTitleColor:RGBCOLOR(132, 133, 134) forState:UIControlStateNormal];
         _serviceButton.titleLabel.font = SystemFont(13.0f);
+        _serviceButton.imageEdgeInsets = UIEdgeInsetsMake(0, -20, 0, 0);
+        [_serviceButton setImage:[UIImage imageNamed:@"service"] forState:UIControlStateNormal];
         [_serviceButton setFrame:RECT(0, 0, ButtonWidth, ButtonHeight)];
+        [self addSubview:[self getLineViewWithRect:RECT(ButtonWidth, 5, .5, ButtonHeight - 10)]];
 
     }
     return _serviceButton;
 }
 
--(UIButton *)appraiseButton
-{
-    if (!_appraiseButton) {
-        _appraiseButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_appraiseButton setTitleColor:RGBCOLOR(132, 133, 134) forState:UIControlStateNormal];
-        _appraiseButton.titleLabel.font = SystemFont(13.0f);
-        [_appraiseButton setFrame:RECT(ButtonWidth + .5, 0, ButtonWidth, ButtonHeight)];
-        [self addSubview:[self getLineViewWithRect:RECT(ButtonWidth, 5, .5, ButtonHeight - 10)]];
-    }
-    return _appraiseButton;
-}
+
 
 -(UIButton *)collectButton
 {
@@ -165,7 +170,10 @@
         _collectButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [_collectButton setTitleColor:RGBCOLOR(132, 133, 134) forState:UIControlStateNormal];
         _collectButton.titleLabel.font = SystemFont(13.0f);
-        [_collectButton setFrame:RECT(ButtonWidth * 2 + 1, 0, ButtonWidth, ButtonHeight)];
+        _collectButton.imageEdgeInsets = UIEdgeInsetsMake(0, -20, 0, 0);
+        [_collectButton setFrame:RECT(ButtonWidth  + 1, 0, ButtonWidth, ButtonHeight)];
+        [_collectButton addTarget:self action:@selector(collectAcitonButton:) forControlEvents:UIControlEventTouchUpInside];
+        [_collectButton setImage:[UIImage imageNamed:@"uncollect"] forState:UIControlStateNormal];
         [self addSubview:[self getLineViewWithRect:RECT(ButtonWidth *2 + 1, 5, .5, ButtonHeight - 10)]];
         [self addSubview:[self getLineViewWithRect:RECT(0, ButtonHeight, SCREENWIDTH, .5)]];
         
@@ -190,7 +198,7 @@
         _introduceLabel = [[UILabel alloc] init];
         _introduceLabel.font = SystemFont(14.0f);
         _introduceLabel.numberOfLines = 3;
-        _introduceLabel.textColor = KColorGray666;
+        _introduceLabel.textColor = KColorGray999;
     }
     return _introduceLabel;
 }

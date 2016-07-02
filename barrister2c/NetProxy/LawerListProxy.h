@@ -19,4 +19,27 @@
 
 -(void)getLawerListWithParams:(NSDictionary *)params block:(ServiceCallBlock)aBlock;
 
+/**
+ *  律师详情
+ */
+
+-(void)getOrderDetailWithParams:(NSDictionary *)aParams Block:(ServiceCallBlock)aBlock;
+
+
+/**
+ * 收藏律师
+ *
+ *  @param aParams
+ *  @param aBlock
+ */
+-(void)collectLaywerWithParams:(NSMutableDictionary *)aParams Block:(ServiceCallBlock)aBlock;
+
+/**
+ *  取消收藏律师
+ *
+ *  @param aParams
+ *  @param aBlock
+ */
+-(void)cancelCollectLaywerWithParams:(NSMutableDictionary *)aParams Block:(ServiceCallBlock)aBlock;
+
 @end
