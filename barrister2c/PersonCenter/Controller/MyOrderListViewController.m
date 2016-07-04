@@ -149,6 +149,7 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     BarristerOrderModel *model = [self.items objectAtIndex:indexPath.row];
     OrderDetailViewController *detailVC = [[OrderDetailViewController alloc] initWithModel:model];
     [self.navigationController pushViewController:detailVC animated:YES];

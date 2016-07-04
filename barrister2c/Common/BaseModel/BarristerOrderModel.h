@@ -15,48 +15,40 @@
 
 
 
-//String id;
-//String type;//订单类型：即时、预约
-//String userIcon;//律师头像
-//String name;//律师姓名
-//String date;//日期
-//String status;//订单状态
-//String caseType;//案件类型：财产纠纷，离婚，……
-//String phone;//律师手机号
-
+//caseType = "<null>";
+//date = "2016-07-03 00:47:02";
+//endTime = "2016-07-03 09:00:00";
+//id = 19;
+//name = "\U53d9\U8ff0\U7a7f";
+//phone = 13301096303;
+//startTime = "2016-07-03 08:30:00";
+//status = "order.status.waiting";
+//type = APPOINTMENT;
+//userIcon = "http://119.254.167.200:8080/upload/2016/06/26/1466942987875userIcon";
 
 
 @interface BarristerOrderModel : BaseModel
 
+@property (nonatomic,strong) NSString *caseType;//案源类型
+@property (nonatomic,strong) NSString *date;//日期
+@property (nonatomic,strong) NSString *startTime;//开始时间
+@property (nonatomic,strong) NSString *endTime;//结束时间
+@property (nonatomic,strong) NSString *orderId;//订单id
+@property (nonatomic,strong) NSString *name;//律师姓名
+@property (nonatomic,strong) NSString *phone;//律师手机号
+@property (nonatomic,strong) NSString * status;//订单状态
+@property (nonatomic,strong) NSString * type;//订单类型
 @property (nonatomic,strong) NSString *userIcon;//律师头像
 
-@property (nonatomic,strong) NSString *name;//律师姓名
 
-@property (nonatomic,strong) NSString *date;//日期
 
-@property (nonatomic,strong) NSString *phone;//律师手机号
 
 
 @property (nonatomic,strong) NSString *customerName;
 
 @property (nonatomic,strong) NSString *orderNo;//订单号
-
-@property (nonatomic,strong) NSString *orderId;//订单id
-
-@property (nonatomic,assign) NSString * orderType;//订单类型
-
-@property (nonatomic,strong) NSString *caseType;//案源类型
-
-@property (nonatomic,assign) NSString * status;//订单状态
-
 @property (nonatomic,strong) NSString *orderPrice;//订单价格
-
 @property (nonatomic,strong ) NSString *userId;//
-
-@property (nonatomic,strong) NSString *startTime;//开始时间
-
-@property (nonatomic,strong) NSString *endTime;//结束时间
-
 
 @property (nonatomic,strong) NSString *userHeder;//用户头像
 

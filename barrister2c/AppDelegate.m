@@ -11,6 +11,9 @@
 #import "OpenUDID.h"
 #import "YKSplashView.h"
 
+//13301096303
+//700953
+
 @interface AppDelegate ()
 
 @property (nonatomic,strong) YKSplashView *splashView;
@@ -34,17 +37,19 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
     
-    if (![YKSplashView getIsOpenGuideView]) {
-        YKSplashView *gudeView = [[YKSplashView alloc] initWithFrame:CGRectMake(0, 0, SCREENWIDTH,SCREENHEIGHT)];
-        self.splashView = gudeView;
-        [self.window addSubview:self.splashView];
-        [self.window makeKeyAndVisible];
-    }
-    else
-    {
+//    if (![YKSplashView getIsOpenGuideView]) {
+//        UIViewController *vc = [[UIViewController alloc] init];
+//        self.window.rootViewController = vc;
+//        YKSplashView *gudeView = [[YKSplashView alloc] initWithFrame:CGRectMake(0, 0, SCREENWIDTH,SCREENHEIGHT)];
+//        self.splashView = gudeView;
+//        [self.window addSubview:self.splashView];
+//        [self.window makeKeyAndVisible];
+//    }
+//    else
+//    {
         [self createTabbar];
 
-    }
+//    }
     
 }
 
@@ -81,6 +86,7 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+
 
     
     [self initControllersAndConfig];

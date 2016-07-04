@@ -154,7 +154,6 @@
         NSDictionary *dict = [bannerListArray objectAtIndex:i];
         HomeBannerModel *model = [[HomeBannerModel alloc] initWithDictionary:dict];
         [imageUrls addObject:model.image];
-        [imageUrls addObject:model.image];
     }
     
     [BaseDataSingleton shareInstance].bizAreas = self.areaItems;

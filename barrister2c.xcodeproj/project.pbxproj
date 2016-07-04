@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		242C6CF2A427FE9AB164E737 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CE61524527A7610BA559202 /* libPods.a */; };
+		950120AE1D2A5D8E00FE3613 /* BarristerOrderDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 950120AD1D2A5D8E00FE3613 /* BarristerOrderDetailModel.m */; };
+		950120B11D2A5E0400FE3613 /* CallHistoriesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 950120B01D2A5E0400FE3613 /* CallHistoriesModel.m */; };
+		950120B61D2AA46D00FE3613 /* OrderDetailCancelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 950120B31D2AA46D00FE3613 /* OrderDetailCancelCell.m */; };
+		950120BA1D2AA49600FE3613 /* OrderDetailMarkCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 950120B91D2AA49600FE3613 /* OrderDetailMarkCell.m */; };
+		950120BD1D2AA55700FE3613 /* AppriseOrderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 950120BC1D2AA55700FE3613 /* AppriseOrderCell.m */; };
 		951008C01D25111A00730562 /* HomeBannerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 951008BF1D25111A00730562 /* HomeBannerModel.m */; };
 		951008C31D25248A00730562 /* NSArray+CommonAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 951008C21D25248A00730562 /* NSArray+CommonAdd.m */; };
 		951008C61D252CDA00730562 /* NSString+CommonAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 951008C51D252CDA00730562 /* NSString+CommonAdd.m */; };
@@ -61,7 +66,6 @@
 		955A7AB81D1C3E1700D1DEAC /* LawerSelectContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 955A7AB71D1C3E1700D1DEAC /* LawerSelectContentViewController.m */; };
 		955A7AEA1D1D7A3100D1DEAC /* unSelectedable@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 955A7AE81D1D7A3100D1DEAC /* unSelectedable@2x.png */; };
 		955A7AEB1D1D7A3100D1DEAC /* unSelectedable@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 955A7AE91D1D7A3100D1DEAC /* unSelectedable@3x.png */; };
-		955A7AEE1D1D885000D1DEAC /* OrderListItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 955A7AED1D1D885000D1DEAC /* OrderListItem.m */; };
 		955A7AF11D1D887C00D1DEAC /* MyOrderListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 955A7AF01D1D887C00D1DEAC /* MyOrderListViewController.m */; };
 		955A7AF71D1D8D5400D1DEAC /* OrderViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 955A7AF61D1D8D5400D1DEAC /* OrderViewCell.m */; };
 		955A7AFD1D1D8EC000D1DEAC /* OrderDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 955A7AFC1D1D8EC000D1DEAC /* OrderDetailViewController.m */; };
@@ -291,6 +295,16 @@
 /* Begin PBXFileReference section */
 		3CE61524527A7610BA559202 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		86316290D8B7B144F0F16CE2 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		950120AC1D2A5D8E00FE3613 /* BarristerOrderDetailModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BarristerOrderDetailModel.h; sourceTree = "<group>"; };
+		950120AD1D2A5D8E00FE3613 /* BarristerOrderDetailModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BarristerOrderDetailModel.m; sourceTree = "<group>"; };
+		950120AF1D2A5E0400FE3613 /* CallHistoriesModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CallHistoriesModel.h; sourceTree = "<group>"; };
+		950120B01D2A5E0400FE3613 /* CallHistoriesModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CallHistoriesModel.m; sourceTree = "<group>"; };
+		950120B21D2AA46D00FE3613 /* OrderDetailCancelCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderDetailCancelCell.h; sourceTree = "<group>"; };
+		950120B31D2AA46D00FE3613 /* OrderDetailCancelCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderDetailCancelCell.m; sourceTree = "<group>"; };
+		950120B81D2AA49600FE3613 /* OrderDetailMarkCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderDetailMarkCell.h; sourceTree = "<group>"; };
+		950120B91D2AA49600FE3613 /* OrderDetailMarkCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderDetailMarkCell.m; sourceTree = "<group>"; };
+		950120BB1D2AA55700FE3613 /* AppriseOrderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppriseOrderCell.h; sourceTree = "<group>"; };
+		950120BC1D2AA55700FE3613 /* AppriseOrderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppriseOrderCell.m; sourceTree = "<group>"; };
 		951008BE1D25111A00730562 /* HomeBannerModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeBannerModel.h; sourceTree = "<group>"; };
 		951008BF1D25111A00730562 /* HomeBannerModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeBannerModel.m; sourceTree = "<group>"; };
 		951008C11D25248A00730562 /* NSArray+CommonAdd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+CommonAdd.h"; sourceTree = "<group>"; };
@@ -383,8 +397,6 @@
 		955A7AB71D1C3E1700D1DEAC /* LawerSelectContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LawerSelectContentViewController.m; sourceTree = "<group>"; };
 		955A7AE81D1D7A3100D1DEAC /* unSelectedable@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "unSelectedable@2x.png"; sourceTree = "<group>"; };
 		955A7AE91D1D7A3100D1DEAC /* unSelectedable@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "unSelectedable@3x.png"; sourceTree = "<group>"; };
-		955A7AEC1D1D885000D1DEAC /* OrderListItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderListItem.h; sourceTree = "<group>"; };
-		955A7AED1D1D885000D1DEAC /* OrderListItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderListItem.m; sourceTree = "<group>"; };
 		955A7AEF1D1D887C00D1DEAC /* MyOrderListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyOrderListViewController.h; sourceTree = "<group>"; };
 		955A7AF01D1D887C00D1DEAC /* MyOrderListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyOrderListViewController.m; sourceTree = "<group>"; };
 		955A7AF51D1D8D5400D1DEAC /* OrderViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderViewCell.h; sourceTree = "<group>"; };
@@ -1842,8 +1854,10 @@
 				955610BF1D14B5C600366D4C /* PersonCenterModel.m */,
 				955610D01D14B6C000366D4C /* MyMessageModel.h */,
 				955610D11D14B6C000366D4C /* MyMessageModel.m */,
-				955A7AEC1D1D885000D1DEAC /* OrderListItem.h */,
-				955A7AED1D1D885000D1DEAC /* OrderListItem.m */,
+				950120AC1D2A5D8E00FE3613 /* BarristerOrderDetailModel.h */,
+				950120AD1D2A5D8E00FE3613 /* BarristerOrderDetailModel.m */,
+				950120AF1D2A5E0400FE3613 /* CallHistoriesModel.h */,
+				950120B01D2A5E0400FE3613 /* CallHistoriesModel.m */,
 				958EEBF51D282F3700D4CF4C /* MyLikeModel.h */,
 				958EEBF61D282F3700D4CF4C /* MyLikeModel.m */,
 			);
@@ -1861,6 +1875,8 @@
 				955610C61D14B5E400366D4C /* PersonInfoCustomCell.m */,
 				955610D31D14B6DA00366D4C /* MyMessgeCell.h */,
 				955610D41D14B6DA00366D4C /* MyMessgeCell.m */,
+				958EEBF81D28301C00D4CF4C /* MyLikeListCell.h */,
+				958EEBF91D28301C00D4CF4C /* MyLikeListCell.m */,
 				955A7AF51D1D8D5400D1DEAC /* OrderViewCell.h */,
 				955A7AF61D1D8D5400D1DEAC /* OrderViewCell.m */,
 				955A7AFE1D1D8EE100D1DEAC /* OrderDetailOrderCell.h */,
@@ -1869,8 +1885,12 @@
 				955A7B021D1D8EFB00D1DEAC /* OrderDetailCallRecordCell.m */,
 				955A7B031D1D8EFB00D1DEAC /* OrderDetailCustomInfoCell.h */,
 				955A7B041D1D8EFB00D1DEAC /* OrderDetailCustomInfoCell.m */,
-				958EEBF81D28301C00D4CF4C /* MyLikeListCell.h */,
-				958EEBF91D28301C00D4CF4C /* MyLikeListCell.m */,
+				950120B21D2AA46D00FE3613 /* OrderDetailCancelCell.h */,
+				950120B31D2AA46D00FE3613 /* OrderDetailCancelCell.m */,
+				950120BB1D2AA55700FE3613 /* AppriseOrderCell.h */,
+				950120BC1D2AA55700FE3613 /* AppriseOrderCell.m */,
+				950120B81D2AA49600FE3613 /* OrderDetailMarkCell.h */,
+				950120B91D2AA49600FE3613 /* OrderDetailMarkCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2176,6 +2196,7 @@
 				95CA1C5D1D10F7B700AAE490 /* BadgeNumberView.m in Sources */,
 				95CA1D591D10F7C900AAE490 /* UIImage+YYWebImage.m in Sources */,
 				955A7AAF1D1B7C9700D1DEAC /* LawerDetailBottomCell.m in Sources */,
+				950120AE1D2A5D8E00FE3613 /* BarristerOrderDetailModel.m in Sources */,
 				95CA1C681D10F7B700AAE490 /* XuAlertView.m in Sources */,
 				955A7AAC1D1AD20D00D1DEAC /* LawerDetailMidCell.m in Sources */,
 				95CA1C2E1D10F7A500AAE490 /* BarristerOrderModel.m in Sources */,
@@ -2204,6 +2225,7 @@
 				95CA1C0B1D10F77F00AAE490 /* LearnCenterProxy.m in Sources */,
 				95CA1D341D10F7C900AAE490 /* OpenUDID.m in Sources */,
 				955610DB1D14B74700366D4C /* ModifyInfoViewController.m in Sources */,
+				950120BA1D2AA49600FE3613 /* OrderDetailMarkCell.m in Sources */,
 				9556114B1D161A2400366D4C /* IMPullDownMenu.m in Sources */,
 				95B0D8121D1836450054567D /* BussinessAreaModel.m in Sources */,
 				955A7AB81D1C3E1700D1DEAC /* LawerSelectContentViewController.m in Sources */,
@@ -2269,7 +2291,6 @@
 				95CA1D441D10F7C900AAE490 /* MASLayoutConstraint.m in Sources */,
 				95CA1D511D10F7C900AAE490 /* YYMemoryCache.m in Sources */,
 				95CA1D241D10F7C900AAE490 /* MJRefreshAutoNormalFooter.m in Sources */,
-				955A7AEE1D1D885000D1DEAC /* OrderListItem.m in Sources */,
 				95CA1D531D10F7C900AAE490 /* CALayer+YYAdd.m in Sources */,
 				95CA1C2F1D10F7A500AAE490 /* BarristerUserModel.m in Sources */,
 				95CA1D3D1D10F7C900AAE490 /* AJPhotoBrowserViewController.m in Sources */,
@@ -2305,10 +2326,12 @@
 				95CA1D9D1D10F85500AAE490 /* NSObject+Additions.m in Sources */,
 				95CA1C301D10F7A500AAE490 /* BaseDataSingleton.m in Sources */,
 				9556114E1D175D3500366D4C /* HomeMonenyCell.m in Sources */,
+				950120B61D2AA46D00FE3613 /* OrderDetailCancelCell.m in Sources */,
 				955610BD1D14B4C900366D4C /* LearnCenterCell.m in Sources */,
 				95CA1D331D10F7C900AAE490 /* UIView+MJExtension.m in Sources */,
 				955610BA1D14B4BD00366D4C /* LearnCenterModel.m in Sources */,
 				95CA1D521D10F7C900AAE490 /* _YYWebImageSetter.m in Sources */,
+				950120B11D2A5E0400FE3613 /* CallHistoriesModel.m in Sources */,
 				95CA1C621D10F7B700AAE490 /* BorderTextFieldView.m in Sources */,
 				951008C61D252CDA00730562 /* NSString+CommonAdd.m in Sources */,
 				95CA1BD31D10F03900AAE490 /* main.m in Sources */,
@@ -2323,6 +2346,7 @@
 				95CA1D481D10F7C900AAE490 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
 				955611421D159FBB00366D4C /* AddBankCardViewController.m in Sources */,
 				955610C71D14B5E400366D4C /* PersonCenterAccountCell.m in Sources */,
+				950120BD1D2AA55700FE3613 /* AppriseOrderCell.m in Sources */,
 				955611261D1588A200366D4C /* MyAccountDetailCell.m in Sources */,
 				95CA1D361D10F7C900AAE490 /* AJPhotoGroupCell.m in Sources */,
 				95CA1DA11D10F85500AAE490 /* UIImage+Additions.m in Sources */,

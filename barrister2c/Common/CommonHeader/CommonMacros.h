@@ -24,6 +24,9 @@
 //    e.退款中
 #define STATUS_REFUND  @"order.status.refund"
 
+//    f 请求取消
+#define STATUS_REQUESTCANCEL @"order.status.request.cancel"
+
 
 
 #define AUTH_STATUS_UNAUTHERIZED @"verify.status.unautherized"

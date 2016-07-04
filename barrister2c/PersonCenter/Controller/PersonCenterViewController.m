@@ -27,6 +27,15 @@
     [self configData];
 }
 
+-(instancetype)init
+{
+    self = [super init];
+    if (self) {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTableView) name:NOTIFICATION_LOGIN_SUCCESS object:nil];
+    }
+    return self;
+}
+
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
@@ -108,6 +117,13 @@
 
 
 #pragma -mark --------UI--------
+
+-(void)reloadTableView
+{
+    [self.items removeAllObjects];
+    [self configData];
+    [self.tableView reloadData];
+}
 
 -(void)configView
 {

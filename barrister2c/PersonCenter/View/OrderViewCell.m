@@ -67,7 +67,7 @@
     if (self.model) {
         [self.headerImageView yy_setImageWithURL:[NSURL URLWithString:self.model.userIcon] placeholder:[UIImage imageNamed:@"timeline_image_loading"]];
         self.nameLabel.text = self.model.name;
-        if ([self.model.orderType isEqualToString:IM]) {
+        if ([self.model.type isEqualToString:IM]) {
             self.timeLabel.text = [NSString stringWithFormat:@"%@",self.model.date];
         }
         else
@@ -88,7 +88,7 @@
         }
         else if ([self.model.status isEqualToString:STATUS_WAITING])
         {
-            self.stateLabel.text = @"待办";
+            self.stateLabel.text = @"待处理";
         }
 
     }

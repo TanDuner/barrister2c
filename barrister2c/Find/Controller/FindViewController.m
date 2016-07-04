@@ -213,6 +213,7 @@ typedef void(^ClickZXItemBlock)(ZXItemView *itemView);
         [button setFrame:RECT(LawLeftPadding + (LawButtonWidth + LawHorSpacing) *(i%LawNumOfLine), LawTopPadding + (LawButtonWidth + LawVerSpacing)*(i/LawNumOfLine), LawButtonWidth, LawButtonWidth)];
         
         UILabel *tipLabel = [[UILabel alloc] initWithFrame:RECT(button.x - 10, button.y + button.height + 15, LawButtonWidth + 20, 12)];
+        tipLabel.textAlignment = NSTextAlignmentCenter;
         tipLabel.textColor = KColorGray666;
         tipLabel.font = SystemFont(12.0f);
         tipLabel.text = self.titleArray[i];

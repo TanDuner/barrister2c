@@ -28,7 +28,7 @@
 
 @implementation OrderDetailCustomInfoCell
 
-+(CGFloat)getHeightWithModel:(BarristerOrderModel *)model
++(CGFloat)getHeightWithModel:(BarristerOrderDetailModel *)model
 {
     return 105 + 10;
 }
@@ -60,9 +60,9 @@
 -(void)layoutSubviews
 {
     [super layoutSubviews];
-    [self.headImageView yy_setImageWithURL:[NSURL URLWithString:self.model.userHeder] placeholder:nil];
-    self.customNamemLabel.text = self.model.customerName;
-    self.customPhoneLabel.text = self.model.customPhone;
+    [self.headImageView yy_setImageWithURL:[NSURL URLWithString:self.model.customerIcon] placeholder:nil];
+    self.customNamemLabel.text = self.model.customerNickname;
+    self.customPhoneLabel.text = self.model.customerPhone;
     [_callButton setFrame:RECT(self.width - 40 - 10, 40 + (64 - 40)/2.0, 40, 40)];
     [self.separteView setFrame:RECT(0, self.height - 10, SCREENWIDTH, 10)];
 

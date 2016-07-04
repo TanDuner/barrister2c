@@ -12,7 +12,46 @@
 #define RequestCancelOrderUrl @"requestCancelOrder"
 #define OrderPraiseUrl @"addOrderStar"
 
+#define OrderDetailUrl @"orderDetail.do"
+
 @implementation OrderProxy
+
+
+/**
+ *  订单详情
+ *
+ *  @param aParams <#aParams description#>
+ *  @param aBlock  <#aBlock description#>
+ */
+-(void)getOrderDetailWithParams:(NSDictionary *)aParams Block:(ServiceCallBlock)aBlock
+{
+    [XuNetWorking postWithUrl:OrderDetailUrl params:aParams success:^(id response) {
+        if (aBlock) {
+            if ([self isCommonCorrectResultCodeWithResponse:response]) {
+                NSDictionary *dict = (NSDictionary *)response;
+                NSDictionary *orderDetail = [dict objectForKey:@"orderDetail"];
+                aBlock(orderDetail,YES);
+            }
+            else
+            {
+                aBlock(CommonNetErrorTip,NO);
+            }
+            
+        }
+    } fail:^(NSError *error) {
+        if (aBlock) {
+            aBlock(CommonNetErrorTip,NO);
+        }
+    }];
+
+}
+
+/**
+ *  订单列表
+ *
+ *  @param aParams <#aParams description#>
+ *  @param aBlock  <#aBlock description#>
+ */
 -(void)getOrderListWithParams:(NSDictionary *)aParams Block:(ServiceCallBlock)aBlock
 {
     [XuNetWorking postWithUrl:GetOrderListUrl params:aParams success:^(id response) {
