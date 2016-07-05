@@ -10,6 +10,7 @@
 #import "XuNetWorking.h"
 #import "OpenUDID.h"
 #import "YKSplashView.h"
+#import "UMMobClick/MobClick.h"
 
 //13301096303
 //700953
@@ -77,6 +78,7 @@
         [headerDict setObject:[BaseDataSingleton shareInstance].userModel.userId forKey:@"X-UID"];
     }
     
+    
     [XuNetWorking configCommonHttpHeaders:headerDict];
     
     //打开debug开关
@@ -85,9 +87,19 @@
 
 
 
+-(void)initUMData
+{
+    UMConfigInstance.appKey = @"577b216967e58e8175000689";
+    UMConfigInstance.channelId = @"App Store";
+    UMConfigInstance.appKey = @"577b216967e58e8175000689";
+    [MobClick startWithConfigure:UMConfigInstance];
+
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
 
+    [self initUMData];
     
     [self initControllersAndConfig];
     

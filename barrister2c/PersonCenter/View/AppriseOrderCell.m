@@ -69,7 +69,7 @@
 {
     if (!_agreeBtn) {
         _agreeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_agreeBtn setTitle:@"完成订单" forState:UIControlStateNormal];
+        [_agreeBtn setTitle:@"评价订单" forState:UIControlStateNormal];
         [_agreeBtn setFrame:RECT(LeftPadding , CGRectGetMaxY(self.tipLabel.frame) + 10, SCREENWIDTH - LeftPadding *2, 40)];
         [_agreeBtn addTarget:self action:@selector(FinishOrderAction) forControlEvents:UIControlEventTouchUpInside];
         [_agreeBtn setBackgroundImage:[UIImage createImageWithColor:kNavigationBarColor] forState:UIControlStateNormal];

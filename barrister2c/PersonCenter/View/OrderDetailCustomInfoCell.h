@@ -11,6 +11,8 @@
 
 @interface OrderDetailCustomInfoCell : BaseTableViewCell
 
+@property (nonatomic,strong) UIButton *callButton;
+
 +(CGFloat)getHeightWithModel:(BarristerOrderDetailModel *)model;
 
 @property (nonatomic,strong) BarristerOrderDetailModel *model;

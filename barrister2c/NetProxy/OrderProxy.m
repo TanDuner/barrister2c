@@ -13,6 +13,7 @@
 #define OrderPraiseUrl @"addOrderStar"
 
 #define OrderDetailUrl @"orderDetail.do"
+#define MakeCallUrl @"makeCall.do"
 
 @implementation OrderProxy
 
@@ -109,6 +110,32 @@
     } fail:^(NSError *error) {
         if (aBlock) {
             aBlock(error,YES);
+        }
+    }];
+}
+
+/**
+ *  拨打电话
+ */
+
+-(void)makeCallWithParams:(NSMutableDictionary *)aParams Block:(ServiceCallBlock)aBlock
+{
+
+    [self appendCommonParamsWithDict:aParams];
+    [XuNetWorking postWithUrl:MakeCallUrl params:aParams success:^(id response) {
+        if (aBlock) {
+            if ([self isCommonCorrectResultCodeWithResponse:response]) {
+                aBlock(response,YES);
+            }
+            else
+            {
+                aBlock(CommonNetErrorTip,NO);
+            }
+            
+        }
+    } fail:^(NSError *error) {
+        if (aBlock) {
+            aBlock(CommonNetErrorTip,NO);
         }
     }];
 }

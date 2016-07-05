@@ -19,17 +19,20 @@ PODS:
     - SDWebImage/Core (= 3.8.1)
   - SDWebImage/Core (3.8.1)
   - Toast (2.4)
+  - UMengAnalytics-NO-IDFA (4.0.5)
 
 DEPENDENCIES:
   - AFNetworking (~> 3.0.4)
   - Reachability
   - SDWebImage
   - Toast (~> 2.4)
+  - UMengAnalytics-NO-IDFA
 
 SPEC CHECKSUMS:
   AFNetworking: a0075feb321559dc78d9d85b55d11caa19eabb93
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
   SDWebImage: 35f9627a3e44b4f292a8a8ce6a531fa488239b91
   Toast: 0773b8fc0e97352ca6054517bec7ebdd4110029d
+  UMengAnalytics-NO-IDFA: 965a219b05475ff2a4c09a164139a27bbaa0e25b
 
 COCOAPODS: 0.37.2

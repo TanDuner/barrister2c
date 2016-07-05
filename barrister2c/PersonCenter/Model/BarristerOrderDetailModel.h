@@ -11,57 +11,55 @@
 #import "CallHistoriesModel.h"
 
 
-//callHistories =     (
-//                     {
-//                         callId = 160703094951880900010298005400cf;
-//                         duration = 0;
-//                         orderId = 20;
-//                         recordUrl = "<null>";
-//                         startTime = "2016-07-03 09:49:51";
-//                     },
-//                     {
-//                         callId = 1607030134462099000100570064cf9f;
-//                         duration = 0;
-//                         orderId = 20;
-//                         recordUrl = "<null>";
-//                         startTime = "2016-07-03 01:34:27";
-//                     }
-//                     );
+//barristerIcon = "http://119.254.167.200:8080/upload/2016/06/26/1466942987875userIcon";
+//barristerId = 5;
+//barristerNickname = "\U53d9\U8ff0\U7a7f";
+//barristerPhone = 13301096303;
+//callHistories = "<null>";
 //caseType = "<null>";
-//customerIcon = "http://119.254.167.200:8080/upload/2016/06/28/1467105926033.jpg";
-//customerId = 3;
+//customerIcon = "<null>";
+//customerId = "<null>";
 //customerNickname = "<null>";
-//customerPhone = 13671057132;
-//endTime = "<null>";
-//id = 20;
+//customerPhone = "<null>";
+//endTime = "2016-07-03 09:30:00";
+//id = 25;
+//isStart = "isStart.no";
 //lawFeedback = "<null>";
-//payTime = "2016-07-03 01:34:26";
-//paymentAmount = 30;
-//remarks = "hello \U6d4b\U8bd5";
-//startTime = "2016-07-03 01:34:26";
+//orderNo = "<null>";
+//payTime = "2016-07-03 15:36:29";
+//paymentAmount = 50;
+//remarks = 1;
+//startTime = "2016-07-03 09:00:00";
 //status = "order.status.waiting";
-//type = IM;
-//userIcon = "http://119.254.167.200:8080/upload/2016/06/28/1467105926033.jpg";
-
+//type = APPOINTMENT;
 
 
 
 @interface BarristerOrderDetailModel : BaseModel
 
-@property (nonatomic,strong) NSMutableArray *callRecordArray;
+@property (nonatomic,strong) NSString *barristerIcon;
+@property (nonatomic,strong) NSString *barristerId;
+@property (nonatomic,strong) NSString *barristerNickname;
+@property (nonatomic,strong) NSString *barristerPhone;
 @property (nonatomic,strong) NSString *caseType;
 @property (nonatomic,strong) NSString *customerIcon;
+@property (nonatomic,strong) NSString *customerId;
 @property (nonatomic,strong) NSString *customerNickname;
 @property (nonatomic,strong) NSString *customerPhone;
+@property (nonatomic,strong) NSString *endTime;
+@property (nonatomic,strong) NSString *isStart;
+@property (nonatomic,strong) NSString *lawFeedback;
 @property (nonatomic,strong) NSString *orderId;
+@property (nonatomic,strong) NSString *orderNo;
 @property (nonatomic,strong) NSString *payTime;
 @property (nonatomic,strong) NSString *paymentAmount;
 @property (nonatomic,strong) NSString *remarks;
+@property (nonatomic,strong) NSString *startTime;
 @property (nonatomic,strong) NSString *status;
 @property (nonatomic,strong) NSString *type;
-@property (nonatomic,strong) NSString *startTime;
-@property (nonatomic,strong) NSString *endTime;
-@property (nonatomic,strong) NSString *lawFeedback;
+
+@property (nonatomic,strong) NSMutableArray *callRecordArray;
+
 
 @property (nonatomic,strong) NSString *userIcon;
 @property (nonatomic,assign) CGFloat markHeight;

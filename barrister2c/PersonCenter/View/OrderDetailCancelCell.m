@@ -77,7 +77,7 @@
 {
     if (!_cancelBtn) {
         _cancelBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_cancelBtn setTitle:@"不同意" forState:UIControlStateNormal];
+        [_cancelBtn setTitle:@"取消订单" forState:UIControlStateNormal];
         [_cancelBtn setBackgroundImage:[UIImage createImageWithColor:kNavigationBarColor] forState:UIControlStateNormal];
         [_cancelBtn setFrame:RECT(LeftPadding , CGRectGetMaxY(self.tipLabel.frame) + 10, SCREENWIDTH - LeftPadding *2, 40)];
         _cancelBtn.layer.cornerRadius = 4.0f;

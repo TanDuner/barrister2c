@@ -145,7 +145,7 @@ typedef NS_ENUM(NSInteger,OrderDetailShowType)
     model2.showType = OrderDetailShowTypeOrderMark;
     [self.items addObject:model2];
 
-    if ([model.status isEqualToString:STATUS_DOING]) {
+    if ([model.status isEqualToString:STATUS_WAITING]) {
         OrderDetailCellModel *model3 = [[OrderDetailCellModel alloc] init];
         model3.showType = OrderDetailShowTypeOrderCancel;
         [self.items addObject:model3];
@@ -164,16 +164,47 @@ typedef NS_ENUM(NSInteger,OrderDetailShowType)
     model5.showType = OrderDetailShowTypeOrderCustomInfo;
     [self.items addObject:model5];
     
-    OrderDetailCellModel *model6 = [[OrderDetailCellModel alloc] init];
-    model6.showType = OrderDetailShowTypeOrderCallRecord;
-    [self.items addObject:model6];
-
-    
+    if ([XuUtlity isValidArray:model.callRecordArray]) {
+        if (model.callRecordArray.count > 0) {
+            OrderDetailCellModel *model6 = [[OrderDetailCellModel alloc] init];
+            model6.showType = OrderDetailShowTypeOrderCallRecord;
+            [self.items addObject:model6];
+            
+        }
+        
+    }
     [self.orderTableView reloadData];
 
+}
+
+
+-(void)callAction:(UIButton *)btn
+{
+    NSDate *startDate = [XuUtlity NSStringDateToNSDate:model.startTime forDateFormatterStyle:DateFormatterDateAndTime];
+    double startNum = [startDate timeIntervalSince1970];
     
+    double nowNum = [[NSDate date] timeIntervalSince1970];
+    if (nowNum > startNum) {
+        NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:model.orderId,@"orderId", nil];
+        [self.proxy makeCallWithParams:params Block:^(id returnData, BOOL success) {
+            if (success) {
+                [XuUItlity showAlertHint:@"已拨通 等待回拨" completionBlock:nil andView:self.view];
+            }
+            else
+            {
+                [XuUItlity showFailedHint:@"拨打失败" completionBlock:nil];
+            }
+            
+        }];
+        
+    }
+    else
+    {
+        [XuUItlity showFailedHint:@"不在约定时间内" completionBlock:nil];
+    }
     
 }
+
 
 #pragma -mark --------UITableView DataSource Methods------
 
@@ -203,22 +234,23 @@ typedef NS_ENUM(NSInteger,OrderDetailShowType)
             break;
         case 2:
         {
-            OrderDetailCustomInfoCell * cellTemp = [[OrderDetailCustomInfoCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
-            cellTemp.model = model;
-            return cellTemp;
-
-        }
-            break;
-        case 3:
-        {
             OrderDetailCancelCell *cellTemp = [[OrderDetailCancelCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
             cellTemp.model = model;
             return cellTemp;
         }
             break;
-        case 4:
+        case 3:
         {
             AppriseOrderCell *cellTemp = [[AppriseOrderCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+            cellTemp.model = model;
+            return cellTemp;
+            
+        }
+            break;
+        case 4:
+        {
+            OrderDetailCustomInfoCell * cellTemp = [[OrderDetailCustomInfoCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+            [cellTemp.callButton addTarget:self action:@selector(callAction:) forControlEvents:UIControlEventTouchUpInside];
             cellTemp.model = model;
             return cellTemp;
 
@@ -255,7 +287,7 @@ typedef NS_ENUM(NSInteger,OrderDetailShowType)
             break;
         case OrderDetailShowTypeOrderCancel:
         {
-            if ([model.status isEqualToString:STATUS_REQUESTCANCEL]) {
+            if ([model.status isEqualToString:STATUS_WAITING]) {
                 return [OrderDetailCancelCell getCellHeight];
             }
             else
@@ -305,6 +337,7 @@ typedef NS_ENUM(NSInteger,OrderDetailShowType)
         _orderTableView  =[[UITableView alloc] initWithFrame:RECT(0, 0, SCREENWIDTH, SCREENHEIGHT - NAVBAR_DEFAULT_HEIGHT) style:UITableViewStylePlain];
         _orderTableView.delegate  = self;
         _orderTableView.dataSource  = self;
+        _orderTableView.backgroundColor = kBaseViewBackgroundColor;
         _orderTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _orderTableView.tableFooterView = [UIView new];
     }

@@ -41,4 +41,11 @@
 -(void)appriseOrderWithParams:(NSDictionary *)aParams Block:(ServiceCallBlock)aBlock;
 
 
+
+/**
+ *  拨打电话
+ */
+
+-(void)makeCallWithParams:(NSMutableDictionary *)aParams Block:(ServiceCallBlock)aBlock;
+
 @end

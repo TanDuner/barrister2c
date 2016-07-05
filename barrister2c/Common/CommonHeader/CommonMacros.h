@@ -29,6 +29,10 @@
 
 
 
+#define ISSTAR_YES 	@"isStart.yes"
+#define ISSTAR_NO   @"isStart.no"
+
+
 #define AUTH_STATUS_UNAUTHERIZED @"verify.status.unautherized"
 #define AUTH_STATUS_SUCCESS @"verify.status.success"
 #define AUTH_STATUS_FAILED @"verify.status.failed"

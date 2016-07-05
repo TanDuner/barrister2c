@@ -13,6 +13,8 @@
 		950120B61D2AA46D00FE3613 /* OrderDetailCancelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 950120B31D2AA46D00FE3613 /* OrderDetailCancelCell.m */; };
 		950120BA1D2AA49600FE3613 /* OrderDetailMarkCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 950120B91D2AA49600FE3613 /* OrderDetailMarkCell.m */; };
 		950120BD1D2AA55700FE3613 /* AppriseOrderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 950120BC1D2AA55700FE3613 /* AppriseOrderCell.m */; };
+		950120C01D2B4E5500FE3613 /* orderdetail_call@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 950120BE1D2B4E5500FE3613 /* orderdetail_call@2x.png */; };
+		950120C11D2B4E5600FE3613 /* orderdetail_call@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 950120BF1D2B4E5500FE3613 /* orderdetail_call@3x.png */; };
 		951008C01D25111A00730562 /* HomeBannerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 951008BF1D25111A00730562 /* HomeBannerModel.m */; };
 		951008C31D25248A00730562 /* NSArray+CommonAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 951008C21D25248A00730562 /* NSArray+CommonAdd.m */; };
 		951008C61D252CDA00730562 /* NSString+CommonAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 951008C51D252CDA00730562 /* NSString+CommonAdd.m */; };
@@ -305,6 +307,8 @@
 		950120B91D2AA49600FE3613 /* OrderDetailMarkCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderDetailMarkCell.m; sourceTree = "<group>"; };
 		950120BB1D2AA55700FE3613 /* AppriseOrderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppriseOrderCell.h; sourceTree = "<group>"; };
 		950120BC1D2AA55700FE3613 /* AppriseOrderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppriseOrderCell.m; sourceTree = "<group>"; };
+		950120BE1D2B4E5500FE3613 /* orderdetail_call@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "orderdetail_call@2x.png"; sourceTree = "<group>"; };
+		950120BF1D2B4E5500FE3613 /* orderdetail_call@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "orderdetail_call@3x.png"; sourceTree = "<group>"; };
 		951008BE1D25111A00730562 /* HomeBannerModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeBannerModel.h; sourceTree = "<group>"; };
 		951008BF1D25111A00730562 /* HomeBannerModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeBannerModel.m; sourceTree = "<group>"; };
 		951008C11D25248A00730562 /* NSArray+CommonAdd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+CommonAdd.h"; sourceTree = "<group>"; };
@@ -1252,6 +1256,8 @@
 		95CA1BFC1D10F77400AAE490 /* PersonCenter */ = {
 			isa = PBXGroup;
 			children = (
+				950120BE1D2B4E5500FE3613 /* orderdetail_call@2x.png */,
+				950120BF1D2B4E5500FE3613 /* orderdetail_call@3x.png */,
 				955610DE1D14B7B200366D4C /* my-account_card@2x.png */,
 				955610DF1D14B7B200366D4C /* my-account_card@3x.png */,
 				955610E01D14B7B200366D4C /* my-account_cash@2x.png */,
@@ -2040,6 +2046,7 @@
 				95CA1DCC1D10F8F800AAE490 /* Tab01Highlighted@2x.png in Resources */,
 				95CA1DD31D10F8F800AAE490 /* Tab02Normal@3x.png in Resources */,
 				95CA1D3C1D10F7C900AAE490 /* BoPhotoPicker.bundle in Resources */,
+				950120C11D2B4E5600FE3613 /* orderdetail_call@3x.png in Resources */,
 				958EEBA91D26B46700D4CF4C /* common_point_loading@2x.png in Resources */,
 				95CA1DF31D10F91900AAE490 /* navigationbar_back_icon@2x.png in Resources */,
 				958EEBEF1D282D7300D4CF4C /* Me_message@2x.png in Resources */,
@@ -2064,6 +2071,7 @@
 				958EEBC51D27A17700D4CF4C /* appointmentService@3x.png in Resources */,
 				958EEBEE1D282D7300D4CF4C /* Me_like@3x.png in Resources */,
 				955610F11D14B7B200366D4C /* my-account_card@2x.png in Resources */,
+				950120C01D2B4E5500FE3613 /* orderdetail_call@2x.png in Resources */,
 				955610F21D14B7B200366D4C /* my-account_card@3x.png in Resources */,
 				95CA1DF51D10F91900AAE490 /* timeline_image_loading.png in Resources */,
 				958EEBC71D27A17700D4CF4C /* imService@3x.png in Resources */,
