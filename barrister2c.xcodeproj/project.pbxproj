@@ -15,6 +15,7 @@
 		950120BD1D2AA55700FE3613 /* AppriseOrderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 950120BC1D2AA55700FE3613 /* AppriseOrderCell.m */; };
 		950120C01D2B4E5500FE3613 /* orderdetail_call@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 950120BE1D2B4E5500FE3613 /* orderdetail_call@2x.png */; };
 		950120C11D2B4E5600FE3613 /* orderdetail_call@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 950120BF1D2B4E5500FE3613 /* orderdetail_call@3x.png */; };
+		950120CF1D2B7CD100FE3613 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 950120CE1D2B7CD100FE3613 /* CoreTelephony.framework */; };
 		951008C01D25111A00730562 /* HomeBannerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 951008BF1D25111A00730562 /* HomeBannerModel.m */; };
 		951008C31D25248A00730562 /* NSArray+CommonAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 951008C21D25248A00730562 /* NSArray+CommonAdd.m */; };
 		951008C61D252CDA00730562 /* NSString+CommonAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 951008C51D252CDA00730562 /* NSString+CommonAdd.m */; };
@@ -309,6 +310,7 @@
 		950120BC1D2AA55700FE3613 /* AppriseOrderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppriseOrderCell.m; sourceTree = "<group>"; };
 		950120BE1D2B4E5500FE3613 /* orderdetail_call@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "orderdetail_call@2x.png"; sourceTree = "<group>"; };
 		950120BF1D2B4E5500FE3613 /* orderdetail_call@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "orderdetail_call@3x.png"; sourceTree = "<group>"; };
+		950120CE1D2B7CD100FE3613 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		951008BE1D25111A00730562 /* HomeBannerModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeBannerModel.h; sourceTree = "<group>"; };
 		951008BF1D25111A00730562 /* HomeBannerModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeBannerModel.m; sourceTree = "<group>"; };
 		951008C11D25248A00730562 /* NSArray+CommonAdd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+CommonAdd.h"; sourceTree = "<group>"; };
@@ -797,6 +799,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				950120CF1D2B7CD100FE3613 /* CoreTelephony.framework in Frameworks */,
 				95CA1E051D10F9F500AAE490 /* libz.tbd in Frameworks */,
 				95CA1E031D10F9EA00AAE490 /* libsqlite3.tbd in Frameworks */,
 				242C6CF2A427FE9AB164E737 /* libPods.a in Frameworks */,
@@ -1972,6 +1975,7 @@
 		FC8B3722513233B124AC9E13 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				950120CE1D2B7CD100FE3613 /* CoreTelephony.framework */,
 				95CA1E041D10F9F500AAE490 /* libz.tbd */,
 				95CA1E021D10F9EA00AAE490 /* libsqlite3.tbd */,
 				3CE61524527A7610BA559202 /* libPods.a */,
