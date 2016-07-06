@@ -83,7 +83,7 @@
     
 //    [self.appraiseButton setTitle:[NSString stringWithFormat:@"评价%ld",self.model.appraiseCount] forState:UIControlStateNormal];
     
-    [self.collectButton setTitle:[NSString stringWithFormat:@"收藏%ld",self.model.appraiseCount] forState:UIControlStateNormal];
+    [self.collectButton setTitle:[NSString stringWithFormat:@"收藏"] forState:UIControlStateNormal];
     
     
     if (self.model.intro.length > 0) {
@@ -132,9 +132,12 @@
     
     if ([self.model.isCollect isEqualToString:@"yes"]) {
         [_collectButton setImage:[UIImage imageNamed:@"collect"] forState:UIControlStateNormal];
+        [self.collectButton setTitle:[NSString stringWithFormat:@"已收藏"] forState:UIControlStateNormal];
+
     }
     else{
         [_collectButton setImage:[UIImage imageNamed:@"uncollect"] forState:UIControlStateNormal];
+        [self.collectButton setTitle:[NSString stringWithFormat:@"收藏"] forState:UIControlStateNormal];
     }
 }
 

@@ -15,6 +15,9 @@
 #import "OrderDetailCancelCell.h"
 #import "OrderDetailMarkCell.h"
 #import "AppriseOrderCell.h"
+#import "UIButton+EnlargeEdge.h"
+#import "OrderPraiseViewController.h"
+#import "RewardSelectViewController.h"
 
 /**
  * 用于显示Detail的类型
@@ -45,10 +48,6 @@ typedef NS_ENUM(NSInteger,OrderDetailShowType)
 @end
 
 
-
-
-
-
 @interface OrderDetailViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
     BarristerOrderDetailModel *model;
@@ -59,6 +58,11 @@ typedef NS_ENUM(NSInteger,OrderDetailShowType)
 @property (nonatomic,strong) NSString *orderId;
 
 @property (nonatomic,strong) OrderProxy *proxy;
+
+@property (nonatomic,strong) UIView *rewardView;
+@property (nonatomic,strong) NSString *moneny;
+
+@property (nonatomic,strong) RewardSelectViewController *rewardSelectVC;
 
 @end
 
@@ -75,7 +79,7 @@ typedef NS_ENUM(NSInteger,OrderDetailShowType)
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self configView];
-    [self initData];
+    [XuUItlity showLoadingInView:self.view hintText:@"加载中..."];
 }
 
 
@@ -84,6 +88,7 @@ typedef NS_ENUM(NSInteger,OrderDetailShowType)
 {
     [super viewWillAppear:animated];
     [self showTabbar:NO];
+    [self initData];
 }
 
 #pragma -mark ---------UI----------
@@ -118,6 +123,7 @@ typedef NS_ENUM(NSInteger,OrderDetailShowType)
     
     __weak typeof(*&self) weakSelf = self;
     [self.proxy getOrderDetailWithParams:aParams Block:^(id returnData, BOOL success) {
+        [XuUItlity hideLoading];
         if (success) {
             NSDictionary *dict = (NSDictionary *)returnData;
             model = [[BarristerOrderDetailModel alloc] initWithDictionary:dict];
@@ -152,7 +158,7 @@ typedef NS_ENUM(NSInteger,OrderDetailShowType)
    
     }
     
-    if ([model.status isEqualToString:STATUS_DONE]) {
+    if ([model.status isEqualToString:STATUS_DONE] && [model.isStart isEqualToString:ISSTAR_NO]) {
         OrderDetailCellModel *model4 = [[OrderDetailCellModel alloc] init];
         model4.showType = OrderDetailShowTypeAppriseOrder;
         [self.items addObject:model4];
@@ -173,11 +179,20 @@ typedef NS_ENUM(NSInteger,OrderDetailShowType)
         }
         
     }
+    
+    if ([model.status isEqualToString:STATUS_DONE]) {
+        self.orderTableView.tableFooterView = self.rewardView;
+    }
+    
     [self.orderTableView reloadData];
 
 }
 
-
+/**
+ *  拨打电话
+ *
+ *  @param btn
+ */
 -(void)callAction:(UIButton *)btn
 {
     NSDate *startDate = [XuUtlity NSStringDateToNSDate:model.startTime forDateFormatterStyle:DateFormatterDateAndTime];
@@ -205,6 +220,48 @@ typedef NS_ENUM(NSInteger,OrderDetailShowType)
     
 }
 
+/**
+ *  申请取消订单
+ *
+ *  @param sender
+ */
+-(void)cancelOrderAciton:(id)sender
+{
+    __weak typeof(*&self) weakSelf = self;
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setObject:model.orderId forKey:@"orderId"];
+    [self.proxy applyToCancelOrderWithParams:params Block:^(id returnData, BOOL success) {
+        if (success) {
+            [XuUItlity showSucceedHint:@"申请成功" completionBlock:nil];
+            [weakSelf initData];
+        }
+        else
+        {
+            [XuUItlity showFailedHint:@"申请失败" completionBlock:nil];
+        }
+    }];
+}
+
+
+-(void)rewardAciton
+{
+    
+    [self.view addSubview:self.rewardSelectVC.view];
+    [self.rewardSelectVC show];
+    
+}
+
+
+/**
+ *  评价订单
+ */
+-(void)appriseOrderAction
+{
+    OrderPraiseViewController *praiseVC = [[OrderPraiseViewController alloc] init];
+    [self.navigationController pushViewController:praiseVC animated:YES];
+    
+}
+
 
 #pragma -mark --------UITableView DataSource Methods------
 
@@ -215,7 +272,7 @@ typedef NS_ENUM(NSInteger,OrderDetailShowType)
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
+    __weak typeof(*&self) weakSelf = self;
     OrderDetailCellModel *modeTemp = (OrderDetailCellModel *)[self.items objectAtIndex:indexPath.row];
     switch (modeTemp.showType) {
         case 0:
@@ -235,6 +292,10 @@ typedef NS_ENUM(NSInteger,OrderDetailShowType)
         case 2:
         {
             OrderDetailCancelCell *cellTemp = [[OrderDetailCancelCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+            cellTemp.block = ^(NSString *btnType)
+            {
+                [weakSelf cancelOrderAciton:nil];
+            };
             cellTemp.model = model;
             return cellTemp;
         }
@@ -242,6 +303,10 @@ typedef NS_ENUM(NSInteger,OrderDetailShowType)
         case 3:
         {
             AppriseOrderCell *cellTemp = [[AppriseOrderCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+            cellTemp.block  =^()
+            {
+                [weakSelf appriseOrderAction];
+            };
             cellTemp.model = model;
             return cellTemp;
             
@@ -298,7 +363,7 @@ typedef NS_ENUM(NSInteger,OrderDetailShowType)
             break;
         case OrderDetailShowTypeAppriseOrder:
         {
-            if ([model.status isEqualToString:STATUS_DOING]) {
+            if ([model.status isEqualToString:STATUS_DONE]) {
                 return [AppriseOrderCell getCellHeight];
             }
             else
@@ -350,6 +415,30 @@ typedef NS_ENUM(NSInteger,OrderDetailShowType)
         _proxy = [[OrderProxy alloc] init];
     }
     return _proxy;
+}
+
+-(UIView *)rewardView
+{
+    if (!_rewardView) {
+        _rewardView = [[UIView alloc] initWithFrame:RECT(0, 0, SCREENWIDTH, 50)];
+        UIButton *rewardBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [rewardBtn setTitle:@"打赏" forState:UIControlStateNormal];
+        [rewardBtn setTitleEdgeInsets:UIEdgeInsetsMake(50, 0, 0, 0)];
+        [rewardBtn setFrame:RECT((SCREENWIDTH - 30)/2.0, 10, 30, 30)];
+        rewardBtn.backgroundColor = [UIColor redColor];
+        [rewardBtn addTarget:self action:@selector(rewardAciton) forControlEvents:UIControlEventTouchUpInside];
+        [_rewardView addSubview:rewardBtn];
+    }
+    return _rewardView;
+}
+
+-(RewardSelectViewController *)rewardSelectVC
+{
+    if (!_rewardSelectVC) {
+        _rewardSelectVC = [[RewardSelectViewController alloc] init];
+        _rewardSelectVC.detailModel = model;
+    }
+    return _rewardSelectVC;
 }
 
 @end

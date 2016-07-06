@@ -137,13 +137,15 @@ typedef void(^ClickZXItemBlock)(ZXItemView *itemView);
 
     [self configView];
     
-    [self configData];
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     [self showTabbar:YES];
+    if (self.titleArray.count == 0) {
+        [self configData];
+    }
 }
 
 #pragma -mark --UI--

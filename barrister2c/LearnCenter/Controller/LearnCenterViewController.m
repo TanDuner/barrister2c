@@ -33,9 +33,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    [self configData];
 }
 
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    if (self.chanelItems.count == 0) {
+        [self configData];
+    }
+}
 
 
 - (void)didReceiveMemoryWarning {

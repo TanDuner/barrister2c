@@ -62,6 +62,7 @@
     
     [self addSubview:self.backgroundStarView];
     [self addSubview:self.foregroundStarView];
+
     
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(userTapRateView:)];
     tapGesture.numberOfTapsRequired = 1;
@@ -69,6 +70,9 @@
 }
 
 - (void)userTapRateView:(UITapGestureRecognizer *)gesture {
+    if (!self.isAllowTap) {
+        return;
+    }
     CGPoint tapPoint = [gesture locationInView:self];
     CGFloat offset = tapPoint.x;
     CGFloat width = (self.bounds.size.width / self.numberOfStars);

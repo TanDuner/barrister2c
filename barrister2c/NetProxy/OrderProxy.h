@@ -48,4 +48,19 @@
 
 -(void)makeCallWithParams:(NSMutableDictionary *)aParams Block:(ServiceCallBlock)aBlock;
 
+
+/**
+ *  打赏
+ *
+ *  @param aParams
+ *  @param aBlock
+ */
+-(void)rewardOrderWithParams:(NSMutableDictionary *)aParams Block:(ServiceCallBlock)aBlock;
+
+
+-(void)downloadVoiceWithUrl:(NSString *)voiceUrl
+                   savePath:(NSString *)savePath
+                      Block:(ServiceCallBlock)aBlock;
+
+
 @end

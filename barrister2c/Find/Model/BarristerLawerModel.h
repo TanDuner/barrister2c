@@ -27,7 +27,7 @@
 
 @property (nonatomic,strong) NSString *name;
 
-@property (nonatomic,assign) NSString *rating;
+@property (nonatomic,strong) NSString *rating;
 
 @property (nonatomic,assign) NSInteger recentServiceTimes;
 

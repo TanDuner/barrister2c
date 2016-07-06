@@ -10,4 +10,8 @@
 
 @interface OrderPraiseViewController : BaseViewController
 
+/**
+ *  订单ID
+ */
+@property (nonatomic,strong) NSString *orderId;
 @end

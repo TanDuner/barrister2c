@@ -14,6 +14,7 @@
 
 #define OrderDetailUrl @"orderDetail.do"
 #define MakeCallUrl @"makeCall.do"
+#define RewardOrderUrl @"rewardOrder.do"
 
 @implementation OrderProxy
 
@@ -78,6 +79,7 @@
  */
 -(void)applyToCancelOrderWithParams:(NSDictionary *)aParams Block:(ServiceCallBlock)aBlock
 {
+    [self appendCommonParamsWithDict:aParams];
     [XuNetWorking postWithUrl:RequestCancelOrderUrl params:aParams success:^(id response) {
         if (aBlock) {
             if ([self isCommonCorrectResultCodeWithResponse:response]) {
@@ -137,6 +139,54 @@
         if (aBlock) {
             aBlock(CommonNetErrorTip,NO);
         }
+    }];
+}
+
+/**
+ *  打赏
+ *
+ *  @param aParams
+ *  @param aBlock
+ */
+-(void)rewardOrderWithParams:(NSMutableDictionary *)aParams Block:(ServiceCallBlock)aBlock
+{
+    [self appendCommonParamsWithDict:aParams];
+    [XuNetWorking postWithUrl:RewardOrderUrl params:aParams success:^(id response) {
+        if (aBlock) {
+            if ([self isCommonCorrectResultCodeWithResponse:response]) {
+                aBlock(response,YES);
+            }
+            else
+            {
+                aBlock(CommonNetErrorTip,NO);
+            }
+            
+        }
+    } fail:^(NSError *error) {
+        if (aBlock) {
+            aBlock(CommonNetErrorTip,NO);
+        }
+    }];
+}
+
+/**
+ *  下载录音文件
+ *
+ *  @param voiceUrl
+ *  @param savePath
+ *  @param aBlock
+ */
+-(void)downloadVoiceWithUrl:(NSString *)voiceUrl
+                   savePath:(NSString *)savePath
+                      Block:(ServiceCallBlock)aBlock
+{
+    [XuNetWorking updateBaseUrl:nil];
+    [XuNetWorking downloadWithUrl:voiceUrl saveToPath:savePath progress:nil success:^(id response) {
+        [XuNetWorking updateBaseUrl:BaseUrl];
+        aBlock(response,YES);
+    } failure:^(NSError *error) {
+        [XuNetWorking updateBaseUrl:BaseUrl];
+        aBlock(CommonNetErrorTip,NO);
     }];
 }
 

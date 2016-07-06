@@ -19,6 +19,11 @@
 		951008C01D25111A00730562 /* HomeBannerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 951008BF1D25111A00730562 /* HomeBannerModel.m */; };
 		951008C31D25248A00730562 /* NSArray+CommonAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 951008C21D25248A00730562 /* NSArray+CommonAdd.m */; };
 		951008C61D252CDA00730562 /* NSString+CommonAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 951008C51D252CDA00730562 /* NSString+CommonAdd.m */; };
+		9529CC091D2BF6610067597A /* RewardSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9529CC081D2BF6610067597A /* RewardSelectViewController.m */; };
+		9529CC171D2C0D520067597A /* DownloadVoiceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9529CC161D2C0D520067597A /* DownloadVoiceManager.m */; };
+		9529CC241D2CA4870067597A /* Appraisalstar1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9529CC211D2CA4870067597A /* Appraisalstar1@2x.png */; };
+		9529CC251D2CA4870067597A /* Appraisalstar2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9529CC221D2CA4870067597A /* Appraisalstar2@2x.png */; };
+		9529CC261D2CA4870067597A /* Appraisalstar3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9529CC231D2CA4870067597A /* Appraisalstar3@2x.png */; };
 		955610871D136E2100366D4C /* LawBooksModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 955610861D136E2100366D4C /* LawBooksModel.m */; };
 		955610BA1D14B4BD00366D4C /* LearnCenterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 955610B91D14B4BD00366D4C /* LearnCenterModel.m */; };
 		955610BD1D14B4C900366D4C /* LearnCenterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 955610BC1D14B4C900366D4C /* LearnCenterCell.m */; };
@@ -317,6 +322,13 @@
 		951008C21D25248A00730562 /* NSArray+CommonAdd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+CommonAdd.m"; sourceTree = "<group>"; };
 		951008C41D252CDA00730562 /* NSString+CommonAdd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+CommonAdd.h"; sourceTree = "<group>"; };
 		951008C51D252CDA00730562 /* NSString+CommonAdd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+CommonAdd.m"; sourceTree = "<group>"; };
+		9529CC071D2BF6610067597A /* RewardSelectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RewardSelectViewController.h; sourceTree = "<group>"; };
+		9529CC081D2BF6610067597A /* RewardSelectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RewardSelectViewController.m; sourceTree = "<group>"; };
+		9529CC151D2C0D520067597A /* DownloadVoiceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadVoiceManager.h; sourceTree = "<group>"; };
+		9529CC161D2C0D520067597A /* DownloadVoiceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadVoiceManager.m; sourceTree = "<group>"; };
+		9529CC211D2CA4870067597A /* Appraisalstar1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Appraisalstar1@2x.png"; sourceTree = "<group>"; };
+		9529CC221D2CA4870067597A /* Appraisalstar2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Appraisalstar2@2x.png"; sourceTree = "<group>"; };
+		9529CC231D2CA4870067597A /* Appraisalstar3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Appraisalstar3@2x.png"; sourceTree = "<group>"; };
 		955610851D136E2100366D4C /* LawBooksModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LawBooksModel.h; sourceTree = "<group>"; };
 		955610861D136E2100366D4C /* LawBooksModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LawBooksModel.m; sourceTree = "<group>"; };
 		955610B81D14B4BD00366D4C /* LearnCenterModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LearnCenterModel.h; sourceTree = "<group>"; };
@@ -818,6 +830,15 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		9529CC141D2C0D2F0067597A /* DownloadVoice */ = {
+			isa = PBXGroup;
+			children = (
+				9529CC151D2C0D520067597A /* DownloadVoiceManager.h */,
+				9529CC161D2C0D520067597A /* DownloadVoiceManager.m */,
+			);
+			path = DownloadVoice;
+			sourceTree = "<group>";
+		};
 		9556111A1D15852900366D4C /* Login */ = {
 			isa = PBXGroup;
 			children = (
@@ -906,6 +927,9 @@
 			children = (
 				958EEBDE1D27FFEC00D4CF4C /* CWStarRateView.h */,
 				958EEBDF1D27FFEC00D4CF4C /* CWStarRateView.m */,
+				9529CC211D2CA4870067597A /* Appraisalstar1@2x.png */,
+				9529CC221D2CA4870067597A /* Appraisalstar2@2x.png */,
+				9529CC231D2CA4870067597A /* Appraisalstar3@2x.png */,
 			);
 			path = starView;
 			sourceTree = "<group>";
@@ -1089,6 +1113,7 @@
 		95CA1BF01D10F3ED00AAE490 /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				9529CC141D2C0D2F0067597A /* DownloadVoice */,
 				95CA1D6D1D10F85500AAE490 /* Categorys */,
 				95CA1D901D10F85500AAE490 /* CityChoose */,
 				95CA1D941D10F85500AAE490 /* UIUtlity */,
@@ -1848,6 +1873,8 @@
 				955A7AF01D1D887C00D1DEAC /* MyOrderListViewController.m */,
 				955A7AFB1D1D8EC000D1DEAC /* OrderDetailViewController.h */,
 				955A7AFC1D1D8EC000D1DEAC /* OrderDetailViewController.m */,
+				9529CC071D2BF6610067597A /* RewardSelectViewController.h */,
+				9529CC081D2BF6610067597A /* RewardSelectViewController.m */,
 				95BD998B1D25DF8E002E5B0D /* FeedBackViewController.h */,
 				95BD998C1D25DF8E002E5B0D /* FeedBackViewController.m */,
 				958EEBBD1D278A8500D4CF4C /* OrderPraiseViewController.h */,
@@ -2078,6 +2105,7 @@
 				950120C01D2B4E5500FE3613 /* orderdetail_call@2x.png in Resources */,
 				955610F21D14B7B200366D4C /* my-account_card@3x.png in Resources */,
 				95CA1DF51D10F91900AAE490 /* timeline_image_loading.png in Resources */,
+				9529CC251D2CA4870067597A /* Appraisalstar2@2x.png in Resources */,
 				958EEBC71D27A17700D4CF4C /* imService@3x.png in Resources */,
 				95CA1DD01D10F8F800AAE490 /* Tab02Highlighted@2x.png in Resources */,
 				95CA1DF21D10F91900AAE490 /* navigationbar_back_icon_hl@3x.png in Resources */,
@@ -2092,12 +2120,14 @@
 				955A7B241D1FAD7700D1DEAC /* typeFlag@3x.png in Resources */,
 				958EEBCF1D27AA8400D4CF4C /* uncollect@3x.png in Resources */,
 				958EEBC41D27A17700D4CF4C /* appointmentService@2x.png in Resources */,
+				9529CC261D2CA4870067597A /* Appraisalstar3@2x.png in Resources */,
 				95CA1DEF1D10F91900AAE490 /* common_icon_warning@2x.png in Resources */,
 				955A7AEA1D1D7A3100D1DEAC /* unSelectedable@2x.png in Resources */,
 				95CA1DD81D10F8F800AAE490 /* Tab04Highlighted@2x.png in Resources */,
 				95CA1DD21D10F8F800AAE490 /* Tab02Normal@2x.png in Resources */,
 				958EEBB11D27790A00D4CF4C /* guide_1@2x.png in Resources */,
 				958EEBEC1D282D7300D4CF4C /* Me_Account@3x.png in Resources */,
+				9529CC241D2CA4870067597A /* Appraisalstar1@2x.png in Resources */,
 				95CA1DCE1D10F8F800AAE490 /* Tab01Normal@2x.png in Resources */,
 				95CA1DD91D10F8F800AAE490 /* Tab04Highlighted@3x.png in Resources */,
 				95CA1DDA1D10F8F800AAE490 /* Tab04Normal@2x.png in Resources */,
@@ -2260,6 +2290,7 @@
 				95CA1D5B1D10F7C900AAE490 /* UIView+YYAdd.m in Sources */,
 				95CA1D371D10F7C900AAE490 /* AJPhotoGroupView.m in Sources */,
 				95CA1C611D10F7B700AAE490 /* BaseTableViewCell.m in Sources */,
+				9529CC091D2BF6610067597A /* RewardSelectViewController.m in Sources */,
 				95CA1D6B1D10F7C900AAE490 /* YYWebImageOperation.m in Sources */,
 				95CA1D2B1D10F7C900AAE490 /* MJRefreshConst.m in Sources */,
 				955A7AF11D1D887C00D1DEAC /* MyOrderListViewController.m in Sources */,
@@ -2367,6 +2398,7 @@
 				955611211D1585A200366D4C /* MyAccountHeadView.m in Sources */,
 				955611441D159FBB00366D4C /* MyBankCardController.m in Sources */,
 				95CA1D3F1D10F7C900AAE490 /* AJPhotoZoomingScrollView.m in Sources */,
+				9529CC171D2C0D520067597A /* DownloadVoiceManager.m in Sources */,
 				9556113A1D159ED300366D4C /* TiXianViewControlleer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

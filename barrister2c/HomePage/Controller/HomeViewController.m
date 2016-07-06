@@ -45,6 +45,19 @@
         [self.tableView reloadData];
     }
 
+    if ([[BaseDataSingleton shareInstance].loginState isEqualToString:@"1"]) {
+        [self loadAccountData];
+    }
+    else
+    {
+
+        [BaseDataSingleton shareInstance].remainingBalance = @"0";
+        [BaseDataSingleton shareInstance].totalConsume = @"0";
+
+    }
+    if (self.areaItems.count == 0 || self.typeItems.count == 0) {
+        [self loadCommonOtherData];
+    }
     [self showTabbar:YES];
     
 
@@ -84,18 +97,16 @@
 
 -(void)loadData
 {
-    [self.proxy getHomePageDataWithParams:nil Block:^(id returnData, BOOL success) {
-        if (success) {
-            NSDictionary *dict = (NSDictionary *)returnData;
-            [self handleDataWithDict:dict];
-        }
-        else
-        {
-            [XuUItlity showFailedHint:@"请求失败" completionBlock:nil];
-        }
-    }];
+   
+    [self loadAccountData];
+    [self loadCommonOtherData];
     
-    
+   
+}
+
+-(void)loadAccountData
+{
+
     __weak typeof(*&self) weakSelf = self;
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     [self.accountProxy getMyAccountDataWithParams:params Block:^(id returnData, BOOL success) {
@@ -109,6 +120,22 @@
         else
         {
             [XuUItlity showFailedHint:@"加载账户信息失败" completionBlock:nil];
+        }
+    }];
+}
+
+
+-(void)loadCommonOtherData
+{
+
+    [self.proxy getHomePageDataWithParams:nil Block:^(id returnData, BOOL success) {
+        if (success) {
+            NSDictionary *dict = (NSDictionary *)returnData;
+            [self handleDataWithDict:dict];
+        }
+        else
+        {
+            [XuUItlity showFailedHint:@"请求失败" completionBlock:nil];
         }
     }];
 }
@@ -129,6 +156,14 @@
 
 -(void)handleDataWithDict:(NSDictionary *)dict
 {
+    if ([XuUtlity isValidArray:self.areaItems]) {
+        [self.areaItems removeAllObjects];
+    }
+    if ([XuUtlity isValidArray:self.typeItems]) {
+        [self.typeItems removeAllObjects];
+    }
+
+
     NSArray *bizAreasArray = [dict objectForKey:@"bizAreas"];
     NSArray *bizTypesArray = [dict objectForKey:@"bizTypes"];
     NSArray *bannerListArray = [dict objectForKey:@"list"];

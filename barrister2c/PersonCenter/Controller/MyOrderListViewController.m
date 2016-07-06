@@ -94,7 +94,7 @@
 -(void)configView
 {
     self.title = @"我的订单";
-    self.tableView = [[RefreshTableView alloc] initWithFrame:RECT(0, 0, SCREENWIDTH, SCREENHEIGHT - NAVBAR_DEFAULT_HEIGHT - TABBAR_HEIGHT) style:UITableViewStylePlain];
+    self.tableView = [[RefreshTableView alloc] initWithFrame:RECT(0, 0, SCREENWIDTH, SCREENHEIGHT - NAVBAR_DEFAULT_HEIGHT) style:UITableViewStylePlain];
     [self.tableView setFootLoadMoreControl];
     self.tableView.pageSize = 10;
     self.tableView.backgroundColor = kBaseViewBackgroundColor;
@@ -150,9 +150,12 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    BarristerOrderModel *model = [self.items objectAtIndex:indexPath.row];
-    OrderDetailViewController *detailVC = [[OrderDetailViewController alloc] initWithModel:model];
-    [self.navigationController pushViewController:detailVC animated:YES];
+    if (self.items.count > indexPath.row) {
+        BarristerOrderModel *model = [self.items objectAtIndex:indexPath.row];
+        OrderDetailViewController *detailVC = [[OrderDetailViewController alloc] initWithModel:model];
+        [self.navigationController pushViewController:detailVC animated:YES];
+    }
+
 
 }
 #pragma -mark ---

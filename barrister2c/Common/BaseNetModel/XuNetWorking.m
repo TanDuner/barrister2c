@@ -115,7 +115,8 @@ static XuRequestType  sg_requestType  = kXuRequestTypeJSON;
                                success:(XuResponseSuccess)success
                                   fail:(XuResponseFail)fail {
     AFHTTPSessionManager *manager = [self manager];
-    
+    [XuNetWorking updateBaseUrl:BaseUrl];
+
     if ([self baseUrl] == nil) {
         if ([NSURL URLWithString:url] == nil) {
             XuAppLog(@"URLString无效，无法生成URL。可能是URL中有中文，请尝试Encode URL");
@@ -403,6 +404,8 @@ static XuRequestType  sg_requestType  = kXuRequestTypeJSON;
     manager.operationQueue.maxConcurrentOperationCount = 3;
     return manager;
 }
+
+
 
 + (void)logWithSuccessResponse:(id)response url:(NSString *)url params:(NSDictionary *)params {
     XuAppLog(@"\nabsoluteUrl: %@\n params:%@\n response:%@\n\n",

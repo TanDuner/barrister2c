@@ -248,7 +248,7 @@ typedef void(^XuResponseFail)(NSError *error);
 + (XuURLSessionTask *)downloadWithUrl:(NSString *)url
                             saveToPath:(NSString *)saveToPath
                               progress:(XuDownloadProgress)progressBlock
-
+                
                                success:(XuResponseSuccess)success
                                failure:(XuResponseFail)failure;
 @end

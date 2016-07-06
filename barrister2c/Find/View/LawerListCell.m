@@ -8,6 +8,7 @@
 
 #import "LawerListCell.h"
 #import "YYWebImage.h"
+#import "CWStarRateView.h"
 
 #define ImageWidth 60
 
@@ -25,6 +26,8 @@
 
 @property (nonatomic,strong) UILabel *goodAtLabel;
 
+@property (nonatomic,strong) CWStarRateView *starView;
+
 @end
 
 @implementation LawerListCell
@@ -37,7 +40,7 @@
         [self addSubview:self.areaLabel];
         [self addSubview:self.companyLabel];
         [self addSubview:self.goodAtLabel];
-        
+        [self addSubview:self.starView];
     }
     return self;
 }
@@ -75,6 +78,8 @@
     
     [self.headImageView yy_setImageWithURL:[NSURL URLWithString:self.model.userIcon] placeholder:[UIImage imageNamed:@"commom_default_head"]];
 
+    [self.starView setFrame:RECT(SCREENWIDTH - 80 - 10, 10, 80, 15)];
+    [self.starView setScorePercent:self.model.rating.floatValue/5.0];
 }
 
 
@@ -170,6 +175,15 @@
     return _goodAtLabel;
 }
 
+-(CWStarRateView *)starView
+{
+    if (!_starView) {
+        _starView = [[CWStarRateView alloc] initWithFrame:RECT(SCREENWIDTH - 80 - 10, 10, 80, 15) numberOfStars:5];
+        _starView.isAllowTap = NO;
+        _starView.hasAnimation = YES;
+    }
+    return _starView;
+}
 
 
 @end

@@ -22,6 +22,8 @@
 
 @property (nonatomic, weak) id<CWStarRateViewDelegate>delegate;
 
+@property (nonatomic,assign) BOOL isAllowTap;
+
 - (instancetype)initWithFrame:(CGRect)frame numberOfStars:(NSInteger)numberOfStars;
 
 @end

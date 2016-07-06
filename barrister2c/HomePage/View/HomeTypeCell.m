@@ -181,7 +181,7 @@
 {
     if (!_tipLabel) {
         _tipLabel = [[UILabel alloc] initWithFrame:RECT(LeftPadding + _flagImageView.width + 7, (45 - 15)/2.0, 200, 15)];
-        _tipLabel.text = @"业务类型";
+        _tipLabel.text = @"线上专项服务";
         _tipLabel.font = SystemFont(14.0f);
         _tipLabel.textColor = RGBCOLOR(27, 161, 232);
         _tipLabel.textAlignment = NSTextAlignmentLeft;
