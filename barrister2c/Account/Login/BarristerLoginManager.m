@@ -69,7 +69,7 @@
              *  登录失败 清空用户信息
              */
             
-            [[BaseDataSingleton shareInstance] clearUserInfo];
+//            [[BaseDataSingleton shareInstance] clearUserInfo];
         }
     }];
 }

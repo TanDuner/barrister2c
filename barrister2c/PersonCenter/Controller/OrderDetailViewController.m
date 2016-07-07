@@ -20,6 +20,7 @@
 #import "RewardSelectViewController.h"
 #import "VolumePlayHelper.h"
 
+#import "UIButton+EnlargeEdge.h"
 /**
  * 用于显示Detail的类型
  */
@@ -440,9 +441,10 @@ typedef NS_ENUM(NSInteger,OrderDetailShowType)
         _rewardView = [[UIView alloc] initWithFrame:RECT(0, 0, SCREENWIDTH, 50)];
         UIButton *rewardBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [rewardBtn setTitle:@"打赏" forState:UIControlStateNormal];
+        [rewardBtn setEnlargeEdge:10];
+        [rewardBtn setImage:[UIImage imageNamed:@"dashang"] forState:UIControlStateNormal];
         [rewardBtn setTitleEdgeInsets:UIEdgeInsetsMake(50, 0, 0, 0)];
         [rewardBtn setFrame:RECT((SCREENWIDTH - 30)/2.0, 10, 30, 30)];
-        rewardBtn.backgroundColor = [UIColor redColor];
         [rewardBtn addTarget:self action:@selector(rewardAciton) forControlEvents:UIControlEventTouchUpInside];
         [_rewardView addSubview:rewardBtn];
     }

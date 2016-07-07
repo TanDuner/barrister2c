@@ -10,11 +10,16 @@
 #import "MyAccountDetailModel.h"
 #import "AccountProxy.h"
 #import "MyAccountDetailCell.h"
+#import "RefreshTableView.h"
 
-@interface MyAccountDetailViewController ()
+@interface MyAccountDetailViewController ()<UITableViewDataSource,UITableViewDelegate,RefreshTableViewDelegate>
+
 
 @property (nonatomic,strong) AccountProxy *proxy;
 
+@property (nonatomic,strong) RefreshTableView *tableView;
+
+@property (nonatomic,strong) NSMutableArray *items;
 @end
 
 @implementation MyAccountDetailViewController
@@ -24,6 +29,8 @@
     [super viewDidLoad];
     
     [self confgiView];
+    
+    [self requestData];
     
 
 }
@@ -40,31 +47,37 @@
 -(void)confgiView
 {
     self.title  = @"交易明细";
-    [self.tableView setFrame:RECT(0, 0, SCREENWIDTH, SCREENHEIGHT - NAVBAR_DEFAULT_HEIGHT)];
-    [self addRefreshHeader];
-    [self addLoadMoreFooter];
-}
-
--(void)loadItems
-{
-    [super loadItems];
+    self.tableView = [[RefreshTableView alloc] initWithFrame:RECT(0, 0, SCREENWIDTH, SCREENHEIGHT - NAVBAR_DEFAULT_HEIGHT - TABBAR_HEIGHT) style:UITableViewStylePlain];
+    [self.tableView setFootLoadMoreControl];
+    self.tableView.pageSize = 10;
+    self.tableView.backgroundColor = kBaseViewBackgroundColor;
+    self.tableView.refreshDelegate = self;
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
     
-    [self requestData];
+    [self.view addSubview:self.tableView];
 }
 
--(void)loadMoreData
+
+
+#pragma -mark --ConfigData
+
+-(void)circleTableViewDidTriggerRefresh:(RefreshTableView *)tableView
 {
-    [super loadMoreData];
     [self requestData];
 }
 
+-(void)circleTableViewDidLoadMoreData:(RefreshTableView *)tableView
+{
+    [self requestData];
+}
 
 -(void)requestData
 {
     __weak typeof(*&self) weakSelf = self;
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    [params setObject:[NSString stringWithFormat:@"%ld",self.pageSize] forKey:@"pageSize"];
-    [params setObject:[NSString stringWithFormat:@"%ld",self.pageNum] forKey:@"page"];
+    [params setObject:[NSString stringWithFormat:@"%ld",self.tableView.pageSize] forKey:@"pageSize"];
+    [params setObject:[NSString stringWithFormat:@"%ld",self.tableView.pageNum] forKey:@"page"];
     [self.proxy getAccountDetailDataWithParams:nil Block:^(id returnData, BOOL success) {
         if (success) {
             NSDictionary *dict = (NSDictionary *)returnData;
@@ -90,24 +103,16 @@
 
 -(void)handleDetailDataWithArray:(NSArray*)array
 {
-    if (self.pageNum == 1) {
-        [self.items removeAllObjects];
-        [self endRefreshing];
-    }
-    if (array.count == 0) {
-        [self showNoContentView];
-    }
-    else
-    {
-        if (array.count < self.pageSize) {
-            [self endLoadMoreWithNoMoreData:YES];
-        }
-        else
-        {
-            [self endLoadMoreWithNoMoreData:NO];
-        }
-    }
+    __weak typeof(*&self) weakSelf = self;
     
+    [self handleTableRefreshOrLoadMoreWithTableView:self.tableView array:array aBlock:^{
+        __strong __typeof(weakSelf)strongSelf = weakSelf;
+        [strongSelf.items removeAllObjects];
+    }];
+    
+
+    
+    [self.tableView reloadData];
     for (int i = 0; i < array.count; i ++) {
         NSDictionary *dict = [array objectAtIndex:i];
         MyAccountDetailModel *model = [[MyAccountDetailModel alloc] initWithDictionary:dict];
@@ -119,6 +124,11 @@
 
 
 #pragma -mark ----Table Delegate
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return self.items.count;
+}
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *identifi = @"identif";
@@ -145,6 +155,15 @@
     }
     return _proxy;
 }
+
+-(NSMutableArray *)items
+{
+    if (!_items) {
+        _items = [NSMutableArray arrayWithCapacity:10];
+    }
+    return _items;
+}
+
 
 
 @end

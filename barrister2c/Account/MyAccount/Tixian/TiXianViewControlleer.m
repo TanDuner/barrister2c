@@ -86,7 +86,7 @@
     self.checkButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.checkButton setFrame:RECT(LeftSpace, inputBgView.y + inputBgView.height + 10, 20, 20)];
     [self.checkButton setEnlargeEdgeWithTop:0 right:100 bottom:100 left:0];
-    [self.checkButton setImage:[UIImage imageNamed:@"unagree.png"] forState:UIControlStateNormal];
+    [self.checkButton setImage:[UIImage imageNamed:@"unSelected"] forState:UIControlStateNormal];
     [self.checkButton addTarget:self action:@selector(checkAciton:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.checkButton];
     
@@ -185,11 +185,11 @@
 {
     self.isCheched = !self.isCheched;
     if (self.isCheched) {
-        [self.checkButton setImage:[UIImage imageNamed:@"agree.png"] forState:UIControlStateNormal];
+        [self.checkButton setImage:[UIImage imageNamed:@"Selected"] forState:UIControlStateNormal];
     }
     else
     {
-        [self.checkButton setImage:[UIImage imageNamed:@"unagree.png"] forState:UIControlStateNormal];
+        [self.checkButton setImage:[UIImage imageNamed:@"unSelected"] forState:UIControlStateNormal];
     }
 }
 

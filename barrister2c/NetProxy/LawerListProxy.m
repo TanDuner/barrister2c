@@ -157,7 +157,8 @@
         }
         else
         {
-            aBlock(CommonNetErrorTip,NO);
+
+            aBlock(response,NO);
         }
         
     } fail:^(NSError *error) {

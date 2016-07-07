@@ -14,6 +14,8 @@
 #define UpdateUserInfo @"updateUserInfo.do"
 #define OrderListUrl @"myOrderList.do"
 #define MyLikeListUrl @"myFavoriteList.do"
+#define WeChatPayUrl @"wxPrepayInfo"
+#define AliaPayUrl @"aliPrepayInfo"
 
 @implementation MeNetProxy
 /**
@@ -160,7 +162,6 @@
 }
 
 
-
 /**
  *  我的收藏列表
  *
@@ -187,6 +188,49 @@
         
     }];
 
+}
+
+/**
+ *  获取微信预付订单
+ */
+
+-(XuURLSessionTask *)getWeChatPrePayOrderWithParams:(NSMutableDictionary *)params block:(ServiceCallBlock)aBlock
+{
+    XuURLSessionTask *task = [XuNetWorking postWithUrl:WeChatPayUrl params:params success:^(id response) {
+        if ([self isCommonCorrectResultCodeWithResponse:response]) {
+            aBlock(response,YES);
+        }
+        else
+        {
+            aBlock(response,NO);
+        }
+    } fail:^(NSError *error) {
+        aBlock(CommonNetErrorTip,NO);
+    }];
+    
+    return task;
+}
+
+
+/**
+ *  获取支付宝预付订单
+ */
+
+-(XuURLSessionTask *)getAliaPaytPrePayOrderWithParams:(NSMutableDictionary *)params block:(ServiceCallBlock)aBlock
+{
+    XuURLSessionTask *task = [XuNetWorking postWithUrl:AliaPayUrl params:params success:^(id response) {
+        if ([self isCommonCorrectResultCodeWithResponse:response]) {
+            aBlock(response,YES);
+        }
+        else
+        {
+            aBlock(response,NO);
+        }
+    } fail:^(NSError *error) {
+        aBlock(CommonNetErrorTip,NO);
+    }];
+    
+    return task;
 }
 
 

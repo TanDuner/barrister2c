@@ -15,6 +15,8 @@
 
 @property (nonatomic,retain)  BaseTabbarController *tabBarCTL;
 
+- (void)resetRootViewController:(UIViewController *)rootViewController WithBlock:(void(^)())block;
+
 -(void)selectTabWithIndex:(NSInteger)index;
 
 -(void)createTabbar;

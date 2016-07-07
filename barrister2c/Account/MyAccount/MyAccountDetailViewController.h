@@ -6,8 +6,8 @@
 //  Copyright © 2016年 Xu. All rights reserved.
 //
 
-#import "BaseTableViewController.h"
+#import "BaseViewController.h"
 
-@interface MyAccountDetailViewController : BaseTableViewController
+@interface MyAccountDetailViewController : BaseViewController
 
 @end

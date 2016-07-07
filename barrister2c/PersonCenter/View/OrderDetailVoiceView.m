@@ -220,7 +220,7 @@
     {
         [self.playBtn setTitle:@"正在播放" forState:UIControlStateNormal];
         [self.playBtn setTitleColor:KColorGray999 forState:UIControlStateNormal];
-        [self.playBtn setImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
+        [self.playBtn setImage:[UIImage imageNamed:@"orderdetail_stop"] forState:UIControlStateNormal];
         [self.playBtn removeTarget:self action:@selector(playAction:) forControlEvents:UIControlEventTouchUpInside];
         [self.playBtn addTarget:self action:@selector(stopAction) forControlEvents:UIControlEventTouchUpInside];
 

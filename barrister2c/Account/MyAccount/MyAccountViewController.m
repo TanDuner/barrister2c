@@ -119,14 +119,14 @@
 {
     if (indexPath.row == 0) {
         MyAccountHomeCell *cell = [[MyAccountHomeCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
-        cell.leftImageView.image = [UIImage imageNamed:@""];
+        cell.leftImageView.image = [UIImage imageNamed:@"icon_recharge"];
         cell.titleLabel.text = @"充值";
         return cell;
     }
     else
     {
         MyAccountHomeCell *cell = [[MyAccountHomeCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
-        cell.leftImageView.image = [UIImage imageNamed:@""];
+        cell.leftImageView.image = [UIImage imageNamed:@"icon_tixian"];
         cell.titleLabel.text = @"提现";
         return cell;
     }

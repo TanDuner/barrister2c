@@ -102,7 +102,7 @@
     PersonCenterModel *model6 = [[PersonCenterModel alloc] init];
     model6.titleStr = @"设置";
     model6.cellType = PersonCenterModelTypeSZ;
-    model6.iconNameStr = @"shezhi.png";
+    model6.iconNameStr = @"Me_setting";
     model6.isShowArrow = YES;
     
     [self.items addObject:model1];

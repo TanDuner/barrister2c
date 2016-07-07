@@ -6,10 +6,38 @@
 //  Copyright © 2016年 Xu. All rights reserved.
 //
 
+#pragma mark - SDK宏定义
+//////////////////////////支付宝//////////////////////////////
+#define AlipayPARTNER           @""
+#define AlipaySELLER            @""
+#define AlipayRSA_PRIVATE       @""
+#define AlipayRSA_ALIPAY_PUBLIC @""
+//获取服务器端支付数据地址（商户自定义）
+#define AlipayBackURL           @""
+
+
+//////////////////////////微信//////////////////////////////
+#define WeChatAppID             @"wx719e35ccbca02039"
+#define WeChatAppSecret         @"8aac25361765227616fed5718daa3653"
+//商户号，填写商户对应参数
+#define WeChatMCH_ID                  @""
+//商户API密钥，填写相应参数
+#define WeChatPARTNER_ID              @""
+//支付结果回调页面
+#define WeChatNOTIFY_URL              @""
+
+
+//////////////////////////极光//////////////////////////////
+
+#define JPushKey  @""
+
+
+
 /**************** 消息通知 *****************/
 #define NOTIFICATION_LOGIN_SUCCESS       @"LoginSuccess"
 #define NOTIFICATION_PLAY_VOICE         @"playVoice"
 #define NOTIFICATION_PLAY_VOICE_FINISH        @"playVoice_finish"
+
 
 #define APPOINTMENT @"APPOINTMENT" //预约
 #define IM @"IM"//即时

@@ -68,6 +68,19 @@
  */
 -(void)getMyLikeListWithParams:(NSMutableDictionary *)params block:(ServiceCallBlock)aBlock;
 
+
+/**
+ *  获取微信预付订单
+ */
+
+-(XuURLSessionTask *)getWeChatPrePayOrderWithParams:(NSMutableDictionary *)params block:(ServiceCallBlock)aBlock;
+
+/**
+ *  获取支付宝预付订单
+ */
+
+-(XuURLSessionTask *)getAliaPaytPrePayOrderWithParams:(NSMutableDictionary *)params block:(ServiceCallBlock)aBlock;
+
 @end
 
 

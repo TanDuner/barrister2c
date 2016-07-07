@@ -61,9 +61,11 @@
     [[NSUserDefaults standardUserDefaults] synchronize];
     
 
-    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    [app createTabbar];
-    [self removeFromSuperview];
+    AppDelegate *delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    [delegate resetRootViewController:delegate.tabBarCTL WithBlock:^{
+        
+    }];
+
 }
 
 
@@ -98,54 +100,6 @@
     
 }
 
-
-/*
-
-- (void)loadView
-{
-    //chark fixed.  2015/03/13
-// 与赵辰设计成一套图----仅支持背景色为纯色的图片
-
-//    int num = 2;
-    int num = SPLASHCOUNT;
-//    NSArray *colorArr = @[@"#f79361",@"#4a8ecc",@"#4cd3b9"];
-    for (int i = 0 ; i < num; i++) {
-//        UIView *bottomView = [[UIView alloc] initWithFrame:CGRectMake(i*ScreenWidth, 0, ScreenWidth, ScreenHeight)];
-//        bottomView.backgroundColor = [UIColor whiteColor];
-//        UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(i*ScreenWidth, 0, ScreenWidth, ScreenHeight)];
-
-//        CGRect rect = CGRectMake(10, 0, self.width - 20, self.height);
-        CGRect rect = CGRectMake(0, 0, ScreenWidth, ScreenHeight);
-
-        UIImageView *imgView = [[UIImageView alloc] initWithFrame:rect];
-        imgView.contentMode = UIViewContentModeScaleAspectFit;
-        NSString *tmpImgName = @"";
-        if (isiPhone5) {
-            [self rectTextWithIndex:i isPhone5H:YES imgView:imgView];
-            tmpImgName = [NSString stringWithFormat:@"guide_0%d_6401136.png",i];
-        } else {
-            [self rectTextWithIndex:i isPhone5H:NO imgView:imgView];
-            tmpImgName = [NSString stringWithFormat:@"guide_0%d_640960.png",i];
-        }
-        
-
-
-
-//        [self rectTextWithIndex:i isPhone5H:YES imgView:imgView];
-//        tmpImgName = [NSString stringWithFormat:@"guide_0%d_6401136.png",i];
-
-        imgView.image = [UIImage imageNamed:tmpImgName];
-//        [bottomView addSubview:imgView];
-        [_scrollView addSubview:imgView];
-//        [_scrollView addSubview:bottomView];
-
-    }
-    
-    [_scrollView setContentSize:CGSizeMake(ScreenWidth*num, ScreenHeight)];
-    
-}
- 
- */
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {

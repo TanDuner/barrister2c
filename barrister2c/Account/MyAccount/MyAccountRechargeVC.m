@@ -8,14 +8,20 @@
 
 #import "MyAccountRechargeVC.h"
 #import "BorderTextFieldView.h"
-
-@interface MyAccountRechargeVC ()
+#import "MeNetProxy.h"
+#import "UIButton+EnlargeEdge.h"
+#import "UIImage+Additions.h"
+@interface MyAccountRechargeVC ()<UITextFieldDelegate>
 
 @property (nonatomic,strong) BorderTextFieldView *rechargeNumTextField;
 
 @property (nonatomic,strong) UIView *reChargeView;
 @property (nonatomic,strong) UIButton *confirmButton;
+@property (nonatomic,strong) MeNetProxy *proxy;
 
+@property (nonatomic,strong) NSString *rechargeType;//wx zfb
+
+@property (nonatomic,strong) XuURLSessionTask *task;
 @end
 
 @implementation MyAccountRechargeVC
@@ -30,6 +36,14 @@
 {
     [super viewWillAppear:animated];
     [self showTabbar:NO];
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    if (self.task) {
+        [self.task cancel];
+    }
 }
 
 #pragma -mark --UI --
@@ -61,8 +75,7 @@
     self.reChargeView.backgroundColor = [UIColor whiteColor];
     
     UIImageView *zhifubaoView = [[UIImageView alloc] initWithFrame:RECT(LeftPadding, (44 - 28)/2.0, 28, 28)];
-    zhifubaoView.image = [UIImage imageNamed:@""];
-    zhifubaoView.backgroundColor = [UIColor redColor];
+    zhifubaoView.image = [UIImage imageNamed:@"zhifubao"];
     
     UILabel *zhifubaoLabel = [[UILabel alloc] initWithFrame:RECT(zhifubaoView.x + zhifubaoView.width + 12, (44 - 15)/2.0, 200, 15)];
     zhifubaoLabel.font = SystemFont(14.0f);
@@ -71,11 +84,14 @@
     zhifubaoLabel.textAlignment = NSTextAlignmentLeft;
     
     UIButton *zhifubaoButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    zhifubaoButton.backgroundColor = [UIColor redColor];
+
     [zhifubaoButton setFrame:RECT(SCREENWIDTH - 10 - 35,  (44 - 35)/2.0, 35, 35)];
-    [zhifubaoButton setImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
+    [zhifubaoButton setImage:[UIImage imageNamed:@"Selected"] forState:UIControlStateNormal];
+    [zhifubaoButton setEnlargeEdgeWithTop:0 right:0 bottom:0 left:300];
     zhifubaoButton.tag = 888;
     [zhifubaoButton addTarget:self action:@selector(selectAction:) forControlEvents:UIControlEventTouchUpInside];
+    
+    self.rechargeType = @"zfb";
     
     [self.reChargeView addSubview:zhifubaoView];
     [self.reChargeView addSubview:zhifubaoLabel];
@@ -88,8 +104,7 @@
 
     
     UIImageView *weizinImageView = [[UIImageView alloc] initWithFrame:RECT(LeftPadding, (44 - 28)/2.0 + 44, 28, 28)];
-    weizinImageView.image = [UIImage imageNamed:@""];
-    weizinImageView.backgroundColor = [UIColor redColor];
+    weizinImageView.image = [UIImage imageNamed:@"weixin"];
     [self.reChargeView addSubview:weizinImageView];
     
     UILabel *weixinLabel = [[UILabel alloc] initWithFrame:RECT(zhifubaoView.x + zhifubaoView.width + 12,  44 + (44 - 15)/2.0, 200, 15)];
@@ -100,8 +115,8 @@
     
     UIButton *weixinButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [weixinButton setFrame:RECT(SCREENWIDTH - 10 - 35,  44 + (44 - 35)/2.0, 35, 35)];
-    [weixinButton setImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
-    weixinButton.backgroundColor = [UIColor redColor];
+    [weixinButton setEnlargeEdgeWithTop:0 right:0 bottom:0 left:300];
+    [weixinButton setImage:[UIImage imageNamed:@"unSelected"] forState:UIControlStateNormal];
     weixinButton.tag = 999;
     [weixinButton addTarget:self action:@selector(selectAction:) forControlEvents:UIControlEventTouchUpInside];
 
@@ -114,9 +129,10 @@
     
     
     self.confirmButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.confirmButton.backgroundColor = kNavigationBarColor;
     [self.confirmButton setTitle:@"充值" forState:UIControlStateNormal];
     [self.confirmButton setFrame:RECT(LeftPadding, self.reChargeView.y + self.reChargeView.height + 30, SCREENWIDTH - LeftPadding - LeftPadding, 44)];
+    [self.confirmButton setImage:[UIImage createImageWithColor:kNavigationBarColor] forState:UIControlStateNormal];
+    [self.confirmButton addTarget:self action:@selector(rechargeAction:) forControlEvents:UIControlEventTouchUpInside];
     self.confirmButton.layer.cornerRadius = 2.0f;
     self.confirmButton.layer.masksToBounds = YES;
     
@@ -127,11 +143,69 @@
 {
     if (button.tag == 999) {
         UIButton *btnTemp = [self.reChargeView viewWithTag:888];
+        [btnTemp setImage:[UIImage imageNamed:@"unSelected"] forState:UIControlStateNormal];
+        [button setImage:[UIImage imageNamed:@"Selected"] forState:UIControlStateNormal];
+        self.rechargeType = @"wx";
     }
     else
     {
         UIButton *btnTemp = [self.reChargeView viewWithTag:999];
+        [btnTemp setImage:[UIImage imageNamed:@"unSelected"] forState:UIControlStateNormal];
+        [button setImage:[UIImage imageNamed:@"Selected"] forState:UIControlStateNormal];
+        self.rechargeType = @"zfb";
     }
 }
+
+
+-(void)rechargeAction:(UIButton *)btn
+{
+    if ([self.rechargeType isEqualToString:@"wx"]) {
+        NSMutableDictionary *params = [NSMutableDictionary dictionary];
+        __weak typeof(*& self)weakSelf = self;
+        [self.proxy getWeChatPrePayOrderWithParams:nil block:^(id returnData, BOOL success) {
+            if (success) {
+                NSLog(@"%@",returnData);
+            }
+            else
+            {
+                
+            }
+        }];
+    }
+    else if ([self.rechargeType isEqualToString:@"zfb"])
+    {
+        NSMutableDictionary *params = [NSMutableDictionary dictionary];
+        __weak typeof(*& self)weakSelf = self;
+
+     self.task =  [self.proxy getAliaPaytPrePayOrderWithParams:params block:^(id returnData, BOOL success) {
+            if (success) {
+                NSLog(@"%@",returnData);
+            }
+            else
+            {
+                
+            }
+        }];
+    }
+}
+
+
+#pragma -mark ---UITextField Delegate Methods---
+-(BOOL)textFieldShouldEndEditing:(UITextField *)textField
+{
+    return YES;
+}
+
+
+#pragma -mark ----Getter----
+
+-(MeNetProxy *)proxy
+{
+    if (!_proxy) {
+        _proxy = [[MeNetProxy alloc] init];
+    }
+    return _proxy;
+}
+
 
 @end

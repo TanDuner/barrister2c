@@ -15,6 +15,8 @@
 #import "AppointmentManager.h"
 #import "AppointmentMoel.h"
 #import "XuAlertView.h"
+#import "MyAccountRechargeVC.h"
+
 
 typedef void(^ShowTimeSelectBlock)(id object);
 
@@ -139,6 +141,14 @@ typedef void(^ShowTimeSelectBlock)(id object);
     [self.selectTimeView showWithType:APPOINTMENT];
 }
 
+/**
+ *  预约咨询
+ *
+ *  @param totalPrice
+ *  @param price            <#price description#>
+ *  @param appointmentArray <#appointmentArray description#>
+ *  @param orderContent     <#orderContent description#>
+ */
 
 -(void)didFinishChooseAppoinmentWithMoneny:(NSString *)totalPrice
                                   PerPrice:(NSString *)price
@@ -183,7 +193,18 @@ typedef void(^ShowTimeSelectBlock)(id object);
         }
         else
         {
-            [XuUItlity showFailedHint:@"预约失败" completionBlock:nil];
+            NSDictionary *dict = (NSDictionary *)returnData;
+            NSString *resultCode = [dict objectForKey:@"resultCode"];
+            NSString *resultMsg = [dict objectForKey:@"resultMsg"];
+            if (resultCode.integerValue == 1007) {
+                [XuUItlity showFailedHint:resultMsg completionBlock:nil];
+            }
+            if (resultCode.integerValue == 3000) {
+                MyAccountRechargeVC *rechargeVC = [[MyAccountRechargeVC alloc] init];
+                [self.navigationController pushViewController:rechargeVC animated:YES];
+
+            }
+            
         }
     }];
 }

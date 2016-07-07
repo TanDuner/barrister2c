@@ -14,6 +14,7 @@
 #import <CoreTelephony/CTCall.h>
 #import <CoreTelephony/CTCallCenter.h>
 #import "JPUSHService.h"
+#import "XuPushManager.h"
 
 //13301096303
 //700953
@@ -21,6 +22,8 @@
 @interface AppDelegate ()
 
 @property (nonatomic,strong) YKSplashView *splashView;
+
+@property (nonatomic,strong) UIViewController *guideController;
 
 @end
 
@@ -41,29 +44,54 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
     
-//    if (![YKSplashView getIsOpenGuideView]) {
-//        UIViewController *vc = [[UIViewController alloc] init];
-//        self.window.rootViewController = vc;
-//        YKSplashView *gudeView = [[YKSplashView alloc] initWithFrame:CGRectMake(0, 0, SCREENWIDTH,SCREENHEIGHT)];
-//        self.splashView = gudeView;
-//        [self.window addSubview:self.splashView];
-//        [self.window makeKeyAndVisible];
-//    }
-//    else
-//    {
+    if (![YKSplashView getIsOpenGuideView]) {
+        self.window.rootViewController = self.guideController;
+        [self.window makeKeyAndVisible];
+    }
+    else
+    {
         [self createTabbar];
 
-//    }
-    
+    }
+
 }
 
 -(void)createTabbar
 {
-    _tabBarCTL = [[BaseTabbarController alloc] init];
-    self.window.rootViewController = _tabBarCTL;
+    self.window.rootViewController = self.tabBarCTL;
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
 }
+
+
+//更换rootViewController
+
+- (void)resetRootViewController:(UIViewController *)rootViewController WithBlock:(void(^)())block
+{
+    typedef void (^Animation)(void);
+    UIWindow* window = self.window;
+    
+    rootViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+    Animation animation = ^{
+        BOOL oldState = [UIView areAnimationsEnabled];
+        [UIView setAnimationsEnabled:NO];
+        window.rootViewController = rootViewController;
+        [UIView setAnimationsEnabled:oldState];
+    };
+    
+    [UIView transitionWithView:window
+                      duration:0.5f
+                       options:UIViewAnimationOptionTransitionCrossDissolve
+                    animations:animation
+                    completion:^(BOOL finished) {
+                        if (finished) {
+                            block();
+                        }
+                    }];
+}
+
+
+
 
 -(void)initNetWorkingData
 {
@@ -127,6 +155,41 @@
     
 }
 
+/**
+ *  初始化极光的环境 push 相关
+ *
+ *
+ */
+
+-(void)initJPushWithLaunchOptions:(NSDictionary  *)launchOptions
+{
+    /**
+     *  注册极光push
+     */
+    
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:1];
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
+    
+    [JPUSHService registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge |
+                                                      UIRemoteNotificationTypeSound |
+                                                      UIRemoteNotificationTypeAlert)
+                                          categories:nil];
+    
+    
+    NSDictionary *remoteDic = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
+    if (remoteDic) {
+        NSLog(@"%@",[[remoteDic objectForKey:@"aps"] objectForKey:@"alert"]);
+        
+        [[XuPushManager shareInstance] receivePushMsgByUnActive:remoteDic];
+    }
+    
+    [JPUSHService setupWithOption:launchOptions appKey:JPushKey channel:@"App Store" apsForProduction:NO];
+    
+    [[XuPushManager shareInstance] setJPushTags:[NSSet set] Alias:@"xxxx"];
+    
+}
+
+
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
@@ -134,13 +197,7 @@
     
     [self initUMData];
     
-    [JPUSHService registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge |
-                                                      UIRemoteNotificationTypeSound |
-                                                      UIRemoteNotificationTypeAlert)
-                                          categories:nil];
-
-    [JPUSHService setupWithOption:launchOptions appKey:@"" channel:@"App Store" apsForProduction:NO];
-
+    [self initJPushWithLaunchOptions:launchOptions];
     
     [self initControllersAndConfig];
     
@@ -148,6 +205,31 @@
     [self initNetWorkingData];
    
     return YES;
+}
+
+
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    
+    /// Required - 注册 DeviceToken
+    [JPUSHService registerDeviceToken:deviceToken];
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+    
+    // Required,For systems with less than or equal to iOS6
+    [JPUSHService handleRemoteNotification:userInfo];
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
+    
+    // IOS 7 Support Required
+    [JPUSHService handleRemoteNotification:userInfo];
+    completionHandler(UIBackgroundFetchResultNewData);
+}
+
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
+    //Optional
+    NSLog(@"did Fail To Register For Remote Notifications With Error: %@", error);
 }
 
 
@@ -173,4 +255,32 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
+
+#pragma -mark ---Getter---
+
+-(UIViewController *)guideController
+{
+    if (!_guideController) {
+        _guideController = [[UIViewController alloc] init];
+        [_guideController.view addSubview:self.splashView];
+    }
+    return _guideController;
+}
+
+-(YKSplashView *)splashView
+{
+    if (!_splashView) {
+        _splashView = [[YKSplashView alloc] initWithFrame:RECT(0, 0, SCREENWIDTH, SCREENHEIGHT)];
+    }
+    return _splashView;
+}
+
+
+-(BaseTabbarController *)tabBarCTL
+{
+    if (!_tabBarCTL) {
+        _tabBarCTL = [[BaseTabbarController alloc] init];
+    }
+    return _tabBarCTL;
+}
 @end

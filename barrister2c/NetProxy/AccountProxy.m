@@ -8,9 +8,9 @@
 
 #import "AccountProxy.h"
 
-#define AccountDetialUrl @""
-#define TixianUrl @""
-#define BindBankCardUrl @"bindBankCard"
+#define AccountDetialUrl @"getConsumeDetailList.do"
+#define TixianUrl @"getMoney.do"
+#define BindBankCardUrl @"bindBankCard.do"
 #define MyAccountUrl @"myAccount.do"
 
 @implementation AccountProxy
