@@ -24,6 +24,11 @@
 		9529CC241D2CA4870067597A /* Appraisalstar1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9529CC211D2CA4870067597A /* Appraisalstar1@2x.png */; };
 		9529CC251D2CA4870067597A /* Appraisalstar2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9529CC221D2CA4870067597A /* Appraisalstar2@2x.png */; };
 		9529CC261D2CA4870067597A /* Appraisalstar3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9529CC231D2CA4870067597A /* Appraisalstar3@2x.png */; };
+		9529CC291D2CDE500067597A /* OrderDetailVoiceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9529CC281D2CDE500067597A /* OrderDetailVoiceView.m */; };
+		9529CC391D2D4F3C0067597A /* HUMSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 9529CC381D2D4F3C0067597A /* HUMSlider.m */; };
+		9529CC3C1D2D59BD0067597A /* orderdetail_play@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9529CC3A1D2D59BD0067597A /* orderdetail_play@2x.png */; };
+		9529CC3D1D2D59BD0067597A /* orderdetail_play@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9529CC3B1D2D59BD0067597A /* orderdetail_play@3x.png */; };
+		9529CC4B1D2D5A420067597A /* VolumePlayHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 9529CC4A1D2D5A420067597A /* VolumePlayHelper.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		955610871D136E2100366D4C /* LawBooksModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 955610861D136E2100366D4C /* LawBooksModel.m */; };
 		955610BA1D14B4BD00366D4C /* LearnCenterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 955610B91D14B4BD00366D4C /* LearnCenterModel.m */; };
 		955610BD1D14B4C900366D4C /* LearnCenterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 955610BC1D14B4C900366D4C /* LearnCenterCell.m */; };
@@ -329,6 +334,14 @@
 		9529CC211D2CA4870067597A /* Appraisalstar1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Appraisalstar1@2x.png"; sourceTree = "<group>"; };
 		9529CC221D2CA4870067597A /* Appraisalstar2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Appraisalstar2@2x.png"; sourceTree = "<group>"; };
 		9529CC231D2CA4870067597A /* Appraisalstar3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Appraisalstar3@2x.png"; sourceTree = "<group>"; };
+		9529CC271D2CDE500067597A /* OrderDetailVoiceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderDetailVoiceView.h; sourceTree = "<group>"; };
+		9529CC281D2CDE500067597A /* OrderDetailVoiceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderDetailVoiceView.m; sourceTree = "<group>"; };
+		9529CC371D2D4F3C0067597A /* HUMSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HUMSlider.h; sourceTree = "<group>"; };
+		9529CC381D2D4F3C0067597A /* HUMSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HUMSlider.m; sourceTree = "<group>"; };
+		9529CC3A1D2D59BD0067597A /* orderdetail_play@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "orderdetail_play@2x.png"; sourceTree = "<group>"; };
+		9529CC3B1D2D59BD0067597A /* orderdetail_play@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "orderdetail_play@3x.png"; sourceTree = "<group>"; };
+		9529CC491D2D5A420067597A /* VolumePlayHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VolumePlayHelper.h; sourceTree = "<group>"; };
+		9529CC4A1D2D5A420067597A /* VolumePlayHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VolumePlayHelper.m; sourceTree = "<group>"; };
 		955610851D136E2100366D4C /* LawBooksModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LawBooksModel.h; sourceTree = "<group>"; };
 		955610861D136E2100366D4C /* LawBooksModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LawBooksModel.m; sourceTree = "<group>"; };
 		955610B81D14B4BD00366D4C /* LearnCenterModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LearnCenterModel.h; sourceTree = "<group>"; };
@@ -839,6 +852,15 @@
 			path = DownloadVoice;
 			sourceTree = "<group>";
 		};
+		9529CC481D2D5A420067597A /* VoicePlayer */ = {
+			isa = PBXGroup;
+			children = (
+				9529CC491D2D5A420067597A /* VolumePlayHelper.h */,
+				9529CC4A1D2D5A420067597A /* VolumePlayHelper.m */,
+			);
+			path = VoicePlayer;
+			sourceTree = "<group>";
+		};
 		9556111A1D15852900366D4C /* Login */ = {
 			isa = PBXGroup;
 			children = (
@@ -1113,6 +1135,7 @@
 		95CA1BF01D10F3ED00AAE490 /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				9529CC481D2D5A420067597A /* VoicePlayer */,
 				9529CC141D2C0D2F0067597A /* DownloadVoice */,
 				95CA1D6D1D10F85500AAE490 /* Categorys */,
 				95CA1D901D10F85500AAE490 /* CityChoose */,
@@ -1284,6 +1307,8 @@
 		95CA1BFC1D10F77400AAE490 /* PersonCenter */ = {
 			isa = PBXGroup;
 			children = (
+				9529CC3A1D2D59BD0067597A /* orderdetail_play@2x.png */,
+				9529CC3B1D2D59BD0067597A /* orderdetail_play@3x.png */,
 				950120BE1D2B4E5500FE3613 /* orderdetail_call@2x.png */,
 				950120BF1D2B4E5500FE3613 /* orderdetail_call@3x.png */,
 				955610DE1D14B7B200366D4C /* my-account_card@2x.png */,
@@ -1919,6 +1944,10 @@
 				955A7AFF1D1D8EE100D1DEAC /* OrderDetailOrderCell.m */,
 				955A7B011D1D8EFB00D1DEAC /* OrderDetailCallRecordCell.h */,
 				955A7B021D1D8EFB00D1DEAC /* OrderDetailCallRecordCell.m */,
+				9529CC271D2CDE500067597A /* OrderDetailVoiceView.h */,
+				9529CC281D2CDE500067597A /* OrderDetailVoiceView.m */,
+				9529CC371D2D4F3C0067597A /* HUMSlider.h */,
+				9529CC381D2D4F3C0067597A /* HUMSlider.m */,
 				955A7B031D1D8EFB00D1DEAC /* OrderDetailCustomInfoCell.h */,
 				955A7B041D1D8EFB00D1DEAC /* OrderDetailCustomInfoCell.m */,
 				950120B21D2AA46D00FE3613 /* OrderDetailCancelCell.h */,
@@ -2090,6 +2119,7 @@
 				958EEBF21D282D7300D4CF4C /* Me_order@3x.png in Resources */,
 				95CA1DD41D10F8F800AAE490 /* Tab03Highlighted@2x.png in Resources */,
 				95CA1DCF1D10F8F800AAE490 /* Tab01Normal@3x.png in Resources */,
+				9529CC3C1D2D59BD0067597A /* orderdetail_play@2x.png in Resources */,
 				955610F41D14B7B200366D4C /* my-account_cash@3x.png in Resources */,
 				958EEBCD1D27AA8400D4CF4C /* collect@3x.png in Resources */,
 				958EEBB61D27790A00D4CF4C /* guide_3@3x.png in Resources */,
@@ -2127,6 +2157,7 @@
 				95CA1DD21D10F8F800AAE490 /* Tab02Normal@2x.png in Resources */,
 				958EEBB11D27790A00D4CF4C /* guide_1@2x.png in Resources */,
 				958EEBEC1D282D7300D4CF4C /* Me_Account@3x.png in Resources */,
+				9529CC3D1D2D59BD0067597A /* orderdetail_play@3x.png in Resources */,
 				9529CC241D2CA4870067597A /* Appraisalstar1@2x.png in Resources */,
 				95CA1DCE1D10F8F800AAE490 /* Tab01Normal@2x.png in Resources */,
 				95CA1DD91D10F8F800AAE490 /* Tab04Highlighted@3x.png in Resources */,
@@ -2287,6 +2318,7 @@
 				958EEBE01D27FFEC00D4CF4C /* CWStarRateView.m in Sources */,
 				95CA1D3A1D10F7C900AAE490 /* AJPhotoListView.m in Sources */,
 				95B0D8151D1836AC0054567D /* BussinessTypeModel.m in Sources */,
+				9529CC391D2D4F3C0067597A /* HUMSlider.m in Sources */,
 				95CA1D5B1D10F7C900AAE490 /* UIView+YYAdd.m in Sources */,
 				95CA1D371D10F7C900AAE490 /* AJPhotoGroupView.m in Sources */,
 				95CA1C611D10F7B700AAE490 /* BaseTableViewCell.m in Sources */,
@@ -2316,6 +2348,7 @@
 				95CA1C0E1D10F77F00AAE490 /* OrderProxy.m in Sources */,
 				95CA1D2D1D10F7C900AAE490 /* MJRefreshGifHeader.m in Sources */,
 				95CA1C671D10F7B700AAE490 /* TFSButton.m in Sources */,
+				9529CC4B1D2D5A420067597A /* VolumePlayHelper.m in Sources */,
 				955611271D1588A200366D4C /* MyAccountDetailModel.m in Sources */,
 				95CA1D321D10F7C900AAE490 /* UIScrollView+MJRefresh.m in Sources */,
 				955A7AA91D1ACE2B00D1DEAC /* LawerDetailViewController.m in Sources */,
@@ -2330,6 +2363,7 @@
 				95B0D80F1D1835F20054567D /* HomeTypeCell.m in Sources */,
 				95CA1D601D10F7C900AAE490 /* YYSpriteSheetImage.m in Sources */,
 				95CA1D451D10F7C900AAE490 /* MASViewAttribute.m in Sources */,
+				9529CC291D2CDE500067597A /* OrderDetailVoiceView.m in Sources */,
 				95CA1D9C1D10F85500AAE490 /* NSDictionary+Additions.m in Sources */,
 				95CA1D441D10F7C900AAE490 /* MASLayoutConstraint.m in Sources */,
 				95CA1D511D10F7C900AAE490 /* YYMemoryCache.m in Sources */,

@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "BaseNetProxy.h"
 
 @interface DownloadVoiceManager : NSObject
 
@@ -19,7 +20,7 @@
  *  @param orderId 订单id
  *  @param index   每个订单url 组的编号 index
  */
--(void)downloadVoiceWithUrl:(NSString *)url WithOrderId:(NSString *)orderId index:(NSInteger)index;
+-(void)downloadVoiceWithUrl:(NSString *)url WithfileName:(NSString *)fileName block:(ServiceCallBlock)aBlock;
 
 /**
  * 根据订单号和userId 获取文件的名字

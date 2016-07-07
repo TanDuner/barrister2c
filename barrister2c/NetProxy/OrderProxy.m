@@ -180,9 +180,7 @@
                    savePath:(NSString *)savePath
                       Block:(ServiceCallBlock)aBlock
 {
-    [XuNetWorking updateBaseUrl:nil];
     [XuNetWorking downloadWithUrl:voiceUrl saveToPath:savePath progress:nil success:^(id response) {
-        [XuNetWorking updateBaseUrl:BaseUrl];
         aBlock(response,YES);
     } failure:^(NSError *error) {
         [XuNetWorking updateBaseUrl:BaseUrl];

@@ -46,9 +46,9 @@
  *  @param aBlock
  */
 
--(void)getOrderDetailWithParams:(NSDictionary *)aParams Block:(ServiceCallBlock)aBlock
+-(void)getOrderDetailWithParams:(NSMutableDictionary *)aParams Block:(ServiceCallBlock)aBlock
 {
-    
+    [self appendCommonParamsWithDict:aParams];
     [XuNetWorking getWithUrl:LawerDetailUrl params:aParams success:^(id response) {
         if ([self isCommonCorrectResultCodeWithResponse:response]) {
             aBlock(response,YES);

@@ -23,7 +23,7 @@
  *  律师详情
  */
 
--(void)getOrderDetailWithParams:(NSDictionary *)aParams Block:(ServiceCallBlock)aBlock;
+-(void)getOrderDetailWithParams:(NSMutableDictionary *)aParams Block:(ServiceCallBlock)aBlock;
 
 
 /**

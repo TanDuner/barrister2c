@@ -8,6 +8,8 @@
 
 /**************** 消息通知 *****************/
 #define NOTIFICATION_LOGIN_SUCCESS       @"LoginSuccess"
+#define NOTIFICATION_PLAY_VOICE         @"playVoice"
+#define NOTIFICATION_PLAY_VOICE_FINISH        @"playVoice_finish"
 
 #define APPOINTMENT @"APPOINTMENT" //预约
 #define IM @"IM"//即时

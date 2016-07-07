@@ -8,10 +8,11 @@
 
 #import "BaseTableViewCell.h"
 #import "BarristerOrderDetailModel.h"
+#import "CallHistoriesModel.h"
 
 @interface OrderDetailCallRecordCell : BaseTableViewCell
-@property (nonatomic,strong) BarristerOrderDetailModel *model;
+@property (nonatomic,strong) CallHistoriesModel *model;
 
-+(CGFloat)getHeightWithModel:(BarristerOrderDetailModel *)model;
++(CGFloat)getHeightWithModel:(CallHistoriesModel *)model;
 
 @end

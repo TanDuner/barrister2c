@@ -10,6 +10,8 @@
 #import "AFNetworking.h"
 #import "AFNetworkActivityIndicatorManager.h"
 #import "AFHTTPSessionManager.h"
+#import "MBProgressHUD+Add.h"
+#import "MBProgressHUD.h"
 
 #ifdef DEBUG
 #define XuAppLog(s, ... ) NSLog( @"[%@：in line: %d]-->%@", [[NSString stringWithUTF8String:__FILE__] lastPathComponent], __LINE__, [NSString stringWithFormat:(s), ##__VA_ARGS__] )
@@ -24,7 +26,9 @@ static NSDictionary *sg_httpHeaders = nil;
 static XuResponseType sg_responseType = kXuResponseTypeJSON;
 static XuRequestType  sg_requestType  = kXuRequestTypeJSON;
 
+
 @implementation XuNetWorking
+
 
 + (void)updateBaseUrl:(NSString *)baseUrl {
     sg_privateNetworkBaseUrl = baseUrl;
@@ -115,7 +119,6 @@ static XuRequestType  sg_requestType  = kXuRequestTypeJSON;
                                success:(XuResponseSuccess)success
                                   fail:(XuResponseFail)fail {
     AFHTTPSessionManager *manager = [self manager];
-    [XuNetWorking updateBaseUrl:BaseUrl];
 
     if ([self baseUrl] == nil) {
         if ([NSURL URLWithString:url] == nil) {
@@ -337,6 +340,7 @@ static XuRequestType  sg_requestType  = kXuRequestTypeJSON;
     
     return session;
 }
+
 
 #pragma mark - Private
 + (AFHTTPSessionManager *)manager {
