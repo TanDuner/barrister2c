@@ -29,6 +29,12 @@
 		9529CC3C1D2D59BD0067597A /* orderdetail_play@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9529CC3A1D2D59BD0067597A /* orderdetail_play@2x.png */; };
 		9529CC3D1D2D59BD0067597A /* orderdetail_play@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9529CC3B1D2D59BD0067597A /* orderdetail_play@3x.png */; };
 		9529CC4B1D2D5A420067597A /* VolumePlayHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 9529CC4A1D2D5A420067597A /* VolumePlayHelper.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		9529CC6F1D2E28600067597A /* jpush-ios-2.1.8.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9529CC6D1D2E28600067597A /* jpush-ios-2.1.8.a */; };
+		9529CC711D2E28840067597A /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9529CC701D2E28840067597A /* CFNetwork.framework */; };
+		9529CC731D2E288F0067597A /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9529CC721D2E288F0067597A /* CoreFoundation.framework */; };
+		9529CC751D2E289C0067597A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9529CC741D2E289C0067597A /* SystemConfiguration.framework */; };
+		9529CC771D2E28A40067597A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9529CC761D2E28A40067597A /* CoreGraphics.framework */; };
+		9529CC791D2E28AD0067597A /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9529CC781D2E28AD0067597A /* Security.framework */; };
 		955610871D136E2100366D4C /* LawBooksModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 955610861D136E2100366D4C /* LawBooksModel.m */; };
 		955610BA1D14B4BD00366D4C /* LearnCenterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 955610B91D14B4BD00366D4C /* LearnCenterModel.m */; };
 		955610BD1D14B4C900366D4C /* LearnCenterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 955610BC1D14B4C900366D4C /* LearnCenterCell.m */; };
@@ -342,6 +348,13 @@
 		9529CC3B1D2D59BD0067597A /* orderdetail_play@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "orderdetail_play@3x.png"; sourceTree = "<group>"; };
 		9529CC491D2D5A420067597A /* VolumePlayHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VolumePlayHelper.h; sourceTree = "<group>"; };
 		9529CC4A1D2D5A420067597A /* VolumePlayHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VolumePlayHelper.m; sourceTree = "<group>"; };
+		9529CC6D1D2E28600067597A /* jpush-ios-2.1.8.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "jpush-ios-2.1.8.a"; sourceTree = "<group>"; };
+		9529CC6E1D2E28600067597A /* JPUSHService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPUSHService.h; sourceTree = "<group>"; };
+		9529CC701D2E28840067597A /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		9529CC721D2E288F0067597A /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		9529CC741D2E289C0067597A /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		9529CC761D2E28A40067597A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		9529CC781D2E28AD0067597A /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		955610851D136E2100366D4C /* LawBooksModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LawBooksModel.h; sourceTree = "<group>"; };
 		955610861D136E2100366D4C /* LawBooksModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LawBooksModel.m; sourceTree = "<group>"; };
 		955610B81D14B4BD00366D4C /* LearnCenterModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LearnCenterModel.h; sourceTree = "<group>"; };
@@ -824,8 +837,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				950120CF1D2B7CD100FE3613 /* CoreTelephony.framework in Frameworks */,
 				95CA1E051D10F9F500AAE490 /* libz.tbd in Frameworks */,
+				9529CC791D2E28AD0067597A /* Security.framework in Frameworks */,
+				9529CC771D2E28A40067597A /* CoreGraphics.framework in Frameworks */,
+				9529CC751D2E289C0067597A /* SystemConfiguration.framework in Frameworks */,
+				950120CF1D2B7CD100FE3613 /* CoreTelephony.framework in Frameworks */,
+				9529CC731D2E288F0067597A /* CoreFoundation.framework in Frameworks */,
+				9529CC711D2E28840067597A /* CFNetwork.framework in Frameworks */,
+				9529CC6F1D2E28600067597A /* jpush-ios-2.1.8.a in Frameworks */,
 				95CA1E031D10F9EA00AAE490 /* libsqlite3.tbd in Frameworks */,
 				242C6CF2A427FE9AB164E737 /* libPods.a in Frameworks */,
 			);
@@ -859,6 +878,15 @@
 				9529CC4A1D2D5A420067597A /* VolumePlayHelper.m */,
 			);
 			path = VoicePlayer;
+			sourceTree = "<group>";
+		};
+		9529CC6C1D2E28600067597A /* JPush */ = {
+			isa = PBXGroup;
+			children = (
+				9529CC6D1D2E28600067597A /* jpush-ios-2.1.8.a */,
+				9529CC6E1D2E28600067597A /* JPUSHService.h */,
+			);
+			path = JPush;
 			sourceTree = "<group>";
 		};
 		9556111A1D15852900366D4C /* Login */ = {
@@ -1004,6 +1032,7 @@
 		95CA1BD01D10F03900AAE490 /* barrister2c */ = {
 			isa = PBXGroup;
 			children = (
+				9529CC6C1D2E28600067597A /* JPush */,
 				95CA1BE91D10F3ED00AAE490 /* Common */,
 				95CA1BEF1D10F3ED00AAE490 /* Resource */,
 				95CA1BED1D10F3ED00AAE490 /* NetProxy */,
@@ -2031,6 +2060,11 @@
 		FC8B3722513233B124AC9E13 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9529CC781D2E28AD0067597A /* Security.framework */,
+				9529CC761D2E28A40067597A /* CoreGraphics.framework */,
+				9529CC741D2E289C0067597A /* SystemConfiguration.framework */,
+				9529CC721D2E288F0067597A /* CoreFoundation.framework */,
+				9529CC701D2E28840067597A /* CFNetwork.framework */,
 				950120CE1D2B7CD100FE3613 /* CoreTelephony.framework */,
 				95CA1E041D10F9F500AAE490 /* libz.tbd */,
 				95CA1E021D10F9EA00AAE490 /* libsqlite3.tbd */,
@@ -2550,6 +2584,10 @@
 				INFOPLIST_FILE = barrister2c/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/barrister2c/JPush",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.xu.barrister2c;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -2564,6 +2602,10 @@
 				INFOPLIST_FILE = barrister2c/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/barrister2c/JPush",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.xu.barrister2c;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

@@ -13,6 +13,8 @@
 #import "UMMobClick/MobClick.h"
 #import <CoreTelephony/CTCall.h>
 #import <CoreTelephony/CTCallCenter.h>
+#import "JPUSHService.h"
+
 //13301096303
 //700953
 
@@ -131,6 +133,14 @@
     [self initCallAction];
     
     [self initUMData];
+    
+    [JPUSHService registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge |
+                                                      UIRemoteNotificationTypeSound |
+                                                      UIRemoteNotificationTypeAlert)
+                                          categories:nil];
+
+    [JPUSHService setupWithOption:launchOptions appKey:@"" channel:@"App Store" apsForProduction:NO];
+
     
     [self initControllersAndConfig];
     
