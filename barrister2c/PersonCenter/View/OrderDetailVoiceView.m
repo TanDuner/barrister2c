@@ -18,9 +18,6 @@
 
 @property (nonatomic,strong) UIActivityIndicatorView *loadingView;
 
-
-//@property (nonatomic,strong) WLCircleProgressView *progressView;
-
 @property (nonatomic,strong) UILabel *totalTimeLabel;
 
 @property (nonatomic,strong) HUMSlider *playSlide;
@@ -63,6 +60,12 @@
             [self switchWithDownloadState:@"3"];
         }
     }
+}
+
+
+-(void)stopAction
+{
+    [self switchWithDownloadState:@"2"];
 }
 
 -(void)refreshSlideProgress
@@ -178,10 +181,12 @@
 -(void)switchWithDownloadState:(NSString *)state
 {
     self.playBtn.hidden = NO;
+
     if ([state isEqualToString:@"0"]) {
         [UIView animateWithDuration:.5 animations:^{
             [self.playBtn setFrame:RECT((SCREENWIDTH - 30)/2.0, LeftPadding, 30, 30)];
         }];
+        [self.playBtn addTarget:self action:@selector(playAction:) forControlEvents:UIControlEventTouchUpInside];
         self.totalTimeLabel.hidden = YES;
         [self.playBtn setTitle:@"点击下载" forState:UIControlStateNormal];
         [self.playBtn setTitleEdgeInsets:UIEdgeInsetsMake(30, 0, 0, 0)];
@@ -191,6 +196,7 @@
     else if ([state isEqualToString:@"1"])
     {
         self.totalTimeLabel.hidden = NO;
+        
         [UIView animateWithDuration:.5 animations:^{
             [self.playBtn setFrame:RECT(LeftPadding, LeftPadding, 30, 30)];
         } completion:^(BOOL finished) {
@@ -215,6 +221,9 @@
         [self.playBtn setTitle:@"正在播放" forState:UIControlStateNormal];
         [self.playBtn setTitleColor:KColorGray999 forState:UIControlStateNormal];
         [self.playBtn setImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
+        [self.playBtn removeTarget:self action:@selector(playAction:) forControlEvents:UIControlEventTouchUpInside];
+        [self.playBtn addTarget:self action:@selector(stopAction) forControlEvents:UIControlEventTouchUpInside];
+
     }
  
 }
