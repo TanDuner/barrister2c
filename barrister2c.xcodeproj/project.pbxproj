@@ -83,6 +83,7 @@
 		9529CCED1D30F7D10067597A /* icon_bank_zs.png in Resources */ = {isa = PBXBuildFile; fileRef = 9529CCDE1D30F7D10067597A /* icon_bank_zs.png */; };
 		9529CCEE1D30F7D10067597A /* icon_bank_zx.png in Resources */ = {isa = PBXBuildFile; fileRef = 9529CCDF1D30F7D10067597A /* icon_bank_zx.png */; };
 		9529CCF21D3144C00067597A /* IMVersionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9529CCF11D3144C00067597A /* IMVersionManager.m */; };
+		9529CCFC1D3152E40067597A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9529CCFB1D3152E40067597A /* Images.xcassets */; };
 		955610871D136E2100366D4C /* LawBooksModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 955610861D136E2100366D4C /* LawBooksModel.m */; };
 		955610BA1D14B4BD00366D4C /* LearnCenterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 955610B91D14B4BD00366D4C /* LearnCenterModel.m */; };
 		955610BD1D14B4C900366D4C /* LearnCenterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 955610BC1D14B4C900366D4C /* LearnCenterCell.m */; };
@@ -457,6 +458,7 @@
 		9529CCDF1D30F7D10067597A /* icon_bank_zx.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_bank_zx.png; sourceTree = "<group>"; };
 		9529CCF01D3144C00067597A /* IMVersionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMVersionManager.h; sourceTree = "<group>"; };
 		9529CCF11D3144C00067597A /* IMVersionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMVersionManager.m; sourceTree = "<group>"; };
+		9529CCFB1D3152E40067597A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		955610851D136E2100366D4C /* LawBooksModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LawBooksModel.h; sourceTree = "<group>"; };
 		955610861D136E2100366D4C /* LawBooksModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LawBooksModel.m; sourceTree = "<group>"; };
 		955610B81D14B4BD00366D4C /* LearnCenterModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LearnCenterModel.h; sourceTree = "<group>"; };
@@ -1216,6 +1218,7 @@
 				95CA1BDF1D10F03A00AAE490 /* LaunchScreen.storyboard */,
 				95CA1BE21D10F03A00AAE490 /* Info.plist */,
 				95CA1D6C1D10F7F100AAE490 /* PrefixHeader.pch */,
+				9529CCFB1D3152E40067597A /* Images.xcassets */,
 				95CA1BD11D10F03900AAE490 /* Supporting Files */,
 			);
 			path = barrister2c;
@@ -2411,6 +2414,7 @@
 				95CA1DD81D10F8F800AAE490 /* Tab04Highlighted@2x.png in Resources */,
 				95CA1DD21D10F8F800AAE490 /* Tab02Normal@2x.png in Resources */,
 				958EEBB11D27790A00D4CF4C /* guide_1@2x.png in Resources */,
+				9529CCFC1D3152E40067597A /* Images.xcassets in Resources */,
 				958EEBEC1D282D7300D4CF4C /* Me_Account@3x.png in Resources */,
 				9529CCCA1D30E5350067597A /* canCard@2x.png in Resources */,
 				9529CC3D1D2D59BD0067597A /* orderdetail_play@3x.png in Resources */,
@@ -2820,6 +2824,7 @@
 			baseConfigurationReference = BB2FAA4FB209AF9A57D3750A /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PREFIX_HEADER = "$(SRCROOT)/barrister2c/PrefixHeader.pch";
 				INFOPLIST_FILE = barrister2c/Info.plist;
@@ -2833,6 +2838,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.xsc.barrister2c;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "a62cd5f3-a4e0-4bef-854e-7b58fb5a3baf";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -2841,6 +2847,7 @@
 			baseConfigurationReference = 86316290D8B7B144F0F16CE2 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PREFIX_HEADER = "$(SRCROOT)/barrister2c/PrefixHeader.pch";
 				INFOPLIST_FILE = barrister2c/Info.plist;
@@ -2854,6 +2861,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.xsc.barrister2c;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "a62cd5f3-a4e0-4bef-854e-7b58fb5a3baf";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

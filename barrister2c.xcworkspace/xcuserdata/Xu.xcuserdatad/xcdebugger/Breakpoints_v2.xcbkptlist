@@ -164,12 +164,12 @@
                   moduleName = "barrister2c"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Xu/Documents/barrister2c/barrister2c/Find/Controller/LawerDetailViewController.m"
-                  timestampString = "489770257.86791"
+                  timestampString = "489772398.714306"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "202"
                   endingLineNumber = "202"
-                  offsetFromSymbolStart = "1872">
+                  offsetFromSymbolStart = "1853">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -179,7 +179,7 @@
                   moduleName = "barrister2c"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Xu/Documents/barrister2c/barrister2c/Find/Controller/LawerDetailViewController.m"
-                  timestampString = "489770257.868073"
+                  timestampString = "489772398.714804"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "202"
