@@ -58,7 +58,7 @@
         BussinessAreaModel *areaModel = [self.items objectAtIndex:i];
         
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-        button.backgroundColor = [UIColor blueColor];
+        button.backgroundColor = KColorGray999;
         button.layer.cornerRadius = LawButtonWidth/2.0f;
         button.layer.masksToBounds = YES;
         [button setEnlargeEdge:8];

@@ -32,6 +32,8 @@
     self = [super init];
     if (self) {
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTableView) name:NOTIFICATION_LOGIN_SUCCESS object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTableView) name:NOTIFICATION_LOGIN_SUCCESS object:nil];
+
     }
     return self;
 }
@@ -40,6 +42,7 @@
 {
     [super viewWillAppear:animated];
     [self showTabbar:YES];
+   
 }
 
 - (void)didReceiveMemoryWarning {
@@ -55,7 +58,7 @@
     model1.cellType = PersonCenterModelTypeZH;
 
     if ([BaseDataSingleton shareInstance].loginState.integerValue == 1) {
-        model1.titleStr = [BaseDataSingleton shareInstance].userModel.nickName;
+        model1.titleStr = [BaseDataSingleton shareInstance].userModel.nickname;
         model1.iconNameStr = [BaseDataSingleton shareInstance].userModel.userIcon;
         model1.isShowArrow = NO;
         model1.isAccountLogin = YES;
@@ -65,7 +68,7 @@
     {
         model1.titleStr = @"注册/登录";
         model1.cellType = PersonCenterModelTypeZH;
-        model1.iconNameStr = @"zhanghao.png";
+        model1.iconNameStr = @"commom_default_head.png";
         model1.isShowArrow = NO;
         model1.isAccountLogin = NO;
 

@@ -38,7 +38,7 @@
 /**
  *  昵称
  */
-@property (nonatomic,strong) NSString *nickName;
+@property (nonatomic,strong) NSString *nickname;
 
 /**
  *  性别 0 男  1 女
@@ -106,6 +106,11 @@
  *  位置
  */
 @property (nonatomic,strong) NSString *location;
+
+/**
+ *  头像
+ */
+@property (nonatomic,strong) UIImage *headImage;
 
 
 @end

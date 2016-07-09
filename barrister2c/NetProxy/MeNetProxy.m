@@ -14,8 +14,8 @@
 #define UpdateUserInfo @"updateUserInfo.do"
 #define OrderListUrl @"myOrderList.do"
 #define MyLikeListUrl @"myFavoriteList.do"
-#define WeChatPayUrl @"wxPrepayInfo"
-#define AliaPayUrl @"aliPrepayInfo"
+#define WeChatPayUrl @"wxPrepayInfo.do"
+#define AliaPayUrl @"aliPrepayInfo.do"
 
 @implementation MeNetProxy
 /**
@@ -140,9 +140,9 @@
  *  @param params
  *  @param aBlock
  */
--(void)getOrderListWithParams:(NSMutableDictionary *)params block:(ServiceCallBlock)aBlock
+-(XuURLSessionTask *)getOrderListWithParams:(NSMutableDictionary *)params block:(ServiceCallBlock)aBlock
 {
-    [XuNetWorking postWithUrl:OrderListUrl params:params success:^(id response) {
+  XuURLSessionTask *task = [XuNetWorking postWithUrl:OrderListUrl params:params success:^(id response) {
         if ([self isCommonCorrectResultCodeWithResponse:response]) {
             if (aBlock) {
                 aBlock(response,YES);
@@ -159,6 +159,7 @@
         
     }];
     
+    return task;
 }
 
 
@@ -196,6 +197,7 @@
 
 -(XuURLSessionTask *)getWeChatPrePayOrderWithParams:(NSMutableDictionary *)params block:(ServiceCallBlock)aBlock
 {
+    [self appendCommonParamsWithDict:params];
     XuURLSessionTask *task = [XuNetWorking postWithUrl:WeChatPayUrl params:params success:^(id response) {
         if ([self isCommonCorrectResultCodeWithResponse:response]) {
             aBlock(response,YES);

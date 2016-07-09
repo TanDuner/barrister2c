@@ -10,6 +10,7 @@
 #import "BorderTextFieldView.h"
 #import "BankCardModel.h"
 #import "AccountProxy.h"
+#import "UIImage+Additions.h"
 
 #define RowHeight 44
 #define LeftSpace 10
@@ -34,6 +35,11 @@
 
 @property (nonatomic,strong) AccountProxy *proxy;
 
+@property (nonatomic,strong) UIScrollView *bgScrollView;
+
+
+@property (nonatomic,strong) NSString *iconName;
+
 @end
 
 @implementation AddBankCardViewController
@@ -45,8 +51,8 @@
 -(instancetype)init
 {
     if (self = [super init]) {
-//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBoardChangeFrame:) name:UIKeyboardWillShowNotification object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBoardChangeFrame:) name:UIKeyboardWillHideNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
     };
     return self;
 }
@@ -56,6 +62,18 @@
     [super viewDidLoad];
     self.title = @"添加银行卡";
     [self configView];
+}
+
+
+
+-(UIScrollView *)bgScrollView
+{
+    if (!_bgScrollView) {
+        _bgScrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
+        _bgScrollView.showsVerticalScrollIndicator = NO;
+        _bgScrollView.scrollEnabled = NO;
+    }
+    return _bgScrollView;
 }
 
 
@@ -73,7 +91,6 @@
     
     
     _nameTextField = [[BorderTextFieldView alloc] initWithFrame:RECT(LeftSpace, 0, SCREENWIDTH - 100 - .5 - LeftSpace, RowHeight)];
-    _nameTextField.keyboardType = UIKeyboardTypeNumberPad;
     _nameTextField.textColor = kFormTextColor;
     _nameTextField.row = 1;
     _nameTextField.cleanBtnOffset_x = _nameTextField.width - CleanBtnLessSpace;
@@ -88,17 +105,16 @@
     
     UILabel *label2 = [[UILabel alloc] initWithFrame:RECT(LeftSpace, 0, LeftViewWidth, RowHeight)];
     label2.textAlignment = NSTextAlignmentLeft;
-    label2.text = @"银行类型";
+    label2.text = @"银行名称";
     label2.font = SystemFont(14.0f);
     
     
     _bankNameTextField = [[BorderTextFieldView alloc] initWithFrame:RECT(LeftSpace, sepView1.y + sepView1.height, SCREENWIDTH - LeftSpace, RowHeight)];
     
-    _bankNameTextField.keyboardType = UIKeyboardTypeNumberPad;
     _bankNameTextField.textColor = kFormTextColor;
     _bankNameTextField.cleanBtnOffset_x = _bankNameTextField.width - CleanBtnLessSpace;
     _bankNameTextField.delegate = self;
-    _bankNameTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"请输入银行类型" attributes:@{NSForegroundColorAttributeName:RGBCOLOR(199, 199, 205)}];
+    _bankNameTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"请输入银行名称" attributes:@{NSForegroundColorAttributeName:RGBCOLOR(199, 199, 205)}];
     _bankNameTextField.leftViewMode = UITextFieldViewModeAlways;
     _bankNameTextField.leftView = label2;
     _bankNameTextField.textLeftOffset = LeftViewWidth + 20;
@@ -134,6 +150,7 @@
     _phoneTextField.delegate = self;
     _phoneTextField.cleanBtnOffset_x = _phoneTextField.width - CleanBtnLessSpace;
     _phoneTextField.textColor = kFormTextColor;
+    _phoneTextField.keyboardType = UIKeyboardTypePhonePad;
     _phoneTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"请输入手机号" attributes:@{NSForegroundColorAttributeName:RGBCOLOR(199, 199, 205)}];
     _phoneTextField.leftView = label4;
     _phoneTextField.leftViewMode = UITextFieldViewModeAlways;
@@ -151,18 +168,19 @@
     
     _bankCardNumTextField = [[BorderTextFieldView alloc] initWithFrame:RECT(LeftSpace, sepView4.size.height + sepView4.y, SCREENWIDTH - LeftSpace, RowHeight)];
     _bankCardNumTextField.delegate = self;
-    _bankCardNumTextField.cleanBtnOffset_x = _bankCardNumTextField.width - CleanBtnLessSpace;
+    _bankCardNumTextField.keyboardType = UIKeyboardTypePhonePad;
+    _bankCardNumTextField.cleanBtnOffset_x = _bankCardNumTextField.width - CleanBtnLessSpace - 40;
     _bankCardNumTextField.textColor = kFormTextColor;
     _bankCardNumTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"请输入卡号" attributes:@{NSForegroundColorAttributeName:RGBCOLOR(199, 199, 205)}];
     _bankCardNumTextField.leftView = label5;
     _bankCardNumTextField.leftViewMode = UITextFieldViewModeAlways;
     _bankCardNumTextField.textLeftOffset = LeftViewWidth + 20;
     
-    UIButton *scanBtn = [UIButton buttonWithType:UIButtonTypeSystem];
-    [scanBtn setFrame:RECT(SCREENWIDTH - 30 - 20, 7, 30, RowHeight - 14)];
-    [scanBtn setImage:[UIImage imageNamed:@"canCard.png"] forState:UIControlStateNormal];
-    [scanBtn addTarget:self action:@selector(sacnCardAction:) forControlEvents:UIControlEventTouchUpInside];
-    [_bankCardNumTextField addSubview:scanBtn];
+//    UIButton *scanBtn = [UIButton buttonWithType:UIButtonTypeSystem];
+//    [scanBtn setFrame:RECT(SCREENWIDTH - 30 - 20, 7, 30, RowHeight - 14)];
+//    [scanBtn setImage:[UIImage imageNamed:@"canCard.png"] forState:UIControlStateNormal];
+//    [scanBtn addTarget:self action:@selector(sacnCardAction:) forControlEvents:UIControlEventTouchUpInside];
+//    [_bankCardNumTextField addSubview:scanBtn];
     
     
     
@@ -180,33 +198,74 @@
 
     [inputBgView addSubview:_bankCardNumTextField];
     
-    [self.view addSubview:inputBgView];
+    [self.bgScrollView addSubview:inputBgView];
     
     _confirmButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [_confirmButton setTitle:@"确定" forState:UIControlStateNormal];
-    [_confirmButton setBackgroundColor:kNavigationBarColor];
+    [_confirmButton setBackgroundImage:[UIImage createImageWithColor:kNavigationBarColor] forState:UIControlStateNormal];
     [_confirmButton.layer setCornerRadius:4.0f];
     [_confirmButton.layer setMasksToBounds:YES];
     [_confirmButton.titleLabel setFont:SystemFont(14.0f)];
     [_confirmButton setTitleColor:kNavigationTitleColor forState:UIControlStateNormal];
     [_confirmButton addTarget:self action:@selector(confirmAction:) forControlEvents:UIControlEventTouchUpInside];
     [_confirmButton setFrame:RECT(15, RowHeight *5 + 10 + 48, SCREENWIDTH - 30, 45)];
-    [self.view addSubview:_confirmButton];
+    [self.bgScrollView addSubview:_confirmButton];
 
+    
+    [self.view addSubview:self.bgScrollView];
+    
+    self.bgScrollView.contentSize = CGSizeMake(0, self.view.height + inputBgView.height - 40 - 40);
+    
 }
 
 -(void)confirmAction:(UIButton *)btn
 {
     if (_nameTextField.text.length > 0 &&_bankCardNumTextField.text.length > 0 && _bankNameTextField.text.length > 0 && _phoneTextField.text.length > 0 && _openBankNameTextField.text.length > 0) {
-        
+        if (self.bankCardNumTextField.text.length > 0) {
+            [XuUItlity showLoading:@"正在识别卡号信息..."];
+            
+            [self requestCardInfoWithCardNum:self.bankCardNumTextField.text];
+        }
+        else
+        {
+            [XuUItlity showFailedHint:@"请填写卡号" completionBlock:nil];
+            return;
+        }
+
+    }
+    else
+    {
+        [XuUItlity showFailedHint:@"请完善信息" completionBlock:nil];
+        return;
+    }
+
+}
+
+
+-(void)commitCardInfo
+{
+    
+    if (_nameTextField.text.length > 0 &&_bankCardNumTextField.text.length > 0 && _bankNameTextField.text.length > 0 && _phoneTextField.text.length > 0 && _openBankNameTextField.text.length > 0) {
+
         if (![XuUtlity validateMobile:_phoneTextField.text]) {
             [XuUItlity showFailedHint:@"手机号不合法" completionBlock:nil];
         }
+
+        [self.view endEditing:YES];
         
-        NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:[BaseDataSingleton shareInstance].userModel.userId,@"userId",[BaseDataSingleton shareInstance].userModel.verifyCode,@"verifyCode",_bankCardNumTextField.text,@"cardNum",_nameTextField.text,@"cardholderName",_openBankNameTextField.text,@"bankAddress",_bankNameTextField.text,@"bankName", nil];
+        NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:[BaseDataSingleton shareInstance].userModel.userId,@"userId",[BaseDataSingleton shareInstance].userModel.verifyCode,@"verifyCode",_bankCardNumTextField.text,@"cardNum",_nameTextField.text,@"cardholderName",_openBankNameTextField.text,@"bankAddress",_bankNameTextField.text,@"bankName",self.iconName,@"logoName", nil];
         [self.proxy bindCarkWithParams:params block:^(id returnData, BOOL success) {
             if (success) {
-                [XuUItlity showSucceedHint:@"绑定成功" completionBlock:nil];
+                NSDictionary *dict = (NSDictionary *)returnData;
+                NSDictionary *accountDict = [dict objectForKey:@"account"];
+                [BaseDataSingleton shareInstance].bankCardDict = [accountDict objectForKey:@"bankCard"];
+                [BaseDataSingleton shareInstance].bankCardBindStatus = [accountDict objectForKey:@"bankCardBindStatus"];
+                [BaseDataSingleton shareInstance].remainingBalance = [accountDict objectForKey:@"remainingBalance"];
+                [BaseDataSingleton shareInstance].totalConsume = [accountDict objectForKey:@"totalIncome"];
+
+                [XuUItlity showSucceedHint:@"绑定成功" completionBlock:^{
+                    [self.navigationController popViewControllerAnimated:YES];
+                }];
             }
             else
             {
@@ -219,56 +278,27 @@
     {
         [XuUItlity showFailedHint:@"请补充完整信息" completionBlock:nil];
     }
+    
 }
 
 
 #pragma -mark ----UITextField Methods-----
 
--(BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
-    CGFloat offset = self.view.height - (textField.y + textField.height + 216 + 200);
-    if (offset <= 0) {
-        CGRect rect = self.view.frame;
-        rect.origin.y = offset;
-        [UIView animateWithDuration:.5 animations:^{
-            self.view.frame = rect;
-        }];
-    }
-    
-    return YES;
-}
 
 
-
--(void)keyBoardChangeFrame:(NSNotification *)aNotification
+-(void)keyboardWillShow:(NSNotification *)aNotification
 {
-    [UIView animateWithDuration:.5 animations:^{
-        self.view.frame = RECT(0, NAVBAR_HIGHTIOS_7, SCREENWIDTH, SCREENHEIGHT - NAVBAR_HIGHTIOS_7);
-    }];
-    
+    self.bgScrollView.scrollEnabled = YES;
 }
 
--(void)sacnCardAction:(UIButton *)btn
+
+-(void)keyboardWillHide:(NSNotification *)aNotification
 {
-    
-//    __weak typeof(*&self) weakSelf = self;
-    
-    //"cardtype": "贷记卡",
-    //"cardlength": 16,
-    //"cardprefixnum": "518710",
-    //"cardname": "MASTER信用卡",
-    //"bankname": "招商银行信用卡中心",
-    //"banknum": "03080010"
-
-//    ScanCardViewController *svc = [[ScanCardViewController alloc] init];
-//    svc.cardBlock = ^(BankCardModel *model)
-//    {
-//        [XuUItlity hideLoading];
-//        weakSelf.bankNameTextField.text = model.bankname;
-//        weakSelf.bankCardNumTextField.text = model.cardNum;
-//    };
-//    [self.navigationController pushViewController:svc animated:YES];
-
+    self.bgScrollView.scrollEnabled = NO;
+    self.bgScrollView.contentOffset = CGPointMake(0, 0);
 }
+
+
 
 /**
  *  根据卡号识别卡的信息
@@ -276,33 +306,60 @@
 
 -(void)requestCardInfoWithCardNum:(NSString *)cardNo
 {
-    
+    NSString *httpUrl = @"http://apis.baidu.com/datatiny/cardinfo/cardinfo";
+    NSString *httpArg = @"cardnum=5187102112341234";
+    [self request: httpUrl withHttpArg: httpArg];
+
 
 }
 
-//NSString *httpUrl = @"http://apis.baidu.com/datatiny/cardinfo/cardinfo";
-//NSString *httpArg = @"cardnum=5187102112341234";
-//[self request: httpUrl withHttpArg: httpArg];
-//
-//-(void)request: (NSString*)httpUrl withHttpArg: (NSString*)HttpArg  {
-//    NSString *urlStr = [[NSString alloc]initWithFormat: @"%@?%@", httpUrl, HttpArg];
-//    NSURL *url = [NSURL URLWithString: urlStr];
-//    NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL: url cachePolicy: NSURLRequestUseProtocolCachePolicy timeoutInterval: 10];
-//    [request setHTTPMethod: @"GET"];
-//    [request addValue: @"您自己的apikey" forHTTPHeaderField: @"apikey"];
-//    [NSURLConnection sendAsynchronousRequest: request
-//                                       queue: [NSOperationQueue mainQueue]
-//                           completionHandler: ^(NSURLResponse *response, NSData *data, NSError *error){
-//                               if (error) {
-//                                   NSLog(@"Httperror: %@%ld", error.localizedDescription, error.code);
-//                               } else {
-//                                   NSInteger responseCode = [(NSHTTPURLResponse *)response statusCode];
-//                                   NSString *responseString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-//                                   NSLog(@"HttpResponseCode:%ld", responseCode);
-//                                   NSLog(@"HttpResponseBody %@",responseString);
-//                               }
-//                           }];
-//}
+-(void)request: (NSString*)httpUrl withHttpArg: (NSString*)HttpArg  {
+    
+    __weak typeof(*&self) weakSelf = self;
+    
+    NSString *urlStr = [[NSString alloc]initWithFormat: @"%@?%@", httpUrl, HttpArg];
+    NSURL *url = [NSURL URLWithString: urlStr];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL: url cachePolicy: NSURLRequestUseProtocolCachePolicy timeoutInterval: 10];
+    [request setHTTPMethod: @"GET"];
+    [request addValue: @"732bbaf70af9fc28eaad5c5d28991262" forHTTPHeaderField: @"apikey"];
+    [NSURLConnection sendAsynchronousRequest: request
+                                       queue: [NSOperationQueue mainQueue]
+                           completionHandler: ^(NSURLResponse *response, NSData *data, NSError *error){
+                               [XuUItlity hideLoading];
+                               
+                               if (error) {
+                                   NSLog(@"Httperror: %@%ld", error.localizedDescription, error.code);
+                               } else {
+                                   NSInteger responseCode = [(NSHTTPURLResponse *)response statusCode];
+                                   if (responseCode == 200) {
+                                       NSError *err;
+                                       NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data
+                                                                                           options:NSJSONReadingMutableContainers
+                                                                                             error:&err];
+                                       NSDictionary *bankDict = [dic objectForKey:@"data"];
+                                       
+                                       NSString *bankName = [bankDict objectForKey:@"bankname"];
+                                      self.iconName = [BankCardModel getIconNameWithBankName:bankName];
+                                       weakSelf.bankNameTextField.text = bankName;
+                                       [weakSelf commitCardInfo];
+                                       
+                                   }
+                                   else
+                                   {
+                                       [XuUItlity showFailedHint:@"银行卡信息不正确" completionBlock:nil];
+                                   }
+                               }
+                           }];
+}
+
+
+-(AccountProxy *)proxy
+{
+    if (!_proxy) {
+        _proxy = [[AccountProxy alloc] init];
+    }
+    return _proxy;
+}
 
 
 @end

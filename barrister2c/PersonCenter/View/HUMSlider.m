@@ -489,7 +489,7 @@ static CGFloat const HUMTickWidth = 1;
 {
     // Update the width
     [self updateLeftTickConstraintsIfNeeded];
-    [self animateAllTicksIn:YES];
+    [self animateAllTicksIn:NO];
     [self popTickIfNeededFromTouch:touch];
     
     return [super beginTrackingWithTouch:touch withEvent:event];

@@ -40,6 +40,8 @@
         //隐藏系统TabBar
         self.tabBar.hidden = YES;
         self.newsMsgLabelArray = [NSMutableArray arrayWithCapacity:10];
+//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resetViewFrame:) name:UIApplicationDidChangeStatusBarFrameNotification object:nil];
+//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resetViewFrame:) name:UIApplicationWillChangeStatusBarFrameNotification object:nil];
     }
     return self;
 }
@@ -53,6 +55,19 @@
     
     //加载自定义TabBar
     [self loadCustomTabBarView];
+}
+
+
+-(void)resetViewFrame:(NSNotification *)nsnotifi
+{
+    if (STATUSBAR_HIGHT == 20) {
+        self.tabBarBG.frame = CGRectMake(0, SCREENHEIGHT-TABBAR_HEIGHT, SCREENWIDTH, TABBAR_HEIGHT);
+    }
+    else
+    {
+        self.tabBarBG.frame = CGRectMake(0, SCREENHEIGHT-TABBAR_HEIGHT - 20, SCREENWIDTH, TABBAR_HEIGHT);
+    }
+
 }
 
 #pragma mark-
@@ -101,6 +116,7 @@
     // 初始化自定义TabBar背景
     
     _tabBarBG = [[UIImageView alloc] initWithFrame:CGRectMake(0, SCREENHEIGHT-TABBAR_HEIGHT, SCREENWIDTH, TABBAR_HEIGHT)];
+    
     _tabBarBG.userInteractionEnabled = YES; //关键
     _tabBarBG.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:_tabBarBG];

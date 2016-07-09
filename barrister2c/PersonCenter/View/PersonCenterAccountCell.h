@@ -13,7 +13,6 @@
 
 @interface PersonCenterAccountCell : BaseTableViewCell
 
-@property (nonatomic,strong) YYAnimatedImageView *headerImageView;
 
 @property (nonatomic,strong) UILabel *unLoginTipLabel;
 

@@ -16,7 +16,7 @@
 #import "AppointmentMoel.h"
 #import "XuAlertView.h"
 #import "MyAccountRechargeVC.h"
-
+#import "BarristerLoginManager.h"
 
 typedef void(^ShowTimeSelectBlock)(id object);
 
@@ -123,7 +123,7 @@ typedef void(^ShowTimeSelectBlock)(id object);
     for (int i = 0; i < array.count; i ++) {
         NSDictionary *dict = (NSDictionary *)[array objectAtIndex:i];
         AppointmentMoel *model = [[AppointmentMoel alloc] initWithDictionary:dict];
-
+        
         for (int j = 0; j < [AppointmentManager shareInstance].modelArray.count; j ++) {
             AppointmentMoel *modelTemp = [[AppointmentManager shareInstance].modelArray objectAtIndex:j];
             if ([modelTemp.date isEqualToString:model.date]) {
@@ -131,6 +131,15 @@ typedef void(^ShowTimeSelectBlock)(id object);
             }
         }
     }
+    
+    if ([AppointmentManager shareInstance].modelArray.count > 0) {
+        //把当前时间之前的全部置换为2
+        AppointmentMoel *firstModel = [[AppointmentManager shareInstance].modelArray firstObject];
+        [firstModel setCurrentOrEailerDateUnSelected];
+
+    }
+
+    
     
     self.selectTimeView = [[LawerSelectTimeViewController alloc] init];
     self.selectTimeView.lawerModel = self.model;
@@ -186,6 +195,10 @@ typedef void(^ShowTimeSelectBlock)(id object);
     [params setObject:[NSString stringWithFormat:@"%@",price] forKey:@"price"];
     [params setObject:orderContent forKey:@"orderContent"];
     [params setObject:self.model.laywerId forKey:@"barristerId"];
+    if (self.bussinesAreaStr.length > 0) {
+        [params setObject:self.bussinesAreaStr forKey:@"caseType"];
+    }
+
     [self.proxy placeOrderOrderWithParams:params Block:^(id returnData, BOOL success) {
         if (success) {
             [XuUItlity showOkAlertView:@"知道了" title:@"提示" mesage:@"可以到我的订单查看" callback:nil];
@@ -200,8 +213,18 @@ typedef void(^ShowTimeSelectBlock)(id object);
                 [XuUItlity showFailedHint:resultMsg completionBlock:nil];
             }
             if (resultCode.integerValue == 3000) {
-                MyAccountRechargeVC *rechargeVC = [[MyAccountRechargeVC alloc] init];
-                [self.navigationController pushViewController:rechargeVC animated:YES];
+                [XuUItlity showYesOrNoAlertView:@"充值" noText:@"取消" title:@"提示" mesage:@"余额不足，请充值" callback:^(NSInteger buttonIndex, NSString *inputString) {
+                    if (buttonIndex == 0) {
+                        NSLog(@"取消");
+                    }
+                    else
+                    {
+                        MyAccountRechargeVC *rechargeVC = [[MyAccountRechargeVC alloc] init];
+                        [self.navigationController pushViewController:rechargeVC animated:YES];
+
+                    }
+                }];
+                
 
             }
             
@@ -261,6 +284,11 @@ typedef void(^ShowTimeSelectBlock)(id object);
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
+    if (![BaseDataSingleton shareInstance].loginState.integerValue  == 1) {
+        [[BarristerLoginManager shareManager] showLoginViewControllerWithController:self];
+        return;
+    }
+
     if (indexPath.section == 1) {
         if (indexPath.row == 1) {
             

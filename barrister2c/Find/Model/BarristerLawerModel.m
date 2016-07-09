@@ -20,8 +20,11 @@
     
     NSString *areaStr = @"";
     NSArray *array = [dict objectForKey:@"bizAreas"];
+    if (!array) {
+        array = [dict objectForKey:@"bizAreaList"];
+    }
     if ([XuUtlity isValidArray:array]) {
-        for (NSDictionary *dictTmep in [dict objectForKey:@"bizAreas"]) {
+        for (NSDictionary *dictTmep in array) {
             NSString *nameStr = [dictTmep objectForKey:@"name"];
             areaStr = [NSString stringWithFormat:@"%@|%@",areaStr,nameStr];
         }

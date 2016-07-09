@@ -27,7 +27,6 @@ typedef NS_ENUM(NSInteger ,AppointMentState)
 
 @property (nonatomic,strong,nonnull) NSMutableArray *modelArray;
 
-//@property (nonatomic,strong,nonnull) NSMutableArray *commitArray;
 
 
 /**

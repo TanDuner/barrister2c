@@ -24,7 +24,7 @@
 -(instancetype)init
 {
     if (self = [super init]) {
-        self.remainingBalance = @"300";
+        self.remainingBalance = @"0";
         self.loginState = @"0";
     }
     return self;
@@ -55,6 +55,7 @@
 -(void)clearUserInfo
 {
     self.loginState = @"0";
+    self.userModel.headImage = nil;
     self.userModel = nil;
     [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:@"verifyCode"];
     [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:@"loginState"];

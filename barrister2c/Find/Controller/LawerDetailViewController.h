@@ -10,6 +10,8 @@
 #import "BarristerLawerModel.h"
 
 @interface LawerDetailViewController : BaseTableViewController
+
+@property (nonatomic,strong) NSString *bussinesAreaStr;
 @property (nonatomic,strong) BarristerLawerModel *model;
 
 @end

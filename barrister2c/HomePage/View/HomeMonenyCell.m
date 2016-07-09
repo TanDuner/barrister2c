@@ -38,10 +38,9 @@
 {
     [super layoutSubviews];
     
-    self.remainLabel.text = [BaseDataSingleton shareInstance].remainingBalance;
+    self.remainLabel.text = [BaseDataSingleton shareInstance].remainingBalance?[NSString stringWithFormat:@"%.2f",[BaseDataSingleton shareInstance].remainingBalance.floatValue]:@"0";
     
-    self.costLabel.text = [BaseDataSingleton shareInstance].totalConsume?[BaseDataSingleton shareInstance].totalConsume:@"0";
-    
+    self.costLabel.text = [BaseDataSingleton shareInstance].totalConsume?[NSString stringWithFormat:@"%.2f",[BaseDataSingleton shareInstance].totalConsume.floatValue]:@"0";
     
 }
 

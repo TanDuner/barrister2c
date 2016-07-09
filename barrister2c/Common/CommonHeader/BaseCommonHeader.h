@@ -50,7 +50,7 @@
 
 #define DAY_SECOND 86400
 
-#define STATUSBAR_HIGHT  (20)
+#define STATUSBAR_HIGHT  [UIApplication sharedApplication].statusBarFrame.size.height
 #define NAVBAR_HIGHTIOS_7 (44 + 20)
 #define NAVBAR_DEFAULT_HEIGHT  ((IS_IOS7) ? (NAVBAR_HIGHTIOS_7) : (44))
 #define STATUSBAR_DEFAULT_HEIGHT  ((IS_IOS7) ? (0) : (STATUSBAR_HIGHT))

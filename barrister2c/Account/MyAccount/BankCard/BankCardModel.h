@@ -25,4 +25,9 @@
 @property (nonatomic,strong) NSString *banknum;
 @property (nonatomic,strong) NSString *cardNum;
 
+
++(NSString *)getIconNameWithBankName:(NSString *)name;
+
++(UIColor *)getColorWithIconName:(NSString *)iconName;
+
 @end

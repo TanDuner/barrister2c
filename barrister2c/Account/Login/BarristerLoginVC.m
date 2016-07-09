@@ -121,8 +121,10 @@ const float MidViewHeight = 190 / 2.0;
     UIView *sepView = [self getLineViewWithFrame:RECT(0, accountTextField.height, SCREENWIDTH, .5)];
     
     passwordTextField = [[BorderTextFieldView alloc] initWithFrame:RECT(0, sepView.size.height + sepView.y, SCREENWIDTH - 190, (MidViewHeight - 0.5)/2.0)];
+    passwordTextField.keyboardType = UIKeyboardTypeNumberPad;
     passwordTextField.delegate = self;
     passwordTextField.textColor = kFormTextColor;
+    passwordTextField.keyboardAppearance = UIKeyboardTypeNumberPad;
     passwordTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"请输入验证码" attributes:@{NSForegroundColorAttributeName:RGBCOLOR(199, 199, 205)}];
     passwordTextField.cleanBtnOffset_x = passwordTextField.width - 100;
     
@@ -243,6 +245,7 @@ const float MidViewHeight = 190 / 2.0;
 {
     if ([XuUtlity validateMobile:accountTextField.text]) {
         [btn clickSelfBtn:btn];
+        [accountTextField resignFirstResponder];
         NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:accountTextField.text,@"phone", nil];
         [XuUItlity showLoading:@"正在发送验证码..."];
         [self.proxy getValidCodeWithParams:params Block:^(id returnData, BOOL success) {

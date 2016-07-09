@@ -10,6 +10,8 @@
 #import "BorderTextFieldView.h"
 #import "UIButton+EnlargeEdge.h"
 #import "AccountProxy.h"
+#import "MyBankCardController.h"
+
 
 #define RowHeight 45
 #define LeftSpace 10
@@ -41,6 +43,8 @@
     [super viewDidLoad];
     self.title = @"提现";
     [self confiView];
+    [self initNavigationRightTextButton:@"银行卡" action:@selector(toBankCardVCAction:)];
+    
 }
 
 -(void)confiView
@@ -145,6 +149,12 @@
     }
     
     return YES;
+}
+
+-(void)toBankCardVCAction:(UIButton *)btn
+{
+    MyBankCardController *myBankCardController = [[MyBankCardController alloc] init];
+    [self.navigationController pushViewController:myBankCardController animated:YES];
 }
 
 -(void)tixianAction:(UIButton *)button

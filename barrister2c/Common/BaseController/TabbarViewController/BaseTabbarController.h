@@ -22,9 +22,6 @@
 
 
 
--(void)setNewMsgTipWithIndex:(int)index;
--(void)hideNewMsgTipWithIndex:(int)index;
-
 - (void)changeViewController:(UIButton *)button;
 - (void)showTabBar;
 - (void)hiddenTabBar;

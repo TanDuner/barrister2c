@@ -20,7 +20,9 @@
 #include <net/if_dl.h>
 #import <AudioToolbox/AudioToolbox.h>
 #import "Reachability.h"
+#import "UIImage+CommonAdd.h"
 
+const NSUInteger kDefaultImageDataLength = 80000; //80k
 
 typedef struct PhoneSate PhoneSate;
 
@@ -1592,7 +1594,7 @@ typedef struct PhoneSate PhoneSate;
 
 +(BOOL)validateNumber:(NSString*)number {
     BOOL res = YES;
-    NSCharacterSet* tmpSet = [NSCharacterSet characterSetWithCharactersInString:@"0123456789"];
+    NSCharacterSet* tmpSet = [NSCharacterSet characterSetWithCharactersInString:@"0123456789."];
     int i = 0;
     while (i < number.length) {
         NSString * string = [number substringWithRange:NSMakeRange(i, 1)];
@@ -1618,6 +1620,36 @@ typedef struct PhoneSate PhoneSate;
     }
 }
 
+
+/**
+ *  上传图片之前的压缩
+ *
+ *  @param soruceImage
+ *
+ *  @return
+ */
++ (NSData *)p_compressImage:(UIImage *)soruceImage
+{
+    NSData *imageData = UIImageJPEGRepresentation(soruceImage, 1.0);
+    
+    if (imageData.length <= kDefaultImageDataLength) {
+        
+        return imageData;
+    }
+    
+    CGSize scaleSize = ({
+        
+        CGFloat targetWidth = 480;
+        CGFloat targetHeight = (targetWidth / soruceImage.size.width) * soruceImage.size.height;
+        
+        CGSizeMake(targetWidth, targetHeight);
+    });
+    
+    UIImage *zipImage = [soruceImage imageByResizeToSize:scaleSize];
+    
+    return [zipImage zipImageToLength:kDefaultImageDataLength];
+
+}
 
 
 @end

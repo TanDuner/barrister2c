@@ -467,17 +467,41 @@
  */
 -(void)handleTableRefreshOrLoadMoreWithTableView:(RefreshTableView *)tableView array:(NSArray *)array aBlock:(void(^)())aBlock
 {
-    if (tableView.pageNum == 1) {
-        if (aBlock) {
-            aBlock();
-        }
-        [tableView endRefreshing];
-        if (array.count == 0) {
+    if (array.count == 0) {
+        if (tableView.pageNum == 1) {
+            if (aBlock) {
+                aBlock();
+            }
+            [tableView endRefreshing];
             [self showNoContentView];
         }
         else
         {
             [self hideNoContentView];
+            [tableView endLoadMoreWithNoMoreData:YES];
+        }
+        
+    }
+    else
+    {
+        
+        [self hideNoContentView];
+        if (tableView.pageNum == 1) {
+            if (aBlock) {
+                aBlock();
+            }
+            [tableView endRefreshing];
+            if (array.count < tableView.pageSize) {
+                [tableView endLoadMoreWithNoMoreData:YES];
+            }
+            else
+            {
+                [tableView endLoadMoreWithNoMoreData:NO];
+            }
+
+        }
+        else
+        {
             if (array.count < tableView.pageSize) {
                 [tableView endLoadMoreWithNoMoreData:YES];
             }
@@ -487,18 +511,39 @@
             }
         }
     }
-    else
-    {
-        [self hideNoContentView];
-        if (array.count < tableView.pageSize) {
-            [tableView endLoadMoreWithNoMoreData:YES];
-        }
-        else
-        {
-            [tableView endLoadMoreWithNoMoreData:NO];
-        }
-
-    }
+    
+//    if (tableView.pageNum == 1) {
+//        if (aBlock) {
+//            aBlock();
+//        }
+//        [tableView endRefreshing];
+//        if (array.count == 0) {
+//            [self showNoContentView];
+//        }
+//        else
+//        {
+//            [self hideNoContentView];
+//            if (array.count < tableView.pageSize) {
+//                [tableView endLoadMoreWithNoMoreData:YES];
+//            }
+//            else
+//            {
+//                [tableView endLoadMoreWithNoMoreData:NO];
+//            }
+//        }
+//    }
+//    else
+//    {
+//        [self hideNoContentView];
+//        if (array.count < tableView.pageSize) {
+//            [tableView endLoadMoreWithNoMoreData:YES];
+//        }
+//        else
+//        {
+//            [tableView endLoadMoreWithNoMoreData:NO];
+//        }
+//
+//    }
     
       
 }

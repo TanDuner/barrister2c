@@ -110,9 +110,10 @@
         [strongSelf.items removeAllObjects];
     }];
     
-
     
     [self.tableView reloadData];
+    
+    
     for (int i = 0; i < array.count; i ++) {
         NSDictionary *dict = [array objectAtIndex:i];
         MyAccountDetailModel *model = [[MyAccountDetailModel alloc] initWithDictionary:dict];

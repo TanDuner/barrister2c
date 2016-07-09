@@ -21,6 +21,8 @@
 
 @property (nonatomic,strong) NSMutableArray *items;
 
+@property (nonatomic,strong) XuURLSessionTask *task;
+
 @end
 
 @implementation MyOrderListViewController
@@ -30,6 +32,14 @@
     [super viewDidLoad];
     [self configView];
     [self configData];
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    if (self.task) {
+        [self.task cancel];
+    }
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -49,8 +59,9 @@
     [params setObject:[NSString stringWithFormat:@"%ld",self.tableView.pageSize] forKey:@"pageSize"];
     [params setObject:[NSString stringWithFormat:@"%ld",self.tableView.pageNum] forKey:@"page"];
     
-    
-    [self.proxy getOrderListWithParams:params block:^(id returnData, BOOL success) {
+    [XuUItlity showLoadingInView:self.view hintText:@"加载中..."];
+   self.task = [self.proxy getOrderListWithParams:params block:^(id returnData, BOOL success) {
+        [XuUItlity hideLoading];
         if (success) {
             [weakSelf hideNoContentView];
             NSDictionary *dict = (NSDictionary *)returnData;
@@ -65,7 +76,15 @@
         }
         else
         {
-            [weakSelf showNoContentView];
+            if (weakSelf.items.count == 0) {
+                [weakSelf showNoContentView];
+            }
+            else
+            {
+                [XuUItlity showFailedHint:@"加载失败" completionBlock:nil];
+                [weakSelf.tableView endLoadMoreWithNoMoreData:NO];
+            }
+
         }
     }];
 }

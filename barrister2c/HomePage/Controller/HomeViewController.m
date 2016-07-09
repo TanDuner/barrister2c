@@ -119,7 +119,7 @@
         }
         else
         {
-            [XuUItlity showFailedHint:@"加载账户信息失败" completionBlock:nil];
+            
         }
     }];
 }
@@ -147,7 +147,8 @@
     [BaseDataSingleton shareInstance].bankCardDict = [accountDict objectForKey:@"bankCard"];
     [BaseDataSingleton shareInstance].bankCardBindStatus = [accountDict objectForKey:@"bankCardBindStatus"];
     [BaseDataSingleton shareInstance].remainingBalance = [accountDict objectForKey:@"remainingBalance"];
-    [BaseDataSingleton shareInstance].totalConsume = [accountDict objectForKey:@"totalIncome"];
+    [BaseDataSingleton shareInstance].totalConsume = [accountDict objectForKey:@"totalConsume"];
+
     
     [self.tableView reloadData];
     
@@ -346,10 +347,6 @@
 
 #pragma -mark -Action-
 
--(void)toLoginAction:(UIButton *)button
-{
-    
-}
 
 
 -(void)toLawerListVCWithIndex:(NSInteger)index isArea:(BOOL)isArea

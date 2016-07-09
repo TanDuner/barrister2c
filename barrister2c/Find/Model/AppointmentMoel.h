@@ -37,14 +37,11 @@
 +(NSString *)getStringWithModel:(AppointmentMoel *)model;
 
 
-/**
- *  
- *
- *  @param model
- *
- *  @return <#return value description#>
- */
-+(NSString *)getStringWithModel:(AppointmentMoel *)model;
 
+/**
+ *  把获得的当天的model 的当前时间之前的 全部设置为2
+ */
+
+-(void)setCurrentOrEailerDateUnSelected;
 
 @end

@@ -11,7 +11,7 @@
 #import "AppDelegate.h"
 #import "LoginProxy.h"
 #import "FeedBackViewController.h"
-
+#import "BaseWebViewController.h"
 @interface SettingViewController ()
 
 @property (nonatomic,strong) UIButton *bottomBtn;
@@ -106,10 +106,27 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (indexPath.row == 0) {
+        BaseWebViewController *baseView = [[BaseWebViewController alloc] init];
+        baseView.title = @"使用帮助";
+        baseView.url = @"http://www.baidu.com";
+        [self.navigationController pushViewController:baseView animated:YES];
+    }
+    if (indexPath.row == 1) {
+        BaseWebViewController *baseView = [[BaseWebViewController alloc] init];
+        baseView.title = @"关于我们";
+        baseView.url = @"http://www.baidu.com";
+        [self.navigationController pushViewController:baseView animated:YES];
+    }
     if (indexPath.row == 2) {
         FeedBackViewController *feedbackVC = [[FeedBackViewController alloc] init];
         [self.navigationController pushViewController:feedbackVC animated:YES];
     }
+    if (indexPath.row == 3) {
+        NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"telprompt://%@",@"4009600118"];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
+    }
+    
 }
 #pragma -mark -----Action-------
 
@@ -118,16 +135,17 @@
     if ([BaseDataSingleton shareInstance].loginState.integerValue == 1) {
         
         NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:1];
-        [params setObject:[BaseDataSingleton shareInstance].userModel.userId forKey:@"id"];
+        [params setObject:[BaseDataSingleton shareInstance].userModel.userId forKey:@"userId"];
         [params setObject:[BaseDataSingleton shareInstance].userModel.verifyCode forKey:@"verifyCode"];
         [XuUItlity showLoading:@"正在注销"];
         [self.proxy loginOutWithParams:params Block:^(id returnData, BOOL success) {
             [XuUItlity hideLoading];
             if (success) {
+                [[BaseDataSingleton shareInstance] clearUserInfo];
                 [self.navigationController popViewControllerAnimated:YES];
+                [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_LOGOUT_SUCCESS object:nil];
                 AppDelegate *delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
                 [delegate selectTabWithIndex:0];
-                
             }
             else
             {

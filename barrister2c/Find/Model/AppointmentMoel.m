@@ -60,4 +60,43 @@
     
 }
 
+
+
+/**
+ *  把获得的当天的model 的当前时间之前的 全部设置为2
+ */
+
+-(void)setCurrentOrEailerDateUnSelected
+{
+    NSDate *date = [NSDate date];
+    NSString *dateStr = [XuUtlity stringFromDate:date forDateFormatterStyle:DateFormatterTime];//13:40
+    NSRange range = [dateStr rangeOfString:@":"];
+    dateStr = [dateStr substringToIndex:range.location];
+    
+    NSInteger index = dateStr.integerValue *2 - 12;
+    
+
+        NSString *str = @"";
+    for ( int i = 0 ; i < self.settingArray.count; i ++) {
+        if (i < index) {
+            [self.settingArray replaceObjectAtIndex:i withObject:@"2"];
+            str = [NSString stringWithFormat:@"%@,%@",str,@"2"];
+        }
+        else
+        {
+            NSString *originStr = [self.settingArray objectAtIndex:i];
+            str = [NSString stringWithFormat:@"%@,%@",str,originStr];
+        }
+
+        if ([str hasPrefix:@","]) {
+            str = [str substringFromIndex:1];
+        }
+        
+    }
+    
+    
+    self.settings = str;
+}
+
+
 @end

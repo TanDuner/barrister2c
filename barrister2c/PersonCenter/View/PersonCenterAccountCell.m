@@ -80,8 +80,19 @@
     if (self.model) {
    
 //        self.subtitleLabel.hidden = YES;
-        
-        [self.iconImageIVew yy_setImageWithURL:[NSURL URLWithString:self.model.iconNameStr] placeholder:[UIImage imageNamed:@"zhanghao.png"]];
+      
+         if ([BaseDataSingleton shareInstance].userModel.headImage)
+        {
+            [self.iconImageIVew setImage:[BaseDataSingleton shareInstance].userModel.headImage];
+
+        }
+         else if ([BaseDataSingleton shareInstance].userModel.userIcon) {
+             [self.iconImageIVew yy_setImageWithURL:[NSURL URLWithString:[BaseDataSingleton shareInstance].userModel.userIcon] placeholder:[UIImage imageNamed:@"commom_default_head"]];
+         }
+        else
+        {
+            [self.iconImageIVew setImage:[UIImage imageNamed:@"commom_default_head"]];
+        }
         self.titleLabel.text = self.model.titleStr;
         
         if (self.model.isShowArrow) {

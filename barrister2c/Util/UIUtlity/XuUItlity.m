@@ -249,7 +249,7 @@ static const NSInteger InputAlertTextFieldTag = 12345;
     }
     _loadingHUD = [[MBProgressHUD alloc] initWithFrame:theFrame];
     //    _loadingHUD.labelText = hintText;
-    _loadingHUD.labelText = LOADING_VIEW_TEXT;
+    _loadingHUD.labelText = hintText?hintText:LOADING_VIEW_TEXT;
     [theWindow addSubview:_loadingHUD];
  
     

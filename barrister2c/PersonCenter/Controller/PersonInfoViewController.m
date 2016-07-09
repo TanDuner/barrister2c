@@ -16,6 +16,8 @@
 #import "XuNetWorking.h"
 #import "MeNetProxy.h"
 #import "IMActionSheet.h"
+#import "BaseDataSingleton.h"
+
 @interface PersonInfoViewController ()<AJPhotoPickerProtocol,UIImagePickerControllerDelegate,UINavigationControllerDelegate,IMActionSheetDelegate>
 
 @property (nonatomic,strong) UIImage *headImage;
@@ -152,7 +154,7 @@
             case 1:
             {
                 model.cellType = PersonCenterModelTypeInfoNickName;
-                model.subtitleStr = [BaseDataSingleton shareInstance].userModel.nickName?[BaseDataSingleton shareInstance].userModel.nickName:@"未填写";
+                model.subtitleStr = [BaseDataSingleton shareInstance].userModel.nickname?[BaseDataSingleton shareInstance].userModel.nickname:@"未填写";
                 model.isShowArrow = YES;
 
             }
@@ -394,10 +396,12 @@
     [params setObject:[BaseDataSingleton shareInstance].userModel.userId forKey:@"userId"];
     [params setObject:[BaseDataSingleton shareInstance].userModel.verifyCode forKey:@"verifyCode"];
     [XuUItlity showLoading:@"正在上传.."];
+    
     [self.proxy UploadHeadImageUrlWithImage:self.headImage params:params fileName:@"userIcon" Block:^(id returnData, BOOL success) {
         [XuUItlity hideLoading];
         if (success) {
             [XuUItlity showSucceedHint:@"上传成功" completionBlock:nil];
+            [BaseDataSingleton shareInstance].userModel.headImage = self.headImage;
             [self.tableView reloadData];
 
         }

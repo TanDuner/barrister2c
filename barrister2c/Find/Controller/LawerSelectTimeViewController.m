@@ -329,8 +329,9 @@
         [_confirmBgView setFrame:CGRectMake(15, 100, CommonViewWidth, totalHeight + 45 + 30 + 40)];
         
         UILabel *totalCostLabel = [[UILabel alloc] initWithFrame:RECT(LeftPadding, _confirmBgView.height - 70, SCREENWIDTH - 30 - 20, 15)];
-        self.totalPrice = [NSString stringWithFormat:@"%f",self.lawerModel.priceAppointment.floatValue];
-        totalCostLabel.text = [NSString stringWithFormat:@"总计：%.0f.00 元", self.totalPrice.floatValue *totalTimes];
+        self.totalPrice = [NSString stringWithFormat:@"%f",self.lawerModel.priceAppointment.floatValue *totalTimes];
+        NSString *str = [NSString stringWithFormat:@"总计：%.0f.00 元", self.totalPrice.floatValue];
+        totalCostLabel.text = str;
         totalCostLabel.textColor = KColorGray333;
         totalCostLabel.font = SystemFont(14.0f);
         [_confirmBgView addSubview:totalCostLabel];

@@ -73,7 +73,6 @@
     [BaseDataSingleton shareInstance].bankCardBindStatus = [accountDict objectForKey:@"bankCardBindStatus"];
     [BaseDataSingleton shareInstance].remainingBalance = [accountDict objectForKey:@"remainingBalance"];
     [BaseDataSingleton shareInstance].totalConsume = [accountDict objectForKey:@"totalIncome"];
-    
     [self.headView setNeedsLayout];
     
 }
@@ -143,6 +142,7 @@
     {
         TiXianViewControlleer *tixian = [[TiXianViewControlleer alloc] init];
         [self.navigationController pushViewController:tixian animated:YES];
+
     }
 }
 

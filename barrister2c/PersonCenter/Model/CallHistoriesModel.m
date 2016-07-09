@@ -25,10 +25,17 @@
 -(void)handlePropretyWithDict:(NSDictionary *)dict
 {
     
-    if (self.duration.floatValue > 0) {
-        NSInteger hour =  self.duration.floatValue/3600;
-        NSInteger min = self.duration.floatValue/60 - hour *60;
-        NSInteger seconds = self.duration.floatValue - min *60 - hour *3600;
+    
+}
+
+-(void)setDuration:(NSString *)duration
+{
+    _duration = duration;
+    
+    if (_duration.floatValue > 0) {
+        NSInteger hour =  _duration.floatValue/3600;
+        NSInteger min = _duration.floatValue/60 - hour *60;
+        NSInteger seconds = _duration.floatValue - min *60 - hour *3600;
         if (hour == 0) {
             self.totalShowTimeStr = [NSString stringWithFormat:@"%@:%@",(hour>10?[NSString stringWithFormat:@"%ld",min]:[NSString stringWithFormat:@"0%ld",min]),(seconds>10?[NSString stringWithFormat:@"%ld",seconds]:[NSString stringWithFormat:@"0%ld",seconds])];
         }
@@ -36,7 +43,7 @@
         {
             self.totalShowTimeStr = [NSString stringWithFormat:@"%@:%@:%@",(hour>10?[NSString stringWithFormat:@"%ld",hour]:[NSString stringWithFormat:@"0%ld",hour]),(min>10?[NSString stringWithFormat:@"%ld",min]:[NSString stringWithFormat:@"0%ld",min]),(seconds>10?[NSString stringWithFormat:@"%ld",seconds]:[NSString stringWithFormat:@"0%ld",seconds])];
         }
-
+        
     }
     else
     {
@@ -44,7 +51,9 @@
     }
 
     
+    
 }
+
 
 -(void)setIndex:(NSInteger)index
 {
@@ -62,6 +71,12 @@
     
     if ([[DownloadVoiceManager shareInstance] isVoiceFileExistWithOrderId:self.orderId index:self.index]) {
         self.isDownloading = NO;
+        AVURLAsset* audioAsset =[AVURLAsset URLAssetWithURL:[NSURL URLWithString:self.fileName] options:nil];
+        
+        CMTime audioDuration = audioAsset.duration;
+        
+        self.duration = [NSString stringWithFormat:@"%f",CMTimeGetSeconds(audioDuration)];
+
         [[VolumePlayHelper PlayerHelper] playSound:self.fileName];
         return;
     }

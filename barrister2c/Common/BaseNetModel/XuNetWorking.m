@@ -12,7 +12,7 @@
 #import "AFHTTPSessionManager.h"
 #import "MBProgressHUD+Add.h"
 #import "MBProgressHUD.h"
-
+#import "XuUtlity.h"
 #ifdef DEBUG
 #define XuAppLog(s, ... ) NSLog( @"[%@：in line: %d]-->%@", [[NSString stringWithUTF8String:__FILE__] lastPathComponent], __LINE__, [NSString stringWithFormat:(s), ##__VA_ARGS__] )
 #else
@@ -269,7 +269,8 @@ static XuRequestType  sg_requestType  = kXuRequestTypeJSON;
     
     AFHTTPSessionManager *manager = [self manager];
     XuURLSessionTask *session = [manager POST:url parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
-        NSData *imageData = UIImageJPEGRepresentation(image, 1);
+//        NSData *imageData = UIImageJPEGRepresentation(image, 1);
+        NSData *imageData = [XuUtlity p_compressImage:image];
         
         NSString *imageFileName = filename;
         if (filename == nil || ![filename isKindOfClass:[NSString class]] || filename.length == 0) {
@@ -341,8 +342,161 @@ static XuRequestType  sg_requestType  = kXuRequestTypeJSON;
     return session;
 }
 
+/**
+ *  请求不带baseUrl的
+ *
+ *  @param url
+ *  @param success
+ *  @param failure
+ *
+ *  @return
+ */
+
++ (XuURLSessionTask *)requestWithNoBaseUrl:(NSString *)url
+                            httpMedth:(NSUInteger)httpMethod
+                               params:(NSDictionary *)params
+                             progress:(XuDownloadProgress)progress
+                              success:(XuResponseSuccess)success
+                                 fail:(XuResponseFail)fail
+{
+
+    AFHTTPSessionManager *manager = [self noBaseUrlManager];
+    
+    if ([self baseUrl] == nil) {
+        if ([NSURL URLWithString:url] == nil) {
+            XuAppLog(@"URLString无效，无法生成URL。可能是URL中有中文，请尝试Encode URL");
+            return nil;
+        }
+    } else {
+        if ([NSURL URLWithString:[NSString stringWithFormat:@"%@%@", [self baseUrl], url]] == nil) {
+            XuAppLog(@"URLString无效，无法生成URL。可能是URL中有中文，请尝试Encode URL");
+            return nil;
+        }
+    }
+    
+    if ([self shouldEncode]) {
+        url = [self encodeUrl:url];
+    }
+    
+    XuURLSessionTask *session = nil;
+    
+    if (httpMethod == 1) {
+        session = [manager GET:url parameters:params progress:^(NSProgress * _Nonnull downloadProgress) {
+            if (progress) {
+                progress(downloadProgress.completedUnitCount, downloadProgress.totalUnitCount);
+            }
+        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            [self successResponse:responseObject callback:success];
+            
+            if ([self isDebug]) {
+                [self logWithSuccessResponse:responseObject
+                                         url:task.response.URL.absoluteString
+                                      params:params];
+            }
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            if (fail) {
+                fail(error);
+            }
+            
+            if ([self isDebug]) {
+                [self logWithFailError:error url:task.response.URL.absoluteString params:params];
+            }
+        }];
+    } else if (httpMethod == 2) {
+        session = [manager POST:url parameters:params progress:^(NSProgress * _Nonnull downloadProgress) {
+            if (progress) {
+                progress(downloadProgress.completedUnitCount, downloadProgress.totalUnitCount);
+            }
+        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            [self successResponse:responseObject callback:success];
+            
+            if ([self isDebug]) {
+                [self logWithSuccessResponse:responseObject
+                                         url:task.response.URL.absoluteString
+                                      params:params];
+            }
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            if (fail) {
+                fail(error);
+            }
+            
+            if ([self isDebug]) {
+                [self logWithFailError:error url:task.response.URL.absoluteString params:params];
+            }
+        }];
+    }
+    
+    return session;
+
+    
+}
+
+
 
 #pragma mark - Private
++ (AFHTTPSessionManager *)noBaseUrlManager {
+    // 开启转圈圈
+    [AFNetworkActivityIndicatorManager sharedManager].enabled = YES;
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    
+    switch (sg_requestType) {
+        case kXuRequestTypeJSON: {
+            //            manager.requestSerializer = [AFJSONRequestSerializer serializer];
+            [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+            [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+            break;
+        }
+        case kXuRequestTypePlainText: {
+            manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+            break;
+        }
+        default: {
+            break;
+        }
+    }
+    
+    switch (sg_responseType) {
+        case kXuResponseTypeJSON: {
+            manager.responseSerializer = [AFJSONResponseSerializer serializer];
+            break;
+        }
+        case kXuResponseTypeXML: {
+            manager.responseSerializer = [AFXMLParserResponseSerializer serializer];
+            break;
+        }
+        case kXuResponseTypeData: {
+            manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+            break;
+        }
+        default: {
+            break;
+        }
+    }
+    
+    manager.requestSerializer.stringEncoding = NSUTF8StringEncoding;
+    
+    
+    for (NSString *key in sg_httpHeaders.allKeys) {
+        if (sg_httpHeaders[key] != nil) {
+            [manager.requestSerializer setValue:sg_httpHeaders[key] forHTTPHeaderField:key];
+        }
+    }
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithArray:@[@"application/json",
+                                                                              @"text/html",
+                                                                              @"text/json",
+                                                                              @"text/plain",
+                                                                              @"text/javascript",
+                                                                              @"text/xml",
+                                                                              @"image/*"]];
+    
+    // 设置允许同时最大并发数量，过大容易出问题
+    manager.operationQueue.maxConcurrentOperationCount = 3;
+    return manager;
+}
+
+
+
 + (AFHTTPSessionManager *)manager {
     // 开启转圈圈
     [AFNetworkActivityIndicatorManager sharedManager].enabled = YES;

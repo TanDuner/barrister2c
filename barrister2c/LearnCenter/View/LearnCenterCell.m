@@ -34,9 +34,9 @@
 -(void)layoutSubviews
 {
     [super layoutSubviews];
-    [self.leftImageView setFrame:RECT(LeftPadding, LeftPadding + 5, 45, 45)];
-    [self.titleLabel setFrame:RECT(self.leftImageView.x + self.leftImageView.width + 10, self.leftImageView.y, 150, 15)];
-    [self.timeLabel setFrame:CGRectMake(SCREENWIDTH - 160, LeftPadding + 5, 150, 15)];
+    [self.leftImageView setFrame:RECT(LeftPadding, LeftPadding + 5, 100, 60)];
+    [self.titleLabel setFrame:RECT(self.leftImageView.x + self.leftImageView.width + 10, self.leftImageView.y, SCREENWIDTH - LeftPadding *2 - CGRectGetMaxX(self.leftImageView.frame) - LeftPadding, 15)];
+    [self.timeLabel setFrame:CGRectMake(SCREENWIDTH - 160, self.height - 25, 150, 15)];
 }
 
 

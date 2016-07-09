@@ -37,7 +37,7 @@
 {
     [super layoutSubviews];
     [self.titleLabel setFrame:RECT(LeftPadding, ([PersonInfoCustomCell getCellHeightWithModel:self.model] - 15)/2.0, 200, 15)];
-    [self.rightRow setFrame:CGRectMake(SCREENWIDTH - 15 - 15, self.titleLabel.y, 15, 15)];
+    [self.rightRow setFrame:CGRectMake(SCREENWIDTH - 10 - 15, self.titleLabel.y, 10, 15)];
     if (self.model.isShowArrow) {
         self.rightRow.hidden = NO;
         [self.subTitleLabel setFrame:RECT(SCREENWIDTH - 15  - 10 - 15 - 200, self.titleLabel.y, 200, 15)];
@@ -61,14 +61,15 @@
         if (self.model.cellType == PersonCenterModelTypeInfoTX) {
             self.headerImageView.hidden = NO;
             [self.headerImageView setFrame:CGRectMake(SCREENWIDTH - 15 - 15 - 10 - ImageWidth, ([PersonInfoCustomCell getCellHeightWithModel:self.model] - ImageWidth)/2.0, ImageWidth, ImageWidth)];
-            if ([BaseDataSingleton shareInstance].userModel.userIcon) {
+        
+            if([BaseDataSingleton shareInstance].userModel.headImage)
+            {
+                [self.headerImageView setImage:[BaseDataSingleton shareInstance].userModel.headImage];
+            }
+             else if ([BaseDataSingleton shareInstance].userModel.userIcon) {
                 [self.headerImageView yy_setImageWithURL:[NSURL URLWithString:[BaseDataSingleton shareInstance].userModel.userIcon] placeholder:[UIImage imageNamed:@"commom_default_head.png"]];
             }
-            else if(self.model.headImage)
-            {
-                [self.headerImageView setImage:self.model.headImage];
-            }
-        }
+                   }
         else
         {
             self.subTitleLabel.text = self.model.subtitleStr;
@@ -131,7 +132,7 @@
 {
     if (!_rightRow) {
         _rightRow = [[UIImageView alloc] init];
-        _rightRow.image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"rightRow.png" ofType:nil]];
+        _rightRow.image = [UIImage imageNamed:@"commom_arrow_more"];
         _rightRow.hidden = YES;
         
     }

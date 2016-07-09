@@ -55,7 +55,7 @@
     if ([nsnoti.object isEqualToString:self.model.fileName]) {
         self.playSlide.value = 0;
         if (!_timer) {
-            _timer = [NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(refreshSlideProgress) userInfo:nil repeats:YES];
+            _timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(refreshSlideProgress) userInfo:nil repeats:YES];
             [[NSRunLoop mainRunLoop] addTimer:_timer forMode:NSRunLoopCommonModes];
             [self switchWithDownloadState:@"3"];
         }
@@ -65,21 +65,26 @@
 
 -(void)stopAction
 {
-    [self switchWithDownloadState:@"2"];
+    [self switchWithDownloadState:@"4"];
+    
 }
 
 -(void)refreshSlideProgress
 {
     if (self.playSlide.value == 1) {
-        [self switchWithDownloadState:@"2"];
+        [self switchWithDownloadState:@"4"];
         return;
     }
-    self.playSlide.value += 0.01/self.model.duration.doubleValue;
+    self.playSlide.value += 1/self.model.duration.doubleValue;
 }
 
 -(void)playFinishAction:(NSNotification *)nsnotifi
 {
     if ([nsnotifi.object isEqualToString:self.model.fileName]) {
+        [self switchWithDownloadState:@"4"];
+    }
+    else
+    {
         if ([[DownloadVoiceManager shareInstance] isVoiceFileExistWithOrderId:self.model.orderId index:self.model.index]) {
             [self switchWithDownloadState:@"2"];
         }
@@ -87,7 +92,6 @@
         {
             [self switchWithDownloadState:@"0"];
         }
-
     }
 }
 
@@ -98,7 +102,7 @@
     if (self.model) {
         self.totalTimeLabel.text = self.model.totalShowTimeStr;
         if ([[DownloadVoiceManager shareInstance] isVoiceFileExistWithOrderId:self.model.orderId index:self.model.index]) {
-            [self switchWithDownloadState:@"1"];
+            [self switchWithDownloadState:@"2"];
         }
         else
         {
@@ -110,6 +114,10 @@
 
 -(void)downloadAciton:(UIButton *)btn
 {
+    if (!self.model.recordUrl) {
+        [XuUItlity showFailedHint:@"录音数据异常" completionBlock:nil];
+        return;
+    }
     if (!self.model.isDownloading) {
         __weak typeof(*&self) weakSelf = self;
         [self.model downloadVoiceWithBlock:^(double precent) {
@@ -143,9 +151,9 @@
     if (!_playBtn) {
 
         _playBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_playBtn setBackgroundImage:[UIImage imageNamed:@"orderdetail_play"] forState:UIControlStateNormal];
-        [_playBtn setFrame:RECT((SCREENWIDTH - 30)/2.0, LeftPadding, 30, 30)];
-
+        [_playBtn setImage:[UIImage imageNamed:@"orderdetail_play"] forState:UIControlStateNormal];
+        [_playBtn setFrame:RECT((SCREENWIDTH - 30)/2, LeftPadding, 30, 30)];
+        _playBtn.titleLabel.font = SystemFont(5.0f);
         _playBtn.layer.cornerRadius  = 15.0f;
         [_playBtn addTarget:self action:@selector(downloadAciton:) forControlEvents:UIControlEventTouchUpInside];
         _playBtn.layer.masksToBounds = YES;
@@ -181,14 +189,14 @@
 -(void)switchWithDownloadState:(NSString *)state
 {
     self.playBtn.hidden = NO;
+    [_playBtn addTarget:self action:@selector(downloadAciton:) forControlEvents:UIControlEventTouchUpInside];
 
     if ([state isEqualToString:@"0"]) {
         [UIView animateWithDuration:.5 animations:^{
             [self.playBtn setFrame:RECT((SCREENWIDTH - 30)/2.0, LeftPadding, 30, 30)];
         }];
-        [self.playBtn addTarget:self action:@selector(playAction:) forControlEvents:UIControlEventTouchUpInside];
+        [self.playBtn addTarget:self action:@selector(downloadAciton:) forControlEvents:UIControlEventTouchUpInside];
         self.totalTimeLabel.hidden = YES;
-        [self.playBtn setTitle:@"点击下载" forState:UIControlStateNormal];
         [self.playBtn setTitleEdgeInsets:UIEdgeInsetsMake(30, 0, 0, 0)];
         [self.playBtn setTitleColor:KColorGray999 forState:UIControlStateNormal];
         self.playSlide.hidden = YES;
@@ -210,22 +218,33 @@
     }
     else if ([state isEqualToString:@"2"])
     {
-        self.totalTimeLabel.hidden = NO;
+        [self.playBtn setFrame:RECT(LeftPadding, LeftPadding, 30, 30)];
         self.playSlide.hidden = NO;
-        [self.playBtn setTitle:@"点击播放" forState:UIControlStateNormal];
+        self.playSlide.value = 0;
+        self.totalTimeLabel.hidden = NO;
         [self.playBtn setTitleColor:KColorGray999 forState:UIControlStateNormal];
+        [self.playBtn setTitleEdgeInsets:UIEdgeInsetsMake(30, 0, 0, 0)];
+
 
     }
     else if ([state isEqualToString:@"3"])//正在播放
     {
-        [self.playBtn setTitle:@"正在播放" forState:UIControlStateNormal];
-        [self.playBtn setTitleColor:KColorGray999 forState:UIControlStateNormal];
         [self.playBtn setImage:[UIImage imageNamed:@"orderdetail_stop"] forState:UIControlStateNormal];
-        [self.playBtn removeTarget:self action:@selector(playAction:) forControlEvents:UIControlEventTouchUpInside];
+        [self.playBtn removeTarget:self action:@selector(downloadAciton:) forControlEvents:UIControlEventTouchUpInside];
         [self.playBtn addTarget:self action:@selector(stopAction) forControlEvents:UIControlEventTouchUpInside];
 
     }
- 
+    else if ([state isEqualToString:@"4"])//已经停止
+    {
+        self.playSlide.hidden = NO;
+        self.playSlide.value = 0;
+        [_playBtn setImage:[UIImage imageNamed:@"orderdetail_play"] forState:UIControlStateNormal];
+        [[VolumePlayHelper PlayerHelper] audioPlayerStop];
+        if (_timer) {
+            [_timer invalidate];
+            _timer = nil;
+        }
+    }
 }
 
 @end

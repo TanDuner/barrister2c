@@ -263,4 +263,15 @@ typedef enum
 +(BOOL)isValidArray:(id)object;
 
 
+
+/**
+ *  上传图片之前的压缩
+ *
+ *  @param soruceImage
+ *
+ *  @return
+ */
++ (NSData *)p_compressImage:(UIImage *)soruceImage;
+
+
 @end

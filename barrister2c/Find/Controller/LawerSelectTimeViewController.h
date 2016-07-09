@@ -29,7 +29,6 @@
 
 @property (nonatomic,strong) BarristerLawerModel *lawerModel;
 
-
 -(void)showWithType:(NSString *)type;
 
 
