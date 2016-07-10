@@ -473,13 +473,19 @@
                 aBlock();
             }
             [tableView endRefreshing];
+            [tableView endLoadMoreWithNoMoreData:YES];
             [self showNoContentView];
+            
         }
         else
         {
-            [self hideNoContentView];
             [tableView endLoadMoreWithNoMoreData:YES];
+            [self hideNoContentView];
         }
+        
+        
+
+
         
     }
     else

@@ -190,9 +190,15 @@
     
     [JPUSHService setupWithOption:launchOptions appKey:JPushKey channel:@"App Store" apsForProduction:NO];
     
-    [[XuPushManager shareInstance] setJPushTags:[NSSet set] Alias:@"xxxx"];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(registerJPushFInish) name:kJPFNetworkDidLoginNotification object:nil];
     
 }
+
+-(void)registerJPushFInish
+{
+    [self initNetWorkingData];
+}
+
 
 
 

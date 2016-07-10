@@ -112,8 +112,6 @@
 {
     __weak typeof(*&self)weakSelf = self;
     
-    [self.noContentView setFrame:RECT(0, self.pullDownMenu.height, SCREENWIDTH, SCREENHEIGHT - NAVBAR_DEFAULT_HEIGHT - self.pullDownMenu.height)];
-    
     [self handleTableRefreshOrLoadMoreWithTableView:self.tableView array:array aBlock:^{
         [weakSelf.items removeAllObjects];
     }];
@@ -245,7 +243,8 @@
     sortItem.title = @"地区";
     [sortArray addObject:sortItem];
 
-    
+    [self.noContentView setFrame:RECT(0, self.pullDownMenu.height, SCREENWIDTH, SCREENHEIGHT - NAVBAR_DEFAULT_HEIGHT - self.pullDownMenu.height)];
+
     
     NSMutableArray *areaTitlesArray = [NSMutableArray array];
     for (int i = 0; i < [BaseDataSingleton shareInstance].bizAreas.count; i ++) {

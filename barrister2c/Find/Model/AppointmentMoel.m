@@ -71,10 +71,16 @@
     NSDate *date = [NSDate date];
     NSString *dateStr = [XuUtlity stringFromDate:date forDateFormatterStyle:DateFormatterTime];//13:40
     NSRange range = [dateStr rangeOfString:@":"];
+    
+    NSString *minStr = [dateStr substringFromIndex:range.location + 1];
+    
     dateStr = [dateStr substringToIndex:range.location];
     
     NSInteger index = dateStr.integerValue *2 - 12;
     
+    if (minStr.intValue > 30) {
+        index += 1;
+    }
 
         NSString *str = @"";
     for ( int i = 0 ; i < self.settingArray.count; i ++) {
