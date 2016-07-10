@@ -19,6 +19,7 @@
 #import "BarristerLoginManager.h"
 #import "AccountProxy.h"
 
+#import "BaseWebViewController.h"
 
 @interface HomeViewController ()
 
@@ -27,7 +28,7 @@
 @property (nonatomic,strong) HomePageProxy *proxy;
 @property (nonatomic,strong) DCPicScrollView *bannerView;
 @property (nonatomic,strong) AccountProxy *accountProxy;
-
+@property (nonatomic,strong) NSMutableArray *bannerItems;
 @end
 
 @implementation HomeViewController
@@ -207,8 +208,18 @@
         _bannerView = [DCPicScrollView picScrollViewWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 140) WithImageUrls:urlStrings];
         _bannerView.placeImage = [UIImage imageNamed:@"timeline_image_loading.png"];
         
+        __weak typeof(*&self) weakSelf = self;
+
         [_bannerView setImageViewDidTapAtIndex:^(NSInteger index) {
-            printf("第%zd张图片\n",index);
+            if (weakSelf.bannerItems.count > index) {
+                HomeBannerModel *model = [weakSelf.bannerItems objectAtIndex:index];
+                
+                BaseWebViewController *webView = [[BaseWebViewController alloc] init];
+                webView.title = model.title;
+                webView.url = model.url;
+                
+                [weakSelf.navigationController pushViewController:webView animated:YES];
+            }
         }];
         
         _bannerView.AutoScrollDelay = 2.0f;
@@ -384,6 +395,14 @@
         _accountProxy = [[AccountProxy alloc] init];
     }
     return _accountProxy;
+}
+
+-(NSMutableArray *)bannerItems
+{
+    if (!_bannerItems) {
+        _bannerItems = [NSMutableArray  arrayWithCapacity:10];
+    }
+    return _bannerItems;
 }
 
 
