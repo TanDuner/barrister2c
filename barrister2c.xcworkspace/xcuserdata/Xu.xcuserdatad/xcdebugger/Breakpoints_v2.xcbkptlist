@@ -51,54 +51,6 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "barrister2c/PersonCenter/Controller/PersonInfoViewController.m"
-            timestampString = "489737065.094145"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "62"
-            endingLineNumber = "62"
-            landmarkName = "-commitActioin"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "barrister2c/PersonCenter/Controller/PersonInfoViewController.m"
-            timestampString = "489737083.140754"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "103"
-            endingLineNumber = "103"
-            landmarkName = "-commitActioin"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "barrister2c/PersonCenter/Controller/PersonInfoViewController.m"
-            timestampString = "489737101.244459"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "112"
-            endingLineNumber = "112"
-            landmarkName = "-commitActioin"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "barrister2c/Common/BaseController/TabbarViewController/BaseTabbarController.m"
             timestampString = "489738906.952889"
             startingColumnNumber = "9223372036854775807"
@@ -164,7 +116,7 @@
                   moduleName = "barrister2c"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Xu/Documents/barrister2c/barrister2c/Find/Controller/LawerDetailViewController.m"
-                  timestampString = "489814036.476268"
+                  timestampString = "489852117.378017"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "202"
@@ -179,7 +131,7 @@
                   moduleName = "barrister2c"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Xu/Documents/barrister2c/barrister2c/Find/Controller/LawerDetailViewController.m"
-                  timestampString = "489814036.477295"
+                  timestampString = "489852117.378184"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "202"

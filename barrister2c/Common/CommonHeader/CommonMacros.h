@@ -76,6 +76,12 @@
 
 
 
+#define TYPE_ORDER  @"income.type.order"// 订单
+#define TYPE_GET_MONEY  @"income.type.getmoney"// 提现
+#define TYPE_REWARD  @"income.type.reward"// 打赏
+#define TYPE_RECHARGE  @"consume.type.recharge"// 充值
+#define TYPE_BACK  @"consume.type.back"// 退钱
+
 
 #define ORDER_STATUS_CAN   @"can"; //可以接单
 #define ORDER_STATUS_NOT   @"can_not"; //不可以接单

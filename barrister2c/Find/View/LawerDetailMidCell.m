@@ -7,7 +7,7 @@
 //
 
 #import "LawerDetailMidCell.h"
-
+#import "UIButton+EnlargeEdge.h"
 #define ButtonWidth (SCREENWIDTH - 1)/2.0
 #define ButtonHeight 52
 
@@ -96,10 +96,18 @@
         
         if (self.model.isShowAll) {
             [_introduceLabel setFrame:RECT(10,  52 + 35, SCREENWIDTH - 30, self.model.allIntroduceStrHeight)];
+            _introduceLabel.numberOfLines = 0;
+            [_showAllButton setTitle:@"收起" forState:UIControlStateNormal];
+            [_showAllButton setTitleColor:KColorGray666 forState:UIControlStateNormal];
+            _introduceLabel.text = self.model.intro;
         }
         else
         {
+            [_showAllButton setTitle:@"显示全部" forState:UIControlStateNormal];
+            [_showAllButton setTitleColor:KColorGray666 forState:UIControlStateNormal];
+
             [_introduceLabel setFrame:RECT(10, 52 + 35, SCREENWIDTH - 30, self.model.introducestrHeight)];
+            _introduceLabel.numberOfLines = 3;
         }
         
         _introduceLabel.attributedText = attributeStr;
@@ -147,6 +155,15 @@
         self.block(self.model);
     }
 }
+
+-(void)showAllAciton:(UIButton *)btn
+{
+    if (self.showAllBlock) {
+        self.showAllBlock(self.model);
+    }
+    
+}
+
 
 #pragma -mark ---Getter----
 
@@ -210,7 +227,11 @@
 {
     if (!_showAllButton) {
         _showAllButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _showAllButton.backgroundColor = [UIColor redColor];
+        [_showAllButton setTitle:@"显示全部" forState:UIControlStateNormal];
+        _showAllButton.titleLabel.font = SystemFont(13.0f);
+        [_showAllButton setEnlargeEdge:10];
+        [_showAllButton setTitleColor:KColorGray666 forState:UIControlStateNormal];
+        [_showAllButton addTarget:self action:@selector(showAllAciton:) forControlEvents:UIControlEventTouchUpInside];
         _showAllButton.hidden = YES;
     }
     return _showAllButton;

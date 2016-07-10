@@ -68,18 +68,29 @@
 
 }
 
--(void)getAccountDetailDataWithParams:(NSDictionary *)params Block:(ServiceCallBlock)aBlock
+-(XuURLSessionTask *)getAccountDetailDataWithParams:(NSMutableDictionary *)params Block:(ServiceCallBlock)aBlock
 {
-    [XuNetWorking getWithUrl:AccountDetialUrl params:params success:^(id response) {
-        if (aBlock) {
-            aBlock(response,YES);
+    [self appendCommonParamsWithDict:params];
+   XuURLSessionTask *task = [XuNetWorking getWithUrl:AccountDetialUrl params:params success:^(id response) {
+        if ([self isCommonCorrectResultCodeWithResponse:response]) {
+            if (aBlock) {
+                aBlock(response,YES);
+            }
         }
+        else
+        {
+            if (aBlock) {
+                aBlock(CommonNetErrorTip,NO);
+            }
+        }
+
     } fail:^(NSError *error) {
         if (aBlock) {
             aBlock(error,YES);
         }
 
     }];
+    return task;
 }
 
 -(void)tiXianActionWithMoney:(NSDictionary *)params Block:(ServiceCallBlock)aBlock

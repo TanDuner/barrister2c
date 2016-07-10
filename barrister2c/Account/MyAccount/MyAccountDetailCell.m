@@ -14,7 +14,7 @@
 @property (nonatomic,strong) UILabel *titleLabel;
 @property (nonatomic,strong) UILabel *timeLabel;
 @property (nonatomic,strong) UILabel *handleLabel;
-
+@property (nonatomic,strong) UILabel *typeLabel;
 @end
 
 @implementation MyAccountDetailCell
@@ -23,7 +23,8 @@
 {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         [self addSubview:self.titleLabel];
-        [self addSubview:self.titleLabel];
+        [self addSubview:self.timeLabel];
+        [self addSubview:self.typeLabel];
         [self addSubview:self.handleLabel];
         
         
@@ -34,17 +35,38 @@
 -(void)layoutSubviews
 {
     [super layoutSubviews];
+
+    self.titleLabel.text = [NSString stringWithFormat:@"流水号:%@",self.model.serialNum];
+    self.timeLabel.text = self.model.date;
     
-    self.titleLabel.text = self.model.titleStr;
-    self.timeLabel.text = self.model.dateStr;
-    if (self.model.handleType == 0) {
-        self.handleLabel.text = [NSString stringWithFormat:@"+%@",self.model.numStr];
+    
+    if ([self.model.type isEqualToString:TYPE_ORDER]) {
+        self.typeLabel.text = @"订单消费";
+        self.handleLabel.text = [NSString stringWithFormat:@"-%@",self.model.money];
     }
-    else
+    else if ([self.model.type isEqualToString:TYPE_GET_MONEY])
     {
-        self.titleLabel.text = @"提现";
-        self.handleLabel.text = [NSString stringWithFormat:@"-%@",self.model.numStr];
+        self.typeLabel.text = @"提现";
+        self.handleLabel.text = [NSString stringWithFormat:@"+%@",self.model.money];
     }
+    else if([self.model.type isEqualToString:TYPE_REWARD])
+    {
+        self.typeLabel.text = @"订单打赏";
+        self.handleLabel.text = [NSString stringWithFormat:@"-%@",self.model.money];
+    }
+    else if ([self.model.type isEqualToString:TYPE_RECHARGE])
+    {
+        self.typeLabel.text = @"充值";
+        self.handleLabel.text = [NSString stringWithFormat:@"+%@",self.model.money];
+        
+    }
+    else if ([self.model.type isEqualToString:TYPE_BACK])
+    {
+        self.typeLabel.text = @"系统退款";
+        self.handleLabel.text = [NSString stringWithFormat:@"-%@",self.model.money];
+    }
+    _handleLabel.textColor = [UIColor greenColor];
+
 }
 
 +(CGFloat)getCellHeight
@@ -70,7 +92,7 @@
     if (!_titleLabel) {
         _titleLabel = [[UILabel alloc] init];
         _titleLabel.font = SystemFont(14);
-        [_titleLabel setFrame:RECT(10, 22, 240, 12)];
+        [_titleLabel setFrame:RECT(10, 10, 240, 12)];
         _titleLabel.textAlignment = NSTextAlignmentLeft;
         _titleLabel.textColor = KColorGray333;
     }
@@ -82,7 +104,7 @@
     if (!_timeLabel) {
         _timeLabel = [[UILabel alloc] init];
         _timeLabel.font = SystemFont(12);
-        [_timeLabel setFrame:RECT(10, self.titleLabel.y + self.titleLabel.height + 10, 240, 10)];
+        [_timeLabel setFrame:RECT(10, self.titleLabel.y + self.titleLabel.height + 15, 240, 10)];
         _timeLabel.textAlignment = NSTextAlignmentLeft;
         _timeLabel.textColor = KColorGray666;
     }
@@ -93,11 +115,24 @@
 {
     if (!_handleLabel) {
         _handleLabel = [[UILabel alloc] init];
-        _handleLabel.frame = RECT(SCREENWIDTH - 80 - 10, (60-13)/2.0, 80, 13);
-        _handleLabel.font = SystemFont(17);
+        _handleLabel.frame = RECT(SCREENWIDTH - 80 - 10, 35, 80, 15);
+        _handleLabel.font = SystemFont(20);
+        _handleLabel.textColor = [UIColor greenColor];
         _handleLabel.textColor = KColorGray222;
         _handleLabel.textAlignment = NSTextAlignmentRight;
     }
     return _handleLabel;
+}
+
+-(UILabel *)typeLabel
+{
+    if (!_typeLabel) {
+        _typeLabel = [[UILabel alloc] init];
+        [_typeLabel setFrame:RECT(SCREENWIDTH - 80 - 10, LeftPadding, 80, 13)];
+        _typeLabel.font = SystemFont(13.0f);
+        _typeLabel.textColor = KColorGray666;
+        _typeLabel.textAlignment = NSTextAlignmentRight;
+    }
+    return _typeLabel;
 }
 @end

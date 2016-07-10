@@ -17,6 +17,7 @@
 #import "MeNetProxy.h"
 #import "IMActionSheet.h"
 #import "BaseDataSingleton.h"
+#import "JPUSHService.h"
 
 @interface PersonInfoViewController ()<AJPhotoPickerProtocol,UIImagePickerControllerDelegate,UINavigationControllerDelegate,IMActionSheetDelegate>
 
@@ -100,6 +101,10 @@
         }
     }
     
+   NSString *registrationId =  [JPUSHService registrationID];
+    if (registrationId) {
+        [aParams setObject:registrationId forKey:@"pushId"];
+    }
     
     //缺少极光推送的push id
     

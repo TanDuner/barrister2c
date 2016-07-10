@@ -83,9 +83,10 @@
     
     [params setObject:[NSString stringWithFormat:@"%ld",self.tableView.pageSize] forKey:@"pageSize"];
     [params setObject:[NSString stringWithFormat:@"%ld",self.tableView.pageNum] forKey:@"page"];
-    
+    [XuUItlity showLoadingInView:self.view hintText:@"正在加载..."];
     __weak typeof(*&self) weakSelf  = self;
     [self.proxy getLawerListWithParams:params block:^(id returnData, BOOL success) {
+        [XuUItlity hideLoading];
         if (success) {
             NSDictionary *dict = (NSDictionary *)returnData;
             NSArray *array = [dict objectForKey:@"items"];
@@ -390,6 +391,7 @@
         _tableView = [[RefreshTableView alloc] initWithFrame:RECT(0, 0, SCREENWIDTH, SCREENHEIGHT - NAVBAR_DEFAULT_HEIGHT) style:UITableViewStylePlain];
         _tableView.delegate = self;
         _tableView.dataSource = self;
+        [_tableView setFootLoadMoreControl];
         _tableView.refreshDelegate = self;
     }
     return _tableView;

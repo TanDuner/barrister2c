@@ -27,7 +27,10 @@
         }
         else
         {
-            aBlock(CommonNetErrorTip,NO);
+            if (aBlock) {
+                aBlock(CommonNetErrorTip,NO);
+            }
+
         }
 
     } fail:^(NSError *error) {

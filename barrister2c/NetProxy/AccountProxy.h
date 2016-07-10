@@ -26,7 +26,7 @@
  *  @param aBlock 返回处理Block
  */
 
--(void)getAccountDetailDataWithParams:(NSDictionary *)params Block:(ServiceCallBlock)aBlock;
+-(XuURLSessionTask *)getAccountDetailDataWithParams:(NSMutableDictionary *)params Block:(ServiceCallBlock)aBlock;
 
 
 /**

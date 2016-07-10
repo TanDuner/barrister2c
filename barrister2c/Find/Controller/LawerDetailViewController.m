@@ -372,6 +372,11 @@ typedef void(^ShowTimeSelectBlock)(id object);
             {
                 [weakSelf collectionAction];
             };
+            cell.showAllBlock = ^(BarristerLawerModel *model)
+            {
+                model.isShowAll = ! model.isShowAll;
+                [weakSelf.tableView reloadData];
+            };
             cell.model = self.model;
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             return cell;

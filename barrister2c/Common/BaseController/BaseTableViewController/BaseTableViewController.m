@@ -48,9 +48,11 @@
 
 -(void)configTableView
 {
-    self.tableView = [[BaseTableView alloc] initWithFrame:RECT(0, 0, SCREENWIDTH, SCREENHEIGHT - NAVBAR_DEFAULT_HEIGHT - TABBAR_HEIGHT) style:UITableViewStylePlain];
+    self.tableView = [[BaseTableView alloc] initWithFrame:RECT(0, 0, SCREENWIDTH, SCREENHEIGHT - NAVBAR_DEFAULT_HEIGHT) style:UITableViewStylePlain];
+    self.tableView.showsVerticalScrollIndicator = NO;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    
     self.tableView.backgroundColor = kBaseViewBackgroundColor;
     [self.view addSubview:self.tableView];
 }

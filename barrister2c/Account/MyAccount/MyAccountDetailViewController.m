@@ -20,6 +20,7 @@
 @property (nonatomic,strong) RefreshTableView *tableView;
 
 @property (nonatomic,strong) NSMutableArray *items;
+
 @end
 
 @implementation MyAccountDetailViewController
@@ -41,13 +42,18 @@
     [self showTabbar:NO];
 }
 
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+   
+}
 
 #pragma -mark --UI --
 
 -(void)confgiView
 {
     self.title  = @"交易明细";
-    self.tableView = [[RefreshTableView alloc] initWithFrame:RECT(0, 0, SCREENWIDTH, SCREENHEIGHT - NAVBAR_DEFAULT_HEIGHT - TABBAR_HEIGHT) style:UITableViewStylePlain];
+    self.tableView = [[RefreshTableView alloc] initWithFrame:RECT(0, 0, SCREENWIDTH, SCREENHEIGHT - NAVBAR_DEFAULT_HEIGHT) style:UITableViewStylePlain];
     [self.tableView setFootLoadMoreControl];
     self.tableView.pageSize = 10;
     self.tableView.backgroundColor = kBaseViewBackgroundColor;
@@ -75,13 +81,17 @@
 -(void)requestData
 {
     __weak typeof(*&self) weakSelf = self;
+    
+    [XuUItlity showLoading:@"正在加载..."];
+    
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     [params setObject:[NSString stringWithFormat:@"%ld",self.tableView.pageSize] forKey:@"pageSize"];
     [params setObject:[NSString stringWithFormat:@"%ld",self.tableView.pageNum] forKey:@"page"];
-    [self.proxy getAccountDetailDataWithParams:nil Block:^(id returnData, BOOL success) {
+    [self.proxy getAccountDetailDataWithParams:params Block:^(id returnData, BOOL success) {
+      [XuUItlity hideLoading];
         if (success) {
             NSDictionary *dict = (NSDictionary *)returnData;
-            NSArray *array = [dict objectForKey:@"list"];
+            NSArray *array = [dict objectForKey:@"consumeDetails"];
             if ([XuUtlity isValidArray:array]) {
                 [weakSelf handleDetailDataWithArray:array];
             }
@@ -144,6 +154,11 @@
         cell.model = model;
     }
     return cell;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 60;
 }
 
 
