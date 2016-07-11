@@ -71,7 +71,7 @@
     if ([self.model.status isEqualToString:STATUS_WAITING]) {
         self.stateLabel.text = @"待处理";
     }
-    else if ([self.model.status  isEqualToString:STATUS_DOING])
+    else if ([self.model.status  isEqualToString:STATUS_DONE])
     {
         self.stateLabel.text = @"已完成";
     }
