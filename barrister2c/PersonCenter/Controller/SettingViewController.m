@@ -99,7 +99,7 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifi];
     }
     cell.textLabel.textColor = KColorGray666;
-    cell.textLabel.text = [self.items objectAtIndex:indexPath.row];
+    cell.textLabel.text = [self.items safeObjectAtIndex:indexPath.row];
     return cell;
 }
 

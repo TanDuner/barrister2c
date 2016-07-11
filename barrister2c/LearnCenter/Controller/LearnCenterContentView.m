@@ -86,7 +86,7 @@
     }
     
     for (int i = 0; i < array.count; i ++) {
-        NSDictionary *dict = [array objectAtIndex:i];
+        NSDictionary *dict = [array safeObjectAtIndex:i];
         LearnCenterModel *model = [[LearnCenterModel alloc] initWithDictionary:dict];
         [self.items addObject:model];
     }
@@ -135,7 +135,7 @@
         cell = [[LearnCenterCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
     }
 
-    LearnCenterModel *model =  (LearnCenterModel *)[self.items objectAtIndex:indexPath.row];
+    LearnCenterModel *model =  (LearnCenterModel *)[self.items safeObjectAtIndex:indexPath.row];
     cell.model = model;
     return cell;
 
@@ -155,7 +155,7 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (self.items.count > indexPath.row) {
-        LearnCenterModel *model = (LearnCenterModel *)[self.items objectAtIndex:indexPath.row];
+        LearnCenterModel *model = (LearnCenterModel *)[self.items safeObjectAtIndex:indexPath.row];
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:model.url]];
     }
 

@@ -35,9 +35,9 @@
     
     NSString *str = @"";
     for (int i = 0; i < model.settingArray.count; i ++) {
-        NSString *state = [model.settingArray objectAtIndex:i];
+        NSString *state = [model.settingArray safeObjectAtIndex:i];
         if ([state isEqualToString:@"2"]) {
-            NSString *timeTmepStr = [[AppointmentManager shareInstance].commonTimeArray objectAtIndex:i];
+            NSString *timeTmepStr = [[AppointmentManager shareInstance].commonTimeArray safeObjectAtIndex:i];
             str = [NSString stringWithFormat:@"%@,%@",str,timeTmepStr];
         }
         
@@ -90,7 +90,7 @@
         }
         else
         {
-            NSString *originStr = [self.settingArray objectAtIndex:i];
+            NSString *originStr = [self.settingArray safeObjectAtIndex:i];
             str = [NSString stringWithFormat:@"%@,%@",str,originStr];
         }
 

@@ -16,7 +16,7 @@
  *
  *  @return return value description
  */
-- (ObjectType)safeObjectAtIndex:(NSUInteger)index;
+- (ObjectType)  safeObjectAtIndex:(NSUInteger)index;
 /**
  *  随机访问
  *

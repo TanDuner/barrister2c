@@ -190,7 +190,7 @@
             cell = [[PersonCenterAccountCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
         }
         
-        PersonCenterModel *model =  (PersonCenterModel *)[self.items objectAtIndex:0];
+        PersonCenterModel *model =  (PersonCenterModel *)[self.items safeObjectAtIndex:0];
         cell.model = model;
         return cell;
         
@@ -204,7 +204,7 @@
             cell = [[PersonCenterCustomCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
         }
         
-        PersonCenterModel *model =  (PersonCenterModel *)[self.items objectAtIndex:indexPath.section == 1?(indexPath.row + 1):(self.items.count - 1)];
+        PersonCenterModel *model =  (PersonCenterModel *)[self.items safeObjectAtIndex:indexPath.section == 1?(indexPath.row + 1):(self.items.count - 1)];
         cell.model = model;
         return cell;
     }

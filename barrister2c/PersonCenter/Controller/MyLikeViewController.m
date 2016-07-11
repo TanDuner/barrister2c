@@ -87,7 +87,7 @@
 
     
     for (int i = 0; i < array.count; i ++) {
-        NSDictionary *dict = [array objectAtIndex:i];
+        NSDictionary *dict = [array safeObjectAtIndex:i];
         MyLikeModel *model = [[MyLikeModel alloc] initWithDictionary:dict];
         [self.items addObject:model];
     }
@@ -141,7 +141,7 @@
         cell = [[MyLikeListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identif];
     }
     if (self.items.count > indexPath.row) {
-        MyLikeModel *model = [self.items objectAtIndex:indexPath.row];
+        MyLikeModel *model = [self.items safeObjectAtIndex:indexPath.row];
         cell.model = model;
     }
     

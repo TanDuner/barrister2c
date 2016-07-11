@@ -268,7 +268,7 @@
     }
     else
     {
-        NSString * cancelText = [_otherBtnText objectAtIndex:cancelButtonIndex];
+        NSString * cancelText = [_otherBtnText safeObjectAtIndex:cancelButtonIndex];
         [_otherBtnText removeObjectAtIndex:cancelButtonIndex];
         _cancelBtnText = [cancelText copy];
     }
@@ -361,7 +361,7 @@
     
     if (buttonIndex < tmpArray.count && buttonIndex >= 0)
     {
-        return [tmpArray objectAtIndex:buttonIndex];
+        return [tmpArray safeObjectAtIndex:buttonIndex];
     }
     else
     {
@@ -407,7 +407,7 @@
             {
                 [cell.textLabel setTextColor:BTN_COLOR];
             }
-            cell.textLabel.text = [_otherBtnText objectAtIndex:indexPath.row - 1];
+            cell.textLabel.text = [_otherBtnText safeObjectAtIndex:indexPath.row - 1];
         }
     }
     else
@@ -420,7 +420,7 @@
         {
             [cell.textLabel setTextColor:BTN_COLOR];
         }
-        cell.textLabel.text = [_otherBtnText objectAtIndex:indexPath.row];
+        cell.textLabel.text = [_otherBtnText safeObjectAtIndex:indexPath.row];
     }
     
   

@@ -557,14 +557,14 @@ typedef struct PhoneSate PhoneSate;
         NSArray *array2 = [[array1 lastObject] componentsSeparatedByString:@"."];
         
         if ([array2 count] > 0) {
-            return [array2 objectAtIndex:0];
+            return [array2 safeObjectAtIndex:0];
         }
     }
     else{
         NSArray *array2 = [url componentsSeparatedByString:@"."];
         
         if ([array2 count] > 0) {
-            return [array2 objectAtIndex:0];
+            return [array2 safeObjectAtIndex:0];
         }
     }
     
@@ -1451,7 +1451,7 @@ typedef struct PhoneSate PhoneSate;
     }
     for (int i=0; i<acount; i++)
     {
-        UILocalNotification *myUILocalNotification = [narry objectAtIndex:i];
+        UILocalNotification *myUILocalNotification = [narry safeObjectAtIndex:i];
         NSDictionary *userInfo = myUILocalNotification.userInfo;
         NSString *obj = [userInfo objectForKey:@"imLocalNotification"];
         

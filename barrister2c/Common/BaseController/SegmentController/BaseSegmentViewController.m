@@ -178,7 +178,7 @@ static const NSInteger kTagOffset = 1000;
 - (UIViewController *)viewControllerAtIndex:(NSInteger)index
 {
     if (self.vcArray && 0 <= index && index < self.vcArray.count)
-        return [self.vcArray objectAtIndex:index];
+        return [self.vcArray safeObjectAtIndex:index];
     
     return nil;
 }

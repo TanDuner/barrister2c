@@ -87,14 +87,14 @@
         btn.layer.masksToBounds = YES;
         btn.layer.borderColor = [UIColor lightGrayColor].CGColor;
         btn.layer.borderWidth = .2f;
-        [btn setTitle:[self.monenyArray objectAtIndex:i] forState:UIControlStateNormal];
+        [btn setTitle:[self.monenyArray safeObjectAtIndex:i] forState:UIControlStateNormal];
         [btn setTitleColor:KColorGray999 forState:UIControlStateNormal];
         btn.tag = 1000 + i;
         [btn addTarget:self action:@selector(btnAction:) forControlEvents:UIControlEventTouchUpInside];
         if (i == 2) {
             [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
             [btn setBackgroundColor:kNavigationBarColor];
-            self.moneny =[ self.monenyArray objectAtIndex:i];
+            self.moneny =[ self.monenyArray safeObjectAtIndex:i];
         }
         [self.btnArray addObject:btn];
         [self.selectBgView addSubview:btn];
@@ -159,7 +159,7 @@
 
 
     for ( int i = 0; i < self.btnArray.count; i ++) {
-        UIButton *btnTmep = [self.btnArray objectAtIndex:i];
+        UIButton *btnTmep = [self.btnArray safeObjectAtIndex:i];
         if (btnTmep != btn) {
             [btnTmep setTitleColor:KColorGray999 forState:UIControlStateNormal];
             btnTmep.backgroundColor = [UIColor whiteColor];
@@ -167,7 +167,7 @@
         
     }
     if (self.monenyArray.count > btn.tag - 1000) {
-        NSString *moneny = [self.monenyArray objectAtIndex:btn.tag  -1000];
+        NSString *moneny = [self.monenyArray safeObjectAtIndex:btn.tag  -1000];
         self.moneny = moneny;
     }
 }

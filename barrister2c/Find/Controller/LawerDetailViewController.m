@@ -121,11 +121,11 @@ typedef void(^ShowTimeSelectBlock)(id object);
 -(void)handleAppointmentDataWithArray:(NSArray *)array
 {
     for (int i = 0; i < array.count; i ++) {
-        NSDictionary *dict = (NSDictionary *)[array objectAtIndex:i];
+        NSDictionary *dict = (NSDictionary *)[array safeObjectAtIndex:i];
         AppointmentMoel *model = [[AppointmentMoel alloc] initWithDictionary:dict];
         
         for (int j = 0; j < [AppointmentManager shareInstance].modelArray.count; j ++) {
-            AppointmentMoel *modelTemp = [[AppointmentManager shareInstance].modelArray objectAtIndex:j];
+            AppointmentMoel *modelTemp = [[AppointmentManager shareInstance].modelArray safeObjectAtIndex:j];
             if ([modelTemp.date isEqualToString:model.date]) {
                 [[AppointmentManager shareInstance].modelArray replaceObjectAtIndex:j withObject:model];
             }
@@ -168,10 +168,10 @@ typedef void(^ShowTimeSelectBlock)(id object);
     NSMutableArray *array = [NSMutableArray arrayWithCapacity:10];
     
     for ( int i = 0; i < appointmentArray.count; i ++) {
-        AppointmentMoel *model = [appointmentArray objectAtIndex:i];
+        AppointmentMoel *model = [appointmentArray safeObjectAtIndex:i];
         NSString *settings = @"";
         for (int j = 0; j < model.settingArray.count; j ++) {
-            NSString *settringPieceStr = [model.settingArray objectAtIndex:j];
+            NSString *settringPieceStr = [model.settingArray safeObjectAtIndex:j];
             settings = [NSString stringWithFormat:@"%@,%@",settings,settringPieceStr];
         }
         if ([settings hasPrefix:@","]) {

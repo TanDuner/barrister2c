@@ -118,7 +118,7 @@
     
     for (int i = 0; i < [AppointmentManager shareInstance].modelArray.count; i ++) {
         
-        AppointmentMoel *modelTemp = (AppointmentMoel *)[[AppointmentManager shareInstance].modelArray objectAtIndex:i];
+        AppointmentMoel *modelTemp = (AppointmentMoel *)[[AppointmentManager shareInstance].modelArray safeObjectAtIndex:i];
         LawerSelectContentViewController *contentVC = [[LawerSelectContentViewController alloc] initWithArray:nil];
         contentVC.model = modelTemp;
         [titleArray addObject:modelTemp.date];
@@ -212,7 +212,7 @@
 {
 
     for ( int i = 0; i < self.vcArray.count; i ++) {
-        LawerSelectContentViewController *vc = (LawerSelectContentViewController *)[self.vcArray objectAtIndex:i];
+        LawerSelectContentViewController *vc = (LawerSelectContentViewController *)[self.vcArray safeObjectAtIndex:i];
         if ([vc.commitModel.settingArray containsObject:@"2"]) {
             [self.selectModelArray addObject:vc.commitModel];
         }
@@ -297,7 +297,7 @@
         NSInteger totalHeight = 0;
         NSInteger totalTimes = 0;
         for (int i = 0; i < self.selectModelArray.count; i ++ ) {
-            AppointmentMoel *model = [self.selectModelArray objectAtIndex:i];
+            AppointmentMoel *model = [self.selectModelArray safeObjectAtIndex:i];
             NSString *timeStr = [AppointmentMoel getStringWithModel:model];
             
             NSArray *times = [timeStr componentsSeparatedByString:@","];

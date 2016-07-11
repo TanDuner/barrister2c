@@ -21,7 +21,7 @@
 +(NSString *)GetDocumentPath
 {
     NSArray *Paths=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *path=[Paths objectAtIndex:0];
+    NSString *path=[Paths safeObjectAtIndex:0];
     return path;
 }
 /*
@@ -32,7 +32,7 @@
 +(NSString *)GetCachePath
 {
     NSArray *Paths=NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
-    NSString *path=[Paths objectAtIndex:0];
+    NSString *path=[Paths safeObjectAtIndex:0];
     return path;
 }
 /*
@@ -43,7 +43,7 @@
 +(NSString *)GetLibraryPath
 {
     NSArray *Paths=NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES);
-    NSString *path=[Paths objectAtIndex:0];
+    NSString *path=[Paths safeObjectAtIndex:0];
     return path;
 }
 /*

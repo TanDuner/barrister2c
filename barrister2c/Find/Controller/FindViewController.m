@@ -199,7 +199,7 @@ typedef void(^ClickZXItemBlock)(ZXItemView *itemView);
 -(void)handleLawBookListDataWithArray:(NSArray *)array
 {
     for (int i = 0; i < array.count; i ++) {
-        NSDictionary *dict = [array objectAtIndex:i];
+        NSDictionary *dict = [array  safeObjectAtIndex:i];
         LawBooksModel *model = [[LawBooksModel alloc] initWithDictionary:dict];
         [self.titleArray addObject:model.name];
         [self.urlArray addObject:model.url];
@@ -248,7 +248,7 @@ typedef void(^ClickZXItemBlock)(ZXItemView *itemView);
     }
     
     if (self.urlArray.count > btn.tag) {
-        NSString *url = [self.urlArray objectAtIndex:btn.tag];
+        NSString *url = [self.urlArray safeObjectAtIndex:btn.tag];
         BaseWebViewController *webView = [[BaseWebViewController alloc] init];
         webView.url = url;
         webView.showTitle = self.titleArray[btn.tag];

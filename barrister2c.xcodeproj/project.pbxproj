@@ -149,6 +149,7 @@
 		955A7B2B1D1FAF5500D1DEAC /* YYZX@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 955A7B271D1FAF5500D1DEAC /* YYZX@2x.png */; };
 		955A7B2C1D1FAF5500D1DEAC /* YYZX@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 955A7B281D1FAF5500D1DEAC /* YYZX@3x.png */; };
 		955A7B3E1D1FE11100D1DEAC /* SandboxFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 955A7B3D1D1FE11100D1DEAC /* SandboxFile.m */; };
+		958493471D3349A700F827A2 /* UIControl+JobCustomControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 958493461D3349A700F827A2 /* UIControl+JobCustomControl.m */; };
 		958EEBA91D26B46700D4CF4C /* common_point_loading@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 958EEBA71D26B46700D4CF4C /* common_point_loading@2x.png */; };
 		958EEBAA1D26B46700D4CF4C /* common_point_loading@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 958EEBA81D26B46700D4CF4C /* common_point_loading@3x.png */; };
 		958EEBB11D27790A00D4CF4C /* guide_1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 958EEBAB1D27790A00D4CF4C /* guide_1@2x.png */; };
@@ -571,6 +572,8 @@
 		955A7B281D1FAF5500D1DEAC /* YYZX@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "YYZX@3x.png"; sourceTree = "<group>"; };
 		955A7B3C1D1FE11100D1DEAC /* SandboxFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SandboxFile.h; sourceTree = "<group>"; };
 		955A7B3D1D1FE11100D1DEAC /* SandboxFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SandboxFile.m; sourceTree = "<group>"; };
+		958493451D3349A700F827A2 /* UIControl+JobCustomControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIControl+JobCustomControl.h"; sourceTree = "<group>"; };
+		958493461D3349A700F827A2 /* UIControl+JobCustomControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIControl+JobCustomControl.m"; sourceTree = "<group>"; };
 		958EEBA71D26B46700D4CF4C /* common_point_loading@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "common_point_loading@2x.png"; sourceTree = "<group>"; };
 		958EEBA81D26B46700D4CF4C /* common_point_loading@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "common_point_loading@3x.png"; sourceTree = "<group>"; };
 		958EEBAB1D27790A00D4CF4C /* guide_1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "guide_1@2x.png"; sourceTree = "<group>"; };
@@ -1972,6 +1975,8 @@
 				9529CCBC1D30CD720067597A /* UIImage+CommonAdd.m */,
 				951008C11D25248A00730562 /* NSArray+CommonAdd.h */,
 				951008C21D25248A00730562 /* NSArray+CommonAdd.m */,
+				958493451D3349A700F827A2 /* UIControl+JobCustomControl.h */,
+				958493461D3349A700F827A2 /* UIControl+JobCustomControl.m */,
 				951008C41D252CDA00730562 /* NSString+CommonAdd.h */,
 				951008C51D252CDA00730562 /* NSString+CommonAdd.m */,
 				95CA1D6E1D10F85500AAE490 /* NSData+ImageContentType.h */,
@@ -2665,6 +2670,7 @@
 				95CA1D401D10F7C900AAE490 /* AJTapDetectingView.m in Sources */,
 				955A7B141D1ED24100D1DEAC /* YKSplashView.m in Sources */,
 				95CA1D541D10F7C900AAE490 /* CALayer+YYWebImage.m in Sources */,
+				958493471D3349A700F827A2 /* UIControl+JobCustomControl.m in Sources */,
 				955610CC1D14B67100366D4C /* MyMessageViewController.m in Sources */,
 				95CA1D431D10F7C900AAE490 /* MASConstraintMaker.m in Sources */,
 				955610C81D14B5E400366D4C /* PersonCenterCustomCell.m in Sources */,

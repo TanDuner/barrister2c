@@ -43,7 +43,7 @@
 //        IMTabBarController *mainTabVC = ((IMAppDelegate *)[[UIApplication sharedApplication] delegate]).mainTabVC;
 //        
 //        if (mainTabVC) {
-//            IMNavigationController *navigationController = [mainTabVC.viewControllers objectAtIndex:mainTabVC.selectedIndex];
+//            IMNavigationController *navigationController = [mainTabVC.viewControllerssafeObjectAtIndex:mainTabVC.selectedIndex];
 //            navigationBar = (UINavigationBar *)navigationController.navigationBar;
 //        }
 //    }

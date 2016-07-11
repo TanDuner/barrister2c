@@ -73,28 +73,28 @@
     [aParams setObject:[BaseDataSingleton shareInstance].userModel.userId forKey:@"userId"];
     [aParams setObject:[BaseDataSingleton shareInstance].userModel.verifyCode forKey:@"verifyCode"];
     
-    PersonCenterModel *nameModel = [self.items objectAtIndex:1];
+    PersonCenterModel *nameModel = [self.items safeObjectAtIndex:1];
     if (IS_NOT_EMPTY(nameModel.subtitleStr)) {
         if (![nameModel.subtitleStr isEqualToString:@"未填写"]) {
             [aParams setObject:nameModel.subtitleStr forKey:@"nickname"];
         }
     }
     
-    PersonCenterModel *phoneModel = [self.items objectAtIndex:2];
+    PersonCenterModel *phoneModel = [self.items safeObjectAtIndex:2];
     if (IS_NOT_EMPTY(phoneModel.subtitleStr)) {
         if (![phoneModel.subtitleStr isEqualToString:@"未填写"]) {
             [aParams setObject:phoneModel.subtitleStr forKey:@"phone"];
         }
     }
     
-    PersonCenterModel *genderModel = [self.items objectAtIndex:3];
+    PersonCenterModel *genderModel = [self.items safeObjectAtIndex:3];
     if (IS_NOT_EMPTY(genderModel.subtitleStr)) {
         if (![genderModel.subtitleStr isEqualToString:@"未填写"]) {
             [aParams setObject:genderModel.subtitleStr forKey:@"gendar"];
         }
     }
     
-    PersonCenterModel *areaModel = [self.items objectAtIndex:4];
+    PersonCenterModel *areaModel = [self.items safeObjectAtIndex:4];
     if (IS_NOT_EMPTY(areaModel.subtitleStr)) {
         if (![areaModel.subtitleStr isEqualToString:@"未填写"]) {
             [aParams setObject:areaModel.subtitleStr forKey:@"area"];
@@ -145,7 +145,7 @@
     NSArray *titleArray = @[@"头像",@"昵称",@"手机",@"性别",@"地区"];
     for (int i = 0; i < titleArray.count; i ++) {
         PersonCenterModel *model = [[PersonCenterModel alloc] init];
-        model.titleStr = [titleArray objectAtIndex:i];
+        model.titleStr = [titleArray safeObjectAtIndex:i];
 
         switch (i) {
             case 0:
@@ -198,7 +198,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    PersonCenterModel *model = (PersonCenterModel *)[self.items objectAtIndex:indexPath.row];
+    PersonCenterModel *model = (PersonCenterModel *)[self.items safeObjectAtIndex:indexPath.row];
     
     return [PersonInfoCustomCell getCellHeightWithModel:model];
 }
@@ -206,7 +206,7 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     PersonInfoCustomCell *cell = [[PersonInfoCustomCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
-    PersonCenterModel *modelTemp = (PersonCenterModel *)[self.items objectAtIndex:indexPath.row];
+    PersonCenterModel *modelTemp = (PersonCenterModel *)[self.items safeObjectAtIndex:indexPath.row];
     cell.model = modelTemp;
     return cell;
 }
@@ -218,7 +218,7 @@
         return;
     }
     
-    PersonCenterModel *modelTemp = [self.items objectAtIndex:indexPath.row];
+    PersonCenterModel *modelTemp = [self.items safeObjectAtIndex:indexPath.row];
     switch (indexPath.row) {
         case 0:
         {
@@ -279,7 +279,7 @@
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    PersonCenterModel *model = [self.items objectAtIndex:3];
+    PersonCenterModel *model = [self.items safeObjectAtIndex:3];
     switch (buttonIndex)
     {
         case 0:

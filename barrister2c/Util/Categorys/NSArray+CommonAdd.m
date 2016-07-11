@@ -11,7 +11,7 @@
 
 @implementation NSArray(CommonAdd)
 
-- (__kindof id)safeObjectAtIndex:(NSUInteger)index {
+- (__kindof id)  safeObjectAtIndex:(NSUInteger)index {
     
     return index < self.count ? self[index] : nil;
 }

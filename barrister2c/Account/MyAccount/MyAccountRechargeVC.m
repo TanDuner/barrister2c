@@ -308,7 +308,7 @@
     NSDictionary *dict = (NSDictionary *)nsnotifi.object;
     NSArray *array = [dict allKeys];
     if (array.count > 0) {
-        NSString *key = [array objectAtIndex:0];
+        NSString *key = [array safeObjectAtIndex:0];
         if (key.integerValue != 0) {
             NSString *string = [dict objectForKey:key];
             [XuUItlity showFailedHint:string completionBlock:nil];

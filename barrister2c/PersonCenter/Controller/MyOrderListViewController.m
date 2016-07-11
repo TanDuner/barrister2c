@@ -100,7 +100,7 @@
     }];
     
     for (int i = 0; i < array.count; i ++) {
-        NSDictionary *dict = [array objectAtIndex:i];
+        NSDictionary *dict = [array safeObjectAtIndex:i];
         BarristerOrderModel *model = [[BarristerOrderModel alloc] initWithDictionary:dict];
         [self.items addObject:model];
     }
@@ -159,7 +159,7 @@
         cell = [[OrderViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identif];
     }
     
-    BarristerOrderModel *modelTemp = [self.items objectAtIndex:indexPath.row];
+    BarristerOrderModel *modelTemp = [self.items safeObjectAtIndex:indexPath.row];
     cell.model = modelTemp;
     
     
@@ -170,7 +170,7 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (self.items.count > indexPath.row) {
-        BarristerOrderModel *model = [self.items objectAtIndex:indexPath.row];
+        BarristerOrderModel *model = [self.items safeObjectAtIndex:indexPath.row];
         OrderDetailViewController *detailVC = [[OrderDetailViewController alloc] initWithModel:model];
         [self.navigationController pushViewController:detailVC animated:YES];
     }

@@ -131,7 +131,7 @@
         
         NSString *showStr = [NSString stringWithFormat:@"%@~%@",startStr,endStr];
         
-        NSString *stateStr = [self.model.settingArray objectAtIndex:i];
+        NSString *stateStr = [self.model.settingArray safeObjectAtIndex:i];
         checkView.state = stateStr.integerValue;
 
         

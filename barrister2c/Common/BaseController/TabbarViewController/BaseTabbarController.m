@@ -82,21 +82,21 @@
     
     
     HomeViewController *c1 = [[HomeViewController alloc] init];
-    c1.title = [self.titleArray objectAtIndex:0];
+    c1.title = [self.titleArray safeObjectAtIndex:0];
     BaseNavigaitonController *ctl1 = [[BaseNavigaitonController alloc] initWithRootViewController:c1];
     
     
     
     FindViewController *c2 = [[FindViewController alloc] init];
-    c2.title = [self.titleArray objectAtIndex:1];
+    c2.title = [self.titleArray safeObjectAtIndex:1];
     BaseNavigaitonController *ctl2 = [[BaseNavigaitonController alloc] initWithRootViewController:c2];
     
     LearnCenterViewController *c3 = [[LearnCenterViewController alloc] init];
-    c3.title = [self.titleArray objectAtIndex:2];
+    c3.title = [self.titleArray safeObjectAtIndex:2];
     BaseNavigaitonController *ctl3 = [[BaseNavigaitonController alloc] initWithRootViewController:c3];
     
     PersonCenterViewController *c4 = [[PersonCenterViewController alloc] init];
-    c4.title = [self.titleArray objectAtIndex:3];
+    c4.title = [self.titleArray safeObjectAtIndex:3];
     BaseNavigaitonController *ctl4 = [[BaseNavigaitonController alloc] initWithRootViewController:c4];
     
     
@@ -127,7 +127,7 @@
     
     //tabbarItems
     for (int i = 0; i < 4; i++) {
-        NSString *imageName = [self.tabBarImageNames objectAtIndex:i];
+        NSString *imageName = [self.tabBarImageNames safeObjectAtIndex:i];
         UIImageView * imageView = [[UIImageView alloc]initWithFrame:CGRectMake((ItemWidth - ImageWidth)/2, 5, ImageWidth, ImageWidth)];
         imageView.tag = 900;
         imageView.image = [UIImage imageNamed:imageName];
@@ -148,7 +148,7 @@
         labelT.textAlignment = NSTextAlignmentCenter;
         labelT.textColor = RGBCOLOR(119, 119, 119 );
         labelT.backgroundColor = [UIColor clearColor];
-        labelT.text = [self.titleArray objectAtIndex:i];
+        labelT.text = [self.titleArray safeObjectAtIndex:i];
         [tabbarItem addSubview:labelT];
         
         
@@ -215,10 +215,10 @@
 - (void)changeViewController:(UIButton *)button
 {
     
-    UIButton *lastbtn = (UIButton *)[self.btnArray objectAtIndex:self.selectedIndex];
+    UIButton *lastbtn = (UIButton *)[self.btnArray safeObjectAtIndex:self.selectedIndex];
     for (UIImageView *imageView in lastbtn.subviews) {
         if (imageView.tag == 900) {
-            NSString *lastImageName = [self.tabBarImageNames objectAtIndex:self.selectedIndex];
+            NSString *lastImageName = [self.tabBarImageNames safeObjectAtIndex:self.selectedIndex];
             [imageView setImage:[UIImage imageNamed:lastImageName]];
         }
     }
@@ -228,7 +228,7 @@
             [btn setTitleColor:kNavigationBarColor forState:UIControlStateNormal];
             for (UIImageView *imageView in btn.subviews) {
                 if (imageView.tag == 900) {
-                    NSString *seleteImage = [self.tabBarSelectedImageNames objectAtIndex:button.tag];
+                    NSString *seleteImage = [self.tabBarSelectedImageNames safeObjectAtIndex:button.tag];
                     [imageView setImage:[UIImage imageNamed:seleteImage]];
                 }
             }
@@ -254,7 +254,7 @@
     if (index == 1) {
         return;
     }
-    UILabel *labelTemp = [self.newsMsgLabelArray objectAtIndex:index];
+    UILabel *labelTemp = [self.newsMsgLabelArray safeObjectAtIndex:index];
     [_tabBarBG addSubview:labelTemp];
     labelTemp.hidden = NO;
     
@@ -262,7 +262,7 @@
 
 -(void)hideNewMsgTipWithIndex:(int)index
 {
-    UILabel *labelTemp = [self.newsMsgLabelArray objectAtIndex:index];
+    UILabel *labelTemp = [self.newsMsgLabelArray safeObjectAtIndex:index];
     labelTemp.hidden = YES;
     [labelTemp removeFromSuperview];
     

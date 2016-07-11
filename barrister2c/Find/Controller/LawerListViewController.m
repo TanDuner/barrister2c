@@ -117,7 +117,7 @@
     }];
     
     for ( int i = 0; i < array.count; i ++) {
-        NSDictionary *dict = (NSDictionary *)[array objectAtIndex:i];
+        NSDictionary *dict = (NSDictionary *)[array safeObjectAtIndex:i];
         BarristerLawerModel *model = [[BarristerLawerModel alloc] initWithDictionary:dict];
     
         [self.items addObject:model];
@@ -150,7 +150,7 @@
             else
             {
                 if (self.cityArray.count > row - 1) {
-                    self.city = [self.cityArray objectAtIndex:row - 1];
+                    self.city = [self.cityArray  safeObjectAtIndex:row - 1];
                 }
             }
             
@@ -166,7 +166,7 @@
         else
         {
             if ([BaseDataSingleton shareInstance].bizAreas.count > row - 1) {
-                self.bussinessAreaModel = [[BaseDataSingleton shareInstance].bizAreas objectAtIndex:row - 1];
+                self.bussinessAreaModel = [[BaseDataSingleton shareInstance].bizAreas  safeObjectAtIndex:row - 1];
             }
         }
 
@@ -179,7 +179,7 @@
         else
         {
             if ([BaseDataSingleton shareInstance].bizTypes.count > row - 1) {
-                self.bussinessTypeModel = [[BaseDataSingleton shareInstance].bizTypes objectAtIndex:row - 1];
+                self.bussinessTypeModel = [[BaseDataSingleton shareInstance].bizTypes  safeObjectAtIndex:row - 1];
             }
         }
     }
@@ -231,7 +231,7 @@
     NSMutableArray *cityArray = [NSMutableArray array];
     
     for (int i = 0; i < cityList.count; i ++) {
-        NSDictionary *dict = (NSDictionary *)[cityList objectAtIndex:i];
+        NSDictionary *dict = (NSDictionary *)[cityList  safeObjectAtIndex:i];
         NSString *city = [dict objectForKey:@"state"];
         [cityArray addObject:city];
     }
@@ -248,7 +248,7 @@
     
     NSMutableArray *areaTitlesArray = [NSMutableArray array];
     for (int i = 0; i < [BaseDataSingleton shareInstance].bizAreas.count; i ++) {
-        BussinessAreaModel *model = (BussinessAreaModel *)[[BaseDataSingleton shareInstance].bizAreas objectAtIndex:i];
+        BussinessAreaModel *model = (BussinessAreaModel *)[[BaseDataSingleton shareInstance].bizAreas  safeObjectAtIndex:i];
         [areaTitlesArray addObject:model.name];
     }
 
@@ -256,7 +256,7 @@
     
     NSMutableArray *typeTitlesArray = [NSMutableArray array];
     for (int i = 0; i < [BaseDataSingleton shareInstance].bizTypes.count; i ++) {
-        BussinessAreaModel *model = (BussinessAreaModel *)[[BaseDataSingleton shareInstance].bizTypes objectAtIndex:i];
+        BussinessAreaModel *model = (BussinessAreaModel *)[[BaseDataSingleton shareInstance].bizTypes  safeObjectAtIndex:i];
         [typeTitlesArray addObject:model.name];
     }
 
@@ -292,7 +292,7 @@
     if (self.bussinessAreaModel) {
         NSInteger index = -999;
         for (int  i = 0; i < [BaseDataSingleton shareInstance].bizAreas.count; i ++) {
-            BussinessAreaModel *model = [[BaseDataSingleton shareInstance].bizAreas objectAtIndex:i];
+            BussinessAreaModel *model = [[BaseDataSingleton shareInstance].bizAreas  safeObjectAtIndex:i];
             if ([self.bussinessAreaModel.areaId isEqualToString:model.areaId]) {
                 index = i;
             }
@@ -307,7 +307,7 @@
     if (self.bussinessTypeModel) {
         NSInteger index = -999;
         for (int  i = 0; i < [BaseDataSingleton shareInstance].bizTypes.count; i ++) {
-            BussinessTypeModel *model = [[BaseDataSingleton shareInstance].bizTypes objectAtIndex:i];
+            BussinessTypeModel *model = [[BaseDataSingleton shareInstance].bizTypes  safeObjectAtIndex:i];
             if ([self.bussinessTypeModel.typeId isEqualToString:model.typeId]) {
                 index = i;
             }
@@ -340,7 +340,7 @@
         cell = [[LawerListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identif];
     }
     if (self.items.count > indexPath.row) {
-        BarristerLawerModel *model = [self.items objectAtIndex:indexPath.row];
+        BarristerLawerModel *model = [self.items  safeObjectAtIndex:indexPath.row];
         cell.model = model;
     }
 
@@ -360,7 +360,7 @@
     
     LawerDetailViewController *detailVC = [[LawerDetailViewController alloc] init];
     if (self.items.count > indexPath.row) {
-        detailVC.model = [self.items objectAtIndex:indexPath.row];        
+        detailVC.model = [self.items  safeObjectAtIndex:indexPath.row];        
     }
 
     [self.navigationController pushViewController:detailVC animated:YES];

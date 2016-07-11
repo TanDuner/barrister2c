@@ -119,7 +119,7 @@
         cell = [[AJPhotoGroupCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifer];
     }
     
-    [cell bind:[self.groups objectAtIndex:indexPath.row]];
+    [cell bind:[self.groups safeObjectAtIndex:indexPath.row]];
     if (indexPath.row == self.selectIndex) {
         cell.backgroundColor = [UIColor colorWithRed:217.0/255.0 green:217.0/255.0 blue:217.0/255.0 alpha:1.0];
     }
@@ -138,7 +138,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     self.selectIndex = indexPath.row;
     [self reloadData];
-    ALAssetsGroup *group = [self.groups objectAtIndex:indexPath.row];
+    ALAssetsGroup *group = [self.groups safeObjectAtIndex:indexPath.row];
     if ([_my_delegate respondsToSelector:@selector(didSelectGroup:)]) {
         [_my_delegate didSelectGroup:group];
     }

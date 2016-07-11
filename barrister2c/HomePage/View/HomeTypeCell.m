@@ -129,7 +129,7 @@
 -(void)createTypeDatas
 {
     for (int i = 0; i< self.items.count; i ++) {
-        BussinessTypeModel *model = [self.items objectAtIndex:i];
+        BussinessTypeModel *model = [self.items safeObjectAtIndex:i];
         
         HomeTypeCellItemView *itemView  = [[HomeTypeCellItemView alloc] initWithFrame:RECT((i%2) *ButtonWidth, (i/2) *(ButtonHeight + .5) + 46.5, ButtonWidth, ButtonHeight - .5)];
         

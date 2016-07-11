@@ -50,7 +50,7 @@
     __weak typeof(*&self) weakSelf = self;
     [XuNetWorking requestWithNoBaseUrl:checkVersion httpMedth:2 params:nil progress:nil success:^(id response) {
         NSDictionary *dict = (NSDictionary *)response;
-        NSString *netVersion = [[[dict objectForKey:@"results"] objectAtIndex:0] objectForKey:@"version"];
+        NSString *netVersion = [[[dict objectForKey:@"results"]  safeObjectAtIndex:0] objectForKey:@"version"];
         _appStoreVersion = netVersion;
         [weakSelf judgeIsNeedUpdate];
         

@@ -57,7 +57,7 @@
     NSMutableArray *vcArray = [NSMutableArray array];
     for (int i = 0; i < self.titleStrArray.count; i ++) {
         if (self.chanelItems.count > i) {
-            LearnCenterChannelModel *model =(LearnCenterChannelModel *)[self.chanelItems objectAtIndex:i];
+            LearnCenterChannelModel *model =(LearnCenterChannelModel *)[self.chanelItems safeObjectAtIndex:i];
             LearnCenterContentView *contentVC = [[LearnCenterContentView alloc] init];
             contentVC.chanelId = model.channelId;
             [vcArray addObject:contentVC];
@@ -107,7 +107,7 @@
 -(void)handleChannelDataWithArray:(NSArray *)arrray
 {
     for (int i = 0; i < arrray.count; i ++) {
-        NSDictionary *dict = [arrray objectAtIndex:i];
+        NSDictionary *dict = [arrray safeObjectAtIndex:i];
         LearnCenterChannelModel *model = [[LearnCenterChannelModel alloc] initWithDictionary:dict];
         [self.chanelItems addObject:model];
         [self.titleStrArray addObject:model.title];

@@ -125,7 +125,7 @@
     
     
     for (int i = 0; i < array.count; i ++) {
-        NSDictionary *dict = [array objectAtIndex:i];
+        NSDictionary *dict = [array safeObjectAtIndex:i];
         MyAccountDetailModel *model = [[MyAccountDetailModel alloc] initWithDictionary:dict];
         [self.items addObject:model];
     }
@@ -150,7 +150,7 @@
 
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     if (self.items.count > indexPath.row) {
-        MyAccountDetailModel *model = [self.items objectAtIndex:indexPath.row];
+        MyAccountDetailModel *model = [self.items safeObjectAtIndex:indexPath.row];
         cell.model = model;
     }
     return cell;

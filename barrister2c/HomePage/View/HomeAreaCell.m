@@ -55,7 +55,7 @@
 -(void)createAreaViews
 {
     for (int i = 0; i < self.items.count; i ++) {
-        BussinessAreaModel *areaModel = [self.items objectAtIndex:i];
+        BussinessAreaModel *areaModel = [self.items  safeObjectAtIndex:i];
         
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
         button.backgroundColor = KColorGray999;

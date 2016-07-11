@@ -129,7 +129,7 @@ BackGroundViewStatus;
     
     for (int i = 0; i < _numOfMenu; i++)
     {
-        IMPullDownMenuItem * menuItem = [_array objectAtIndex:i];
+        IMPullDownMenuItem * menuItem = [_array safeObjectAtIndex:i];
         menuItem.curIndex = -1;
         
         CGPoint position = CGPointMake( (i * 2 + 1) * textLayerInterval , self.frame.size.height / 2);
@@ -167,7 +167,7 @@ BackGroundViewStatus;
         {
             if (menuItem.defaultIndex != 0 && (menuItem.defaultIndex - 1) < menuItem.listItemArray.count)
             {
-                NSString * defaultStr = [menuItem.listItemArray objectAtIndex:(menuItem.defaultIndex - 1)];
+                NSString * defaultStr = [menuItem.listItemArray safeObjectAtIndex:(menuItem.defaultIndex - 1)];
                 title = [self creatTextLayerWithNSString:defaultStr withColor:_menuColor andPosition:position];
                 menuItem.curIndex = (int)menuItem.defaultIndex;
             }
@@ -180,7 +180,7 @@ BackGroundViewStatus;
         {
             if (menuItem.defaultIndex >= 0 && menuItem.defaultIndex < menuItem.listItemArray.count)
             {
-                NSString * defaultStr = [menuItem.listItemArray objectAtIndex:menuItem.defaultIndex];
+                NSString * defaultStr = [menuItem.listItemArray safeObjectAtIndex:menuItem.defaultIndex];
                 title = [self creatTextLayerWithNSString:defaultStr withColor:_menuColor andPosition:position];
                 menuItem.curIndex = (int)menuItem.defaultIndex;
             }
@@ -267,7 +267,7 @@ BackGroundViewStatus;
         
         for (int i = 0; i < _numOfMenu; i++)
         {
-            IMPullDownMenuItem * menuItem = [_array objectAtIndex:i];
+            IMPullDownMenuItem * menuItem = [_array safeObjectAtIndex:i];
             menuItem.curIndex = -1;
             
             CGPoint position = CGPointMake( (i * 2 + 1) * textLayerInterval , self.frame.size.height / 2);
@@ -442,7 +442,7 @@ BackGroundViewStatus;
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [self confiMenuWithSelectRow:indexPath.row];
-    IMPullDownMenuItem * menuItem = [_array objectAtIndex:_currentSelectedMenudIndex];
+    IMPullDownMenuItem * menuItem = [_array safeObjectAtIndex:_currentSelectedMenudIndex];
     menuItem.curIndex = (int)indexPath.row;
     if (self.delegate && [self.delegate respondsToSelector:@selector(PullDownMenu:didSelectRowAtColumn:row:userData:)])
     {
@@ -454,14 +454,14 @@ BackGroundViewStatus;
             }
             else
             {
-                [self.delegate PullDownMenu:self didSelectRowAtColumn:_currentSelectedMenudIndex row:indexPath.row userData:[menuItem.userDataArray objectAtIndex:indexPath.row - 1]];
+                [self.delegate PullDownMenu:self didSelectRowAtColumn:_currentSelectedMenudIndex row:indexPath.row userData:[menuItem.userDataArray safeObjectAtIndex:indexPath.row - 1]];
             }
         }
         else
         {
             if (menuItem.userDataArray && menuItem.userDataArray.count > indexPath.row)
             {
-                [self.delegate PullDownMenu:self didSelectRowAtColumn:_currentSelectedMenudIndex row:indexPath.row userData:[menuItem.userDataArray objectAtIndex:indexPath.row]];
+                [self.delegate PullDownMenu:self didSelectRowAtColumn:_currentSelectedMenudIndex row:indexPath.row userData:[menuItem.userDataArray safeObjectAtIndex:indexPath.row]];
             }
             else
             {
@@ -481,7 +481,7 @@ BackGroundViewStatus;
 {
     if (_array && _array.count > 0 && _currentSelectedMenudIndex >= 0 && _currentSelectedMenudIndex < _array.count)
     {
-        IMPullDownMenuItem * menuItem = [_array objectAtIndex:_currentSelectedMenudIndex];
+        IMPullDownMenuItem * menuItem = [_array safeObjectAtIndex:_currentSelectedMenudIndex];
         
         if (menuItem.unlimitedBtnText && menuItem.unlimitedBtnText.length > 0)
         {
@@ -507,7 +507,7 @@ BackGroundViewStatus;
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
         cell.textLabel.font = _menuFont;//[UIFont systemFontOfSize:14.0];
     }
-    IMPullDownMenuItem * menuItem = [_array objectAtIndex:_currentSelectedMenudIndex];
+    IMPullDownMenuItem * menuItem = [_array safeObjectAtIndex:_currentSelectedMenudIndex];
     
     [cell.textLabel setTextColor:[UIColor darkTextColor]];
     [cell setAccessoryType:UITableViewCellAccessoryNone];
@@ -520,12 +520,12 @@ BackGroundViewStatus;
         }
         else
         {
-            cell.textLabel.text = [menuItem.listItemArray objectAtIndex:(indexPath.row - 1)];
+            cell.textLabel.text = [menuItem.listItemArray safeObjectAtIndex:(indexPath.row - 1)];
         }
     }
     else
     {
-        cell.textLabel.text = [menuItem.listItemArray objectAtIndex:indexPath.row];
+        cell.textLabel.text = [menuItem.listItemArray safeObjectAtIndex:indexPath.row];
     }
     
     if (menuItem.curIndex == indexPath.row)
@@ -536,7 +536,7 @@ BackGroundViewStatus;
         }
     }
     
-//    if (cell.textLabel.text == [(CATextLayer *)[_titles objectAtIndex:_currentSelectedMenudIndex] string])
+//    if (cell.textLabel.text == [(CATextLayer *)[_titles safeObjectAtIndex:_currentSelectedMenudIndex] string])
 //    {
 //        [cell setAccessoryType:UITableViewCellAccessoryCheckmark];
 ////        [cell.textLabel setTextColor:[tableView tintColor]];
@@ -811,7 +811,7 @@ BackGroundViewStatus;
 
 - (void)confiMenuWithSelectRow:(NSInteger)row
 {
-    IMPullDownMenuItem * menuItem = [_array objectAtIndex:_currentSelectedMenudIndex];
+    IMPullDownMenuItem * menuItem = [_array safeObjectAtIndex:_currentSelectedMenudIndex];
     CATextLayer *title = (CATextLayer *)_titles[_currentSelectedMenudIndex];
     
     if (menuItem.unlimitedBtnText && menuItem.unlimitedBtnText.length > 0)
@@ -822,12 +822,12 @@ BackGroundViewStatus;
         }
         else
         {
-            title.string = [menuItem.listItemArray objectAtIndex:(row - 1)];
+            title.string = [menuItem.listItemArray safeObjectAtIndex:(row - 1)];
         }
     }
     else
     {
-        title.string = [menuItem.listItemArray objectAtIndex:row];
+        title.string = [menuItem.listItemArray safeObjectAtIndex:row];
     }
     
     [self animateIdicator:_indicators[_currentSelectedMenudIndex] background:_backGroundView tableView:_tableView title:_titles[_currentSelectedMenudIndex] forward:NO complecte:^{

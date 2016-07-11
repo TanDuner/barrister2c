@@ -175,20 +175,20 @@
     
     
     for ( int i = 0; i < bizAreasArray.count; i ++) {
-        NSDictionary *dictTemp = [bizAreasArray objectAtIndex:i];
+        NSDictionary *dictTemp = [bizAreasArray safeObjectAtIndex:i];
         BussinessAreaModel *model = [[BussinessAreaModel alloc] initWithDictionary:dictTemp];
         [self.areaItems addObject:model];
     }
     
     for ( int i = 0; i < bizTypesArray.count; i ++) {
-        NSDictionary *dictTemp = [bizTypesArray objectAtIndex:i];
+        NSDictionary *dictTemp = [bizTypesArray safeObjectAtIndex:i];
         BussinessTypeModel *model = [[BussinessTypeModel alloc] initWithDictionary:dictTemp];
         [self.typeItems addObject:model];
     }
     
     NSMutableArray *imageUrls = [NSMutableArray arrayWithCapacity:1];
     for (int i = 0; i < bannerListArray.count; i ++) {
-        NSDictionary *dict = [bannerListArray objectAtIndex:i];
+        NSDictionary *dict = [bannerListArray safeObjectAtIndex:i];
         HomeBannerModel *model = [[HomeBannerModel alloc] initWithDictionary:dict];
         [imageUrls addObject:model.image];
     }
@@ -212,7 +212,7 @@
 
         [_bannerView setImageViewDidTapAtIndex:^(NSInteger index) {
             if (weakSelf.bannerItems.count > index) {
-                HomeBannerModel *model = [weakSelf.bannerItems objectAtIndex:index];
+                HomeBannerModel *model = [weakSelf.bannerItems safeObjectAtIndex:index];
                 
                 BaseWebViewController *webView = [[BaseWebViewController alloc] init];
                 webView.title = model.title;
@@ -364,14 +364,14 @@
 {
     if (isArea) {
         LawerListViewController *lawerList = [[LawerListViewController alloc] init];
-        BussinessAreaModel *model = [[BaseDataSingleton shareInstance].bizAreas objectAtIndex:index];
+        BussinessAreaModel *model = [[BaseDataSingleton shareInstance].bizAreas safeObjectAtIndex:index];
         lawerList.bussinessAreaModel = model;
         [self.navigationController pushViewController:lawerList animated:YES];
     }
     else
     {
         LawerListViewController *lawerList = [[LawerListViewController alloc] init];
-        BussinessTypeModel *model = [[BaseDataSingleton shareInstance].bizTypes objectAtIndex:index];
+        BussinessTypeModel *model = [[BaseDataSingleton shareInstance].bizTypes safeObjectAtIndex:index];
         lawerList.bussinessTypeModel = model;
         [self.navigationController pushViewController:lawerList animated:YES];
         

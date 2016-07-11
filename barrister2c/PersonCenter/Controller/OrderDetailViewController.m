@@ -185,7 +185,7 @@ typedef NS_ENUM(NSInteger,OrderDetailShowType)
             
             for (int i = 0; i < model.callRecordArray.count; i ++) {
                 
-                CallHistoriesModel *modelTemp = [model.callRecordArray objectAtIndex:i];
+                CallHistoriesModel *modelTemp = [model.callRecordArray safeObjectAtIndex:i];
                 modelTemp.index = i;
                 OrderDetailCellModel *model6 = [[OrderDetailCellModel alloc] init];
                 model6.showType = OrderDetailShowTypeOrderCallRecord;
@@ -291,7 +291,7 @@ typedef NS_ENUM(NSInteger,OrderDetailShowType)
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     __weak typeof(*&self) weakSelf = self;
-    OrderDetailCellModel *modeTemp = (OrderDetailCellModel *)[self.items objectAtIndex:indexPath.row];
+    OrderDetailCellModel *modeTemp = (OrderDetailCellModel *)[self.items safeObjectAtIndex:indexPath.row];
     switch (modeTemp.showType) {
         case 0:
         {
@@ -356,7 +356,7 @@ typedef NS_ENUM(NSInteger,OrderDetailShowType)
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    OrderDetailCellModel *modelTemp = (OrderDetailCellModel *)[self.items objectAtIndex:indexPath.row];
+    OrderDetailCellModel *modelTemp = (OrderDetailCellModel *)[self.items safeObjectAtIndex:indexPath.row];
     switch (modelTemp.showType) {
         case OrderDetailShowTypeOrderInfo:
         {

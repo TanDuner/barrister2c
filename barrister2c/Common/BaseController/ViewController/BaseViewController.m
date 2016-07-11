@@ -157,7 +157,7 @@
 //    
 //    if (curIndex > 0 && curIndex < [self.navigationController.viewControllers count])
 //    {
-//        perVc = [self.navigationController.viewControllers objectAtIndex:curIndex - 1];
+//        perVc = [self.navigationController.viewControllerssafeObjectAtIndex:curIndex - 1];
 //        if (curIndex == 1
 //            && self.navigationController.tabBarItem.title
 //            && self.navigationController.tabBarItem.title.length > 0)
@@ -181,7 +181,7 @@
 - (void)addBackButton
 {
     
-    if (self != [self.navigationController.viewControllers objectAtIndex:0])
+    if (self != [self.navigationController.viewControllers safeObjectAtIndex:0])
     {
         UIButton * backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [backBtn setTitle:[self getBackBtnText] forState:UIControlStateNormal];

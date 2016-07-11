@@ -19,7 +19,7 @@
     NSArray *array = @[@{@"icon_bank_gs.png":@"工商银行"},@{@"icon_bank_zg.png":@"中国银行"},@{@"icon_bank_zs.png":@"招商银行"},@{@"icon_bank_js.png":@"建设银行"},@{@"icon_bank_jt.png":@"交通银行"},@{@"icon_bank_ny.png":@"农业银行"},@{@"icon_bank_yc.png":@"邮政储蓄"},@{@"icon_bank_ms.png":@"民生银行"},@{@"icon_bank_pf.png":@"浦发银行"},@{@"icon_bank_bj.png":@"北京银行"},@{@"icon_bank_gd.png":@"光大银行"},@{@"icon_bank_gf.png":@"广发银行"},@{@"icon_bank_hx.png":@"华夏银行"},@{@"icon_bank_xy.png":@"兴业银行"},@{@"icon_bank_zx.png":@"中信银行"}];
     
     for ( int i = 0; i < array.count; i ++) {
-        NSDictionary *dict = (NSDictionary *)[array objectAtIndex:i];
+        NSDictionary *dict = (NSDictionary *)[array safeObjectAtIndex:i];
         if (dict.allKeys.count  > 0) {
             NSString *key = [[dict allKeys] firstObject];
             NSString *value = [dict objectForKey:key];

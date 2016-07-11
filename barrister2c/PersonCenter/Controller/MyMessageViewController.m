@@ -107,7 +107,7 @@
     {
         [self hideNoContentView];
         for (int i = 0; i < array.count; i ++ ) {
-            NSDictionary *dict = [array objectAtIndex:i];
+            NSDictionary *dict = [array safeObjectAtIndex:i];
             MyMessageModel *model = [[MyMessageModel alloc] initWithDictionary:dict];
             [self.items addObject:model];
         }
@@ -136,7 +136,7 @@
         cell = [[MyMessgeCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:idenfiti];
     }
     if (self.items.count > indexPath.row) {
-        MyMessageModel *modelTemp = [self.items  objectAtIndex:indexPath.row];
+        MyMessageModel *modelTemp = [self.items    safeObjectAtIndex:indexPath.row];
         cell.model = modelTemp;
     }
     return cell;
