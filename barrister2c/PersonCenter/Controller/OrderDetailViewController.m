@@ -72,10 +72,10 @@ typedef NS_ENUM(NSInteger,OrderDetailShowType)
 
 @implementation OrderDetailViewController
 
--(id)initWithModel:(BarristerOrderModel *)orderModel
+-(id)initWithOrderId:(NSString *)orderId
 {
     if (self  =[super init]) {
-        self.orderId = orderModel.orderId;
+        self.orderId = orderId;
     }
     return self;
 }
@@ -248,14 +248,24 @@ typedef NS_ENUM(NSInteger,OrderDetailShowType)
     __weak typeof(*&self) weakSelf = self;
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     [params setObject:model.orderId forKey:@"orderId"];
-    [self.proxy applyToCancelOrderWithParams:params Block:^(id returnData, BOOL success) {
-        if (success) {
-            [XuUItlity showSucceedHint:@"申请成功" completionBlock:nil];
-            [weakSelf initData];
+    
+    [XuUItlity showYesOrNoAlertView:@"确定" noText:@"取消" title:@"提示" mesage:@"确定取消订单吗" callback:^(NSInteger buttonIndex, NSString *inputString) {
+        if (buttonIndex == 0) {
+            
         }
         else
         {
-            [XuUItlity showFailedHint:@"申请失败" completionBlock:nil];
+            [self.proxy applyToCancelOrderWithParams:params Block:^(id returnData, BOOL success) {
+                if (success) {
+                    [XuUItlity showSucceedHint:@"申请成功 等待律师同意请求" completionBlock:nil];
+                    [weakSelf initData];
+                }
+                else
+                {
+                    [XuUItlity showFailedHint:@"申请失败" completionBlock:nil];
+                }
+            }];
+            
         }
     }];
 }

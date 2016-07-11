@@ -33,7 +33,7 @@
         }
         self.markHeight = customMarkHeight;
         
-        self.orderId = [dict objectForKey:@"id"];
+        self.orderId = [NSString stringWithFormat:@"%@",[dict objectForKey:@"id"]];
     
         
         CGFloat lawyerFeedBackHeight = [XuUtlity textHeightWithString:self.lawFeedback withFont:SystemFont(14.0f) sizeWidth:SCREENWIDTH - 90 WithLineSpace:5];

@@ -116,6 +116,7 @@
     self.tableView = [[RefreshTableView alloc] initWithFrame:RECT(0, 0, SCREENWIDTH, SCREENHEIGHT - 49 - 49- NAVBAR_DEFAULT_HEIGHT) style:UITableViewStylePlain];
     self.tableView.backgroundColor = kBaseViewBackgroundColor;
     self.tableView.delegate = self;
+    [self.tableView setFootLoadMoreControl];
     self.tableView.dataSource = self;
     self.tableView.refreshDelegate = self;
     

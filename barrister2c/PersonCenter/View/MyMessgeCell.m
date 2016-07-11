@@ -25,12 +25,18 @@
     return self;
 }
 
++(CGFloat)getCellHeightWithModel:(MyMessageModel *)model
+{
+    return LeftPadding + model.titleHeight + 8 + model.contentHeight + LeftPadding;
+}
+
 -(void)configData
 {
     [super configData];
-    self.titleLabel.text = self.model.titleStr;
-    self.subTitleLabel.text = self.model.subTitleStr;
-    self.timeLabel.text = self.model.timeStr;
+    self.titleLabel.text = self.model.content;
+    self.subTitleLabel.text = self.model.title;
+    self.timeLabel.text = self.model.date;
+    
 }
 
 -(void)drawRect:(CGRect)rect{
@@ -64,6 +70,7 @@
     if (!_subTitleLabel) {
         _subTitleLabel = [[UILabel alloc] initWithFrame:RECT(LeftPadding, self.titleLabel.y + self.titleLabel.height + 10, SCREENWIDTH - 20, 12.5)];
         _subTitleLabel.font = SystemFont(14.0f);
+        _subTitleLabel.numberOfLines = 0;
         _subTitleLabel.textAlignment = NSTextAlignmentLeft;
         _subTitleLabel.textColor = KColorGray666;
         
@@ -74,7 +81,7 @@
 -(UILabel *)timeLabel
 {
     if (!_timeLabel) {
-        _timeLabel = [[UILabel alloc] initWithFrame:RECT(SCREENWIDTH - 100 - 10, 10, 100, 12.5)];
+        _timeLabel = [[UILabel alloc] initWithFrame:RECT(SCREENWIDTH - 130 - 10, 10, 130, 12.5)];
         _timeLabel.font = SystemFont(14.0f);
         _timeLabel.textAlignment = NSTextAlignmentRight;
         _timeLabel.textColor = KColorGray333;

@@ -13,6 +13,6 @@
 
 -(void)handlePropretyWithDict:(NSDictionary *)dict
 {
-    self.channelId = [dict objectForKey:@"id"];
+    self.channelId = [NSString stringWithFormat:@"%@",[dict objectForKey:@"id"]];
 }
 @end

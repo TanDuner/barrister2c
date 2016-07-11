@@ -13,7 +13,7 @@
 
 -(void)handlePropretyWithDict:(NSDictionary *)jsoObject
 {
-    self.userId = [jsoObject objectForKey:@"id"];
+    self.userId = [NSString stringWithFormat:@"%@",[jsoObject objectForKey:@"id"]];
     if (self.nickname == nil) {
         self.nickname = [NSString stringWithFormat:@"用户%@",self.phone];
     }

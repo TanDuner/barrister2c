@@ -8,45 +8,9 @@
 
 #import "XuPushManager.h"
 #import "JPUSHService.h"
+#import "AppDelegate.h"
 
-/**
- *
- * 订单状态改变 跳转到我订单详情
- */
-#define Push_Type_Order_Status_Change   @"type.order.status.changed"
 
-/**
- *
- * 收到评价 跳转到订单详情
- */
-#define Push_Type_Receive_Star          @"type.receive.star"
-
-/**
- *
- * 收到订单费用
- */
-#define Push_Type_Order_Receive_Moneny  @"type.receive.order.money"
-
-/**
- *
- * 收到打赏
- */
-
-#define Push_Type_Order_Receive_Reward  @"type.receive.order.reward"
-
-/**
- *
- *  系统通知
- */
-
-#define Push_Type_System_Msg            @"type.system.msg"
-
-/**
- *
- *  认证状态改变
- */
-
-#define Push_Type_Auth_Status_Change    @"type.verify.msg"
 
 
 @implementation XuPushManager
@@ -166,17 +130,28 @@
 - (void)receivePushMsg:(NSDictionary *)pushdata withType:(NSString *)type
 {
     
-    if ([type isEqualToString:Push_Type_Auth_Status_Change]) {
-        
-        
-    } else if ([type isEqualToString:Push_Type_Order_Receive_Moneny]) {
-        
-        
-
-    } else if ([type isEqualToString:Push_Type_Order_Receive_Reward]) {
-        
+    if (!pushdata) {
+        return;
     }
+    NSString *idStr = [pushdata objectForKey:@"id"];
+    NSString *content = [pushdata objectForKey:@"content"];
+    NSString *contentId = [pushdata objectForKey:@"contentId"];
+    NSString *date = [pushdata objectForKey:@"date"];
     
+    
+    AppDelegate *delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    
+    if ([type isEqualToString:Push_Type_Order_Status_Change]||[type isEqualToString:Push_Type_Receive_Star]||[type isEqualToString:Push_Type_New_AppointmentOrder]) {
+        [delegate jumpToViewControllerwithType:type Params:[NSDictionary dictionaryWithObjectsAndKeys:contentId,@"contentId", nil]];
+    }
+    else if ([type isEqualToString:Push_Type_Order_Receive_Reward]||[type isEqualToString:Push_Type_Order_Receive_Moneny]||[type isEqualToString:Push_TYpe_Tixian_Status])
+    {
+        [delegate jumpToViewControllerwithType:type Params:nil];
+    }
+    else if ([type isEqualToString:Push_Type_System_Msg])
+    {
+        [delegate jumpToViewControllerwithType:type Params:nil];
+    }
 
 }
 

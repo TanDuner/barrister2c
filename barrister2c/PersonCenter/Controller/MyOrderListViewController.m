@@ -21,8 +21,6 @@
 
 @property (nonatomic,strong) NSMutableArray *items;
 
-@property (nonatomic,strong) XuURLSessionTask *task;
-
 @end
 
 @implementation MyOrderListViewController
@@ -37,9 +35,6 @@
 -(void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    if (self.task) {
-        [self.task cancel];
-    }
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -60,7 +55,7 @@
     [params setObject:[NSString stringWithFormat:@"%ld",self.tableView.pageNum] forKey:@"page"];
     
     [XuUItlity showLoadingInView:self.view hintText:@"加载中..."];
-   self.task = [self.proxy getOrderListWithParams:params block:^(id returnData, BOOL success) {
+    [self.proxy getOrderListWithParams:params block:^(id returnData, BOOL success) {
         [XuUItlity hideLoading];
         if (success) {
             [weakSelf hideNoContentView];
@@ -171,7 +166,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (self.items.count > indexPath.row) {
         BarristerOrderModel *model = [self.items safeObjectAtIndex:indexPath.row];
-        OrderDetailViewController *detailVC = [[OrderDetailViewController alloc] initWithModel:model];
+        OrderDetailViewController *detailVC = [[OrderDetailViewController alloc] initWithOrderId:model.orderId];
         [self.navigationController pushViewController:detailVC animated:YES];
     }
 

@@ -16,7 +16,7 @@
 
 -(void)handlePropretyWithDict:(NSDictionary *)dict
 {
-    self.laywerId = [dict objectForKey:@"id"];
+    self.laywerId = [NSString stringWithFormat:@"%@",[dict objectForKey:@"id"]];
     
     NSString *areaStr = @"";
     NSArray *array = [dict objectForKey:@"bizAreas"];

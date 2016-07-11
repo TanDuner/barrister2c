@@ -57,7 +57,7 @@
  *  @param params
  *  @param aBlock
  */
--(XuURLSessionTask *)getOrderListWithParams:(NSMutableDictionary *)params block:(ServiceCallBlock)aBlock;
+-(void)getOrderListWithParams:(NSMutableDictionary *)params block:(ServiceCallBlock)aBlock;
 
 
 /**

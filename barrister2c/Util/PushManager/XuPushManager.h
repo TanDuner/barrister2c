@@ -8,6 +8,59 @@
 
 #import <Foundation/Foundation.h>
 
+/**
+ *
+ * 订单状态改变 跳转到我订单详情
+ */
+#define Push_Type_Order_Status_Change   @"type.order.status.changed"
+
+/**
+ *
+ * 收到评价 跳转到订单详情
+ */
+#define Push_Type_Receive_Star          @"type.receive.star"
+
+/**
+ *
+ * 收到订单费用
+ */
+#define Push_Type_Order_Receive_Moneny  @"type.receive.order.money"
+
+/**
+ *
+ * 收到打赏
+ */
+
+#define Push_Type_Order_Receive_Reward  @"type.receive.order.reward"
+
+/**
+ *
+ *  系统通知
+ */
+
+#define Push_Type_System_Msg            @"type.system.msg"
+
+/**
+ *
+ *  认证状态改变
+ */
+
+#define Push_Type_Auth_Status_Change    @"type.verify.msg"
+
+/**
+ *
+ * 提现结果通知
+ *
+ */
+
+#define Push_TYpe_Tixian_Status         @"type.getmoney"
+
+/**
+ *  收到新的预约订单
+ *
+ */
+#define Push_Type_New_AppointmentOrder @"type.order.new"
+
 
 @interface XuPushManager : NSObject
 

@@ -12,7 +12,7 @@
 
 -(void)handlePropretyWithDict:(NSDictionary *)dict
 {
-    self.booksId = [dict objectForKey:@"id"];
+    self.booksId = [NSString stringWithFormat:@"%@",[dict objectForKey:@"id"]];
 }
 
 @end

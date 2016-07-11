@@ -140,9 +140,9 @@
  *  @param params
  *  @param aBlock
  */
--(XuURLSessionTask *)getOrderListWithParams:(NSMutableDictionary *)params block:(ServiceCallBlock)aBlock
+-(void )getOrderListWithParams:(NSMutableDictionary *)params block:(ServiceCallBlock)aBlock
 {
-  XuURLSessionTask *task = [XuNetWorking postWithUrl:OrderListUrl params:params success:^(id response) {
+    [XuNetWorking postWithUrl:OrderListUrl params:params success:^(id response) {
         if ([self isCommonCorrectResultCodeWithResponse:response]) {
             if (aBlock) {
                 aBlock(response,YES);
@@ -159,7 +159,6 @@
         
     }];
     
-    return task;
 }
 
 

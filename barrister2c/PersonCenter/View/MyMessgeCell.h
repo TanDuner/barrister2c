@@ -13,4 +13,6 @@
 
 @property (nonatomic,strong) MyMessageModel *model;
 
++(CGFloat)getCellHeightWithModel:(MyMessageModel *)model;
+
 @end

@@ -19,6 +19,13 @@
 #import "WXApiManager.h"
 #import "IMVersionManager.h"
 
+#import "BaseViewController.h"
+#import "BaseNavigaitonController.h"
+#import "OrderDetailViewController.h"
+#import "MyAccountViewController.h"
+#import "MyMessageViewController.h"
+
+
 //13301096303
 //700953
 
@@ -111,7 +118,7 @@
     [headerDict setObject:[NSString stringWithFormat:@"%f*%f",SCREENWIDTH ,SCREENHEIGHT] forKey:@"X-SCREEN"];
     [headerDict setObject:@"appleStore" forKey:@"X-MARKET"];
     if ([BaseDataSingleton shareInstance].userModel != nil) {
-        [headerDict setObject:[BaseDataSingleton shareInstance].userModel.userId forKey:@"X-UID"];
+        [headerDict setObject:[NSString stringWithFormat:@"%@",[BaseDataSingleton shareInstance].userModel.userId] forKey:@"X-UID"];
     }
     
     
@@ -256,6 +263,36 @@
     return YES;
 }
 
+
+-(void)jumpToViewControllerwithType:(NSString *)type Params:(NSDictionary *)params;
+{
+    
+    BaseTabbarController *mainTabVC = self.tabBarCTL;
+    BaseNavigaitonController * navigationController = [mainTabVC.viewControllers objectAtIndex:mainTabVC.selectedIndex];
+    
+    
+    if ([type isEqualToString:Push_Type_Order_Status_Change]||[type isEqualToString:Push_Type_Receive_Star]||[type isEqualToString:Push_Type_New_AppointmentOrder]) {
+        NSString *contentId = [params objectForKey:@"contentId"];
+        
+        OrderDetailViewController *detailVC = [[OrderDetailViewController alloc] initWithOrderId:contentId];
+        [navigationController pushViewController:detailVC animated:YES];
+    }
+    else if ([type isEqualToString:Push_Type_Order_Receive_Reward]||[type isEqualToString:Push_Type_Order_Receive_Moneny]||[type isEqualToString:Push_TYpe_Tixian_Status])
+    {
+        //去我的账户
+        MyAccountViewController *account = [[MyAccountViewController alloc] init];
+        [navigationController pushViewController:account animated:YES];
+        
+    }
+    else if ([type isEqualToString:Push_Type_System_Msg])
+    {
+        //去系统消息
+        MyMessageViewController *myMessage = [[MyMessageViewController alloc] init];
+        [navigationController pushViewController:myMessage animated:YES];
+        
+    }
+    
+}
 
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {

@@ -15,7 +15,7 @@
 #import "LawBooksModel.h"
 #import "YYWebImage.h"
 #import "UIImage+Additions.h"
-
+#import "BarristerLoginManager.h"
 #define ImageWidth 28
 
 #define LawButtonWidth 50
@@ -243,9 +243,15 @@ typedef void(^ClickZXItemBlock)(ZXItemView *itemView);
 
 -(void)clickLawBooksAciton:(UIButton *)btn
 {
+    //没登录让登录
+    if (![[BaseDataSingleton shareInstance].loginState isEqualToString:@"1"]) {
+        [[BarristerLoginManager shareManager] showLoginViewControllerWithController:self];
+        return;
+    }
     if (self.titleArray.count != self.urlArray.count) {
         return;
     }
+    
     
     if (self.urlArray.count > btn.tag) {
         NSString *url = [self.urlArray safeObjectAtIndex:btn.tag];

@@ -11,7 +11,8 @@
 #import "MeNetProxy.h"
 #import "MyMessageModel.h"
 #import "MyMessgeCell.h"
-
+#import "AppDelegate.h"
+#import "XuPushManager.h"
 
 @interface MyMessageViewController () <UITableViewDataSource,UITableViewDelegate,RefreshTableViewDelegate>
 
@@ -53,8 +54,6 @@
     
     
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    [params setObject:[BaseDataSingleton shareInstance].userModel.userId forKey:@"userId"];
-    [params setObject:[BaseDataSingleton shareInstance].userModel.verifyCode forKey:@"verifyCode"];
     [params setObject:[NSString stringWithFormat:@"%ld",self.tableView.pageSize] forKey:@"pageSize"];
     [params setObject:[NSString stringWithFormat:@"%ld",self.tableView.pageNum] forKey:@"page"];
     
@@ -62,7 +61,7 @@
     [self.proxy getMyMessageWithParams:params block:^(id returnData, BOOL success) {
         if (success) {
             NSDictionary *msg = (NSDictionary *)returnData;
-            NSArray *array = [msg objectForKey:@"msg"];
+            NSArray *array = [msg objectForKey:@"msgs"];
             if ([XuUtlity isValidArray:array]) {
                 [weakSelf praiseDataWithArray:array];
             }
@@ -125,8 +124,14 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 55;
-}
+    MyMessageModel *model = [self.items safeObjectAtIndex:indexPath.row];
+    if (model) {
+        return [MyMessgeCell getCellHeightWithModel:model];
+    }
+    else
+    {
+        return 0;
+    }}
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -136,7 +141,7 @@
         cell = [[MyMessgeCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:idenfiti];
     }
     if (self.items.count > indexPath.row) {
-        MyMessageModel *modelTemp = [self.items    safeObjectAtIndex:indexPath.row];
+        MyMessageModel *modelTemp = [self.items  safeObjectAtIndex:indexPath.row];
         cell.model = modelTemp;
     }
     return cell;
@@ -146,7 +151,27 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    MyMessageModel *model = [self.items safeObjectAtIndex:indexPath.row];
+    
+    NSString *type = model.type;
+    
+    AppDelegate *delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    
+    if ([type isEqualToString:Push_Type_Order_Status_Change]||[type isEqualToString:Push_Type_Receive_Star]||[type isEqualToString:Push_Type_New_AppointmentOrder]) {
+        [delegate jumpToViewControllerwithType:type Params:[NSDictionary dictionaryWithObjectsAndKeys:model.contentId,@"contentId", nil]];
+    }
+    else if ([type isEqualToString:Push_Type_Order_Receive_Reward]||[type isEqualToString:Push_Type_Order_Receive_Moneny]||[type isEqualToString:Push_TYpe_Tixian_Status])
+    {
+        [delegate jumpToViewControllerwithType:type Params:nil];
+    }
+    else if ([type isEqualToString:Push_Type_System_Msg])
+    {
+        [delegate jumpToViewControllerwithType:type Params:nil];
+    }
 }
+
+
 
 #pragma -mark -----Refresh&LoadMore-----
 
