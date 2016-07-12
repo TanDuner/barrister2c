@@ -41,6 +41,7 @@
     self.title = @"我的消息";
     
     self.tableView = [[RefreshTableView alloc] initWithFrame:RECT(0, 0, SCREENWIDTH, SCREENHEIGHT - NAVBAR_DEFAULT_HEIGHT) style:UITableViewStylePlain];
+    self.tableView.pageSize = 20;
     self.tableView.backgroundColor = kBaseViewBackgroundColor;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;

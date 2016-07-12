@@ -138,7 +138,7 @@
         
         
         itemView.rightImageView.backgroundColor = [UIColor whiteColor];
-        itemView.rightImageView.tag = i;
+        itemView.clickButton.tag = i;
         [itemView.rightImageView yy_setImageWithURL:[NSURL URLWithString:model.icon] placeholder:[UIImage createImageWithColor:KColorGray333]];
         [itemView.clickButton addTarget:self action:@selector(buttonClickAction:) forControlEvents:UIControlEventTouchUpInside];
 

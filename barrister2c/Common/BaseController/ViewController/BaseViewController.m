@@ -483,10 +483,6 @@
             [self hideNoContentView];
         }
         
-        
-
-
-        
     }
     else
     {
@@ -518,40 +514,6 @@
         }
     }
     
-//    if (tableView.pageNum == 1) {
-//        if (aBlock) {
-//            aBlock();
-//        }
-//        [tableView endRefreshing];
-//        if (array.count == 0) {
-//            [self showNoContentView];
-//        }
-//        else
-//        {
-//            [self hideNoContentView];
-//            if (array.count < tableView.pageSize) {
-//                [tableView endLoadMoreWithNoMoreData:YES];
-//            }
-//            else
-//            {
-//                [tableView endLoadMoreWithNoMoreData:NO];
-//            }
-//        }
-//    }
-//    else
-//    {
-//        [self hideNoContentView];
-//        if (array.count < tableView.pageSize) {
-//            [tableView endLoadMoreWithNoMoreData:YES];
-//        }
-//        else
-//        {
-//            [tableView endLoadMoreWithNoMoreData:NO];
-//        }
-//
-//    }
-    
-      
 }
 
 

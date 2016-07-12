@@ -35,8 +35,23 @@
 {
     [super layoutSubviews];
     [self.leftImageView setFrame:RECT(LeftPadding, LeftPadding + 5, 100, 60)];
-    [self.titleLabel setFrame:RECT(self.leftImageView.x + self.leftImageView.width + 10, self.leftImageView.y, SCREENWIDTH - LeftPadding *2 - CGRectGetMaxX(self.leftImageView.frame) - LeftPadding, 15)];
-    [self.timeLabel setFrame:CGRectMake(SCREENWIDTH - 160, self.height - 25, 150, 15)];
+    if (self.model) {
+        if (IS_NOT_EMPTY(self.model.thumb)) {
+            self.leftImageView.hidden = NO;
+            [self.leftImageView yy_setImageWithURL:[NSURL URLWithString:self.model.thumb] placeholder:[UIImage imageNamed:@"timeline_image_loading"]];
+            [self.titleLabel setFrame:RECT(self.leftImageView.x + self.leftImageView.width + 10, self.leftImageView.y, SCREENWIDTH - LeftPadding *2 - CGRectGetMaxX(self.leftImageView.frame) - LeftPadding, 15)];
+            [self.timeLabel setFrame:CGRectMake(SCREENWIDTH - 160, self.height - 25, 150, 15)];
+            
+        }
+        else
+        {
+            self.leftImageView.hidden = YES;
+            [self.titleLabel setFrame:RECT(LeftPadding, LeftPadding, SCREENWIDTH - LeftPadding *2, 40)];
+            self.titleLabel.numberOfLines = 3;
+            [self.timeLabel setFrame:CGRectMake(SCREENWIDTH - 160, self.height - 25, 150, 15)];
+            
+        }
+    }
 }
 
 
@@ -44,11 +59,8 @@
 {
     [super configData];
     
-    if (self.model) {
-        [self.leftImageView yy_setImageWithURL:[NSURL URLWithString:self.model.thumb] placeholder:[UIImage imageNamed:@"timeline_image_loading"]];
-        self.titleLabel.text = self.model.title;
-        self.timeLabel.text = [NSString stringWithFormat:@"%@",self.model.date];
-    }
+    self.titleLabel.text = self.model.title;
+    self.timeLabel.text = [NSString stringWithFormat:@"%@",self.model.date];
 }
 
 

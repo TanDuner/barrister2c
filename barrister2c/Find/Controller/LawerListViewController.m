@@ -360,7 +360,8 @@
     
     LawerDetailViewController *detailVC = [[LawerDetailViewController alloc] init];
     if (self.items.count > indexPath.row) {
-        detailVC.model = [self.items  safeObjectAtIndex:indexPath.row];        
+        BarristerLawerModel *model = [self.items  safeObjectAtIndex:indexPath.row];
+        detailVC.lawyerId = model.laywerId;
     }
 
     [self.navigationController pushViewController:detailVC animated:YES];

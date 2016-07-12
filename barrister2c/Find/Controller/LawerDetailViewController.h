@@ -14,4 +14,6 @@
 @property (nonatomic,strong) NSString *bussinesAreaStr;
 @property (nonatomic,strong) BarristerLawerModel *model;
 
+@property (nonatomic,strong) NSString *lawyerId;
+
 @end

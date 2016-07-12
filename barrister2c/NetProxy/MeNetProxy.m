@@ -55,6 +55,7 @@
  */
 -(void)getMyMessageWithParams:(NSMutableDictionary *)params block:(ServiceCallBlock)aBlock
 {
+    [self appendCommonParamsWithDict:params];
     [XuNetWorking postWithUrl:MyMessageUrl params:params success:^(id response) {
         if ([self isCommonCorrectResultCodeWithResponse:response]) {
             if (aBlock) {

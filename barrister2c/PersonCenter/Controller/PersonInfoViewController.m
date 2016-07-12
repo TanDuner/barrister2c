@@ -103,7 +103,7 @@
     
    NSString *registrationId =  [JPUSHService registrationID];
     if (registrationId) {
-        [aParams setObject:registrationId forKey:@"pushId"];
+        [aParams setObject:[NSString stringWithFormat:@"%@",registrationId] forKey:@"pushId"];
     }
     
     //缺少极光推送的push id

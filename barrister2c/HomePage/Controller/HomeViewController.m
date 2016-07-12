@@ -183,7 +183,7 @@
     for ( int i = 0; i < bizTypesArray.count; i ++) {
         NSDictionary *dictTemp = [bizTypesArray safeObjectAtIndex:i];
         BussinessTypeModel *model = [[BussinessTypeModel alloc] initWithDictionary:dictTemp];
-        [self.typeItems addObject:model];
+        [self.typeItems safeAddObject:model];
     }
     
     NSMutableArray *imageUrls = [NSMutableArray arrayWithCapacity:1];
@@ -191,6 +191,7 @@
         NSDictionary *dict = [bannerListArray safeObjectAtIndex:i];
         HomeBannerModel *model = [[HomeBannerModel alloc] initWithDictionary:dict];
         [imageUrls addObject:model.image];
+        [self.bannerItems addObject:model];
     }
     
     [BaseDataSingleton shareInstance].bizAreas = self.areaItems;

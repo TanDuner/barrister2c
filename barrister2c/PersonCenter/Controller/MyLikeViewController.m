@@ -11,7 +11,7 @@
 #import "MyLikeListCell.h"
 #import "MeNetProxy.h"
 #import "RefreshTableView.h"
-
+#import "LawerDetailViewController.h"
 
 @interface MyLikeViewController ()<UITableViewDataSource,UITableViewDelegate,RefreshTableViewDelegate>
 
@@ -157,6 +157,13 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    MyLikeModel *model  = (MyLikeModel *)[self.items safeObjectAtIndex:indexPath.row];
+    if (model.lawerId) {
+        LawerDetailViewController *lawyerDetail = [[LawerDetailViewController alloc] init];
+        lawyerDetail.lawyerId = model.lawerId;
+        [self.navigationController pushViewController:lawyerDetail animated:YES];
+    }
 }
 
 #pragma -mark --Getter--

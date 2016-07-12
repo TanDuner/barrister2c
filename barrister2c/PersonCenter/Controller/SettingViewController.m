@@ -12,6 +12,7 @@
 #import "LoginProxy.h"
 #import "FeedBackViewController.h"
 #import "BaseWebViewController.h"
+#import "BarristerLoginManager.h"
 @interface SettingViewController ()
 
 @property (nonatomic,strong) UIButton *bottomBtn;
@@ -156,7 +157,8 @@
     }
     else
     {
-
+        [[BarristerLoginManager shareManager] showLoginViewControllerWithController:self];
+        
     }
 }
 

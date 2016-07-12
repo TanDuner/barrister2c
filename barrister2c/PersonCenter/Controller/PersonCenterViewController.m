@@ -32,7 +32,7 @@
     self = [super init];
     if (self) {
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTableView) name:NOTIFICATION_LOGIN_SUCCESS object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTableView) name:NOTIFICATION_LOGIN_SUCCESS object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTableView) name:NOTIFICATION_LOGOUT_SUCCESS object:nil];
 
     }
     return self;
@@ -42,6 +42,9 @@
 {
     [super viewWillAppear:animated];
     [self showTabbar:YES];
+    if (self.tableView) {
+        [self.tableView reloadData];
+    }
    
 }
 

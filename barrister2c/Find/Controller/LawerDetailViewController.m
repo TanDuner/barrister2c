@@ -59,7 +59,7 @@ typedef void(^ShowTimeSelectBlock)(id object);
 -(void)configData
 {
     [XuUItlity showLoading:@"正在加载"];
-    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:self.model.laywerId,@"lawyerId", nil];
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:self.lawyerId,@"lawyerId", nil];
     __weak typeof(*&self) weakSelf  = self;
     [self.proxy getOrderDetailWithParams:params Block:^(id returnData, BOOL success) {
         [XuUItlity hideLoading];

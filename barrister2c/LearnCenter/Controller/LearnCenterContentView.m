@@ -116,8 +116,8 @@
     self.tableView = [[RefreshTableView alloc] initWithFrame:RECT(0, 0, SCREENWIDTH, SCREENHEIGHT - 49 - 49- NAVBAR_DEFAULT_HEIGHT) style:UITableViewStylePlain];
     self.tableView.backgroundColor = kBaseViewBackgroundColor;
     self.tableView.delegate = self;
-    [self.tableView setFootLoadMoreControl];
     self.tableView.dataSource = self;
+    [self.tableView setFootLoadMoreControl];
     self.tableView.refreshDelegate = self;
     
     [self.view addSubview:self.tableView];
@@ -144,7 +144,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 90;
+    return 75;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -159,7 +159,6 @@
         LearnCenterModel *model = (LearnCenterModel *)[self.items safeObjectAtIndex:indexPath.row];
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:model.url]];
     }
-
 }
 
 #pragma -mark --Getter--
