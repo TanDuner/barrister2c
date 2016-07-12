@@ -203,11 +203,12 @@ typedef void(^ShowTimeSelectBlock)(id object);
     [self.proxy placeOrderOrderWithParams:params Block:^(id returnData, BOOL success) {
         if (success) {
             if (array.count > 0) {
-                [XuUItlity showOkAlertView:@"确定" title:@"提示" mesage:@"下单成功,系统即将为您建立通话 如果一分钟未接到电话可以手动拨号建立通话" callback:nil];
+                [XuUItlity showOkAlertView:@"知道了" title:@"提示" mesage:@"下单成功,可以到我的订单查看" callback:nil];
             }
             else
             {
-                [XuUItlity showOkAlertView:@"知道了" title:@"提示" mesage:@"下单成功,可以到我的订单查看" callback:nil];
+                [XuUItlity showOkAlertView:@"确定" title:@"提示" mesage:@"下单成功,系统即将为您建立通话 如果一分钟未接到电话可以手动拨号建立通话" callback:nil];
+
             }
             
         }
