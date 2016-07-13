@@ -153,6 +153,10 @@
     }
     else
     {
+        if ([BaseDataSingleton shareInstance].isClosePay) {
+            [XuUItlity showSucceedHint:@"请等待律师跟您联系" completionBlock:nil];
+            return;
+        }
         [self.view addSubview:self.confirmCostView];
     }
     

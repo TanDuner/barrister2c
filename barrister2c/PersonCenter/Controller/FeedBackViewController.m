@@ -73,8 +73,9 @@
         [XuUItlity showFailedHint:@"请填写联系方式" completionBlock:nil];
         return;
     }
-    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:[BaseDataSingleton shareInstance].userModel.userId,@"userId",[BaseDataSingleton shareInstance].userModel.verifyCode,@"verifyCode",self.textView.text,@"content",self.phoneTextField.text,@"contact", nil];
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:self.textView.text,@"content",self.phoneTextField.text,@"contact", nil];
     
+    [self.view endEditing:YES];
     [XuUItlity showLoadingInView:self.view hintText:@"正在提交"];
     [self.proxy feedBackWithParams:params block:^(id returnData, BOOL success) {
         [XuUItlity hideLoading];

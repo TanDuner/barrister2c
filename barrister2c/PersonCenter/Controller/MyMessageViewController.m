@@ -127,7 +127,9 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     MyMessageModel *model = [self.items safeObjectAtIndex:indexPath.row];
     if (model) {
-        return [MyMessgeCell getCellHeightWithModel:model];
+        CGFloat height = [MyMessgeCell getCellHeightWithModel:model];
+        return height;
+//        return [MyMessgeCell getCellHeightWithModel:model];
     }
     else
     {
@@ -162,7 +164,7 @@
     if ([type isEqualToString:Push_Type_Order_Status_Change]||[type isEqualToString:Push_Type_Receive_Star]||[type isEqualToString:Push_Type_New_AppointmentOrder]) {
         [delegate jumpToViewControllerwithType:type Params:[NSDictionary dictionaryWithObjectsAndKeys:model.contentId,@"contentId", nil]];
     }
-    else if ([type isEqualToString:Push_Type_Order_Receive_Reward]||[type isEqualToString:Push_Type_Order_Receive_Moneny]||[type isEqualToString:Push_TYpe_Tixian_Status])
+    else if ([type isEqualToString:Push_Type_Order_Receive_Reward]||[type isEqualToString:Push_Type_Order_Receive_Moneny]||[type isEqualToString:Push_TYpe_Tixian_Status]||[type isEqualToString:@"type.recharge"])
     {
         [delegate jumpToViewControllerwithType:type Params:nil];
     }

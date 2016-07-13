@@ -256,24 +256,6 @@
 
 -(void)handleAlipayInfoWithString:(NSString *)alipayInfo
 {
-//    NSArray *array = [alipayInfo componentsSeparatedByString:@"&"];
-//    NSMutableDictionary *params = [NSMutableDictionary dictionary];
-//    for ( int i = 0; i < array.count; i ++) {
-//        NSString *str = [array objectAtIndex:i];
-//        NSRange range = [str rangeOfString:@"="];
-//        if (range.location != 0) {
-//            NSString *key = [str substringToIndex:range.location];
-//            NSString *value = [str substringFromIndex:range.location + 1];
-//            [params setValue:value forKey:key];
-//        }
-//    }
-//    
-//    if (params.allKeys.count > 0) {
-//        Order *order = [[Order alloc] initWithDictionary:params];
-//        if (!order.partner || !order.seller || !order.p) {
-//            
-//        }
-//    }
     if (!alipayInfo) {
         [XuUItlity showFailedHint:@"数据错误" completionBlock:nil];
     }
@@ -281,9 +263,31 @@
     NSString *appScheme = @"barrister2c";
 
     
-    
+    __weak typeof(*&self) weakSelf = self;
     [[AlipaySDK defaultService] payOrder:alipayInfo fromScheme:appScheme callback:^(NSDictionary *resultDic) {
         NSLog(@"reslut = %@",resultDic);
+        NSString *resultStatus = [resultDic objectForKey:@"resultStatus"];
+        NSString *message = @"";
+        switch([resultStatus integerValue])
+        {
+            case 9000:message = @"订单支付成功";break;
+            case 8000:message = @"正在处理中";break;
+            case 4000:message = @"订单支付失败";break;
+            case 6001:message = @"用户中途取消";break;
+            case 6002:message = @"网络连接错误";break;
+            default:message = @"未知错误";
+        }
+
+        if (resultStatus.integerValue == 9000) {
+            [XuUItlity showSucceedHint:@"支付成功" completionBlock:^{
+                [weakSelf.navigationController popViewControllerAnimated:YES];
+            }];
+        }
+        else
+        {
+            [XuUItlity showFailedHint:message completionBlock:nil];
+        }
+        
 
         
     }];

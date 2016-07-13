@@ -30,11 +30,19 @@
     return LeftPadding + model.titleHeight + 8 + model.contentHeight + LeftPadding;
 }
 
+-(void)layoutSubviews
+{
+    [super layoutSubviews];
+    
+    [self.titleLabel setFrame:RECT(LeftPadding, 10, 200, self.model.titleHeight)];
+    [self.subTitleLabel setFrame:RECT(LeftPadding, self.titleLabel.y + self.titleLabel.height + 10, SCREENWIDTH - 20, self.model.contentHeight)];
+}
+
 -(void)configData
 {
     [super configData];
-    self.titleLabel.text = self.model.content;
-    self.subTitleLabel.text = self.model.title;
+    self.titleLabel.text = self.model.title;
+    self.subTitleLabel.text = self.model.content;
     self.timeLabel.text = self.model.date;
     
 }
@@ -81,7 +89,7 @@
 -(UILabel *)timeLabel
 {
     if (!_timeLabel) {
-        _timeLabel = [[UILabel alloc] initWithFrame:RECT(SCREENWIDTH - 130 - 10, 10, 130, 12.5)];
+        _timeLabel = [[UILabel alloc] initWithFrame:RECT(SCREENWIDTH - 150 - 10, 10, 150, 12.5)];
         _timeLabel.font = SystemFont(14.0f);
         _timeLabel.textAlignment = NSTextAlignmentRight;
         _timeLabel.textColor = KColorGray333;

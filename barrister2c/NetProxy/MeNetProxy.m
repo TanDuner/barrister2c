@@ -10,7 +10,7 @@
 
 #define UploadHeadImageUrl @"uploadUserIcon.do"
 #define MyMessageUrl @"getMyMsgs.do"
-#define FeedBackUrl @"addFeedback.do"
+#define FeedBackUrl @"feedback.do"
 #define UpdateUserInfo @"updateUserInfo.do"
 #define OrderListUrl @"myOrderList.do"
 #define MyLikeListUrl @"myFavoriteList.do"
@@ -86,6 +86,7 @@
  */
 -(void)feedBackWithParams:(NSMutableDictionary *)params block:(ServiceCallBlock)aBlock
 {
+    [self appendCommonParamsWithDict:params];
     [XuNetWorking postWithUrl:FeedBackUrl params:params success:^(id response) {
         if ([self isCommonCorrectResultCodeWithResponse:response]) {
             if (aBlock) {
@@ -220,6 +221,7 @@
 
 -(XuURLSessionTask *)getAliaPaytPrePayOrderWithParams:(NSMutableDictionary *)params block:(ServiceCallBlock)aBlock
 {
+    [self appendCommonParamsWithDict:params];
     XuURLSessionTask *task = [XuNetWorking postWithUrl:AliaPayUrl params:params success:^(id response) {
         if ([self isCommonCorrectResultCodeWithResponse:response]) {
             aBlock(response,YES);
