@@ -474,20 +474,20 @@
             }
             [tableView endRefreshing];
             [tableView endLoadMoreWithNoMoreData:YES];
-            [self showNoContentView];
+//            [self showNoContentView];
             
         }
         else
         {
             [tableView endLoadMoreWithNoMoreData:YES];
-            [self hideNoContentView];
+//            [self hideNoContentView];
         }
         
     }
     else
     {
         
-        [self hideNoContentView];
+//        [self hideNoContentView];
         if (tableView.pageNum == 1) {
             if (aBlock) {
                 aBlock();

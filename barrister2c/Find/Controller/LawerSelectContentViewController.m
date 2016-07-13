@@ -10,7 +10,7 @@
 #import "AppointmentManager.h"
 
 
-#define ButtonNum 48
+#define ButtonNum 36
 
 #define ButtonWidth 25
 
@@ -79,7 +79,7 @@
 @end
 
 
-#define CheckWidth 90
+#define CheckWidth (SCREENWIDTH == 320 ?85:90)
 #define X_CenterPadding (SCREENWIDTH - 30 - 3*CheckWidth - LeftPadding *2)/2.0
 #define Y_CenterPaddng 5
 #define TopPadding 10
@@ -139,7 +139,7 @@
         checkView.endTimeNum = endTimeNum;
         
         checkView.tag = i + 1000;
-        [checkView setFrame:CGRectMake(LeftPadding + (i%3)*(CheckWidth + X_CenterPadding), TopPadding + (i / 3)*(Y_CenterPaddng + ButtonWidth), CheckWidth, 25)];
+        [checkView setFrame:CGRectMake(LeftPadding + (i%3)*((SCREENWIDTH == 320?85:CheckWidth) + X_CenterPadding), TopPadding + (i / 3)*(Y_CenterPaddng + ButtonWidth), CheckWidth, 25)];
         checkView.showLabel.text = showStr;
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(checkAciton:)];
         [checkView addGestureRecognizer:tap];
@@ -150,7 +150,7 @@
         
     }
     
-    self.bgScrollView.contentSize = CGSizeMake(0, (ButtonNum / 3)*(Y_CenterPaddng + ButtonWidth));
+    self.bgScrollView.contentSize = CGSizeMake(0, (ButtonNum / 3)*(Y_CenterPaddng + ButtonWidth) + 10);
     [self.view addSubview:self.bgScrollView];
     
     
@@ -173,7 +173,7 @@
 -(UIScrollView *)bgScrollView
 {
     if (!_bgScrollView) {
-        _bgScrollView = [[UIScrollView alloc] initWithFrame:RECT(0, 0, self.view.width, 290 - 20)];
+        _bgScrollView = [[UIScrollView alloc] initWithFrame:RECT(0, 0, self.view.width, 190)];
     }
     return _bgScrollView;
 }

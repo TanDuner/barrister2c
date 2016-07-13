@@ -92,6 +92,10 @@
 //    if ([self p_callBackDispose:request]) {
 //        return NO;
 //    }
+    if (!self.showTitle) {
+        self.title = [webView stringByEvaluatingJavaScriptFromString:@"document.title"];//获取当前页面的title
+    }
+    
     return YES;
 }
 

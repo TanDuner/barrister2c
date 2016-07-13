@@ -38,6 +38,7 @@
         NSString *state = [model.settingArray safeObjectAtIndex:i];
         if ([state isEqualToString:@"2"]) {
             NSString *timeTmepStr = [[AppointmentManager shareInstance].commonTimeArray safeObjectAtIndex:i];
+            NSLog(@"%@",[AppointmentManager shareInstance].commonTimeArray);
             str = [NSString stringWithFormat:@"%@,%@",str,timeTmepStr];
         }
         

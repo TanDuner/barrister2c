@@ -8,8 +8,13 @@
 
 #import "BaseViewController.h"
 
+@class LearnCenterModel;
+
+typedef void(^cellClickBlock)(LearnCenterModel *model);
 @interface LearnCenterContentView : BaseViewController
 
+
+@property (nonatomic,copy) cellClickBlock cellBlock;
 
 @property (nonatomic,strong) NSString *chanelId;
 

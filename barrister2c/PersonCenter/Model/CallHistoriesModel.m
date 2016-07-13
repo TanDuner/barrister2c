@@ -9,13 +9,22 @@
 #import "CallHistoriesModel.h"
 #import "DownloadVoiceManager.h"
 #import "VolumePlayHelper.h"
+#import "ESVoiceDownloader.h"
+#import "ESDownloadVoiceManager.h"
 
-@interface CallHistoriesModel ()<NSURLSessionDelegate>
+@interface CallHistoriesModel ()<NSURLSessionDelegate,ESVoiceDownloadDelegate>
 
 @property (nonatomic,strong) NSURLSession *session;
 @property (nonatomic, strong) NSURLSessionDownloadTask *task;
 
 @property (nonatomic,copy) downloadBlock downloadingBlock;
+
+
+/**
+ *  新
+ */
+
+@property (nonatomic,strong) ESVoiceDownloader *downloader;
 
 @end
 
@@ -59,23 +68,26 @@
 {
     _index = index;
     self.fileName = [[DownloadVoiceManager shareInstance] getFileNameWithOrderId:self.orderId index:_index];
-
+//    self.fileName  = [ESDownloadVoiceManager getFileNameWithId:self.orderId index:_index];
 }
 
 
 -(void)downloadVoiceWithBlock:(downloadBlock)downloadBlock
 {
+//    if ([ESDownloadVoiceManager isExistFileDirectoryWithOrderId:self.orderId index:_index]) {
+//        self.isDownloading = NO;
+//        [[VolumePlayHelper PlayerHelper] playSound:self.fileName];
+//        return;
+//    }
+// 
+//    [self.downloader startWithDelegate:self];
+    
     if (!self.recordUrl || self.isDownloading) {
         return;
     }
     
     if ([[DownloadVoiceManager shareInstance] isVoiceFileExistWithOrderId:self.orderId index:self.index]) {
         self.isDownloading = NO;
-        AVURLAsset* audioAsset =[AVURLAsset URLAssetWithURL:[NSURL URLWithString:self.fileName] options:nil];
-        
-        CMTime audioDuration = audioAsset.duration;
-        
-        self.duration = [NSString stringWithFormat:@"%f",CMTimeGetSeconds(audioDuration)];
 
         [[VolumePlayHelper PlayerHelper] playSound:self.fileName];
         return;
@@ -99,6 +111,46 @@
         [self.task resume];
     }
 }
+
+
+
+//#pragma -mark ---ESDownloader Delegate Methods ----
+//
+//-(void)ESVoiceDownloadProgress:(float)progress Percentage:(NSInteger)percentage {
+//    
+//    if (self.downloadingBlock) {
+//        self.downloadingBlock(progress/percentage);
+//    }
+//    
+//}
+//
+//-(void)ESVoiceDownloadFinished:(NSData *)fileData {
+//    
+//    if ([ESDownloadVoiceManager writeFileDataWithOrderId:self.orderId index:_index data:fileData]) {
+//        NSLog(@"写入成功");
+//    };
+//    
+//}
+//
+//-(void)ESVOiceDownloadFailure:(NSError *)error {
+//    
+//    NSLog(@"下载失败");
+//    [XuUItlity showFailedHint:@"下载失败" completionBlock:nil];
+//    
+//}
+
+
+
+#pragma -mark 
+
+//-(ESVoiceDownloader *)downloader
+//{
+//    if (!_downloader) {
+//        _downloader = [[ESVoiceDownloader alloc] initWithURL:[NSURL URLWithString:self.recordUrl] timeout:30];
+//        _downloader.delegate = self;
+//    }
+//    return _downloader;
+//}
 
 
 #pragma -mark ----download--------

@@ -162,9 +162,17 @@ typedef NS_ENUM(NSInteger,OrderDetailShowType)
     [self.items addObject:model2];
 
     if ([model.status isEqualToString:STATUS_WAITING]) {
-        OrderDetailCellModel *model3 = [[OrderDetailCellModel alloc] init];
-        model3.showType = OrderDetailShowTypeOrderCancel;
-        [self.items addObject:model3];
+        
+        NSDate *date = [XuUtlity NSStringDateToNSDate:model.endTime forDateFormatterStyle:DateFormatterDateAndTime];
+        
+        CGFloat timeFloat = [[NSDate date] timeIntervalSinceDate:date];
+        
+        if (timeFloat > 0) {
+            OrderDetailCellModel *model3 = [[OrderDetailCellModel alloc] init];
+            model3.showType = OrderDetailShowTypeOrderCancel;
+            [self.items addObject:model3];
+        }
+
    
     }
     

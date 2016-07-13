@@ -11,6 +11,8 @@
 #import "RefreshTableView.h"
 #import "LearnCenterModel.h"
 #import "LearnCenterCell.h"
+#import "BaseWebViewController.h"
+
 
 @interface LearnCenterContentView ()<UITableViewDataSource,UITableViewDelegate,RefreshTableViewDelegate>
 
@@ -63,27 +65,32 @@
 
 -(void)handleLearnListDataWithArray:(NSArray *)array
 {
-    if (array.count == 0) {
-        [self showNoContentView];
-    }
-    else
-    {
-        [self hideNoContentView];
-    }
+//    if (array.count == 0) {
+//        [self showNoContentView];
+//    }
+//    else
+//    {
+//        [self hideNoContentView];
+//    }
+//    
+//    if (self.tableView.pageNum == 1 ) {
+//        [self.tableView endRefreshing];
+//        [self.items removeAllObjects];
+//        
+//    }else{
+//        if (array.count < self.tableView.pageSize) {
+//            [self.tableView endLoadMoreWithNoMoreData:YES];
+//        }
+//        else
+//        {
+//            [self.tableView endLoadMoreWithNoMoreData:NO];
+//        }
+//    }
+    __weak typeof(*&self) weakSelf = self;
+    [self handleTableRefreshOrLoadMoreWithTableView:self.tableView array:array aBlock:^{
+        [weakSelf.items removeAllObjects];
+    }];
     
-    if (self.tableView.pageNum == 1 ) {
-        [self.tableView endRefreshing];
-        [self.items removeAllObjects];
-        
-    }else{
-        if (array.count < self.tableView.pageSize) {
-            [self.tableView endLoadMoreWithNoMoreData:YES];
-        }
-        else
-        {
-            [self.tableView endLoadMoreWithNoMoreData:NO];
-        }
-    }
     
     for (int i = 0; i < array.count; i ++) {
         NSDictionary *dict = [array safeObjectAtIndex:i];
@@ -156,8 +163,13 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (self.items.count > indexPath.row) {
+       
         LearnCenterModel *model = (LearnCenterModel *)[self.items safeObjectAtIndex:indexPath.row];
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:model.url]];
+        
+        if (self.cellBlock) {
+            self.cellBlock(model);
+        }
+        
     }
 }
 

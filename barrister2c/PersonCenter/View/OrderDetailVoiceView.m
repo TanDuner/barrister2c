@@ -55,7 +55,7 @@
     if ([nsnoti.object isEqualToString:self.model.fileName]) {
         self.playSlide.value = 0;
         if (!_timer) {
-            _timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(refreshSlideProgress) userInfo:nil repeats:YES];
+            _timer = [NSTimer scheduledTimerWithTimeInterval:.1 target:self selector:@selector(refreshSlideProgress) userInfo:nil repeats:YES];
             [[NSRunLoop mainRunLoop] addTimer:_timer forMode:NSRunLoopCommonModes];
             [self switchWithDownloadState:@"3"];
         }
@@ -75,7 +75,7 @@
         [self switchWithDownloadState:@"4"];
         return;
     }
-    self.playSlide.value += 1/self.model.duration.doubleValue;
+    self.playSlide.value += .1/self.model.duration.doubleValue;
 }
 
 -(void)playFinishAction:(NSNotification *)nsnotifi
@@ -178,9 +178,18 @@
     if (!_playSlide) {
         _playSlide = [[HUMSlider alloc] initWithFrame:RECT(60, 5, progressViewWidth, 30)];
         _playSlide.hidden = YES;
+        [_playSlide addTarget:self action:@selector(changeSlideValueAciton:) forControlEvents:UIControlEventValueChanged];
         _playSlide.tintColor = kNavigationBarColor;
     }
     return _playSlide;
+}
+
+-(void)changeSlideValueAciton:(HUMSlider *)slider
+{
+    NSTimeInterval time = self.model.duration.floatValue *slider.value;
+    
+    [[VolumePlayHelper PlayerHelper].audioPlayer setCurrentTime:time];
+
 }
 
 
@@ -212,6 +221,7 @@
                 self.playSlide.hidden = NO;
             }
         }];
+        self.playSlide.value = 0;
         [self.playBtn setTitle:@"下载中" forState:UIControlStateNormal];
         [self.playBtn setTitleColor:KColorGray999 forState:UIControlStateNormal];
 
@@ -238,6 +248,8 @@
     {
         self.playSlide.hidden = NO;
         self.playSlide.value = 0;
+        [self.playBtn removeTarget:self action:@selector(stopAction) forControlEvents:UIControlEventTouchUpInside];
+        [self.playBtn addTarget:self action:@selector(downloadAciton:) forControlEvents:UIControlEventTouchUpInside];
         [_playBtn setImage:[UIImage imageNamed:@"orderdetail_play"] forState:UIControlStateNormal];
         [[VolumePlayHelper PlayerHelper] audioPlayerStop];
         if (_timer) {

@@ -186,7 +186,7 @@ typedef void(^ClickZXItemBlock)(ZXItemView *itemView);
         }
         else
         {
-            [XuUItlity showFailedHint:@"加载应用大全失败" completionBlock:nil];
+
         }
     }];
     

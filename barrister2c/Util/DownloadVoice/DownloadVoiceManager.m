@@ -118,7 +118,7 @@
     if (![fileManager fileExistsAtPath:filePath]) {
         [fileManager createDirectoryAtPath:filePath withIntermediateDirectories:YES attributes:nil error:nil];
     }
-    NSString *fileName = [NSString stringWithFormat:@"%@_%@_%ld.wav",[BaseDataSingleton shareInstance].userModel.userId,orderId,index];
+    NSString *fileName = [NSString stringWithFormat:@"%@_%@_%ld.mp3",[BaseDataSingleton shareInstance].userModel.userId,orderId,index];
     NSString *fileTotalPath = [filePath stringByAppendingFormat:@"/%@",fileName];
     
     return fileTotalPath;

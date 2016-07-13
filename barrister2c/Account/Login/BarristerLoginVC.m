@@ -126,7 +126,7 @@ const float MidViewHeight = 190 / 2.0;
     passwordTextField.textColor = kFormTextColor;
     passwordTextField.keyboardAppearance = UIKeyboardTypeNumberPad;
     passwordTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"请输入验证码" attributes:@{NSForegroundColorAttributeName:RGBCOLOR(199, 199, 205)}];
-    passwordTextField.cleanBtnOffset_x = passwordTextField.width - 100;
+    passwordTextField.cleanBtnOffset_x = passwordTextField.width - 40;
     
     [inputBgView addSubview:accountTextField];
     [inputBgView addSubview:sepView];

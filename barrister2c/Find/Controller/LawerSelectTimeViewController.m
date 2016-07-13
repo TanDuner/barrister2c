@@ -13,7 +13,7 @@
 #import "AppointmentMoel.h"
 
 #define CommonViewWidth SCREENWIDTH - 30
-#define SelectViewHeight 360
+#define SelectViewHeight 280
 #define ConfirmViewHeight 245
 
 @interface LawerSelectTimeViewController ()
@@ -59,6 +59,9 @@
     [self.view addGestureRecognizer:tap];
     
     self.view.backgroundColor = [UIColor clearColor];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeTextViewFrame:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeTextViewFrame:) name:UIKeyboardWillHideNotification object:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -214,7 +217,15 @@
     for ( int i = 0; i < self.vcArray.count; i ++) {
         LawerSelectContentViewController *vc = (LawerSelectContentViewController *)[self.vcArray safeObjectAtIndex:i];
         if ([vc.commitModel.settingArray containsObject:@"2"]) {
-            [self.selectModelArray addObject:vc.commitModel];
+            if (![self.selectModelArray containsObject:vc.commitModel]) {
+                [self.selectModelArray addObject:vc.commitModel];
+            }
+            else
+            {
+                NSInteger index = [self.selectModelArray indexOfObject:vc.commitModel];
+                [self.selectModelArray replaceObjectAtIndex:index withObject:vc.commitModel];
+            }
+
         }
     }
     
@@ -301,7 +312,7 @@
             NSString *timeStr = [AppointmentMoel getStringWithModel:model];
             
             NSArray *times = [timeStr componentsSeparatedByString:@","];
-            totalTimes = times.count;
+            totalTimes += times.count;
             
             CGFloat height = [XuUtlity textHeightWithString:timeStr withFont:SystemFont(14.0) sizeWidth:SCREENWIDTH - LeftPadding *2 - 30];
             UILabel *label = [[UILabel alloc] initWithFrame:RECT(LeftPadding, origin_y, SCREENWIDTH - 30 - 20, height)];
@@ -310,12 +321,13 @@
             label.text = timeStr;
             label.textColor = KColorGray666;
             [bgScrollView addSubview:label];
-            totalHeight += origin_y;
+            totalHeight += 8;
             totalHeight += height;
             origin_y += height;
             origin_y += 8;
         }
         
+        [bgScrollView setContentSize:CGSizeMake(0, totalHeight + 20)];
         if (totalHeight > 100) {
             totalHeight = 100;
         }
@@ -324,7 +336,6 @@
         }
         
         [bgScrollView setFrame:RECT(0, 45, SCREENWIDTH - 30, totalHeight)];
-        [bgScrollView setContentSize:CGSizeMake(0, totalHeight + 20)];
         
         [_confirmBgView setFrame:CGRectMake(15, 100, CommonViewWidth, totalHeight + 45 + 30 + 40)];
         
@@ -373,7 +384,6 @@
             [bgScrollView removeFromSuperview];
         }
     }
-    [self.selectModelArray removeAllObjects];
     self.confirmBgView = nil;
 }
 
@@ -447,6 +457,19 @@
 
     }
     return _confirmCostView;
+}
+
+-(void)changeTextViewFrame:(NSNotification *)nsnotifi
+{
+    NSDictionary *info = [nsnotifi userInfo];
+    CGSize keyboardSize = [[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size;//键盘的frame
+    
+    if (keyboardSize.height > 100) {
+        CGRect rect = self.confirmCostView.frame;
+        [self.confirmCostView setFrame:RECT(rect.origin.x, rect.origin.y - 40, rect.size.width, rect.size.height)];
+    }
+
+
 }
 
 -(void)confirmCostAction

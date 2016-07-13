@@ -13,6 +13,9 @@
 #import "UIImage+Additions.h"
 #import "AppMethod.h"
 #import "WXApi.h"
+#import "Order.h"
+#import <AlipaySDK/AlipaySDK.h>
+#import "DataSigner.h"
 
 @interface MyAccountRechargeVC ()<UITextFieldDelegate>
 
@@ -180,15 +183,18 @@
 -(void)rechargeAction:(UIButton *)btn
 {
     [self.rechargeNumTextField resignFirstResponder];
+    
+
+    
     if ([self.rechargeType isEqualToString:@"wx"]) {
+        __weak typeof(*& self)weakSelf = self;
         NSMutableDictionary *params = [NSMutableDictionary dictionary];
         [params setObject:@"CN.DLS.APP2C" forKey:@"goodsInfo"];
         [params setObject:@"CN.DLS.APP2C" forKey:@"goodsName"];
         CGFloat value = self.rechargeNumTextField.text.floatValue *100;
         NSString *valueStr = [NSString stringWithFormat:@"%.0f",value];
         [params setObject:valueStr forKey:@"money"];
-        __weak typeof(*& self)weakSelf = self;
-        
+
         [XuUItlity showLoading:@"加载中..."];
         [self.proxy getWeChatPrePayOrderWithParams:params block:^(id returnData, BOOL success) {
             if (success) {
@@ -205,19 +211,63 @@
     }
     else if ([self.rechargeType isEqualToString:@"zfb"])
     {
-        NSMutableDictionary *params = [NSMutableDictionary dictionary];
         __weak typeof(*& self)weakSelf = self;
+        NSMutableDictionary *params = [NSMutableDictionary dictionary];
+        [params setObject:@"CN.DLS.APP2C" forKey:@"goodsInfo"];
+        [params setObject:@"CN.DLS.APP2C" forKey:@"goodsName"];
+        double value = self.rechargeNumTextField.text.doubleValue;
+        NSString *valueStr = [NSString stringWithFormat:@"%.2f",value];
+        [params setObject:valueStr forKey:@"money"];
 
      self.task =  [self.proxy getAliaPaytPrePayOrderWithParams:params block:^(id returnData, BOOL success) {
             if (success) {
-                NSLog(@"%@",returnData);
+                NSDictionary  *dict = (NSDictionary *)returnData;
+                NSString *aliPrepayInfo = [dict objectForKey:@"aliPrepayInfo"];
+                [weakSelf handleAlipayInfoWithString:aliPrepayInfo];
             }
             else
             {
-                
+                [XuUItlity showFailedHint:@"支付失败" completionBlock:nil];
             }
         }];
     }
+}
+
+
+-(void)handleAlipayInfoWithString:(NSString *)alipayInfo
+{
+//    NSArray *array = [alipayInfo componentsSeparatedByString:@"&"];
+//    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+//    for ( int i = 0; i < array.count; i ++) {
+//        NSString *str = [array objectAtIndex:i];
+//        NSRange range = [str rangeOfString:@"="];
+//        if (range.location != 0) {
+//            NSString *key = [str substringToIndex:range.location];
+//            NSString *value = [str substringFromIndex:range.location + 1];
+//            [params setValue:value forKey:key];
+//        }
+//    }
+//    
+//    if (params.allKeys.count > 0) {
+//        Order *order = [[Order alloc] initWithDictionary:params];
+//        if (!order.partner || !order.seller || !order.p) {
+//            
+//        }
+//    }
+    if (!alipayInfo) {
+        [XuUItlity showFailedHint:@"数据错误" completionBlock:nil];
+    }
+    
+    NSString *appScheme = @"barrister2c";
+
+    
+    
+    [[AlipaySDK defaultService] payOrder:alipayInfo fromScheme:appScheme callback:^(NSDictionary *resultDic) {
+        NSLog(@"reslut = %@",resultDic);
+
+        
+    }];
+    
 }
 
 
@@ -324,12 +374,45 @@
     }
 }
 
-
+#define MAX_LENTH 10
 #pragma -mark ---UITextField Delegate Methods---
 -(BOOL)textFieldShouldEndEditing:(UITextField *)textField
 {
     return YES;
 }
+
+//-(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+//    
+//    NSString * aString = [textField.text stringByReplacingCharactersInRange:range withString:string];
+//    
+//    int flag = 0;
+//    for (NSInteger i = aString.length - 1; i >= 0; i--) {
+//        if ([aString characterAtIndex:i] == '.') {
+//            if (flag > limited) {
+//                textField.text = [aString stringByReplacingCharactersInRange:range withString:string];
+//                textField.text = [aString substringToIndex:MAX_LENTH + flag];
+//                return NO;
+//            }
+//            break;
+//        }
+//        flag++;
+//    }
+//    
+//    NSInteger ff = (flag>2 ? 0:(flag?(flag+1):0));
+//    if ([aString length] >= MAX_LENTH + ff) {
+//        if (!(range.location == MAX_LENTH && ![string isEqualToString:@"."])) {
+//            ff = [string isEqualToString:@"."]?(ff?(ff+1):1):(ff);
+//            textField.text = [aString substringToIndex:MAX_LENTH + ff];
+//        }
+//        return NO;
+//    }
+//    
+//    
+//    if ([self isDecimal:aString] || [string length] == 0 || ([string isEqualToString:@"."] && [textField.text rangeOfString:@"."].location == NSNotFound)) {
+//        return YES;
+//    }
+//    return NO;
+//}
 
 
 #pragma -mark ----Getter----

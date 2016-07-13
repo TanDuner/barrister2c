@@ -106,7 +106,6 @@
         [aParams setObject:[NSString stringWithFormat:@"%@",registrationId] forKey:@"pushId"];
     }
     
-    //缺少极光推送的push id
     
     
     [XuUItlity showLoading:@"正在提交"];
