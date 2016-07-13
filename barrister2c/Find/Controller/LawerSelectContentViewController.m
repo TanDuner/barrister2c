@@ -58,9 +58,10 @@
 }
 
 
--(void)layoutSubviews
+
+-(void)setState:(AppointMentState)state
 {
-    [super layoutSubviews];
+    _state = state;
     
     if (self.state == AppointMentStateSelect) {
         _checkImageView.image = [UIImage imageNamed:@"unSelected.png"];
@@ -70,6 +71,10 @@
         _checkImageView.image = [UIImage imageNamed:@"Selected.png"];
     }
     else if (self.state == AppointMentStateUnSelectable)
+    {
+        _checkImageView.image = [UIImage imageNamed:@"unSelectedable.png"];
+    }
+    else if (self.state == AppointMentStateUnAgree)
     {
         _checkImageView.image = [UIImage imageNamed:@"unSelectedable.png"];
     }
@@ -132,6 +137,11 @@
         NSString *showStr = [NSString stringWithFormat:@"%@~%@",startStr,endStr];
         
         NSString *stateStr = [self.model.settingArray safeObjectAtIndex:i];
+    
+        if (stateStr.intValue == 0) {
+            stateStr = @"3";
+        }
+        
         checkView.state = stateStr.integerValue;
 
         

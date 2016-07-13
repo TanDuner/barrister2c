@@ -15,6 +15,7 @@ typedef NS_ENUM(NSInteger ,AppointMentState)
     AppointMentStateUnSelect,
     AppointMentStateSelect,
     AppointMentStateUnSelectable,
+    AppointMentStateUnAgree,
 };
 
 
