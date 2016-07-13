@@ -7,7 +7,6 @@
 //
 
 #import "MyAccountRechargeVC.h"
-#import "BorderTextFieldView.h"
 #import "MeNetProxy.h"
 #import "UIButton+EnlargeEdge.h"
 #import "UIImage+Additions.h"
@@ -16,10 +15,12 @@
 #import "Order.h"
 #import <AlipaySDK/AlipaySDK.h>
 #import "DataSigner.h"
+#import "XWMoneyTextField.h"
 
-@interface MyAccountRechargeVC ()<UITextFieldDelegate>
 
-@property (nonatomic,strong) BorderTextFieldView *rechargeNumTextField;
+@interface MyAccountRechargeVC ()<UITextFieldDelegate,XWMoneyTextFieldLimitDelegate>
+
+@property (nonatomic,strong) XWMoneyTextField *rechargeNumTextField;
 
 @property (nonatomic,strong) UIView *reChargeView;
 @property (nonatomic,strong) UIButton *confirmButton;
@@ -79,10 +80,19 @@
     [self.view addSubview:tipLabel];
     
     
-    self.rechargeNumTextField = [[BorderTextFieldView alloc] initWithFrame:RECT(LeftPadding, tipLabel.y + tipLabel.height + 10, SCREENWIDTH  -LeftPadding - LeftPadding, 44)];
-    self.rechargeNumTextField.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
+//    self.rechargeNumTextField = [[BorderTextFieldView alloc] initWithFrame:RECT(LeftPadding, tipLabel.y + tipLabel.height + 10, SCREENWIDTH  -LeftPadding - LeftPadding, 44)];
+//    self.rechargeNumTextField.delegate = self;
+//    self.rechargeNumTextField.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
 
+    self.rechargeNumTextField = [[XWMoneyTextField alloc] initWithFrame:RECT(LeftPadding, tipLabel.y + tipLabel.height + 10, SCREENWIDTH  -LeftPadding - LeftPadding, 44)];
+    self.rechargeNumTextField.borderStyle = UITextBorderStyleRoundedRect;
+    self.rechargeNumTextField.placeholder = @"请输入金额";
+    self.rechargeNumTextField.keyboardType = UIKeyboardTypeDecimalPad;
+    self.rechargeNumTextField.limit.delegate = self;
+    self.rechargeNumTextField.limit.max = @"999999.99";
     [self.view addSubview:self.rechargeNumTextField];
+
+    
     
     
     UILabel *wayTipLabel = [[UILabel alloc] initWithFrame:RECT(LeftPadding, self.rechargeNumTextField.y + self.rechargeNumTextField.height + 20, 200, 14)];
@@ -158,6 +168,16 @@
     self.confirmButton.layer.masksToBounds = YES;
     
     [self.view addSubview:self.confirmButton];
+}
+
+#pragma mark - XWMoneyTextFieldLimitDelegate
+- (void)valueChange:(id)sender{
+    
+    if ([sender isKindOfClass:[XWMoneyTextField class]]) {
+        
+        XWMoneyTextField *tf = (XWMoneyTextField *)sender;
+        NSLog(@"XWMoneyTextField ChangedValue: %@",tf.text);
+    }
 }
 
 #pragma -mark --Custom Methods-----
@@ -374,45 +394,16 @@
     }
 }
 
-#define MAX_LENTH 10
+#define MAX_LENTH 3
+#define limited 2
+
 #pragma -mark ---UITextField Delegate Methods---
 -(BOOL)textFieldShouldEndEditing:(UITextField *)textField
 {
     return YES;
 }
 
-//-(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
-//    
-//    NSString * aString = [textField.text stringByReplacingCharactersInRange:range withString:string];
-//    
-//    int flag = 0;
-//    for (NSInteger i = aString.length - 1; i >= 0; i--) {
-//        if ([aString characterAtIndex:i] == '.') {
-//            if (flag > limited) {
-//                textField.text = [aString stringByReplacingCharactersInRange:range withString:string];
-//                textField.text = [aString substringToIndex:MAX_LENTH + flag];
-//                return NO;
-//            }
-//            break;
-//        }
-//        flag++;
-//    }
-//    
-//    NSInteger ff = (flag>2 ? 0:(flag?(flag+1):0));
-//    if ([aString length] >= MAX_LENTH + ff) {
-//        if (!(range.location == MAX_LENTH && ![string isEqualToString:@"."])) {
-//            ff = [string isEqualToString:@"."]?(ff?(ff+1):1):(ff);
-//            textField.text = [aString substringToIndex:MAX_LENTH + ff];
-//        }
-//        return NO;
-//    }
-//    
-//    
-//    if ([self isDecimal:aString] || [string length] == 0 || ([string isEqualToString:@"."] && [textField.text rangeOfString:@"."].location == NSNotFound)) {
-//        return YES;
-//    }
-//    return NO;
-//}
+
 
 
 #pragma -mark ----Getter----

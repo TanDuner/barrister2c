@@ -21,6 +21,10 @@
 
 @property (nonatomic,strong) UIView *sepView;
 
+@property (nonatomic,strong) UILabel *customCommonTipLabel;
+
+@property (nonatomic,strong) UILabel *customCommonLabel;
+
 @end
 
 @implementation OrderDetailMarkCell
@@ -32,6 +36,8 @@
         [self addSubview:self.customMarkContentLabel];
         [self addSubview:self.lawyerMarkTipLabel];
         [self addSubview:self.lawyerMarkContentLabel];
+        [self addSubview:self.customCommonTipLabel];
+        [self addSubview:self.customCommonLabel];
         [self addSubview:self.sepView];
     }
     return self;
@@ -39,21 +45,27 @@
 
 +(CGFloat)getCellHeightWithModel:(BarristerOrderDetailModel *)model
 {
-    return LeftPadding + model.lawyerFeedBackHeight + model.markHeight + LeftPadding + 8;
+    return LeftPadding + model.lawyerFeedBackHeight  + 8 + model.markHeight +  8 + model.customCommonHeight + LeftPadding;
 }
 
 -(void)layoutSubviews
 {
     [super layoutSubviews];
     
-    [self.customMarkContentLabel setFrame:RECT(CGRectGetMaxX(self.customMarkTipLabel.frame) + 5, 8, TipLabelWidth, self.model.markHeight)];
+    [self.customMarkContentLabel setFrame:RECT(CGRectGetMaxX(self.customMarkTipLabel.frame) + 5, 8, SCREENWIDTH - 90, self.model.markHeight)];
 
     [self.lawyerMarkTipLabel setFrame:RECT(LeftPadding, CGRectGetMaxY(self.customMarkContentLabel.frame) + LeftPadding, TipLabelWidth, 13)];
-    [self.lawyerMarkContentLabel setFrame:RECT(CGRectGetMaxX(self.lawyerMarkTipLabel.frame) + 5, CGRectGetMaxY(self.customMarkContentLabel.frame) + 8, TipLabelWidth, self.model.markHeight)];
+    [self.lawyerMarkContentLabel setFrame:RECT(CGRectGetMaxX(self.lawyerMarkTipLabel.frame) + 5, CGRectGetMaxY(self.customMarkContentLabel.frame) + 8, SCREENWIDTH - 90, self.model.lawyerFeedBackHeight)];
     
     self.customMarkContentLabel.text = self.model.remarks?self.model.remarks:@"无";
     self.lawyerMarkContentLabel.text = self.model.lawFeedback?self.model.lawFeedback:@"无";
 
+    [self.customCommonTipLabel setFrame:RECT(LeftPadding, CGRectGetMaxY(self.lawyerMarkContentLabel.frame) + LeftPadding, TipLabelWidth, 13)];
+    
+    [self.customCommonLabel setFrame:RECT(CGRectGetMaxX(self.customCommonTipLabel.frame) + 5, CGRectGetMaxY(self.lawyerMarkContentLabel.frame) + 8, SCREENWIDTH - 90, self.model.customCommonHeight)];
+
+    self.customCommonLabel.text = self.model.comment?self.model.comment:@"无";
+    
     [self.sepView setFrame:RECT(0, self.height - .5, SCREENWIDTH, .5)];
 }
 
@@ -76,6 +88,7 @@
         _customMarkContentLabel = [[UILabel alloc] initWithFrame:RECT(CGRectGetMaxX(self.customMarkTipLabel.frame) + 5, 5, TipLabelWidth, 13)];
         _customMarkContentLabel.font = SystemFont(14.0f);
         _customMarkContentLabel.textColor = KColorGray999;
+        _customMarkContentLabel.numberOfLines = 0;
     }
     return _customMarkContentLabel;
 }
@@ -98,8 +111,34 @@
         _lawyerMarkContentLabel = [[UILabel alloc] initWithFrame:RECT(CGRectGetMaxX(self.customMarkTipLabel.frame) + 5, LeftPadding, TipLabelWidth, 13)];
         _lawyerMarkContentLabel.font = SystemFont(14.0f);
         _lawyerMarkContentLabel.textColor = KColorGray999;
+        _lawyerMarkContentLabel.numberOfLines = 0;
     }
     return _lawyerMarkContentLabel;
+}
+
+
+
+-(UILabel *)customCommonTipLabel
+{
+    if (!_customCommonTipLabel) {
+        _customCommonTipLabel = [[UILabel alloc] initWithFrame:RECT(LeftPadding, LeftPadding, TipLabelWidth, 13)];
+        _customCommonTipLabel.font = SystemFont(14.0f);
+        _customCommonTipLabel.textColor = KColorGray666;
+        _customCommonTipLabel.text = @"用户评论：";
+    }
+    return _customCommonTipLabel;
+}
+
+
+-(UILabel *)customCommonLabel
+{
+    if (!_customCommonLabel) {
+        _customCommonLabel = [[UILabel alloc] initWithFrame:RECT(CGRectGetMaxX(self.customMarkTipLabel.frame) + 5, LeftPadding, TipLabelWidth, 13)];
+        _customCommonLabel.font = SystemFont(14.0f);
+        _customCommonLabel.textColor = KColorGray999;
+        _customCommonLabel.numberOfLines = 0;
+    }
+    return _customCommonLabel;
 }
 
 

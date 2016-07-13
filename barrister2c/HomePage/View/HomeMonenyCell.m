@@ -15,6 +15,9 @@
 
 +(CGFloat)getCellHeight
 {
+    if ([BaseDataSingleton shareInstance].isClosePay) {
+        return 0;
+    }
     return SelfHeight;
 }
 

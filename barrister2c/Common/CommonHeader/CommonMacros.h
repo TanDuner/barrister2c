@@ -40,6 +40,8 @@
 #define NOTIFICATION_PLAY_VOICE         @"playVoice"
 #define NOTIFICATION_PLAY_VOICE_FINISH        @"playVoice_finish"
 #define NOTIFICATION_WXPAY_RESULT              @"wechatPayResultNotification"
+#define NOTIFICATION_PAYSWITCH_NOTIFICATION   @"payop"
+
 
 
 #define APPOINTMENT @"APPOINTMENT" //预约

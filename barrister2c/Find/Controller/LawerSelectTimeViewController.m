@@ -248,6 +248,12 @@
     self.selectBgView.hidden = YES;
     self.confirmBgView.hidden = NO;
     
+    if ([BaseDataSingleton shareInstance].isClosePay) {
+        [XuUItlity showSucceedHint:@"预约成功,请联系当地律师事务所" completionBlock:nil];
+        [self dismiss];
+        return;
+    }
+    
     [self.view addSubview:self.confirmBgView];
     
 }

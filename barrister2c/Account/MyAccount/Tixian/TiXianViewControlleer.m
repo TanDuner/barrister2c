@@ -11,16 +11,16 @@
 #import "UIButton+EnlargeEdge.h"
 #import "AccountProxy.h"
 #import "MyBankCardController.h"
-
+#import "XWMoneyTextField.h"
 
 #define RowHeight 45
 #define LeftSpace 10
 #define CleanBtnLessSpace 40
 #define LeftViewWidth 60
 
-@interface TiXianViewControlleer ()<UITextFieldDelegate>
+@interface TiXianViewControlleer ()<UITextFieldDelegate,XWMoneyTextFieldLimitDelegate>
 
-@property (nonatomic,strong) BorderTextFieldView *tixianTextField;
+@property (nonatomic,strong) XWMoneyTextField *tixianTextField;
 @property (nonatomic,strong) UIButton *checkButton;
 
 @property (nonatomic,strong) UIButton *tixianButton;
@@ -69,18 +69,13 @@
     label1.font = SystemFont(14.0f);
     
     
-    self.tixianTextField = [[BorderTextFieldView alloc] initWithFrame:RECT(LeftSpace, 0, SCREENWIDTH - 100 - .5 - LeftSpace, RowHeight)];
-    self.tixianTextField.keyboardType = UIKeyboardTypeNumberPad;
-    self.tixianTextField.textColor = kFormTextColor;
-    self.tixianTextField.row = 1;
-    self.tixianTextField.keyboardType = UIKeyboardTypeNumberPad;
-    self.tixianTextField.cleanBtnOffset_x = self.tixianTextField.width - CleanBtnLessSpace;
-    self.tixianTextField.delegate = self;
-    self.tixianTextField.textLeftOffset = LeftViewWidth + 20;
-    self.tixianTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"请输入提现金额" attributes:@{NSForegroundColorAttributeName:RGBCOLOR(199, 199, 205)}];
-    self.tixianTextField.leftView = label1;
-    self.tixianTextField.leftViewMode = UITextFieldViewModeAlways;
-    
+    self.tixianTextField = [[XWMoneyTextField alloc] initWithFrame:RECT(LeftSpace, 0, SCREENWIDTH - 100 - .5 - LeftSpace, RowHeight)];
+    self.tixianTextField.borderStyle = UITextBorderStyleNone;
+    self.tixianTextField.placeholder = @"请输入金额";
+    self.tixianTextField.keyboardType = UIKeyboardTypeDecimalPad;
+    self.tixianTextField.limit.delegate = self;
+    self.tixianTextField.limit.max = @"99999.99";
+
     
     [inputBgView addSubview:self.tixianTextField];
     [self.view addSubview:inputBgView];
@@ -114,6 +109,16 @@
 
 }
 
+#pragma mark - XWMoneyTextFieldLimitDelegate
+- (void)valueChange:(id)sender{
+    
+    if ([sender isKindOfClass:[XWMoneyTextField class]]) {
+        
+        XWMoneyTextField *tf = (XWMoneyTextField *)sender;
+        NSLog(@"XWMoneyTextField ChangedValue: %@",tf.text);
+    }
+}
+
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     if ([XuUtlity validateNumber:textField.text]) {
@@ -132,24 +137,7 @@
     return NO;
 }
 
--(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
-{
-    if ([textField.text rangeOfString:@"."].length != 0) {
-        if ([string isEqualToString:@"."]) {
-            return NO;
-        }
-        else
-        {
-            return YES;
-        }
-    }
-    
-    if (textField.text.length > 6) {
-        return NO;
-    }
-    
-    return YES;
-}
+
 
 -(void)toBankCardVCAction:(UIButton *)btn
 {
@@ -163,6 +151,11 @@
         [XuUItlity showFailedHint:@"请同意大律师提现协议" completionBlock:nil];
         return;
     }
+    if (self.tixianTextField.text.length == 0 || self.tixianTextField.text.floatValue > [BaseDataSingleton shareInstance].remainingBalance.floatValue) {
+        [XuUItlity showFailedHint:@"请输入正确的提现金额" completionBlock:nil];
+        return;
+    }
+    
     if ([XuUtlity validateNumber:self.tixianTextField.text]) {
         if (self.tixianTextField.text.floatValue <= [BaseDataSingleton shareInstance].remainingBalance.floatValue) {
             

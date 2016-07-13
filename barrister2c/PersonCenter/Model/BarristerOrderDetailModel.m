@@ -47,6 +47,15 @@
             self.customerNickname = [NSString stringWithFormat:@"用户%@",self.customerPhone];
         }
         
+        
+        CGFloat commonHeight = [XuUtlity textHeightWithString:self.comment withFont:SystemFont(14.0f) sizeWidth:SCREENWIDTH - 90 WithLineSpace:5];
+        if (commonHeight <= 13) {
+            commonHeight = 13;
+        }
+        
+        self.customCommonHeight = commonHeight;
+
+        
     }
 
 }

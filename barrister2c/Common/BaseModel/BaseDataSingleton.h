@@ -38,6 +38,7 @@ typedef struct PhoneSate PhoneSate;
 
 @property (nonatomic,strong) NSMutableArray *bizTypes;//类型
 
+@property (nonatomic,assign) BOOL isClosePay;
 
 
 + (instancetype)shareInstance;

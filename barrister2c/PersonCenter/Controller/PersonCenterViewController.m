@@ -33,6 +33,7 @@
     if (self) {
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTableView) name:NOTIFICATION_LOGIN_SUCCESS object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTableView) name:NOTIFICATION_LOGOUT_SUCCESS object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadPayData) name:NOTIFICATION_PAYSWITCH_NOTIFICATION object:nil];
 
     }
     return self;
@@ -54,6 +55,15 @@
 }
 
 #pragma -mark ------Data-------
+
+-(void)reloadPayData
+{
+    if (self.items.count > 0) {
+        [self.items removeAllObjects];
+        [self configData];
+    }
+}
+
 
 -(void)configData
 {
@@ -85,11 +95,7 @@
     model.isShowArrow = YES;
 
     
-    PersonCenterModel *model2 = [[PersonCenterModel alloc] init];
-    model2.titleStr = @"我的账户";
-    model2.cellType = PersonCenterModelTypeZHU;
-    model2.iconNameStr = @"Me_Account";
-    model2.isShowArrow = YES;
+
     
     PersonCenterModel *model5 = [[PersonCenterModel alloc] init];
     model5.titleStr = @"我的订单";
@@ -111,12 +117,28 @@
     model6.iconNameStr = @"Me_setting";
     model6.isShowArrow = YES;
     
+    
+   
+    
     [self.items addObject:model1];
     [self.items addObject:model];
     [self.items addObject:model5];
 
     
-    [self.items addObject:model2];
+    if ([BaseDataSingleton shareInstance].isClosePay) {
+        
+    }
+    else
+    {
+        PersonCenterModel *model2 = [[PersonCenterModel alloc] init];
+        model2.titleStr = @"我的账户";
+        model2.cellType = PersonCenterModelTypeZHU;
+        model2.iconNameStr = @"Me_Account";
+        model2.isShowArrow = YES;
+        [self.items addObject:model2];
+    }
+    
+    
     [self.items addObject:model3];
     [self.items addObject:model6];
 }
@@ -151,6 +173,9 @@
     }
     else if (section == 1)
     {
+        if ([BaseDataSingleton shareInstance].isClosePay) {
+            return 3;
+        }
         return 4;
     }
     else
@@ -249,10 +274,10 @@
             return;
         }
         
+        
         switch (indexPath.row) {
             case 0:
             {
-             
                 MyLikeViewController *likeVC = [[MyLikeViewController alloc] init];
                 [self.navigationController pushViewController:likeVC animated:YES];
 
@@ -266,8 +291,17 @@
                 break;
             case 2:
             {
-                MyAccountViewController *accountVC = [[MyAccountViewController alloc] init];
-                [self.navigationController pushViewController:accountVC animated:YES];
+                if ([BaseDataSingleton shareInstance].isClosePay) {
+                    MyMessageViewController *messageVC = [[MyMessageViewController alloc] init];
+                    [self.navigationController pushViewController:messageVC animated:YES];
+
+                }
+                else
+                {
+                    MyAccountViewController *accountVC = [[MyAccountViewController alloc] init];
+                    [self.navigationController pushViewController:accountVC animated:YES];
+
+                }
             }
                 break;
             case 3:

@@ -375,6 +375,8 @@
 		95EBAAF91D35DCA70041A647 /* RSADataSigner.m in Sources */ = {isa = PBXBuildFile; fileRef = 95EBAAEA1D35DCA70041A647 /* RSADataSigner.m */; };
 		95EBAAFA1D35DCA70041A647 /* RSADataVerifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 95EBAAEC1D35DCA70041A647 /* RSADataVerifier.m */; };
 		95EBAAFC1D35DDE20041A647 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95EBAAFB1D35DDE20041A647 /* CoreMotion.framework */; };
+		95EBAB351D3691770041A647 /* XWMoneyTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 95EBAB321D3691770041A647 /* XWMoneyTextField.m */; };
+		95EBAB361D3691770041A647 /* XWMoneyTextFieldLimit.m in Sources */ = {isa = PBXBuildFile; fileRef = 95EBAB341D3691770041A647 /* XWMoneyTextFieldLimit.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -1057,6 +1059,10 @@
 		95EBAAEB1D35DCA70041A647 /* RSADataVerifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSADataVerifier.h; sourceTree = "<group>"; };
 		95EBAAEC1D35DCA70041A647 /* RSADataVerifier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSADataVerifier.m; sourceTree = "<group>"; };
 		95EBAAFB1D35DDE20041A647 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		95EBAB311D3691770041A647 /* XWMoneyTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XWMoneyTextField.h; sourceTree = "<group>"; };
+		95EBAB321D3691770041A647 /* XWMoneyTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XWMoneyTextField.m; sourceTree = "<group>"; };
+		95EBAB331D3691770041A647 /* XWMoneyTextFieldLimit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XWMoneyTextFieldLimit.h; sourceTree = "<group>"; };
+		95EBAB341D3691770041A647 /* XWMoneyTextFieldLimit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XWMoneyTextFieldLimit.m; sourceTree = "<group>"; };
 		BB2FAA4FB209AF9A57D3750A /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1522,6 +1528,7 @@
 		95CA1BF41D10F4AF00AAE490 /* BaseView */ = {
 			isa = PBXGroup;
 			children = (
+				95EBAB301D3691770041A647 /* MonenyTextField */,
 				958EEBDD1D27FFEC00D4CF4C /* starView */,
 				95BD998E1D260681002E5B0D /* ActinoSheet */,
 				955611481D161A2400366D4C /* PullDownMenuView */,
@@ -2515,6 +2522,17 @@
 			path = Util;
 			sourceTree = "<group>";
 		};
+		95EBAB301D3691770041A647 /* MonenyTextField */ = {
+			isa = PBXGroup;
+			children = (
+				95EBAB311D3691770041A647 /* XWMoneyTextField.h */,
+				95EBAB321D3691770041A647 /* XWMoneyTextField.m */,
+				95EBAB331D3691770041A647 /* XWMoneyTextFieldLimit.h */,
+				95EBAB341D3691770041A647 /* XWMoneyTextFieldLimit.m */,
+			);
+			path = MonenyTextField;
+			sourceTree = "<group>";
+		};
 		FC8B3722513233B124AC9E13 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -2787,6 +2805,7 @@
 				95CA1D2E1D10F7C900AAE490 /* MJRefreshHeader.m in Sources */,
 				955610871D136E2100366D4C /* LawBooksModel.m in Sources */,
 				95EBAAED1D35DCA70041A647 /* AlipayHelper.m in Sources */,
+				95EBAB361D3691770041A647 /* XWMoneyTextFieldLimit.m in Sources */,
 				95CA1C661D10F7B700AAE490 /* RefreshTableView.m in Sources */,
 				95CA1D1D1D10F7C900AAE490 /* HYMDatePicker.m in Sources */,
 				95CA1D2F1D10F7C900AAE490 /* MJRefreshNormalHeader.m in Sources */,
@@ -2832,6 +2851,7 @@
 				955A7AFD1D1D8EC000D1DEAC /* OrderDetailViewController.m in Sources */,
 				95BD99801D2567E5002E5B0D /* LearnCenterContentView.m in Sources */,
 				95CA1C601D10F7B700AAE490 /* BaseNoDataView.m in Sources */,
+				95EBAB351D3691770041A647 /* XWMoneyTextField.m in Sources */,
 				955A7B1A1D1F6ECB00D1DEAC /* BarristerLoginManager.m in Sources */,
 				95CA1C211D10F79700AAE490 /* BaseNavigaitonController.m in Sources */,
 				955A7AF71D1D8D5400D1DEAC /* OrderViewCell.m in Sources */,

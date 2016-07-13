@@ -18,7 +18,7 @@
 #import "DCWebImageManager.h"
 #import "BarristerLoginManager.h"
 #import "AccountProxy.h"
-
+#import "IMVersionManager.h"
 #import "BaseWebViewController.h"
 
 @interface HomeViewController ()
@@ -35,7 +35,43 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:@"barrister2c",@"type",@"ios",@"platform", nil];
+    __weak typeof(*&self) weakSelf = self;
+    [self.proxy getHidePayDataWithParams:params Block:^(id returnData, BOOL success) {
+        if (success) {
+            NSDictionary *dict = (NSDictionary *)returnData;
+            [weakSelf handlePSWithDict:dict];
+        }
+        else
+        {
+            
+        }
+    }];
+    
     [self initData];
+}
+
+-(void)handlePSWithDict:(NSDictionary *)dict
+{
+    NSDictionary *versionDict = [dict objectForKey:@"version"];
+    if ([versionDict respondsToSelector:@selector(objectForKey:)]) {
+        NSString *versionCode = [versionDict objectForKey:@"versionCode"];
+        
+        NSString *nativeVersion = [IMVersionManager shareInstance].nativeVersion;
+        if ([versionCode isEqualToString:nativeVersion]) {
+            [BaseDataSingleton shareInstance].isClosePay = YES;
+            [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_PAYSWITCH_NOTIFICATION object:nil];
+            
+        }
+        else
+        {
+            [BaseDataSingleton shareInstance].isClosePay = NO;
+            [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_PAYSWITCH_NOTIFICATION object:nil];
+        }
+        
+        
+    }
 }
 
 
@@ -59,6 +95,7 @@
     if (self.areaItems.count == 0 || self.typeItems.count == 0) {
         [self loadCommonOtherData];
     }
+    
     [self showTabbar:YES];
     
 
@@ -73,6 +110,7 @@
     self.typeItems = [NSMutableArray arrayWithCapacity:1];
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(LoginSuccessAciton:) name:NOTIFICATION_LOGIN_SUCCESS object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadPayTableView) name:NOTIFICATION_PAYSWITCH_NOTIFICATION object:nil];
     [BarristerLoginManager shareManager].showController  = self;
     [[BarristerLoginManager shareManager] userAutoLogin];
 
@@ -84,6 +122,11 @@
     [self loadData];
 }
 
+
+-(void)reloadPayTableView
+{
+    [self loadData];
+}
 
 -(void)configData
 {
@@ -252,7 +295,9 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (section == 0) {
+      
         return 2;
+
     }
     else if(section == 1)
     {
@@ -291,9 +336,16 @@
 {
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
-            HomeMonenyCell *cell = [[HomeMonenyCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            return cell;
+            if ([BaseDataSingleton shareInstance].isClosePay) {
+                return [UITableViewCell new];
+            }
+            else
+            {
+                HomeMonenyCell *cell = [[HomeMonenyCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+                cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                return cell;
+            }
+
         }
         else if(indexPath.row == 1)
         {

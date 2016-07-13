@@ -20,5 +20,13 @@
 
 
 
+/**
+ *  获取开关数据
+ *
+ *  @param params
+ *  @param aBlock
+ */
+
+-(void)getHidePayDataWithParams:(NSDictionary *)params Block:(ServiceCallBlock)aBlock;
 
 @end

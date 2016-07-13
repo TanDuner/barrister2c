@@ -89,7 +89,7 @@
 - (void) checkNativeVersion
 {
     NSDictionary *mainPlist = [[NSBundle mainBundle] infoDictionary];
-    _nativeVersion = [mainPlist objectForKey:@"CFBundleVersion"];
+    _nativeVersion = [mainPlist objectForKey:@"CFBundleShortVersionString"];
 }
 
 @end

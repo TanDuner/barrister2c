@@ -26,6 +26,7 @@
     if (self = [super init]) {
         self.remainingBalance = @"0";
         self.loginState = @"0";
+        self.isClosePay = YES;
     }
     return self;
 }
