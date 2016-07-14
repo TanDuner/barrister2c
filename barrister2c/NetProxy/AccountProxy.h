@@ -40,7 +40,7 @@
  *  提现
  */
 
--(void)tiXianActionWithMoney:(NSDictionary *)aParams Block:(ServiceCallBlock)aBlock;
+-(void)tiXianActionWithMoney:(NSMutableDictionary *)aParams Block:(ServiceCallBlock)aBlock;
 
 
 /**

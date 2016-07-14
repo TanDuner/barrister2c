@@ -20,7 +20,7 @@
 #import "AccountProxy.h"
 #import "IMVersionManager.h"
 #import "BaseWebViewController.h"
-
+#import "XuPushManager.h"
 @interface HomeViewController ()
 
 @property (nonatomic,strong) NSMutableArray *areaItems;
@@ -95,6 +95,8 @@
     if (self.areaItems.count == 0 || self.typeItems.count == 0) {
         [self loadCommonOtherData];
     }
+    [[XuPushManager shareInstance] handleUnActiveMsg];
+
     
     [self showTabbar:YES];
     

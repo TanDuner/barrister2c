@@ -47,7 +47,7 @@
     else if ([self.model.type isEqualToString:TYPE_GET_MONEY])
     {
         self.typeLabel.text = @"提现";
-        self.handleLabel.text = [NSString stringWithFormat:@"+%@",self.model.money];
+        self.handleLabel.text = [NSString stringWithFormat:@"-%@",self.model.money];
     }
     else if([self.model.type isEqualToString:TYPE_REWARD])
     {
@@ -63,7 +63,7 @@
     else if ([self.model.type isEqualToString:TYPE_BACK])
     {
         self.typeLabel.text = @"系统退款";
-        self.handleLabel.text = [NSString stringWithFormat:@"-%@",self.model.money];
+        self.handleLabel.text = [NSString stringWithFormat:@"+%@",self.model.money];
     }
     _handleLabel.textColor = [UIColor greenColor];
 

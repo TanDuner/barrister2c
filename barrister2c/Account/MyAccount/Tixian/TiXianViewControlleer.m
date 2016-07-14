@@ -161,7 +161,7 @@
             
             [XuUItlity showLoading:@"正在提交"];
             
-            NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:[BaseDataSingleton shareInstance].userModel.userId,@"userId",[BaseDataSingleton shareInstance].userModel.verifyCode,@"verifyCode",self.tixianTextField.text,@"moneny", nil];
+            NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:self.tixianTextField.text,@"money", nil];
             
             [self.proxy tiXianActionWithMoney:params Block:^(id returnData, BOOL success) {
                 [XuUItlity hideLoading];

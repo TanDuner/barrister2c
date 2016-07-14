@@ -387,13 +387,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "barrister2c/PersonCenter/Controller/OrderDetailViewController.m"
-            timestampString = "490201212.157631"
+            filePath = "barrister2c/Account/MyAccount/Tixian/TiXianViewControlleer.m"
+            timestampString = "490233260.901419"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "137"
-            endingLineNumber = "137"
-            landmarkName = "-initData"
+            startingLineNumber = "166"
+            endingLineNumber = "166"
+            landmarkName = "-tixianAction:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

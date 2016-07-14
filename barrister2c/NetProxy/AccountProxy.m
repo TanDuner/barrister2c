@@ -93,15 +93,17 @@
     return task;
 }
 
--(void)tiXianActionWithMoney:(NSDictionary *)params Block:(ServiceCallBlock)aBlock
+-(void)tiXianActionWithMoney:(NSMutableDictionary *)params Block:(ServiceCallBlock)aBlock
 {
+    [self appendCommonParamsWithDict:params];
     [XuNetWorking postWithUrl:TixianUrl params:params success:^(id response) {
         if ([self isCommonCorrectResultCodeWithResponse:response]) {
             aBlock(response ,YES);
         }
         else
         {
-            aBlock(CommonNetErrorTip,NO);
+            NSString *resultMsg = [response objectForKey:@"resultMsg"];
+            aBlock(resultMsg,NO);
         }
 
     } fail:^(NSError *error) {
