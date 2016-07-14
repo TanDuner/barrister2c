@@ -255,6 +255,9 @@ typedef void(^ClickZXItemBlock)(ZXItemView *itemView);
     
     if (self.urlArray.count > btn.tag) {
         NSString *url = [self.urlArray safeObjectAtIndex:btn.tag];
+        if ([url hasSuffix:@" "]) {
+            url = [url substringToIndex:url.length - 1];
+        }
         BaseWebViewController *webView = [[BaseWebViewController alloc] init];
         webView.url = url;
         webView.showTitle = self.titleArray[btn.tag];

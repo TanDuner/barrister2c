@@ -74,6 +74,7 @@
 
 - (void)loadWebViewRequest
 {
+
     NSURL *myurl = [NSURL URLWithString:self.url];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:myurl cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
     
