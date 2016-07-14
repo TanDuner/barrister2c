@@ -138,7 +138,9 @@
  */
 - (void)receivePushMsg:(NSDictionary *)pushdata withType:(NSString *)type
 {
-    
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:1];
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
+
     if (!pushdata) {
         return;
     }
