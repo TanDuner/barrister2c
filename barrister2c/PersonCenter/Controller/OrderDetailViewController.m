@@ -221,6 +221,11 @@ typedef NS_ENUM(NSInteger,OrderDetailShowType)
  */
 -(void)callAction:(UIButton *)btn
 {
+    if ([model.status isEqualToString:STATUS_DONE]) {
+        [XuUItlity showAlertHint:@"订单已完成就不可以再通话了哦~" completionBlock:nil andView:self.view];
+        return;
+    }
+    
     NSDate *startDate = [XuUtlity NSStringDateToNSDate:model.startTime forDateFormatterStyle:DateFormatterDateAndTime];
     double startNum = [startDate timeIntervalSince1970];
     
@@ -294,6 +299,7 @@ typedef NS_ENUM(NSInteger,OrderDetailShowType)
 -(void)appriseOrderAction
 {
     OrderPraiseViewController *praiseVC = [[OrderPraiseViewController alloc] init];
+    praiseVC.orderId  = model.orderId;
     [self.navigationController pushViewController:praiseVC animated:YES];
     
 }

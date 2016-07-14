@@ -77,10 +77,10 @@
         return;
     }
     
-    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:self.textView.text,@"content",self.orderId,@"orderId", self.star,@"star",nil];
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:self.textView.text,@"comment",self.orderId,@"orderId", self.star,@"star",nil];
     
     [XuUItlity showLoadingInView:self.view hintText:@"正在提交"];
-    
+    [self.view endEditing:YES];
     [self.proxy appriseOrderWithParams:params Block:^(id returnData, BOOL success) {
         [XuUItlity hideLoading];
         if (success) {

@@ -53,7 +53,9 @@
     [params setObject:[NSString stringWithFormat:@"%ld",self.tableView.pageNum] forKey:@"page"];
     [params setObject:[BaseDataSingleton shareInstance].userModel.userId forKey:@"userId"];
     [params setObject:[BaseDataSingleton shareInstance].userModel.verifyCode forKey:@"verifyCode"];
+    [XuUItlity showLoadingInView:self.view hintText:@"正在加载..."];
     [self.proxy getMyLikeListWithParams:params block:^(id returnData, BOOL success) {
+        [XuUItlity hideLoading];
         if (success) {
             NSDictionary *dict = (NSDictionary *)returnData;
             NSArray *array = [dict objectForKey:@"favoriteItemList"];

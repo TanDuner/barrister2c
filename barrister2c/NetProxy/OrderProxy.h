@@ -32,13 +32,13 @@
  *  @param aParams
  *  @param aBlock
  */
--(void)applyToCancelOrderWithParams:(NSDictionary *)aParams Block:(ServiceCallBlock)aBlock;
+-(void)applyToCancelOrderWithParams:(NSMutableDictionary *)aParams Block:(ServiceCallBlock)aBlock;
 
 
 /**
  *  订单评分
  */
--(void)appriseOrderWithParams:(NSDictionary *)aParams Block:(ServiceCallBlock)aBlock;
+-(void)appriseOrderWithParams:(NSMutableDictionary *)aParams Block:(ServiceCallBlock)aBlock;
 
 
 

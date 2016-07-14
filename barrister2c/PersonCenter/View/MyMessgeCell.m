@@ -34,7 +34,7 @@
 {
     [super layoutSubviews];
     
-    [self.titleLabel setFrame:RECT(LeftPadding, 10, 200, self.model.titleHeight)];
+    [self.titleLabel setFrame:RECT(LeftPadding, 10, SCREENWIDTH - 160, self.model.titleHeight)];
     [self.subTitleLabel setFrame:RECT(LeftPadding, self.titleLabel.y + self.titleLabel.height + 10, SCREENWIDTH - 20, self.model.contentHeight)];
 }
 
@@ -65,8 +65,9 @@
 -(UILabel *)titleLabel
 {
     if (!_titleLabel) {
-        _titleLabel = [[UILabel alloc] initWithFrame:RECT(LeftPadding, 10, 200, 12.5)];
+        _titleLabel = [[UILabel alloc] initWithFrame:RECT(LeftPadding, 10, SCREENWIDTH - 160, 12.5)];
         _titleLabel.font = SystemFont(14.0f);
+        _titleLabel.numberOfLines = 0;
         _titleLabel.textAlignment = NSTextAlignmentLeft;
         _titleLabel.textColor = KColorGray222;
     }
@@ -77,6 +78,7 @@
 {
     if (!_subTitleLabel) {
         _subTitleLabel = [[UILabel alloc] initWithFrame:RECT(LeftPadding, self.titleLabel.y + self.titleLabel.height + 10, SCREENWIDTH - 20, 12.5)];
+        _subTitleLabel.numberOfLines = 0;
         _subTitleLabel.font = SystemFont(14.0f);
         _subTitleLabel.numberOfLines = 0;
         _subTitleLabel.textAlignment = NSTextAlignmentLeft;

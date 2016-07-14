@@ -9,8 +9,8 @@
 #import "OrderProxy.h"
 
 #define GetOrderListUrl @"myOrderList.do"
-#define RequestCancelOrderUrl @"requestCancelOrder"
-#define OrderPraiseUrl @"addOrderStar"
+#define RequestCancelOrderUrl @"requestCancelOrder.do"
+#define OrderPraiseUrl @"addOrderStar.do"
 
 #define OrderDetailUrl @"orderDetail.do"
 #define MakeCallUrl @"makeCall.do"
@@ -77,7 +77,7 @@
  *  @param aParams
  *  @param aBlock
  */
--(void)applyToCancelOrderWithParams:(NSDictionary *)aParams Block:(ServiceCallBlock)aBlock
+-(void)applyToCancelOrderWithParams:(NSMutableDictionary *)aParams Block:(ServiceCallBlock)aBlock
 {
     [self appendCommonParamsWithDict:aParams];
     [XuNetWorking postWithUrl:RequestCancelOrderUrl params:aParams success:^(id response) {
@@ -100,8 +100,9 @@
 
 //  参数:userId,verifyCode,orderId,star,comment
 
--(void)appriseOrderWithParams:(NSDictionary *)aParams Block:(ServiceCallBlock)aBlock
+-(void)appriseOrderWithParams:(NSMutableDictionary *)aParams Block:(ServiceCallBlock)aBlock
 {
+    [self appendCommonParamsWithDict:aParams];
     [XuNetWorking postWithUrl:OrderPraiseUrl params:aParams success:^(id response) {
         if (aBlock) {
             if ([self isCommonCorrectResultCodeWithResponse:response]) {

@@ -23,7 +23,7 @@
     }
     
     if (self.title) {
-        self.titleHeight = [XuUtlity textHeightWithString:self.title withFont:SystemFont(14.0f) sizeWidth:SCREENWIDTH - LeftPadding - LeftPadding];
+        self.titleHeight = [XuUtlity textHeightWithString:self.title withFont:SystemFont(14.0f) sizeWidth:SCREENWIDTH - 160];
         if (self.titleHeight < 13) {
             self.titleHeight = 13;
         }
