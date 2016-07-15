@@ -16,7 +16,7 @@
 #define SelectViewHeight 280
 #define ConfirmViewHeight 245
 
-@interface LawerSelectTimeViewController ()
+@interface LawerSelectTimeViewController ()<UITextViewDelegate>
 
 @property (nonatomic,strong) UILabel *tipLabel;
 
@@ -54,14 +54,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAciton)];
-    
-    [self.view addGestureRecognizer:tap];
+//    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAciton)];
+//    
+//    [self.view addGestureRecognizer:tap];
     
     self.view.backgroundColor = [UIColor clearColor];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeTextViewFrame:) name:UIKeyboardWillShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeTextViewFrame:) name:UIKeyboardWillHideNotification object:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -437,6 +435,7 @@
         self.contentTextView = [[UITextView alloc] initWithFrame:RECT(15, describeLabel.y + describeLabel.height + 10, SCREENWIDTH - 30 - 30, 80)];
         self.contentTextView.font = SystemFont(14.0f);
         self.contentTextView.layer.cornerRadius = 2.0f;
+        self.contentTextView.delegate = self;
         self.contentTextView.layer.masksToBounds = YES;
         self.contentTextView.layer.borderColor = [UIColor colorWithString:@"#cccccc" colorAlpha:.5].CGColor;
         self.contentTextView.layer.borderWidth = .5;
@@ -469,18 +468,25 @@
     return _confirmCostView;
 }
 
--(void)changeTextViewFrame:(NSNotification *)nsnotifi
+#pragma -mark ----TextView Delegate Methods-----
+
+- (void)textViewDidEndEditing:(UITextView *)textView;
 {
-    NSDictionary *info = [nsnotifi userInfo];
-    CGSize keyboardSize = [[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size;//键盘的frame
-    
-    if (keyboardSize.height > 100) {
-        CGRect rect = self.confirmCostView.frame;
-        [self.confirmCostView setFrame:RECT(rect.origin.x, rect.origin.y - 40, rect.size.width, rect.size.height)];
-    }
+    [UIView animateWithDuration:.3 animations:^{
+        [self.confirmCostView setFrame:RECT(15, 100, SCREENWIDTH - 30, 190)];
+    }];
+}
+
+- (void)textViewDidBeginEditing:(UITextView *)textView
+{
+    [UIView animateWithDuration:.3 animations:^{
+        [self.confirmCostView setFrame:RECT(15, 100 - 40, SCREENWIDTH - 30, 190)];
+    }];
 
 
 }
+
+
 
 -(void)confirmCostAction
 {
