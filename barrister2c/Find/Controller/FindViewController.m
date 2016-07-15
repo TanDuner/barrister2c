@@ -301,7 +301,7 @@ typedef void(^ClickZXItemBlock)(ZXItemView *itemView);
         __weak typeof(*&self) weakSelf = self;
         _LeftItem.block = ^(ZXItemView *itemView)
         {
-            [weakSelf toLawerList];
+            [weakSelf toLawerListWithType:@"IM"];
         };
         
         UIView *sepView = [[UIView alloc] initWithFrame:RECT(ItemWidth, 0, 1, ItemHeight)];
@@ -314,7 +314,7 @@ typedef void(^ClickZXItemBlock)(ZXItemView *itemView);
         _rightItem.subtitleLabel.text = @"约定时间与律师沟通";
         _rightItem.block = ^(ZXItemView *itemView)
         {
-            [weakSelf toLawerList];
+            [weakSelf toLawerListWithType:@"APPOINTMENT"];
         };
         
         UIView *horSpeView = [[UIView alloc] initWithFrame:RECT(0, ItemHeight, SCREENWIDTH, 10)];
@@ -365,9 +365,10 @@ typedef void(^ClickZXItemBlock)(ZXItemView *itemView);
     return _proxy;
 }
 
--(void)toLawerList
+-(void)toLawerListWithType:(NSString *)type
 {
     LawerListViewController *lawerListVC = [[LawerListViewController alloc] init];
+    lawerListVC.type = type;
     [self.navigationController pushViewController:lawerListVC animated:YES];
 }
 

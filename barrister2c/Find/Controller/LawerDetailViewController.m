@@ -298,19 +298,30 @@ typedef void(^ShowTimeSelectBlock)(id object);
     }
 
     if (indexPath.section == 1) {
+       
         if (indexPath.row == 1) {
-            
+    
             [self showTimeSelectView];
+       
         }
         else
         {
-            self.selectTimeView = [[LawerSelectTimeViewController alloc] init];
-            self.selectTimeView.lawerModel = self.model;
-            self.selectTimeView.delegate = self;
-            [self.selectTimeView.view setCenter:CGPointMake(self.view.center.x, 1000)];
-            [self.view addSubview:self.selectTimeView.view];
             
-            [self.selectTimeView showWithType:IM];
+            if ([self.model.orderStatus isEqualToString:@"can"]) {
+                self.selectTimeView = [[LawerSelectTimeViewController alloc] init];
+                self.selectTimeView.lawerModel = self.model;
+                self.selectTimeView.delegate = self;
+                [self.selectTimeView.view setCenter:CGPointMake(self.view.center.x, 1000)];
+                [self.view addSubview:self.selectTimeView.view];
+                
+                [self.selectTimeView showWithType:IM];
+
+            }
+            else
+            {
+                [XuUItlity showAlertHint:@"律师当前不接单哦~" completionBlock:nil andView:self.view];
+            }
+            
 
         }
     }

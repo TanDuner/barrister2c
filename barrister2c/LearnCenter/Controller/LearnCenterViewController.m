@@ -121,6 +121,7 @@
 
 -(void)handleChannelDataWithArray:(NSArray *)arrray
 {
+    
     for (int i = 0; i < arrray.count; i ++) {
         NSDictionary *dict = [arrray safeObjectAtIndex:i];
         LearnCenterChannelModel *model = [[LearnCenterChannelModel alloc] initWithDictionary:dict];

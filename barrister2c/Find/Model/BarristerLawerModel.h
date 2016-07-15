@@ -65,6 +65,8 @@
 @property (nonatomic,strong) NSString *goodAtStr; //擅长的字符串
 
 
+@property (nonatomic,strong) NSString *orderStatus; //可接单状态  can  can_not
+
 /**
  *  擅长领域
  */
