@@ -56,7 +56,6 @@
     
     if (![YKSplashView getIsOpenGuideView]) {
         //初始化版本控制
-        [IMVersionManager shareInstance];
         self.window.rootViewController = self.guideController;
         [self.window makeKeyAndVisible];
     }
