@@ -204,6 +204,10 @@
 {
     [self.rechargeNumTextField resignFirstResponder];
     
+    if (self.rechargeNumTextField.text.length == 0 || self.rechargeNumTextField.text.floatValue == 0) {
+        [XuUItlity showFailedHint:@"请输入正确的金额" completionBlock:nil];
+        return;
+    }
 
     
     if ([self.rechargeType isEqualToString:@"wx"]) {
@@ -217,6 +221,7 @@
 
         [XuUItlity showLoading:@"加载中..."];
         [self.proxy getWeChatPrePayOrderWithParams:params block:^(id returnData, BOOL success) {
+            [XuUItlity hideLoading];
             if (success) {
                 NSDictionary *dict = (NSDictionary *)returnData;
                 
@@ -238,8 +243,9 @@
         double value = self.rechargeNumTextField.text.doubleValue;
         NSString *valueStr = [NSString stringWithFormat:@"%.2f",value];
         [params setObject:valueStr forKey:@"money"];
-
+        [XuUItlity showLoading:@"加载中..."];
      self.task =  [self.proxy getAliaPaytPrePayOrderWithParams:params block:^(id returnData, BOOL success) {
+         [XuUItlity hideLoading];
             if (success) {
                 NSDictionary  *dict = (NSDictionary *)returnData;
                 NSString *aliPrepayInfo = [dict objectForKey:@"aliPrepayInfo"];
