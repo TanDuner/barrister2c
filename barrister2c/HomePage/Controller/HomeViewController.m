@@ -56,7 +56,7 @@
 {
     NSDictionary *versionDict = [dict objectForKey:@"version"];
     if ([versionDict respondsToSelector:@selector(objectForKey:)]) {
-        NSString *versionCode = [versionDict objectForKey:@"versionCode"];
+        NSString *versionCode = [versionDict objectForKey:@"versionName"];
         
         NSString *nativeVersion = [IMVersionManager shareInstance].nativeVersion;
         if ([versionCode isEqualToString:nativeVersion]) {
