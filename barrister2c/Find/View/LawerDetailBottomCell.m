@@ -62,7 +62,7 @@
 -(UILabel *)topLabel
 {
     if (!_topLabel) {
-        _topLabel = [[UILabel alloc] initWithFrame:RECT(LeftPadding + ImageWidth + LeftPadding, LeftPadding, 80, 15)];
+        _topLabel = [[UILabel alloc] initWithFrame:RECT(LeftPadding + ImageWidth + LeftPadding, LeftPadding, 200, 15)];
         _topLabel.textColor = KColorGray333;
         _topLabel.text = @"即时咨询";
         _topLabel.font = SystemFont(15.0f);

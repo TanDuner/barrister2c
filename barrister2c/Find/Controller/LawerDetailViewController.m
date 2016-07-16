@@ -409,7 +409,7 @@ typedef void(^ShowTimeSelectBlock)(id object);
         if ([self.model.orderStatus isEqualToString:@"can"]) {
             if (indexPath.row == 0) {
                 LawerDetailBottomCell *cell = [[LawerDetailBottomCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
-                cell.topLabel.text = @"即时咨询";
+                cell.topLabel.text = [NSString stringWithFormat:@"即时咨询 (%@元/次)",self.model.priceIM];
                 cell.leftImageView.image = [UIImage imageNamed:@"imService"];
                 cell.bottomLabel.text = @"立即与律师沟通";
                 return cell;
@@ -417,7 +417,7 @@ typedef void(^ShowTimeSelectBlock)(id object);
             else
             {
                 LawerDetailBottomCell *cell = [[LawerDetailBottomCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
-                cell.topLabel.text = @"预约咨询";
+                cell.topLabel.text = [NSString stringWithFormat:@"预约咨询 (%@元/次)",self.model.priceAppointment];
                 cell.leftImageView.image = [UIImage imageNamed:@"appointmentService"];
                 cell.bottomLabel.text = @"约定时间与律师沟通";
                 
@@ -427,7 +427,7 @@ typedef void(^ShowTimeSelectBlock)(id object);
         else
         {
             LawerDetailBottomCell *cell = [[LawerDetailBottomCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
-            cell.topLabel.text = @"预约咨询";
+            cell.topLabel.text = [NSString stringWithFormat:@"预约咨询 (%@元/次)",self.model.priceAppointment];
             cell.leftImageView.image = [UIImage imageNamed:@"appointmentService"];
             cell.bottomLabel.text = @"约定时间与律师沟通";
             
