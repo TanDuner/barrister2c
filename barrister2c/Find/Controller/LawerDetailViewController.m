@@ -342,7 +342,10 @@ typedef void(^ShowTimeSelectBlock)(id object);
     }
     else if(section == 1)
     {
-        return 2;
+        if ([self.model.orderStatus isEqualToString:@"can"]) {
+            return 2;
+        }
+        return 1;
     }
     else
     {
@@ -403,12 +406,23 @@ typedef void(^ShowTimeSelectBlock)(id object);
     }
     else if (indexPath.section == 1)
     {
-        if (indexPath.row == 0) {
-            LawerDetailBottomCell *cell = [[LawerDetailBottomCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
-            cell.topLabel.text = @"即时咨询";
-            cell.leftImageView.image = [UIImage imageNamed:@"imService"];
-            cell.bottomLabel.text = @"立即与律师沟通";
-            return cell;
+        if ([self.model.orderStatus isEqualToString:@"can"]) {
+            if (indexPath.row == 0) {
+                LawerDetailBottomCell *cell = [[LawerDetailBottomCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+                cell.topLabel.text = @"即时咨询";
+                cell.leftImageView.image = [UIImage imageNamed:@"imService"];
+                cell.bottomLabel.text = @"立即与律师沟通";
+                return cell;
+            }
+            else
+            {
+                LawerDetailBottomCell *cell = [[LawerDetailBottomCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+                cell.topLabel.text = @"预约咨询";
+                cell.leftImageView.image = [UIImage imageNamed:@"appointmentService"];
+                cell.bottomLabel.text = @"约定时间与律师沟通";
+                
+                return cell;
+            }
         }
         else
         {
@@ -416,9 +430,11 @@ typedef void(^ShowTimeSelectBlock)(id object);
             cell.topLabel.text = @"预约咨询";
             cell.leftImageView.image = [UIImage imageNamed:@"appointmentService"];
             cell.bottomLabel.text = @"约定时间与律师沟通";
-
+            
             return cell;
+            
         }
+
     }
     else
     {
