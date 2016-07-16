@@ -61,13 +61,13 @@
     [self.headImageView yy_setImageWithURL:[NSURL URLWithString:self.model.barristerIcon] placeholder:[UIImage imageNamed:@"commom_default_head"]];
     [self.separteView setFrame:RECT(0, 0, SCREENWIDTH, 10)];
     if (IS_NOT_EMPTY(self.model.barristerNickname)) {
-        self.customNamemLabel.text = self.model.barristerNickname;
+        self.customNamemLabel.text = [NSString stringWithFormat:@"%@律师",self.model.barristerNickname];
     }
     else
     {
         self.customNamemLabel.text = [NSString stringWithFormat:@"律师：%@",self.model.barristerPhone];
     }
-    self.customPhoneLabel.text = self.model.barristerPhone;
+//    self.customPhoneLabel.text = self.model.barristerPhone;
     [_callButton setFrame:RECT(self.width - 40 - 10, 50 + (64 - 40)/2.0, 40, 40)];
     
 }
