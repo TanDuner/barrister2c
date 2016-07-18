@@ -132,12 +132,12 @@
                   moduleName = "barrister2c"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Xu/Documents/barrister2c/barrister2c/AppDelegate.m"
-                  timestampString = "490373605.055616"
+                  timestampString = "490541169.70988"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "237"
                   endingLineNumber = "237"
-                  offsetFromSymbolStart = "219">
+                  offsetFromSymbolStart = "252">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -147,12 +147,12 @@
                   moduleName = "barrister2c"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Xu/Documents/barrister2c/barrister2c/AppDelegate.m"
-                  timestampString = "490373605.055793"
+                  timestampString = "490541169.710228"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "237"
                   endingLineNumber = "237"
-                  offsetFromSymbolStart = "50">
+                  offsetFromSymbolStart = "64">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -212,12 +212,12 @@
                   moduleName = "barrister2c"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Xu/Documents/barrister2c/barrister2c/NetProxy/MeNetProxy.m"
-                  timestampString = "490373605.057372"
+                  timestampString = "490541169.712326"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "225"
                   endingLineNumber = "225"
-                  offsetFromSymbolStart = "121">
+                  offsetFromSymbolStart = "116">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -227,12 +227,12 @@
                   moduleName = "barrister2c"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Xu/Documents/barrister2c/barrister2c/NetProxy/MeNetProxy.m"
-                  timestampString = "490373605.057669"
+                  timestampString = "490541169.712502"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "225"
                   endingLineNumber = "225"
-                  offsetFromSymbolStart = "36">
+                  offsetFromSymbolStart = "48">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -276,12 +276,12 @@
                   moduleName = "barrister2c"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Xu/Documents/barrister2c/barrister2c/PersonCenter/Controller/OrderPraiseViewController.m"
-                  timestampString = "490373605.065901"
+                  timestampString = "490541169.714331"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "84"
                   endingLineNumber = "84"
-                  offsetFromSymbolStart = "888">
+                  offsetFromSymbolStart = "896">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -291,12 +291,12 @@
                   moduleName = "barrister2c"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Xu/Documents/barrister2c/barrister2c/PersonCenter/Controller/OrderPraiseViewController.m"
-                  timestampString = "490373605.066222"
+                  timestampString = "490541169.71454"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "84"
                   endingLineNumber = "84"
-                  offsetFromSymbolStart = "52">
+                  offsetFromSymbolStart = "68">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -324,12 +324,12 @@
                   moduleName = "barrister2c"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Xu/Documents/barrister2c/barrister2c/NetProxy/OrderProxy.m"
-                  timestampString = "490373605.067719"
+                  timestampString = "490541169.715633"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "106"
                   endingLineNumber = "106"
-                  offsetFromSymbolStart = "125">
+                  offsetFromSymbolStart = "148">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -339,12 +339,12 @@
                   moduleName = "barrister2c"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Xu/Documents/barrister2c/barrister2c/NetProxy/OrderProxy.m"
-                  timestampString = "490373605.067911"
+                  timestampString = "490541169.715834"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "106"
                   endingLineNumber = "106"
-                  offsetFromSymbolStart = "36">
+                  offsetFromSymbolStart = "40">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -388,12 +388,12 @@
                   moduleName = "barrister2c"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Xu/Documents/barrister2c/barrister2c/Account/MyAccount/Tixian/TiXianViewControlleer.m"
-                  timestampString = "490373605.069702"
+                  timestampString = "490541169.717561"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "166"
                   endingLineNumber = "166"
-                  offsetFromSymbolStart = "1224">
+                  offsetFromSymbolStart = "1384">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -403,12 +403,12 @@
                   moduleName = "barrister2c"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Xu/Documents/barrister2c/barrister2c/Account/MyAccount/Tixian/TiXianViewControlleer.m"
-                  timestampString = "490373605.069993"
+                  timestampString = "490541169.717791"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "166"
                   endingLineNumber = "166"
-                  offsetFromSymbolStart = "49">
+                  offsetFromSymbolStart = "68">
                </Location>
             </Locations>
          </BreakpointContent>

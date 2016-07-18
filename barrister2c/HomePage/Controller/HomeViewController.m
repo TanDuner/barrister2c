@@ -60,7 +60,7 @@
         
         NSString *nativeVersion = [IMVersionManager shareInstance].nativeVersion;
         if ([versionCode isEqualToString:nativeVersion]) {
-            [BaseDataSingleton shareInstance].isClosePay = NO;
+            [BaseDataSingleton shareInstance].isClosePay = YES;
             [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_PAYSWITCH_NOTIFICATION object:nil];
             
         }

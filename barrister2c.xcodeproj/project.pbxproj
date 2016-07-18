@@ -3150,7 +3150,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.xsc.barrister2c;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "498a181e-e2bb-4c0a-9dcf-c9858919dd2b";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -3190,7 +3190,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.xsc.barrister2c;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "498a181e-e2bb-4c0a-9dcf-c9858919dd2b";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
