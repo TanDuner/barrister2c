@@ -110,13 +110,13 @@
     if (indexPath.row == 0) {
         BaseWebViewController *baseView = [[BaseWebViewController alloc] init];
         baseView.title = @"使用帮助";
-        baseView.url = @"http://www.baidu.com";
+        baseView.url = @"http://www.dls.com.cn/art/waplist.asp?id=671";
         [self.navigationController pushViewController:baseView animated:YES];
     }
     if (indexPath.row == 1) {
         BaseWebViewController *baseView = [[BaseWebViewController alloc] init];
         baseView.title = @"关于我们";
-        baseView.url = @"http://www.baidu.com";
+        baseView.url = @"http://www.dls.com.cn/art/WAPlist.asp?id=660";
         [self.navigationController pushViewController:baseView animated:YES];
     }
     if (indexPath.row == 2) {
