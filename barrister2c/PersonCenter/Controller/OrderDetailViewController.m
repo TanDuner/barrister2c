@@ -207,7 +207,10 @@ typedef NS_ENUM(NSInteger,OrderDetailShowType)
     }
     
     if ([model.status isEqualToString:STATUS_DONE]) {
-        self.orderTableView.tableFooterView = self.rewardView;
+        if (![BaseDataSingleton shareInstance].isClosePay) {
+            self.orderTableView.tableFooterView = self.rewardView;
+        }
+
     }
     
     [self.orderTableView reloadData];
@@ -286,7 +289,7 @@ typedef NS_ENUM(NSInteger,OrderDetailShowType)
 
 -(void)rewardAciton
 {
-    
+
     [self.view addSubview:self.rewardSelectVC.view];
     [self.rewardSelectVC show];
     
