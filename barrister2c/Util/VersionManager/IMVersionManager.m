@@ -8,7 +8,7 @@
 
 #import "IMVersionManager.h"
 
-#define APP_ID @"1135272961"
+#define APP_ID @"1135399869"
 #import "XuNetWorking.h"
 
 
@@ -39,6 +39,7 @@
     self = [super init];
     if (self) {
         [self checkNativeVersion];
+        [self checkNetworkVersion];
     }
     return self;
 }
@@ -50,7 +51,7 @@
     __weak typeof(*&self) weakSelf = self;
     [XuNetWorking requestWithNoBaseUrl:checkVersion httpMedth:2 params:nil progress:nil success:^(id response) {
         NSDictionary *dict = (NSDictionary *)response;
-        NSString *netVersion = [[[dict objectForKey:@"results"]  safeObjectAtIndex:0] objectForKey:@"version"];
+        NSString *netVersion = [[[dict objectForKey:@"results"] objectAtIndex:0] objectForKey:@"version"];
         _appStoreVersion = netVersion;
         [weakSelf judgeIsNeedUpdate];
         
@@ -64,7 +65,7 @@
 
 - (void) judgeIsNeedUpdate
 {
-
+    
     BOOL isneed = NO;
     if ([IMVersionManager shareInstance].appStoreVersion) {
         isneed = [[IMVersionManager shareInstance].nativeVersion compare:[IMVersionManager shareInstance].appStoreVersion] == -1;
@@ -75,14 +76,14 @@
             //确定
             if(buttonIndex == 1)
             {
-                NSString *checkUrl = [NSString stringWithFormat:AppstoreUrl,APP_ID];
+                NSString *checkUrl = [NSString stringWithFormat:@"https://itunes.apple.com/cn/app/id%@?mt=8",APP_ID];
                 [[UIApplication sharedApplication] openURL:[NSURL URLWithString:checkUrl]];
             }
         }];
         
     }
     
-   
+    
 }
 
 
