@@ -47,30 +47,79 @@
 //获取网络版本
 - (void) checkNetworkVersion
 {
-    NSString *checkVersion = [NSString stringWithFormat:AppstoreUrl,APP_ID];
-    __weak typeof(*&self) weakSelf = self;
-    [XuNetWorking requestWithNoBaseUrl:checkVersion httpMedth:2 params:nil progress:nil success:^(id response) {
-        NSDictionary *dict = (NSDictionary *)response;
-        NSString *netVersion = [[[dict objectForKey:@"results"] objectAtIndex:0] objectForKey:@"version"];
-        _appStoreVersion = netVersion;
-        [weakSelf judgeIsNeedUpdate];
-        
-    } fail:^(NSError *error) {
-        
-    }];
+//    NSString *checkVersion = [NSString stringWithFormat:AppstoreUrl,APP_ID];
+//    __weak typeof(*&self) weakSelf = self;
+//    [XuNetWorking requestWithNoBaseUrl:checkVersion httpMedth:2 params:nil progress:nil success:^(id response) {
+//        NSDictionary *dict = (NSDictionary *)response;
+//        NSString *netVersion = [[[dict objectForKey:@"results"] objectAtIndex:0] objectForKey:@"version"];
+//        _appStoreVersion = netVersion;
+//        [weakSelf judgeIsNeedUpdate];
+//        
+//    } fail:^(NSError *error) {
+//        
+//    }];
+    NSString *url = [[NSString alloc] initWithFormat:@"http://itunes.apple.com/cn/lookup?id=%@",APP_ID];
+    [self Postpath:url];
+
     
 }
 
 
 
-- (void) judgeIsNeedUpdate
+#pragma mark -- 获取数据
+-(void)Postpath:(NSString *)path
 {
     
+    NSURL *url = [NSURL URLWithString:path];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
+                                                           cachePolicy:NSURLRequestReloadIgnoringCacheData
+                                                       timeoutInterval:10];
+    
+    [request setHTTPMethod:@"POST"];
+    
+    
+    NSOperationQueue *queue = [NSOperationQueue new];
+    
+    [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse *response,NSData *data,NSError *error){
+        NSMutableDictionary *receiveStatusDic=[[NSMutableDictionary alloc]init];
+        if (data) {
+            
+            NSDictionary *receiveDic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
+            if ([[receiveDic valueForKey:@"resultCount"] intValue]>0) {
+                
+                [receiveStatusDic setValue:@"1" forKey:@"status"];
+                [receiveStatusDic setValue:[[[receiveDic valueForKey:@"results"] objectAtIndex:0] valueForKey:@"version"]   forKey:@"version"];
+            }else{
+                
+                [receiveStatusDic setValue:@"-1" forKey:@"status"];
+            }
+        }else{
+            [receiveStatusDic setValue:@"-1" forKey:@"status"];
+        }
+        
+        [self performSelectorOnMainThread:@selector(receiveData:) withObject:receiveStatusDic waitUntilDone:NO];
+    }];
+    
+}
+-(void)receiveData:(id)sender
+{
+    NSDictionary *dict = (NSDictionary *)sender;
+    _appStoreVersion = [dict objectForKey:@"version"];
+    [self judgeIsNeedUpdate];
+}
+
+
+
+
+
+- (void) judgeIsNeedUpdate
+{
+
     BOOL isneed = NO;
     if ([IMVersionManager shareInstance].appStoreVersion) {
         isneed = [[IMVersionManager shareInstance].nativeVersion compare:[IMVersionManager shareInstance].appStoreVersion] == -1;
     }
-    
+
     if (isneed) {
         [XuUItlity showYesOrNoAlertView:@"更新" noText:@"以后再说" title:@"提示" mesage:@"有新版本可以更新" callback:^(NSInteger buttonIndex, NSString *inputString) {
             //确定
@@ -83,7 +132,7 @@
         
     }
     
-    
+   
 }
 
 

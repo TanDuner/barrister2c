@@ -17,6 +17,8 @@
 @property (nonatomic,strong,readonly) NSString * nativeVersion;
 
 
+- (void) judgeIsNeedUpdate;
+
 + (IMVersionManager *)shareInstance;
 
 @end
