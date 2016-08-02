@@ -128,6 +128,7 @@
     
     [self.noContentView setFrame:RECT(0, self.searchBar.height, SCREENWIDTH, SCREENHEIGHT - NAVBAR_DEFAULT_HEIGHT - self.searchBar.height)];
     
+    [self initNavigationRightTextButton:@"搜索" action:@selector(searchAciton:)];
     
     [self.view addSubview:self.searchBar];
     
@@ -197,6 +198,19 @@
     self.tableView.pageNum = 1;
     self.searchLawerName = searchBar.text;
     [self configData];
+}
+
+-(void)searchAciton:(id)sender
+{
+    if (!IS_EMPTY(self.searchBar.text)) {
+        [self.items removeAllObjects];
+        self.tableView.pageNum = 1;
+        self.searchLawerName = self.searchBar.text;
+        [self configData];
+    }
+    else{
+        [XuUItlity showAlertHint:@"请输入正确的律师姓名" completionBlock:nil andView:self.view];
+    }
 }
 
 #pragma -mark ---Getter----
