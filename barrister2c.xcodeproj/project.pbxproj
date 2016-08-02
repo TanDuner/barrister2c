@@ -183,6 +183,9 @@
 		958EEBF41D282D7300D4CF4C /* Me_setting@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 958EEBEA1D282D7300D4CF4C /* Me_setting@3x.png */; };
 		958EEBF71D282F3700D4CF4C /* MyLikeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 958EEBF61D282F3700D4CF4C /* MyLikeModel.m */; };
 		958EEBFA1D28301C00D4CF4C /* MyLikeListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 958EEBF91D28301C00D4CF4C /* MyLikeListCell.m */; };
+		9597CBD71D5039050049CF24 /* LawerSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9597CBD61D5039050049CF24 /* LawerSearchViewController.m */; };
+		9597CBDA1D503DF70049CF24 /* lawer_search@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9597CBD81D503DF70049CF24 /* lawer_search@2x.png */; };
+		9597CBDB1D503DF70049CF24 /* lawer_search@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9597CBD91D503DF70049CF24 /* lawer_search@3x.png */; };
 		95B0D80F1D1835F20054567D /* HomeTypeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 95B0D80E1D1835F20054567D /* HomeTypeCell.m */; };
 		95B0D8121D1836450054567D /* BussinessAreaModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 95B0D8111D1836450054567D /* BussinessAreaModel.m */; };
 		95B0D8151D1836AC0054567D /* BussinessTypeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 95B0D8141D1836AC0054567D /* BussinessTypeModel.m */; };
@@ -632,6 +635,10 @@
 		958EEBF61D282F3700D4CF4C /* MyLikeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyLikeModel.m; sourceTree = "<group>"; };
 		958EEBF81D28301C00D4CF4C /* MyLikeListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyLikeListCell.h; sourceTree = "<group>"; };
 		958EEBF91D28301C00D4CF4C /* MyLikeListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyLikeListCell.m; sourceTree = "<group>"; };
+		9597CBD51D5039050049CF24 /* LawerSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LawerSearchViewController.h; sourceTree = "<group>"; };
+		9597CBD61D5039050049CF24 /* LawerSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LawerSearchViewController.m; sourceTree = "<group>"; };
+		9597CBD81D503DF70049CF24 /* lawer_search@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lawer_search@2x.png"; sourceTree = "<group>"; };
+		9597CBD91D503DF70049CF24 /* lawer_search@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lawer_search@3x.png"; sourceTree = "<group>"; };
 		95B0D80D1D1835F20054567D /* HomeTypeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeTypeCell.h; sourceTree = "<group>"; };
 		95B0D80E1D1835F20054567D /* HomeTypeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeTypeCell.m; sourceTree = "<group>"; };
 		95B0D8101D1836450054567D /* BussinessAreaModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BussinessAreaModel.h; sourceTree = "<group>"; };
@@ -1623,6 +1630,8 @@
 		95CA1BF91D10F77400AAE490 /* Find */ = {
 			isa = PBXGroup;
 			children = (
+				9597CBD81D503DF70049CF24 /* lawer_search@2x.png */,
+				9597CBD91D503DF70049CF24 /* lawer_search@3x.png */,
 				958EEBD01D27AC3400D4CF4C /* service@2x.png */,
 				958EEBD11D27AC3400D4CF4C /* service@3x.png */,
 				958EEBC81D27AA8400D4CF4C /* collect@2x.png */,
@@ -2338,6 +2347,8 @@
 				95CA1E001D10F97F00AAE490 /* FindViewController.m */,
 				955611081D14CEDB00366D4C /* LawerListViewController.h */,
 				955611091D14CEDB00366D4C /* LawerListViewController.m */,
+				9597CBD51D5039050049CF24 /* LawerSearchViewController.h */,
+				9597CBD61D5039050049CF24 /* LawerSearchViewController.m */,
 				955A7AA71D1ACE2B00D1DEAC /* LawerDetailViewController.h */,
 				955A7AA81D1ACE2B00D1DEAC /* LawerDetailViewController.m */,
 				955A7AB31D1C3C2000D1DEAC /* LawerSelectTimeViewController.h */,
@@ -2627,6 +2638,7 @@
 				9529CC9B1D2EA54B0067597A /* zhifubao@3x.png in Resources */,
 				9529CCE71D30F7D10067597A /* icon_bank_ms.png in Resources */,
 				95CA1DD31D10F8F800AAE490 /* Tab02Normal@3x.png in Resources */,
+				9597CBDB1D503DF70049CF24 /* lawer_search@3x.png in Resources */,
 				9529CCEE1D30F7D10067597A /* icon_bank_zx.png in Resources */,
 				9529CC8B1D2E3FDC0067597A /* README.txt in Resources */,
 				95CA1D3C1D10F7C900AAE490 /* BoPhotoPicker.bundle in Resources */,
@@ -2682,6 +2694,7 @@
 				95CA1DCD1D10F8F800AAE490 /* Tab01Highlighted@3x.png in Resources */,
 				9529CCB91D30CA7D0067597A /* commom_arrow_more@2x.png in Resources */,
 				9529CC9F1D2EADF60067597A /* icon_recharge@3x.png in Resources */,
+				9597CBDA1D503DF70049CF24 /* lawer_search@2x.png in Resources */,
 				9529CCE11D30F7D10067597A /* icon_bank_gd.png in Resources */,
 				958EEBF41D282D7300D4CF4C /* Me_setting@3x.png in Resources */,
 				95CA1DDB1D10F8F800AAE490 /* Tab04Normal@3x.png in Resources */,
@@ -2808,6 +2821,7 @@
 				95EBAB361D3691770041A647 /* XWMoneyTextFieldLimit.m in Sources */,
 				95CA1C661D10F7B700AAE490 /* RefreshTableView.m in Sources */,
 				95CA1D1D1D10F7C900AAE490 /* HYMDatePicker.m in Sources */,
+				9597CBD71D5039050049CF24 /* LawerSearchViewController.m in Sources */,
 				95CA1D2F1D10F7C900AAE490 /* MJRefreshNormalHeader.m in Sources */,
 				95CA1D491D10F7C900AAE490 /* View+MASAdditions.m in Sources */,
 				95CA1C311D10F7A500AAE490 /* BaseModel.m in Sources */,

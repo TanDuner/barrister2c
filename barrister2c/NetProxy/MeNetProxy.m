@@ -144,6 +144,7 @@
  */
 -(void )getOrderListWithParams:(NSMutableDictionary *)params block:(ServiceCallBlock)aBlock
 {
+    [self appendCommonParamsWithDict:params];
     [XuNetWorking postWithUrl:OrderListUrl params:params success:^(id response) {
         if ([self isCommonCorrectResultCodeWithResponse:response]) {
             if (aBlock) {

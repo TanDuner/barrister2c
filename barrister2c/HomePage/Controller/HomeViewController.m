@@ -215,36 +215,41 @@
     NSArray *bizTypesArray = [dict objectForKey:@"bizTypes"];
     NSArray *bannerListArray = [dict objectForKey:@"list"];
     
+    if ([XuUtlity isValidArray:bizAreasArray]) {
+        for ( int i = 0; i < bizAreasArray.count; i ++) {
+            NSDictionary *dictTemp = [bizAreasArray safeObjectAtIndex:i];
+            BussinessAreaModel *model = [[BussinessAreaModel alloc] initWithDictionary:dictTemp];
+            [self.areaItems addObject:model];
+        }
+    }
    
-    
-    
-    
-    for ( int i = 0; i < bizAreasArray.count; i ++) {
-        NSDictionary *dictTemp = [bizAreasArray safeObjectAtIndex:i];
-        BussinessAreaModel *model = [[BussinessAreaModel alloc] initWithDictionary:dictTemp];
-        [self.areaItems addObject:model];
-    }
-    
-    for ( int i = 0; i < bizTypesArray.count; i ++) {
-        NSDictionary *dictTemp = [bizTypesArray safeObjectAtIndex:i];
-        BussinessTypeModel *model = [[BussinessTypeModel alloc] initWithDictionary:dictTemp];
-        [self.typeItems safeAddObject:model];
-    }
-    
-    NSMutableArray *imageUrls = [NSMutableArray arrayWithCapacity:1];
-    for (int i = 0; i < bannerListArray.count; i ++) {
-        NSDictionary *dict = [bannerListArray safeObjectAtIndex:i];
-        HomeBannerModel *model = [[HomeBannerModel alloc] initWithDictionary:dict];
-        [imageUrls addObject:model.image];
-        [self.bannerItems addObject:model];
+    if ([XuUtlity isValidArray:bizTypesArray]) {
+        for ( int i = 0; i < bizTypesArray.count; i ++) {
+            NSDictionary *dictTemp = [bizTypesArray safeObjectAtIndex:i];
+            BussinessTypeModel *model = [[BussinessTypeModel alloc] initWithDictionary:dictTemp];
+            [self.typeItems safeAddObject:model];
+        }
     }
     
     [BaseDataSingleton shareInstance].bizAreas = self.areaItems;
     [BaseDataSingleton shareInstance].bizTypes = self.typeItems;
+    
+    if ([XuUtlity isValidArray:bannerListArray]) {
+        NSMutableArray *imageUrls = [NSMutableArray arrayWithCapacity:1];
+        
+        for (int i = 0; i < bannerListArray.count; i ++) {
+            NSDictionary *dict = [bannerListArray safeObjectAtIndex:i];
+            HomeBannerModel *model = [[HomeBannerModel alloc] initWithDictionary:dict];
+            [imageUrls addObject:model.image];
+            [self.bannerItems addObject:model];
+        }
+        [self setBannerViewWithUrls:imageUrls];
+        
+    }
 
     [self.tableView reloadData];
+
     
-    [self setBannerViewWithUrls:imageUrls];
 
 }
 

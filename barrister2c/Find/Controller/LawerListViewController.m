@@ -13,6 +13,8 @@
 #import "LawerListProxy.h"
 #import "BussinessAreaModel.h"
 #import "BussinessTypeModel.h"
+#import "LawerSearchViewController.h"
+
 
 @interface LawerListViewController ()<UITableViewDataSource,UITableViewDelegate,IMPullDownMenuDelegate,RefreshTableViewDelegate>
 
@@ -221,6 +223,16 @@
     self.pullDownMenu.delegate = self;
 
     
+    UIButton * backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [backBtn setImage:[UIImage imageNamed:@"lawer_search"] forState:UIControlStateNormal];
+    [backBtn setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
+    [backBtn addTarget:self action:@selector(toSearchAciton:) forControlEvents:UIControlEventTouchUpInside];
+    [backBtn setFrame:CGRectMake(0, 0, 50, 30)];
+    [backBtn setImageEdgeInsets:UIEdgeInsetsMake(2, 30, 0, 0)];
+
+    UIBarButtonItem * backBar = [[UIBarButtonItem alloc] initWithCustomView:backBtn];
+    self.navigationItem.rightBarButtonItem = backBar;
+    
     [self.view addSubview:self.tableView];
     
     NSMutableArray *sortArray = [NSMutableArray arrayWithCapacity:0];
@@ -325,6 +337,16 @@
     
     
 }
+
+#pragma -mark ---Right button Action----
+
+-(void)toSearchAciton:(id)sender
+{
+    LawerSearchViewController *searchVC = [[LawerSearchViewController alloc] init];
+    [self.navigationController pushViewController:searchVC animated:YES];
+    
+}
+
 
 #pragma -mark  --UitableVIew delegate
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
