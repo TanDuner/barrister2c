@@ -29,7 +29,6 @@ typedef struct PhoneSate PhoneSate;
 
 @property (nonatomic,strong) NSString *bankCardBindStatus;//绑定银行卡的状态 //银行卡绑定状态，0 未绑定 1 已绑定
 
-
 @property (nonatomic,strong) NSDictionary *bankCardDict;//银行卡的字典
 
 @property (nonatomic,strong) NSString *totalConsume;//累计消费

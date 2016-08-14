@@ -101,6 +101,18 @@
         }
     }
     
+    PersonCenterModel *companyModel = [self.items safeObjectAtIndex:5];
+    if (IS_NOT_EMPTY(companyModel.subtitleStr)) {
+        if (![companyModel.subtitleStr isEqualToString:@"未填写"]) {
+            [aParams setObject:companyModel.subtitleStr forKey:@"company"];
+        }
+        else
+        {
+            [aParams setObject:@"未填写" forKey:@"company"];
+        }
+    }
+    
+    
    NSString *registrationId =  [JPUSHService registrationID];
     if (registrationId) {
         [aParams setObject:[NSString stringWithFormat:@"%@",registrationId] forKey:@"pushId"];
@@ -141,7 +153,7 @@
 -(void)configData
 {
     
-    NSArray *titleArray = @[@"头像",@"昵称",@"手机",@"性别",@"地区"];
+    NSArray *titleArray = @[@"头像",@"姓名",@"手机",@"性别",@"地区",@"单位名称"];
     for (int i = 0; i < titleArray.count; i ++) {
         PersonCenterModel *model = [[PersonCenterModel alloc] init];
         model.titleStr = [titleArray safeObjectAtIndex:i];
@@ -182,8 +194,14 @@
                 model.cellType = PersonCenterModelTypeInfoArea;
                 model.subtitleStr = [BaseDataSingleton shareInstance].userModel.area?[BaseDataSingleton shareInstance].userModel.area:@"未填写";
                 model.isShowArrow = YES;
+                break;
             }
-                
+            case 5:
+            {
+                model.cellType = PersonCenterModelTypeInfoArea;
+                model.subtitleStr = [BaseDataSingleton shareInstance].userModel.company?[BaseDataSingleton shareInstance].userModel.company:@"未填写";
+                model.isShowArrow = YES;
+            }
                 break;
             default:
                 break;
@@ -234,6 +252,7 @@
         }
             break;
         case 1:
+        case 5:
         {
             ModifyInfoViewController *modifyVC = [[ModifyInfoViewController alloc] initWithModel:modelTemp];
             modifyVC.modifyBlock = ^(PersonCenterModel *model)

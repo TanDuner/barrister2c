@@ -413,19 +413,20 @@
         _confirmCostView.backgroundColor = [UIColor whiteColor];
         _confirmCostView.layer.cornerRadius = 8.0f;
         _confirmCostView.layer.masksToBounds = YES;
-        UILabel *tipLabel = [[UILabel alloc] initWithFrame:RECT(15, 15, _confirmCostView.width - 30, 15)];
+        UILabel *tipLabel = [[UILabel alloc] initWithFrame:RECT(15, 10, _confirmCostView.width - 30, 30)];
         
         if ([self.type isEqualToString:IM]) {
             self.totalPrice = [NSString stringWithFormat:@"%@",self.lawerModel.priceIM];
         }
         
-        tipLabel.text = [NSString stringWithFormat:@"系统将从你的账户扣除%.0f元",self.totalPrice.floatValue];
-        tipLabel.font = SystemFont(14.0f);
+        tipLabel.text = [NSString stringWithFormat:@"系统将从你的账户扣除%.0f元,咨询时间小于1分钟不收取费用，咨询结束后系统会退款到您的账户",self.totalPrice.floatValue];
+        tipLabel.numberOfLines = 2;
+        tipLabel.font = SystemFont(12.0f);
         tipLabel.textColor = KColorGray333;
         
         [_confirmCostView addSubview:tipLabel];
         
-        UILabel *describeLabel = [[UILabel alloc] initWithFrame:RECT(15, tipLabel.y + tipLabel.height + 10, _confirmCostView.width - 30, 15)];
+        UILabel *describeLabel = [[UILabel alloc] initWithFrame:RECT(15, tipLabel.y + tipLabel.height + 5, _confirmCostView.width - 30, 15)];
         describeLabel.text = @"请简单描述您要咨询的问题";
         describeLabel.textColor = kNavigationBarColor;
         describeLabel.font = SystemFont(12.0f);

@@ -73,10 +73,10 @@
 -(UILabel *)bottomLabel
 {
     if (!_bottomLabel) {
-        _bottomLabel = [[UILabel alloc] initWithFrame:RECT(self.topLabel.x , self.topLabel.y + self.topLabel.height + 10 , 200, 15)];
+        _bottomLabel = [[UILabel alloc] initWithFrame:RECT(self.topLabel.x , self.topLabel.y + self.topLabel.height + 10 , 250, 15)];
         _bottomLabel.textColor = KColorGray666;
         _bottomLabel.text = @"立即与律师沟通";
-        _bottomLabel.font = SystemFont(15.0f);
+        _bottomLabel.font = SystemFont(12.0f);
     }
     return _bottomLabel;
 }

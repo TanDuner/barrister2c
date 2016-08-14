@@ -84,12 +84,19 @@
 
 -(void)confirmModify
 {
+    
+    
     if (![modifyModel.titleStr isEqualToString:@"个人简介"]) {
         modifyModel.subtitleStr = self.modifyTextField.text;
     }
     else
     {
         modifyModel.subtitleStr = _modifyTextView.text;
+
+    }
+    
+    if ([modifyModel.subtitleStr isEqualToString:@""] || IS_EMPTY(modifyModel.subtitleStr)) {
+        modifyModel.subtitleStr = @"未填写";
     }
 
     if (self.modifyBlock) {

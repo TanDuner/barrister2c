@@ -411,7 +411,7 @@ typedef void(^ShowTimeSelectBlock)(id object);
                 LawerDetailBottomCell *cell = [[LawerDetailBottomCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
                 cell.topLabel.text = [NSString stringWithFormat:@"即时咨询 (%@元/次)",self.model.priceIM];
                 cell.leftImageView.image = [UIImage imageNamed:@"imService"];
-                cell.bottomLabel.text = @"立即与律师沟通";
+                cell.bottomLabel.text = @"立即拨打电话进行咨询,咨询小于1分钟不收费";
                 return cell;
             }
             else
@@ -419,7 +419,7 @@ typedef void(^ShowTimeSelectBlock)(id object);
                 LawerDetailBottomCell *cell = [[LawerDetailBottomCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
                 cell.topLabel.text = [NSString stringWithFormat:@"预约咨询 (%@元/次)",self.model.priceAppointment];
                 cell.leftImageView.image = [UIImage imageNamed:@"appointmentService"];
-                cell.bottomLabel.text = @"约定时间与律师沟通";
+                cell.bottomLabel.text = @"与律师约定时间进行咨询";
                 
                 return cell;
             }

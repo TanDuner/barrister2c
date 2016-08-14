@@ -112,5 +112,10 @@
  */
 @property (nonatomic,strong) UIImage *headImage;
 
+/**
+ *  企业
+ */
+@property (nonatomic,strong) NSString *company;
+
 
 @end
