@@ -19,6 +19,7 @@
 #import "OrderPraiseViewController.h"
 #import "RewardSelectViewController.h"
 #import "VolumePlayHelper.h"
+#import "OrderDetialRewardCell.h"
 
 #import "UIButton+EnlargeEdge.h"
 /**
@@ -29,6 +30,7 @@ typedef NS_ENUM(NSInteger,OrderDetailShowType)
 {
     OrderDetailShowTypeOrderInfo,
     OrderDetailShowTypeOrderMark,
+    OrderDetailShowTypeOrderReward,
     OrderDetailShowTypeOrderCancel,
     OrderDetailShowTypeAppriseOrder,
     OrderDetailShowTypeOrderCustomInfo,
@@ -160,7 +162,16 @@ typedef NS_ENUM(NSInteger,OrderDetailShowType)
     OrderDetailCellModel *model2 = [[OrderDetailCellModel alloc] init];
     model2.showType = OrderDetailShowTypeOrderMark;
     [self.items addObject:model2];
-
+    
+    if ([model.status isEqualToString:STATUS_DONE]) {
+        if (![BaseDataSingleton shareInstance].isClosePay) {
+            OrderDetailCellModel *modelTemp = [[OrderDetailCellModel alloc] init];
+            modelTemp.showType = OrderDetailShowTypeOrderReward;
+            [self.items addObject:modelTemp];
+        }
+        
+    }
+    
     if ([model.status isEqualToString:STATUS_WAITING]) {
         
         NSDate *date = [XuUtlity NSStringDateToNSDate:model.endTime forDateFormatterStyle:DateFormatterDateAndTime];
@@ -206,12 +217,7 @@ typedef NS_ENUM(NSInteger,OrderDetailShowType)
         
     }
     
-    if ([model.status isEqualToString:STATUS_DONE]) {
-        if (![BaseDataSingleton shareInstance].isClosePay) {
-            self.orderTableView.tableFooterView = self.rewardView;
-        }
-
-    }
+   
     
     [self.orderTableView reloadData];
 
@@ -320,21 +326,29 @@ typedef NS_ENUM(NSInteger,OrderDetailShowType)
     __weak typeof(*&self) weakSelf = self;
     OrderDetailCellModel *modeTemp = (OrderDetailCellModel *)[self.items safeObjectAtIndex:indexPath.row];
     switch (modeTemp.showType) {
-        case 0:
+        case OrderDetailShowTypeOrderInfo:
         {
            OrderDetailOrderCell * cellTemp = [[OrderDetailOrderCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
             cellTemp.model = model;
             return cellTemp;
         }
             break;
-            case 1:
+            case OrderDetailShowTypeOrderMark:
         {
             OrderDetailMarkCell * cellTemp = [[OrderDetailMarkCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+            cellTemp.selectionStyle = UITableViewCellSelectionStyleNone;
             cellTemp.model = model;
             return cellTemp;
         }
             break;
-        case 2:
+            //打赏
+        case OrderDetailShowTypeOrderReward:
+        {
+            OrderDetialRewardCell *cell = [[OrderDetialRewardCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+            return cell;
+        }
+            break;
+        case OrderDetailShowTypeOrderCancel:
         {
             OrderDetailCancelCell *cellTemp = [[OrderDetailCancelCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
             cellTemp.block = ^(NSString *btnType)
@@ -345,7 +359,7 @@ typedef NS_ENUM(NSInteger,OrderDetailShowType)
             return cellTemp;
         }
             break;
-        case 3:
+        case OrderDetailShowTypeAppriseOrder:
         {
             AppriseOrderCell *cellTemp = [[AppriseOrderCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
             cellTemp.block  =^()
@@ -357,7 +371,7 @@ typedef NS_ENUM(NSInteger,OrderDetailShowType)
             
         }
             break;
-        case 4:
+        case OrderDetailShowTypeOrderCustomInfo:
         {
             OrderDetailCustomInfoCell * cellTemp = [[OrderDetailCustomInfoCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
             [cellTemp.callButton addTarget:self action:@selector(callAction:) forControlEvents:UIControlEventTouchUpInside];
@@ -366,7 +380,7 @@ typedef NS_ENUM(NSInteger,OrderDetailShowType)
 
         }
             break;
-            case 5:
+            case OrderDetailShowTypeOrderCallRecord:
         {
             OrderDetailCallRecordCell *cellTemp = [[OrderDetailCallRecordCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
             cellTemp.model = modeTemp.callModel;
@@ -393,6 +407,11 @@ typedef NS_ENUM(NSInteger,OrderDetailShowType)
         case OrderDetailShowTypeOrderMark:
         {
             return [OrderDetailMarkCell getCellHeightWithModel:model];
+        }
+            break;
+        case OrderDetailShowTypeOrderReward:
+        {
+            return 50;
         }
             break;
         case OrderDetailShowTypeOrderCancel:
@@ -439,6 +458,18 @@ typedef NS_ENUM(NSInteger,OrderDetailShowType)
             break;
     }}
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    OrderDetailCellModel *modelTemp = (OrderDetailCellModel *)[self.items safeObjectAtIndex:indexPath.row];
+    if (modelTemp.showType != OrderDetailShowTypeOrderReward) {
+        return;
+    }
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (modelTemp.showType == OrderDetailShowTypeOrderReward) {
+        [self rewardAciton];
+    }
+}
+
 #pragma -mark ----Getter----
 
 -(UITableView *)orderTableView
@@ -462,21 +493,21 @@ typedef NS_ENUM(NSInteger,OrderDetailShowType)
     return _proxy;
 }
 
--(UIView *)rewardView
-{
-    if (!_rewardView) {
-        _rewardView = [[UIView alloc] initWithFrame:RECT(0, 0, SCREENWIDTH, 50)];
-        UIButton *rewardBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [rewardBtn setTitle:@"打赏" forState:UIControlStateNormal];
-        [rewardBtn setEnlargeEdge:10];
-        [rewardBtn setImage:[UIImage imageNamed:@"dashang"] forState:UIControlStateNormal];
-        [rewardBtn setTitleEdgeInsets:UIEdgeInsetsMake(50, 0, 0, 0)];
-        [rewardBtn setFrame:RECT((SCREENWIDTH - 30)/2.0, 10, 30, 30)];
-        [rewardBtn addTarget:self action:@selector(rewardAciton) forControlEvents:UIControlEventTouchUpInside];
-        [_rewardView addSubview:rewardBtn];
-    }
-    return _rewardView;
-}
+//-(UIView *)rewardView
+//{
+//    if (!_rewardView) {
+//        _rewardView = [[UIView alloc] initWithFrame:RECT(0, 0, SCREENWIDTH, 50)];
+//        UIButton *rewardBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+//        [rewardBtn setTitle:@"打赏" forState:UIControlStateNormal];
+//        [rewardBtn setEnlargeEdge:10];
+//        [rewardBtn setImage:[UIImage imageNamed:@"dashang"] forState:UIControlStateNormal];
+//        [rewardBtn setTitleEdgeInsets:UIEdgeInsetsMake(50, 0, 0, 0)];
+//        [rewardBtn setFrame:RECT((SCREENWIDTH - 30)/2.0, 10, 30, 30)];
+//        [rewardBtn addTarget:self action:@selector(rewardAciton) forControlEvents:UIControlEventTouchUpInside];
+//        [_rewardView addSubview:rewardBtn];
+//    }
+//    return _rewardView;
+//}
 
 -(RewardSelectViewController *)rewardSelectVC
 {

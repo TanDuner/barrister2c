@@ -380,6 +380,7 @@
 		95EBAAFC1D35DDE20041A647 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95EBAAFB1D35DDE20041A647 /* CoreMotion.framework */; };
 		95EBAB351D3691770041A647 /* XWMoneyTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 95EBAB321D3691770041A647 /* XWMoneyTextField.m */; };
 		95EBAB361D3691770041A647 /* XWMoneyTextFieldLimit.m in Sources */ = {isa = PBXBuildFile; fileRef = 95EBAB341D3691770041A647 /* XWMoneyTextFieldLimit.m */; };
+		95FBF0461D602B750091017A /* OrderDetialRewardCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 95FBF0451D602B750091017A /* OrderDetialRewardCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -1070,6 +1071,8 @@
 		95EBAB321D3691770041A647 /* XWMoneyTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XWMoneyTextField.m; sourceTree = "<group>"; };
 		95EBAB331D3691770041A647 /* XWMoneyTextFieldLimit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XWMoneyTextFieldLimit.h; sourceTree = "<group>"; };
 		95EBAB341D3691770041A647 /* XWMoneyTextFieldLimit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XWMoneyTextFieldLimit.m; sourceTree = "<group>"; };
+		95FBF0441D602B750091017A /* OrderDetialRewardCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderDetialRewardCell.h; sourceTree = "<group>"; };
+		95FBF0451D602B750091017A /* OrderDetialRewardCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderDetialRewardCell.m; sourceTree = "<group>"; };
 		BB2FAA4FB209AF9A57D3750A /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -2336,6 +2339,8 @@
 				950120BC1D2AA55700FE3613 /* AppriseOrderCell.m */,
 				950120B81D2AA49600FE3613 /* OrderDetailMarkCell.h */,
 				950120B91D2AA49600FE3613 /* OrderDetailMarkCell.m */,
+				95FBF0441D602B750091017A /* OrderDetialRewardCell.h */,
+				95FBF0451D602B750091017A /* OrderDetialRewardCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2937,6 +2942,7 @@
 				955A7B3E1D1FE11100D1DEAC /* SandboxFile.m in Sources */,
 				95CA1C5E1D10F7B700AAE490 /* DCPicScrollView.m in Sources */,
 				958EEBBF1D278A8500D4CF4C /* OrderPraiseViewController.m in Sources */,
+				95FBF0461D602B750091017A /* OrderDetialRewardCell.m in Sources */,
 				95CA1D5C1D10F7C900AAE490 /* YYAnimatedImageView.m in Sources */,
 				95B0D80F1D1835F20054567D /* HomeTypeCell.m in Sources */,
 				95CA1D601D10F7C900AAE490 /* YYSpriteSheetImage.m in Sources */,

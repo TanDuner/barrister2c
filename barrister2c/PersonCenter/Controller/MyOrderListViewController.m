@@ -29,7 +29,6 @@
 {
     [super viewDidLoad];
     [self configView];
-    [self configData];
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -41,6 +40,8 @@
 {
     [super viewWillAppear:animated];
     [self showTabbar:NO];
+    [self configData];
+
 }
 
 -(void)configData
