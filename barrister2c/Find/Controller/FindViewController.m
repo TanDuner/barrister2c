@@ -233,7 +233,7 @@ typedef void(^ClickZXItemBlock)(ZXItemView *itemView);
     }
     
     
-    [self.bottomCategoryView setFrame:RECT(0, 78 + 10, SCREENWIDTH, ceil(array.count/4) * (LawTopPadding + LawButtonWidth))];
+    [self.bottomCategoryView setFrame:RECT(0, 78 + 10, SCREENWIDTH, 10 + ceil(array.count/4) * (LawTopPadding + LawButtonWidth))];
 
 
 }
