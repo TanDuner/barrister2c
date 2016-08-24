@@ -1,22 +1,21 @@
 //
-//  MyOrderListViewController.m
+//  OnlineServiceListController.m
 //  barrister2c
 //
-//  Created by 徐书传 on 16/6/24.
+//  Created by 徐书传 on 16/8/19.
 //  Copyright © 2016年 Xu. All rights reserved.
 //
 
-#import "MyOrderListViewController.h"
-#import "BarristerOrderModel.h"
-#import "OrderViewCell.h"
-#import "OrderDetailViewController.h"
-#import "MeNetProxy.h"
+#import "OnlineServiceListController.h"
+#import "HomePageProxy.h"
 #import "RefreshTableView.h"
-#import "CaseOrderDetailViewController.h"
+#import "OnlineServiceListModel.h"
+#import "OnlineServiceCell.h"
+#import "BarristerLoginManager.h"
 
-@interface MyOrderListViewController ()<UITableViewDataSource,UITableViewDelegate,RefreshTableViewDelegate>
+@interface OnlineServiceListController ()<RefreshTableViewDelegate,UITableViewDataSource,UITableViewDelegate>
 
-@property (nonatomic,strong) MeNetProxy *proxy;
+@property (nonatomic,strong) HomePageProxy *proxy;
 
 @property (nonatomic,strong) RefreshTableView *tableView;
 
@@ -24,12 +23,19 @@
 
 @end
 
-@implementation MyOrderListViewController
+@implementation OnlineServiceListController
 
 -(void)viewDidLoad
 {
     [super viewDidLoad];
     [self configView];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showLoginVC) name:@"NeedLoginNotificaiton" object:nil];
+    
+}
+
+-(void)showLoginVC
+{
+    [[BarristerLoginManager shareManager] showLoginViewControllerWithController:self];
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -42,7 +48,7 @@
     [super viewWillAppear:animated];
     [self showTabbar:NO];
     [self configData];
-
+    
 }
 
 -(void)configData
@@ -50,17 +56,22 @@
     
     __weak typeof(*& self) weakSelf  = self;
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-
-    [params setObject:[NSString stringWithFormat:@"%ld",self.tableView.pageSize] forKey:@"pageSize"];
+    
+    [params setObject:[NSString stringWithFormat:@"%d",50] forKey:@"pageSize"];
     [params setObject:[NSString stringWithFormat:@"%ld",self.tableView.pageNum] forKey:@"page"];
     
+    if (self.typeId) {
+        [params setObject:self.typeId forKey:@"bizTypeId"];
+    }
+
+    
     [XuUItlity showLoadingInView:self.view hintText:@"加载中..."];
-    [self.proxy getOrderListWithParams:params block:^(id returnData, BOOL success) {
+    [self.proxy getOnlineServiceListWithParams:params Block:^(id returnData, BOOL success) {
         [XuUItlity hideLoading];
         if (success) {
             [weakSelf hideNoContentView];
             NSDictionary *dict = (NSDictionary *)returnData;
-            NSArray *array = [dict objectForKey:@"orders"];
+            NSArray *array = [dict objectForKey:@"list"];
             if ([XuUtlity isValidArray:array]) {
                 [weakSelf handleListDataWithArray:array];
             }
@@ -72,6 +83,7 @@
         else
         {
             if (weakSelf.items.count == 0) {
+                [weakSelf.tableView endLoadMoreWithNoMoreData:YES];
                 [weakSelf showNoContentView];
             }
             else
@@ -79,16 +91,33 @@
                 [XuUItlity showFailedHint:@"加载失败" completionBlock:nil];
                 [weakSelf.tableView endLoadMoreWithNoMoreData:NO];
             }
-
+            
         }
+
     }];
+    
+
+    
+//    NSDictionary *dict = @{@"icon":@"",@"name":@"赵大大",@"intro":@"非常专业",@"phone":@"1333333333",@"qq":@"30410425"};
+//
+//        NSDictionary *dict1 = @{@"icon":@"",@"name":@"赵大2",@"intro":@"非常专业",@"phone":@"1333333333",@"qq":@"304110425"};
+//    
+//    OnlineServiceListModel *model = [[OnlineServiceListModel alloc] initWithDictionary:dict];
+//
+//        OnlineServiceListModel *model1 = [[OnlineServiceListModel alloc] initWithDictionary:dict1];
+//    
+//    [self.items addObject:model];
+//    [self.items addObject:model1];
+    
+    [self.tableView reloadData];
 }
 
 -(void)handleListDataWithArray:(NSArray *)array
 {
     
+    
     __weak typeof(*&self) weakSelf = self;
-
+    
     [self handleTableRefreshOrLoadMoreWithTableView:self.tableView array:array aBlock:^{
         __strong __typeof(weakSelf)strongSelf = weakSelf;
         [strongSelf.items removeAllObjects];
@@ -96,18 +125,18 @@
     
     for (int i = 0; i < array.count; i ++) {
         NSDictionary *dict = [array safeObjectAtIndex:i];
-        BarristerOrderModel *model = [[BarristerOrderModel alloc] initWithDictionary:dict];
+        OnlineServiceListModel *model = [[OnlineServiceListModel alloc] initWithDictionary:dict];
         [self.items addObject:model];
     }
     [self.tableView reloadData];
-
+    
     
 }
 
 
 -(void)configView
 {
-    self.title = @"我的订单";
+    self.title = @"线上专项服务";
     self.tableView = [[RefreshTableView alloc] initWithFrame:RECT(0, 0, SCREENWIDTH, SCREENHEIGHT - NAVBAR_DEFAULT_HEIGHT) style:UITableViewStylePlain];
     [self.tableView setFootLoadMoreControl];
     self.tableView.pageSize = 10;
@@ -124,7 +153,7 @@
 -(void)circleTableViewDidTriggerRefresh:(RefreshTableView *)tableView
 {
     [self configData];
-
+    
 }
 
 -(void)circleTableViewDidLoadMoreData:(RefreshTableView *)tableView
@@ -143,20 +172,31 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 75;
+    
+    OnlineServiceListModel *modelTemp = [self.items safeObjectAtIndex:indexPath.row];
+    if (modelTemp) {
+        if ([OnlineServiceCell getCellHeightWithModel:modelTemp] < 80) {
+            return 80;
+        }
+        return [OnlineServiceCell getCellHeightWithModel:modelTemp];
+    }
+    else
+    {
+        return 0;
+    }
+    
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *identif = @"orderList";
-    OrderViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identif];
+    OnlineServiceCell *cell = [tableView dequeueReusableCellWithIdentifier:identif];
     if (!cell) {
-        cell = [[OrderViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identif];
+        cell = [[OnlineServiceCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identif];
     }
     
-    BarristerOrderModel *modelTemp = [self.items safeObjectAtIndex:indexPath.row];
+    OnlineServiceListModel *modelTemp = [self.items safeObjectAtIndex:indexPath.row];
     cell.model = modelTemp;
-    
     
     return cell;
 }
@@ -164,32 +204,20 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-
-    if (self.items.count > indexPath.row) {
-        BarristerOrderModel *model = [self.items safeObjectAtIndex:indexPath.row];
-        if ([model.type isEqualToString:@"APPOINTMENT"] || [model.type isEqualToString:@"IM"]) {
-            OrderDetailViewController *detailVC = [[OrderDetailViewController alloc] initWithOrderId:model.orderId];
-            [self.navigationController pushViewController:detailVC animated:YES];
-        }
-        
-        else if ([model.type isEqualToString:ONLINE])
-        {
-            CaseOrderDetailViewController *onlineDetail  = [[CaseOrderDetailViewController alloc] init];
-            onlineDetail.orderModel = model;
-            [self.navigationController pushViewController:onlineDetail animated:YES];
-        }
-        
-
-    }
-
-
+//    if (self.items.count > indexPath.row) {
+//        OnlineServiceListModel *model = [self.items safeObjectAtIndex:indexPath.row];
+//        
+//        
+//    }
+//    
+    
 }
 #pragma -mark ---
 
--(MeNetProxy *)proxy
+-(HomePageProxy *)proxy
 {
     if (!_proxy) {
-        _proxy = [[MeNetProxy alloc] init];
+        _proxy = [[HomePageProxy alloc] init];
     }
     return _proxy;
 }
@@ -201,5 +229,6 @@
     }
     return _items;
 }
+
 
 @end

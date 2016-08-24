@@ -25,6 +25,7 @@
 #import "MyAccountViewController.h"
 #import "MyMessageViewController.h"
 #import <AlipaySDK/AlipaySDK.h>
+#import "BarristerLoginManager.h"
 
 //13301096303
 //700953
@@ -288,7 +289,10 @@
         //去系统消息
         MyMessageViewController *myMessage = [[MyMessageViewController alloc] init];
         [navigationController pushViewController:myMessage animated:YES];
-        
+    }//网页授权
+    else if ([type isEqualToString:Push_Type_User_Web_Auth])
+    {
+        [[BarristerLoginManager shareManager] openWebAuthViewController];
     }
     
 }

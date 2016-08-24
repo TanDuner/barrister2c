@@ -47,6 +47,8 @@
 
 #define APPOINTMENT @"APPOINTMENT" //预约
 #define IM @"IM"//即时
+#define ONLINE @"ONLINE" //在线专项服务
+
 
 //    a.待处理
 #define  STATUS_WAITING  @"order.status.waiting"
@@ -62,6 +64,13 @@
 
 //    f 请求取消
 #define STATUS_REQUESTCANCEL @"order.status.request.cancel"
+
+//待支付
+#define Status_WaitPay      @"order.status.waittingPay"
+//已经支付
+#define Status_AlreadyPaid      @"order.status.alreadyPaid"
+
+
 
 
 

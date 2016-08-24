@@ -21,6 +21,8 @@
 #import "IMVersionManager.h"
 #import "BaseWebViewController.h"
 #import "XuPushManager.h"
+#import "OnlineServiceListController.h"
+
 @interface HomeViewController ()
 
 @property (nonatomic,strong) NSMutableArray *areaItems;
@@ -50,6 +52,8 @@
     }];
     
     [self initData];
+    
+    
 }
 
 -(void)handlePSWithDict:(NSDictionary *)dict
@@ -430,10 +434,14 @@
     }
     else
     {
-        LawerListViewController *lawerList = [[LawerListViewController alloc] init];
+//        LawerListViewController *lawerList = [[LawerListViewController alloc] init];
         BussinessTypeModel *model = [[BaseDataSingleton shareInstance].bizTypes safeObjectAtIndex:index];
-        lawerList.bussinessTypeModel = model;
-        [self.navigationController pushViewController:lawerList animated:YES];
+//        lawerList.bussinessTypeModel = model;
+//        [self.navigationController pushViewController:lawerList animated:YES];
+        
+        OnlineServiceListController *onlineList = [[OnlineServiceListController alloc] init];
+        onlineList.typeId = model.typeId;
+        [self.navigationController pushViewController:onlineList animated:YES];
         
     }
 }

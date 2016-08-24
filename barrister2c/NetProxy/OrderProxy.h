@@ -63,4 +63,7 @@
                       Block:(ServiceCallBlock)aBlock;
 
 
+//线上专项服务支付
+-(void)payOnlineServiceWithParams:(NSMutableDictionary *)aParams Block:(ServiceCallBlock)aBlock;
+
 @end

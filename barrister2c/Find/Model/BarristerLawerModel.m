@@ -30,6 +30,12 @@
         }
     }
 
+    NSString *recentServiceTimesStr = [dict objectForKey:@"recentServiceTimes"];
+    if (recentServiceTimesStr) {
+        self.recentServiceTimes = recentServiceTimesStr.integerValue;
+    }
+
+    
    
     
     if ([areaStr hasPrefix:@"|"]) {

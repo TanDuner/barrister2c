@@ -195,6 +195,12 @@
 		95BD99831D2567EE002E5B0D /* LearnCenterChannelModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 95BD99821D2567EE002E5B0D /* LearnCenterChannelModel.m */; };
 		95BD998D1D25DF8E002E5B0D /* FeedBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95BD998C1D25DF8E002E5B0D /* FeedBackViewController.m */; };
 		95BD99911D260681002E5B0D /* IMActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 95BD99901D260681002E5B0D /* IMActionSheet.m */; };
+		95C919011D67505C00F190CC /* OnlineServiceListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C919001D67505C00F190CC /* OnlineServiceListController.m */; };
+		95C919041D6750BA00F190CC /* OnlineServiceListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C919031D6750BA00F190CC /* OnlineServiceListModel.m */; };
+		95C919071D67592700F190CC /* NeedHelpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C919061D67592700F190CC /* NeedHelpViewController.m */; };
+		95C9190A1D68952600F190CC /* WebAuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C919091D68952600F190CC /* WebAuthViewController.m */; };
+		95C9190C1D68976E00F190CC /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 95C9190B1D68976E00F190CC /* logo.png */; };
+		95C9190F1D689ED000F190CC /* CaseOrderDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C9190E1D689ED000F190CC /* CaseOrderDetailViewController.m */; };
 		95CA1BD31D10F03900AAE490 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 95CA1BD21D10F03900AAE490 /* main.m */; };
 		95CA1BD61D10F03900AAE490 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 95CA1BD51D10F03900AAE490 /* AppDelegate.m */; };
 		95CA1BDC1D10F03A00AAE490 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95CA1BDA1D10F03A00AAE490 /* Main.storyboard */; };
@@ -359,6 +365,8 @@
 		95CA1E031D10F9EA00AAE490 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 95CA1E021D10F9EA00AAE490 /* libsqlite3.tbd */; };
 		95CA1E051D10F9F500AAE490 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 95CA1E041D10F9F500AAE490 /* libz.tbd */; };
 		95CA1E081D123F6A00AAE490 /* FindNetProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 95CA1E071D123F6A00AAE490 /* FindNetProxy.m */; };
+		95E9CAF11D695F9200B84B7C /* OnlineServiceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E9CAF01D695F9200B84B7C /* OnlineServiceCell.m */; };
+		95E9CAF41D69A5B800B84B7C /* OnlineWaitPayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E9CAF31D69A5B800B84B7C /* OnlineWaitPayCell.m */; };
 		95EBA9981D35453E0041A647 /* ESVoiceDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 95EBA9971D35453E0041A647 /* ESVoiceDownloader.m */; };
 		95EBA99B1D3547550041A647 /* ESDownloadVoiceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 95EBA99A1D3547550041A647 /* ESDownloadVoiceManager.m */; };
 		95EBAA121D35B81D0041A647 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95EBAA111D35B81D0041A647 /* QuartzCore.framework */; };
@@ -659,6 +667,17 @@
 		95BD998C1D25DF8E002E5B0D /* FeedBackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedBackViewController.m; sourceTree = "<group>"; };
 		95BD998F1D260681002E5B0D /* IMActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMActionSheet.h; sourceTree = "<group>"; };
 		95BD99901D260681002E5B0D /* IMActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMActionSheet.m; sourceTree = "<group>"; };
+		95C918FF1D67505C00F190CC /* OnlineServiceListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnlineServiceListController.h; sourceTree = "<group>"; };
+		95C919001D67505C00F190CC /* OnlineServiceListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnlineServiceListController.m; sourceTree = "<group>"; };
+		95C919021D6750BA00F190CC /* OnlineServiceListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnlineServiceListModel.h; sourceTree = "<group>"; };
+		95C919031D6750BA00F190CC /* OnlineServiceListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnlineServiceListModel.m; sourceTree = "<group>"; };
+		95C919051D67592700F190CC /* NeedHelpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NeedHelpViewController.h; sourceTree = "<group>"; };
+		95C919061D67592700F190CC /* NeedHelpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NeedHelpViewController.m; sourceTree = "<group>"; };
+		95C919081D68952600F190CC /* WebAuthViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebAuthViewController.h; sourceTree = "<group>"; };
+		95C919091D68952600F190CC /* WebAuthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebAuthViewController.m; sourceTree = "<group>"; };
+		95C9190B1D68976E00F190CC /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
+		95C9190D1D689ED000F190CC /* CaseOrderDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CaseOrderDetailViewController.h; sourceTree = "<group>"; };
+		95C9190E1D689ED000F190CC /* CaseOrderDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CaseOrderDetailViewController.m; sourceTree = "<group>"; };
 		95CA1BCE1D10F03900AAE490 /* barrister2c.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = barrister2c.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		95CA1BD21D10F03900AAE490 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		95CA1BD41D10F03900AAE490 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -960,6 +979,10 @@
 		95CA1E041D10F9F500AAE490 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		95CA1E061D123F6A00AAE490 /* FindNetProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FindNetProxy.h; sourceTree = "<group>"; };
 		95CA1E071D123F6A00AAE490 /* FindNetProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FindNetProxy.m; sourceTree = "<group>"; };
+		95E9CAEF1D695F9200B84B7C /* OnlineServiceCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnlineServiceCell.h; sourceTree = "<group>"; };
+		95E9CAF01D695F9200B84B7C /* OnlineServiceCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnlineServiceCell.m; sourceTree = "<group>"; };
+		95E9CAF21D69A5B800B84B7C /* OnlineWaitPayCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnlineWaitPayCell.h; sourceTree = "<group>"; };
+		95E9CAF31D69A5B800B84B7C /* OnlineWaitPayCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnlineWaitPayCell.m; sourceTree = "<group>"; };
 		95EBA9961D35453E0041A647 /* ESVoiceDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESVoiceDownloader.h; sourceTree = "<group>"; };
 		95EBA9971D35453E0041A647 /* ESVoiceDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESVoiceDownloader.m; sourceTree = "<group>"; };
 		95EBA9991D3547550041A647 /* ESDownloadVoiceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESDownloadVoiceManager.h; sourceTree = "<group>"; };
@@ -1212,6 +1235,8 @@
 				955A7B161D1F6E7A00D1DEAC /* BarristerLoginVC.m */,
 				955A7B181D1F6ECB00D1DEAC /* BarristerLoginManager.h */,
 				955A7B191D1F6ECB00D1DEAC /* BarristerLoginManager.m */,
+				95C919081D68952600F190CC /* WebAuthViewController.h */,
+				95C919091D68952600F190CC /* WebAuthViewController.m */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -1615,6 +1640,7 @@
 				958EEBA81D26B46700D4CF4C /* common_point_loading@3x.png */,
 				95CA1DDC1D10F91900AAE490 /* commom_default_head@2x.png */,
 				95CA1DDD1D10F91900AAE490 /* commom_default_head@3x.png */,
+				95C9190B1D68976E00F190CC /* logo.png */,
 				95CA1DDE1D10F91900AAE490 /* common_icon_info@2x.png */,
 				95CA1DDF1D10F91900AAE490 /* common_icon_info@3x.png */,
 				95CA1DE01D10F91900AAE490 /* common_icon_succeed@2x.png */,
@@ -2197,6 +2223,8 @@
 			children = (
 				95CA1DF61D10F92E00AAE490 /* HomeViewController.h */,
 				95CA1DF71D10F92E00AAE490 /* HomeViewController.m */,
+				95C918FF1D67505C00F190CC /* OnlineServiceListController.h */,
+				95C919001D67505C00F190CC /* OnlineServiceListController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -2210,6 +2238,8 @@
 				95B0D8141D1836AC0054567D /* BussinessTypeModel.m */,
 				951008BE1D25111A00730562 /* HomeBannerModel.h */,
 				951008BF1D25111A00730562 /* HomeBannerModel.m */,
+				95C919021D6750BA00F190CC /* OnlineServiceListModel.h */,
+				95C919031D6750BA00F190CC /* OnlineServiceListModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2223,6 +2253,8 @@
 				955611501D17855900366D4C /* HomeAreaCell.m */,
 				95B0D80D1D1835F20054567D /* HomeTypeCell.h */,
 				95B0D80E1D1835F20054567D /* HomeTypeCell.m */,
+				95E9CAEF1D695F9200B84B7C /* OnlineServiceCell.h */,
+				95E9CAF01D695F9200B84B7C /* OnlineServiceCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2265,6 +2297,8 @@
 				95CA1DFD1D10F95E00AAE490 /* PersonCenterViewController.m */,
 				955610CD1D14B69900366D4C /* PersonInfoViewController.h */,
 				955610CE1D14B69900366D4C /* PersonInfoViewController.m */,
+				95C919051D67592700F190CC /* NeedHelpViewController.h */,
+				95C919061D67592700F190CC /* NeedHelpViewController.m */,
 				955610CA1D14B67100366D4C /* MyMessageViewController.h */,
 				955610CB1D14B67100366D4C /* MyMessageViewController.m */,
 				955610D61D14B71900366D4C /* SettingViewController.h */,
@@ -2277,6 +2311,8 @@
 				955A7AF01D1D887C00D1DEAC /* MyOrderListViewController.m */,
 				955A7AFB1D1D8EC000D1DEAC /* OrderDetailViewController.h */,
 				955A7AFC1D1D8EC000D1DEAC /* OrderDetailViewController.m */,
+				95C9190D1D689ED000F190CC /* CaseOrderDetailViewController.h */,
+				95C9190E1D689ED000F190CC /* CaseOrderDetailViewController.m */,
 				9529CC071D2BF6610067597A /* RewardSelectViewController.h */,
 				9529CC081D2BF6610067597A /* RewardSelectViewController.m */,
 				95BD998B1D25DF8E002E5B0D /* FeedBackViewController.h */,
@@ -2325,6 +2361,8 @@
 				955A7B021D1D8EFB00D1DEAC /* OrderDetailCallRecordCell.m */,
 				9529CC271D2CDE500067597A /* OrderDetailVoiceView.h */,
 				9529CC281D2CDE500067597A /* OrderDetailVoiceView.m */,
+				95E9CAF21D69A5B800B84B7C /* OnlineWaitPayCell.h */,
+				95E9CAF31D69A5B800B84B7C /* OnlineWaitPayCell.m */,
 				95EBA9961D35453E0041A647 /* ESVoiceDownloader.h */,
 				95EBA9971D35453E0041A647 /* ESVoiceDownloader.m */,
 				95EBA9991D3547550041A647 /* ESDownloadVoiceManager.h */,
@@ -2650,6 +2688,7 @@
 				9529CCCC1D30E5350067597A /* unagree@2x.png in Resources */,
 				950120C11D2B4E5600FE3613 /* orderdetail_call@3x.png in Resources */,
 				958EEBA91D26B46700D4CF4C /* common_point_loading@2x.png in Resources */,
+				95C9190C1D68976E00F190CC /* logo.png in Resources */,
 				95CA1DF31D10F91900AAE490 /* navigationbar_back_icon@2x.png in Resources */,
 				958EEBEF1D282D7300D4CF4C /* Me_message@2x.png in Resources */,
 				95CA1DEB1D10F91900AAE490 /* common_icon_info@2x.png in Resources */,
@@ -2814,6 +2853,7 @@
 				955A7B001D1D8EE100D1DEAC /* OrderDetailOrderCell.m in Sources */,
 				95EBAAF71D35DCA70041A647 /* NSDataEx.m in Sources */,
 				95CA1DAC1D10F85500AAE490 /* CityChooseViewController.m in Sources */,
+				95C919071D67592700F190CC /* NeedHelpViewController.m in Sources */,
 				95CA1E011D10F97F00AAE490 /* FindViewController.m in Sources */,
 				95CA1C361D10F7AD00AAE490 /* BaseNetProxy.m in Sources */,
 				95CA1C641D10F7B700AAE490 /* TabItemView.m in Sources */,
@@ -2825,9 +2865,11 @@
 				95EBAAED1D35DCA70041A647 /* AlipayHelper.m in Sources */,
 				95EBAB361D3691770041A647 /* XWMoneyTextFieldLimit.m in Sources */,
 				95CA1C661D10F7B700AAE490 /* RefreshTableView.m in Sources */,
+				95E9CAF41D69A5B800B84B7C /* OnlineWaitPayCell.m in Sources */,
 				95CA1D1D1D10F7C900AAE490 /* HYMDatePicker.m in Sources */,
 				9597CBD71D5039050049CF24 /* LawerSearchViewController.m in Sources */,
 				95CA1D2F1D10F7C900AAE490 /* MJRefreshNormalHeader.m in Sources */,
+				95C919041D6750BA00F190CC /* OnlineServiceListModel.m in Sources */,
 				95CA1D491D10F7C900AAE490 /* View+MASAdditions.m in Sources */,
 				95CA1C311D10F7A500AAE490 /* BaseModel.m in Sources */,
 				95CA1D3E1D10F7C900AAE490 /* AJPhotoTapDetectingImageView.m in Sources */,
@@ -2884,6 +2926,7 @@
 				955A7AB81D1C3E1700D1DEAC /* LawerSelectContentViewController.m in Sources */,
 				95CA1D561D10F7C900AAE490 /* UIButton+YYWebImage.m in Sources */,
 				95CA1DAD1D10F85500AAE490 /* XuUItlity.m in Sources */,
+				95E9CAF11D695F9200B84B7C /* OnlineServiceCell.m in Sources */,
 				95CA1C231D10F79700AAE490 /* BaseTabbarController.m in Sources */,
 				95CA1C251D10F79700AAE490 /* BaseViewController.m in Sources */,
 				955A7AB51D1C3C2000D1DEAC /* LawerSelectTimeViewController.m in Sources */,
@@ -2923,6 +2966,7 @@
 				95BD99791D255BAB002E5B0D /* IMWebView.m in Sources */,
 				95CA1D581D10F7C900AAE490 /* UIGestureRecognizer+YYAdd.m in Sources */,
 				95CA1DAA1D10F85500AAE490 /* UIView+FormAdditions.m in Sources */,
+				95C9190F1D689ED000F190CC /* CaseOrderDetailViewController.m in Sources */,
 				955610D51D14B6DA00366D4C /* MyMessgeCell.m in Sources */,
 				95CA1C091D10F77F00AAE490 /* AccountProxy.m in Sources */,
 				95CA1D9E1D10F85500AAE490 /* NSString+Addition.m in Sources */,
@@ -3011,6 +3055,7 @@
 				955A7B201D1F794E00D1DEAC /* LawerListProxy.m in Sources */,
 				95CA1D2C1D10F7C900AAE490 /* MJRefreshFooter.m in Sources */,
 				95CA1E081D123F6A00AAE490 /* FindNetProxy.m in Sources */,
+				95C9190A1D68952600F190CC /* WebAuthViewController.m in Sources */,
 				95CA1D481D10F7C900AAE490 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
 				95EBAAF81D35DCA70041A647 /* openssl_wrapper.m in Sources */,
 				955611421D159FBB00366D4C /* AddBankCardViewController.m in Sources */,
@@ -3023,6 +3068,7 @@
 				9529CCB31D308F3B0067597A /* AppMethod.m in Sources */,
 				95CA1DAE1D10F85500AAE490 /* XuUtlity.m in Sources */,
 				95CA1D571D10F7C900AAE490 /* UIControl+YYAdd.m in Sources */,
+				95C919011D67505C00F190CC /* OnlineServiceListController.m in Sources */,
 				955611211D1585A200366D4C /* MyAccountHeadView.m in Sources */,
 				955611441D159FBB00366D4C /* MyBankCardController.m in Sources */,
 				95CA1D3F1D10F7C900AAE490 /* AJPhotoZoomingScrollView.m in Sources */,
@@ -3141,7 +3187,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: yaqian zhao (7U34CFE9VJ)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: yaqian zhao (28UDM3V4JW)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3171,7 +3217,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.xsc.barrister2c;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "cb1524a6-bfd9-4d94-abbc-c407fba748ab";
+				PROVISIONING_PROFILE = "10aa843b-9b41-44cb-9bd7-0d4cb951b396";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -3182,7 +3228,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: yaqian zhao (7U34CFE9VJ)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: yaqian zhao (28UDM3V4JW)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3212,7 +3258,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.xsc.barrister2c;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "cb1524a6-bfd9-4d94-abbc-c407fba748ab";
+				PROVISIONING_PROFILE = "10aa843b-9b41-44cb-9bd7-0d4cb951b396";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

@@ -62,6 +62,8 @@
 #define Push_Type_New_AppointmentOrder @"type.order.new"
 
 
+#define Push_Type_User_Web_Auth     @"type.web.auth"
+
 @interface XuPushManager : NSObject
 
 @property (nonatomic,strong) NSMutableDictionary            * delegateMap;

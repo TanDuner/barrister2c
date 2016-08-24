@@ -16,6 +16,8 @@
 #define MakeCallUrl @"makeCall.do"
 #define RewardOrderUrl @"rewardOrder.do"
 
+#define PayOnlineUrl @"payOnlineOrder.do"
+
 @implementation OrderProxy
 
 
@@ -187,6 +189,28 @@
         [XuNetWorking updateBaseUrl:BaseUrl];
         aBlock(CommonNetErrorTip,NO);
     }];
+}
+
+-(void)payOnlineServiceWithParams:(NSMutableDictionary *)aParams Block:(ServiceCallBlock)aBlock
+{
+    [self appendCommonParamsWithDict:aParams];
+    [XuNetWorking postWithUrl:PayOnlineUrl params:aParams success:^(id response) {
+        if (aBlock) {
+            if ([self isCommonCorrectResultCodeWithResponse:response]) {
+                aBlock(response,YES);
+            }
+            else
+            {
+                aBlock(CommonNetErrorTip,NO);
+            }
+            
+        }
+    } fail:^(NSError *error) {
+        if (aBlock) {
+            aBlock(CommonNetErrorTip,NO);
+        }
+    }];
+    
 }
 
 @end

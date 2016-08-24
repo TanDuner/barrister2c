@@ -28,6 +28,8 @@
     self.markHeight = height;
 
     self.orderId = [NSString stringWithFormat:@"%@",[dict objectForKey:@"id"]];
+    
+    self.payStatus = [NSString stringWithFormat:@"%@",[dict objectForKey:@"payStatus"]];
 }
 
 

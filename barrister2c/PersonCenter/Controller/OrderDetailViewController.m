@@ -22,31 +22,7 @@
 #import "OrderDetialRewardCell.h"
 
 #import "UIButton+EnlargeEdge.h"
-/**
- * 用于显示Detail的类型
- */
 
-typedef NS_ENUM(NSInteger,OrderDetailShowType)
-{
-    OrderDetailShowTypeOrderInfo,
-    OrderDetailShowTypeOrderMark,
-    OrderDetailShowTypeOrderReward,
-    OrderDetailShowTypeOrderCancel,
-    OrderDetailShowTypeAppriseOrder,
-    OrderDetailShowTypeOrderCustomInfo,
-    OrderDetailShowTypeOrderCallRecord,
-    
-};
-
-
-
-@interface OrderDetailCellModel : NSObject
-
-@property (nonatomic,assign) OrderDetailShowType showType;
-
-@property (nonatomic,strong) CallHistoriesModel *callModel;
-
-@end
 
 @implementation OrderDetailCellModel
 

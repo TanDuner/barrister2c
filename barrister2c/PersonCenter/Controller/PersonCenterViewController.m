@@ -17,6 +17,7 @@
 #import "MyAccountViewController.h"
 #import "MyOrderListViewController.h"
 #import "BarristerLoginManager.h"
+#import "NeedHelpViewController.h"
 
 
 
@@ -111,6 +112,13 @@
     model3.isShowArrow = YES;
     
     
+    PersonCenterModel *model4 = [[PersonCenterModel alloc] init];
+    model4.titleStr = @"我要求助";
+    model4.cellType = PersonCenterModelTypeQiuZhu;
+    model4.iconNameStr = @"Me_message";
+    model4.isShowArrow = YES;
+    
+    
     PersonCenterModel *model6 = [[PersonCenterModel alloc] init];
     model6.titleStr = @"设置";
     model6.cellType = PersonCenterModelTypeSZ;
@@ -140,6 +148,8 @@
     
     
     [self.items addObject:model3];
+    [self.items addObject:model4];
+    
     [self.items addObject:model6];
 }
 
@@ -174,9 +184,9 @@
     else if (section == 1)
     {
         if ([BaseDataSingleton shareInstance].isClosePay) {
-            return 3;
+            return 4;
         }
-        return 4;
+        return 5;
     }
     else
     {
@@ -309,6 +319,12 @@
                 MyMessageViewController *messageVC = [[MyMessageViewController alloc] init];
                 [self.navigationController pushViewController:messageVC animated:YES];
 
+            }
+                break;
+            case 4:
+            {
+                NeedHelpViewController *needVC = [[NeedHelpViewController alloc] init];
+                [self.navigationController pushViewController:needVC animated:YES];
             }
                 break;
             default:

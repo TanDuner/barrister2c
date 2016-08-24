@@ -64,29 +64,54 @@
 //    [self.markLabel setFrame:RECT(LeftPadding, self.orderPriceLabel.y + self.orderPriceLabel.height + 10 + 15, SCREENWIDTH - 20, self.model.markHeight)];
     self.orderNoLabel.text = [NSString stringWithFormat:@"订单号：%@",self.model.orderNo?self.model.orderNo:@""];
     self.orderTypeLabel.text = [NSString stringWithFormat:@"订单类型：%@",self.model.caseType?self.model.caseType:@"无"];
+    
     self.orderTimeLabel.text = [NSString stringWithFormat:@"下单时间：%@",self.model.payTime?self.model.payTime:@""];
     self.orderPriceLabel.text = [NSString stringWithFormat:@"订单金额：%@",self.model.paymentAmount?self.model.paymentAmount:@""];
-//    self.markLabel.text = [NSString stringWithFormat:@"备注：%@",self.model.remarks?self.model.remarks:@"无"];
     
-    if ([self.model.status isEqualToString:STATUS_WAITING]) {
-        self.stateLabel.text = @"待处理";
+    
+    self.orderPriceLabel.text = [NSString stringWithFormat:@"订单金额：%@",self.model.paymentAmount?self.model.paymentAmount:@""];
+
+    if ([self.model.type isEqualToString:ONLINE]) {
+        self.orderTypeLabel.text = [NSString stringWithFormat:@"订单类型：%@",@"线上专项服务"];
+        self.orderTimeLabel.text = [NSString stringWithFormat:@"下单时间：%@",self.model.orderTime?self.model.orderTime:@""];
+        self.orderNoLabel.text = [NSString stringWithFormat:@"订单号：%@",self.model.orderId?self.model.orderId:@"无"];
+
+        if ([self.model.payStatus isEqualToString:@"1"]) {
+            self.stateLabel.text = @"已支付";
+        }
+        else
+        {
+            self.stateLabel.text = @"未支付";
+        }
+        
     }
-    else if ([self.model.status  isEqualToString:STATUS_DONE])
+    else
     {
-        self.stateLabel.text = @"已完成";
+        
+        if ([self.model.status isEqualToString:STATUS_WAITING]) {
+            self.stateLabel.text = @"待处理";
+        }
+        else if ([self.model.status  isEqualToString:STATUS_DONE])
+        {
+            self.stateLabel.text = @"已完成";
+        }
+        else if ([self.model.status isEqualToString:STATUS_REFUND])
+        {
+            self.stateLabel.text = @"退款中";
+        }
+        else if ([self.model.status isEqualToString:STATUS_DOING])
+        {
+            self.stateLabel.text = @"进行中";
+        }
+        else if ([self.model.status isEqualToString:STATUS_CANCELED])
+        {
+            self.stateLabel.text = @"已取消";
+        }
+        
+
     }
-    else if ([self.model.status isEqualToString:STATUS_REFUND])
-    {
-        self.stateLabel.text = @"退款中";
-    }
-    else if ([self.model.status isEqualToString:STATUS_DOING])
-    {
-        self.stateLabel.text = @"进行中";
-    }
-    else if ([self.model.status isEqualToString:STATUS_CANCELED])
-    {
-        self.stateLabel.text = @"已取消";
-    }
+    
+    
     
 }
 

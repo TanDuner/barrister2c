@@ -33,6 +33,9 @@
 
 @property (nonatomic,strong) UILabel *stateLabel;
 
+
+@property (nonatomic,strong) UILabel *typeLabel;
+
 @end
 
 @implementation OrderViewCell
@@ -43,6 +46,7 @@
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         [self addSubview:self.headerImageView];
         [self addSubview:self.nameLabel];
+        [self addSubview:self.typeLabel];
         [self addSubview:self.stateLabel];
         [self addSubview:self.timeLabel];
     }
@@ -55,8 +59,10 @@
     [super layoutSubviews];
     [self.headerImageView setFrame:RECT(LeftPadding, LeftPadding + 5, 45, 45)];
     [self.nameLabel setFrame:RECT(self.headerImageView.x + self.headerImageView.width + 10, self.headerImageView.y, 150, 15)];
-    [self.stateLabel setFrame:CGRectMake(SCREENWIDTH - 160, LeftPadding + 5, 150, 15)];
-    [self.timeLabel setFrame:CGRectMake(self.nameLabel.x, self.nameLabel.y + self.nameLabel.height + 10, 270, 15)];
+    [self.stateLabel setFrame:CGRectMake(SCREENWIDTH - 160, LeftPadding + 5 + 15 + 10, 150, 15)];
+    [self.timeLabel setFrame:CGRectMake(self.nameLabel.x, self.nameLabel.y + self.nameLabel.height + 15, 270, 15)];
+    [self.typeLabel setFrame:RECT(SCREENWIDTH - 10 - 100, LeftPadding + 5, 100, 15)];
+
 }
 
 
@@ -65,14 +71,22 @@
     [super configData];
     
     if (self.model) {
+        
         [self.headerImageView yy_setImageWithURL:[NSURL URLWithString:self.model.userIcon] placeholder:[UIImage imageNamed:@"timeline_image_loading"]];
         self.nameLabel.text = self.model.name;
         if ([self.model.type isEqualToString:IM]) {
             self.timeLabel.text = [NSString stringWithFormat:@"%@",self.model.date];
+            self.typeLabel.text = @"即时咨询";
         }
-        else
+        else if([self.model.type isEqualToString:APPOINTMENT])
         {
-            self.timeLabel.text = [NSString stringWithFormat:@"%@-%@",self.model.startTime,self.model.endTime];
+            self.timeLabel.text = [NSString stringWithFormat:@"%@",self.model.date];
+            self.typeLabel.text = @"预约咨询";
+        }
+        else if ([self.model.type isEqualToString:ONLINE])
+        {
+            self.typeLabel.text = @"线上专项服务";
+            self.timeLabel.text = [NSString stringWithFormat:@"%@",self.model.date];
         }
         
         if ([self.model.status isEqualToString:STATUS_CANCELED]) {
@@ -171,5 +185,16 @@
     return _stateLabel;
 }
 
+
+-(UILabel *)typeLabel
+{
+    if (!_typeLabel) {
+        _typeLabel = [[UILabel alloc] init];
+        _typeLabel.textColor = KColorGray333;
+        _typeLabel.font = SystemFont(13.0f);
+        _typeLabel.textAlignment = NSTextAlignmentRight;;
+    }
+    return _typeLabel;
+}
 
 @end

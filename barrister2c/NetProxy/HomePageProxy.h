@@ -29,4 +29,14 @@
 
 -(void)getHidePayDataWithParams:(NSDictionary *)params Block:(ServiceCallBlock)aBlock;
 
+
+
+/**
+ *  线上专项服务接口
+ *
+ *  @param params
+ *  @param aBlock
+ */
+-(void)getOnlineServiceListWithParams:(NSDictionary *)params Block:(ServiceCallBlock)aBlock;
+
 @end

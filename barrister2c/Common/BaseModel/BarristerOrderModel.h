@@ -41,7 +41,9 @@
 @property (nonatomic,strong) NSString *userIcon;//律师头像
 
 
-
+@property (nonatomic,strong) NSString *payStatus;//支付状态 专门为线上专项服务
+@property (nonatomic,strong) NSString *qq;
+@property (nonatomic,strong) NSString *paymentAmount;
 
 
 @property (nonatomic,strong) NSString *customerName;
@@ -61,4 +63,8 @@
 @property (nonatomic,strong) NSString *customPhone;//用户的手机号
 
 @property (nonatomic,strong) NSString *talkTime;//通话时长
+
+
+@property (nonatomic,strong) NSString *payCount;//支付金额;
+
 @end

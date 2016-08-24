@@ -58,6 +58,14 @@
 @property (nonatomic,strong) NSString *status;
 @property (nonatomic,strong) NSString *type;
 
+
+//线上专项服务加的
+@property (nonatomic,strong) NSString *payStatus;
+@property (nonatomic,strong) NSString *orderTime;
+@property (nonatomic,strong) NSString *qq;
+@property (nonatomic,strong) NSString *phone;
+
+
 @property (nonatomic,strong) NSMutableArray *callRecordArray;
 
 

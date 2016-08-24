@@ -32,4 +32,6 @@
 -(void)userAutoLogin;
 
 
+-(void)openWebAuthViewController;//打开web登录授权页面
+
 @end

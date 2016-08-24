@@ -163,6 +163,11 @@
     {
         [delegate jumpToViewControllerwithType:type Params:nil];
     }
+    else if ([type isEqualToString:Push_Type_User_Web_Auth])
+    {
+        [delegate jumpToViewControllerwithType:type Params:nil];
+    
+    }
 
 }
 

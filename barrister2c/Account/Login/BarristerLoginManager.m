@@ -10,7 +10,7 @@
 #import "BaseNavigaitonController.h"
 #import "BarristerLoginVC.h"
 #import "LoginProxy.h"
-
+#import "WebAuthViewController.h"
 
 @interface BarristerLoginManager ()
 
@@ -41,6 +41,52 @@
     [showController.navigationController presentViewController:navigationVC animated:YES completion:nil];
 
 }
+
+
+-(void)openWebAuthViewController;//打开web登录授权页面
+{
+    UIViewController *viewController = [self getCurrentVC];
+
+    WebAuthViewController *authVC = [[WebAuthViewController alloc] init];
+    
+    BaseNavigaitonController *navigationVC = [[BaseNavigaitonController alloc] initWithRootViewController:authVC];
+    
+    [viewController presentViewController:navigationVC animated:YES completion:nil];
+
+}
+
+
+
+- (UIViewController *)getCurrentVC
+{
+    UIViewController *result = nil;
+    
+    UIWindow * window = [[UIApplication sharedApplication] keyWindow];
+    if (window.windowLevel != UIWindowLevelNormal)
+    {
+        NSArray *windows = [[UIApplication sharedApplication] windows];
+        for(UIWindow * tmpWin in windows)
+        {
+            if (tmpWin.windowLevel == UIWindowLevelNormal)
+            {
+                window = tmpWin;
+                break;
+            }
+        }
+    }
+    
+    UIView *frontView = [[window subviews] objectAtIndex:0];
+    id nextResponder = [frontView nextResponder];
+    
+    if ([nextResponder isKindOfClass:[UIViewController class]])
+        result = nextResponder;
+    else
+        result = window.rootViewController;
+    
+    return result;
+}
+
+
 
 -(void)userAutoLogin
 {

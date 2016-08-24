@@ -10,6 +10,8 @@
 
 #define HomePageDataUrl @"appHome.do"
 #define GetSwitchUrl @"getLatestVersion.do"
+#define GetOnlineSerListUrl @"onlineBizUserList.do"
+
 @implementation HomePageProxy
 
 /**
@@ -58,6 +60,28 @@
         aBlock(CommonNetErrorTip,NO);
     }];
 
+}
+
+
+/**
+ *  线上专项服务接口
+ *
+ *  @param params
+ *  @param aBlock
+ */
+-(void)getOnlineServiceListWithParams:(NSDictionary *)params Block:(ServiceCallBlock)aBlock
+{
+    [XuNetWorking getWithUrl:GetOnlineSerListUrl params:params success:^(id response) {
+        if ([self isCommonCorrectResultCodeWithResponse:response]) {
+            aBlock(response,YES);
+        }
+        else
+        {
+            aBlock(CommonNetErrorTip,NO);
+        }
+    } fail:^(NSError *error) {
+        aBlock(CommonNetErrorTip,NO);
+    }];
     
 }
 

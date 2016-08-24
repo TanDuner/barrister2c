@@ -28,6 +28,7 @@
 
 @property (nonatomic,strong) CWStarRateView *starView;
 
+@property (nonatomic,strong) UILabel *serviceTimesLabel;
 @end
 
 @implementation LawerListCell
@@ -41,6 +42,8 @@
         [self addSubview:self.companyLabel];
         [self addSubview:self.goodAtLabel];
         [self addSubview:self.starView];
+        [self addSubview:self.serviceTimesLabel];
+        
     }
     return self;
 }
@@ -80,6 +83,15 @@
 
     [self.starView setFrame:RECT(SCREENWIDTH - 80 - 10, 10, 80, 15)];
     [self.starView setScorePercent:self.model.rating.floatValue/5.0];
+    
+    [self.serviceTimesLabel setFrame:RECT(SCREENWIDTH - 90, self.areaLabel.y, 80, 12)];
+    if (self.model.recentServiceTimes != 0) {
+        self.serviceTimesLabel.text = [NSString stringWithFormat:@"服务 %ld次",self.model.recentServiceTimes];
+    }
+    else{
+        self.serviceTimesLabel.text = @"";
+    }
+
 }
 
 
@@ -185,5 +197,15 @@
     return _starView;
 }
 
+
+-(UILabel *)serviceTimesLabel
+{
+    if (!_serviceTimesLabel) {
+        _serviceTimesLabel = [[UILabel alloc] init];
+        _serviceTimesLabel.font = SystemFont(13.0f);
+        _serviceTimesLabel.textAlignment = NSTextAlignmentRight;
+    }
+    return _serviceTimesLabel;
+}
 
 @end
