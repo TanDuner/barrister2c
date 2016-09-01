@@ -7,8 +7,14 @@
 //
 
 #import "WebAuthViewController.h"
+#import "HomePageProxy.h"
+
+
 
 @interface WebAuthViewController ()
+
+
+@property (nonatomic,strong) HomePageProxy *proxy;
 
 @end
 
@@ -61,7 +67,16 @@
 
 -(void)cofirmAuth
 {
-
+    [self.proxy webAuthWithParams:[NSMutableDictionary dictionary] block:^(id returnData, BOOL success) {
+        if (success) {
+            [XuUItlity showSucceedHint:@"授权成功" completionBlock:^{
+                [self dismissViewControllerAnimated:YES completion:nil];
+            }];
+        }
+        else{
+            [XuUItlity showFailedHint:@"授权失败" completionBlock:nil];
+        }
+    }];
 }
 
 - (void)addBackButtonOnRootWithTarget:(id)target action:(SEL)action btnText:(NSString *)btnText
@@ -85,7 +100,15 @@
 -(void)closeAction:(UIButton *)btn
 {
     [self dismissViewControllerAnimated:YES completion:nil];
+}
 
+#pragma -mark ---getter---
+
+-(HomePageProxy *)proxy{
+    if (!_proxy) {
+        _proxy = [[HomePageProxy alloc] init];
+    }
+    return _proxy;
 }
 
 /*

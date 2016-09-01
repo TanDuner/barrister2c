@@ -39,4 +39,14 @@
  */
 -(void)getOnlineServiceListWithParams:(NSDictionary *)params Block:(ServiceCallBlock)aBlock;
 
+
+
+/**
+ *  web授权接口
+ *
+ *  @param params
+ *  @param aBlock
+ */
+-(void)webAuthWithParams:(NSMutableDictionary *)params block:(ServiceCallBlock)aBlock;
+
 @end

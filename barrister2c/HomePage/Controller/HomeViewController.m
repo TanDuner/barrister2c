@@ -99,6 +99,7 @@
     if (self.areaItems.count == 0 || self.typeItems.count == 0) {
         [self loadCommonOtherData];
     }
+    
     [[XuPushManager shareInstance] handleUnActiveMsg];
 
     

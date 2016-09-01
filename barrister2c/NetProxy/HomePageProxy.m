@@ -11,6 +11,8 @@
 #define HomePageDataUrl @"appHome.do"
 #define GetSwitchUrl @"getLatestVersion.do"
 #define GetOnlineSerListUrl @"onlineBizUserList.do"
+#define WebAuthUrl @"webAuth.do"
+
 
 @implementation HomePageProxy
 
@@ -84,6 +86,29 @@
     }];
     
 }
+
+/**
+ *  web授权接口
+ *
+ *  @param params
+ *  @param aBlock
+ */
+-(void)webAuthWithParams:(NSMutableDictionary *)params block:(ServiceCallBlock)aBlock
+{
+    [self appendCommonParamsWithDict:params];
+    [XuNetWorking postWithUrl:WebAuthUrl params:params success:^(id response) {
+        if (aBlock) {
+            aBlock(response,YES);
+        }
+    } fail:^(NSError *error) {
+        if (aBlock) {
+            aBlock(error,YES);
+        }
+    }];
+    
+}
+
+
 
 
 @end
