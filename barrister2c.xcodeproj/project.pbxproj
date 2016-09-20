@@ -365,6 +365,8 @@
 		95CA1E031D10F9EA00AAE490 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 95CA1E021D10F9EA00AAE490 /* libsqlite3.tbd */; };
 		95CA1E051D10F9F500AAE490 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 95CA1E041D10F9F500AAE490 /* libz.tbd */; };
 		95CA1E081D123F6A00AAE490 /* FindNetProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 95CA1E071D123F6A00AAE490 /* FindNetProxy.m */; };
+		95E675401D9181DE007B57A2 /* Me_help@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 95E6753E1D9181DE007B57A2 /* Me_help@2x.png */; };
+		95E675411D9181DE007B57A2 /* Me_help@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 95E6753F1D9181DE007B57A2 /* Me_help@3x.png */; };
 		95E9CAF11D695F9200B84B7C /* OnlineServiceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E9CAF01D695F9200B84B7C /* OnlineServiceCell.m */; };
 		95E9CAF41D69A5B800B84B7C /* OnlineWaitPayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E9CAF31D69A5B800B84B7C /* OnlineWaitPayCell.m */; };
 		95EBA9981D35453E0041A647 /* ESVoiceDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 95EBA9971D35453E0041A647 /* ESVoiceDownloader.m */; };
@@ -979,6 +981,8 @@
 		95CA1E041D10F9F500AAE490 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		95CA1E061D123F6A00AAE490 /* FindNetProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FindNetProxy.h; sourceTree = "<group>"; };
 		95CA1E071D123F6A00AAE490 /* FindNetProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FindNetProxy.m; sourceTree = "<group>"; };
+		95E6753E1D9181DE007B57A2 /* Me_help@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Me_help@2x.png"; sourceTree = "<group>"; };
+		95E6753F1D9181DE007B57A2 /* Me_help@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Me_help@3x.png"; sourceTree = "<group>"; };
 		95E9CAEF1D695F9200B84B7C /* OnlineServiceCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnlineServiceCell.h; sourceTree = "<group>"; };
 		95E9CAF01D695F9200B84B7C /* OnlineServiceCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnlineServiceCell.m; sourceTree = "<group>"; };
 		95E9CAF21D69A5B800B84B7C /* OnlineWaitPayCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnlineWaitPayCell.h; sourceTree = "<group>"; };
@@ -1698,6 +1702,8 @@
 		95CA1BFC1D10F77400AAE490 /* PersonCenter */ = {
 			isa = PBXGroup;
 			children = (
+				95E6753E1D9181DE007B57A2 /* Me_help@2x.png */,
+				95E6753F1D9181DE007B57A2 /* Me_help@3x.png */,
 				9529CC941D2EA54B0067597A /* weixin@2x.png */,
 				9529CC951D2EA54B0067597A /* weixin@3x.png */,
 				9529CC961D2EA54B0067597A /* zhifubao@2x.png */,
@@ -2738,6 +2744,7 @@
 				95CA1DCD1D10F8F800AAE490 /* Tab01Highlighted@3x.png in Resources */,
 				9529CCB91D30CA7D0067597A /* commom_arrow_more@2x.png in Resources */,
 				9529CC9F1D2EADF60067597A /* icon_recharge@3x.png in Resources */,
+				95E675411D9181DE007B57A2 /* Me_help@3x.png in Resources */,
 				9597CBDA1D503DF70049CF24 /* lawer_search@2x.png in Resources */,
 				9529CCE11D30F7D10067597A /* icon_bank_gd.png in Resources */,
 				958EEBF41D282D7300D4CF4C /* Me_setting@3x.png in Resources */,
@@ -2751,6 +2758,7 @@
 				9529CCE91D30F7D10067597A /* icon_bank_pf.png in Resources */,
 				955A7AEA1D1D7A3100D1DEAC /* unSelectedable@2x.png in Resources */,
 				95CA1DD81D10F8F800AAE490 /* Tab04Highlighted@2x.png in Resources */,
+				95E675401D9181DE007B57A2 /* Me_help@2x.png in Resources */,
 				95CA1DD21D10F8F800AAE490 /* Tab02Normal@2x.png in Resources */,
 				958EEBB11D27790A00D4CF4C /* guide_1@2x.png in Resources */,
 				9529CCFC1D3152E40067597A /* Images.xcassets in Resources */,
