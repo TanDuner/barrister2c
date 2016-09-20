@@ -115,7 +115,7 @@
     PersonCenterModel *model4 = [[PersonCenterModel alloc] init];
     model4.titleStr = @"我要求助";
     model4.cellType = PersonCenterModelTypeQiuZhu;
-    model4.iconNameStr = @"Me_message";
+    model4.iconNameStr = @"Me_help";
     model4.isShowArrow = YES;
     
     

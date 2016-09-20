@@ -193,6 +193,7 @@
     OnlineServiceCell *cell = [tableView dequeueReusableCellWithIdentifier:identif];
     if (!cell) {
         cell = [[OnlineServiceCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identif];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     
     OnlineServiceListModel *modelTemp = [self.items safeObjectAtIndex:indexPath.row];

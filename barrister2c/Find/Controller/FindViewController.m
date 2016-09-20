@@ -18,7 +18,7 @@
 #import "BarristerLoginManager.h"
 #define ImageWidth 28
 
-#define LawButtonWidth 50
+#define LawButtonWidth 45
 #define LawLeftPadding 17.5
 #define LawTopPadding 17.5 + 45
 #define LawHorSpacing (SCREENWIDTH - LawLeftPadding *2 - LawButtonWidth *4)/3
