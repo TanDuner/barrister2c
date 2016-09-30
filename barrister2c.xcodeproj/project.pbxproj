@@ -981,6 +981,7 @@
 		95CA1E041D10F9F500AAE490 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		95CA1E061D123F6A00AAE490 /* FindNetProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FindNetProxy.h; sourceTree = "<group>"; };
 		95CA1E071D123F6A00AAE490 /* FindNetProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FindNetProxy.m; sourceTree = "<group>"; };
+		95DFBF011D9E0968009543E9 /* barrister2c.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = barrister2c.entitlements; sourceTree = "<group>"; };
 		95E6753E1D9181DE007B57A2 /* Me_help@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Me_help@2x.png"; sourceTree = "<group>"; };
 		95E6753F1D9181DE007B57A2 /* Me_help@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Me_help@3x.png"; sourceTree = "<group>"; };
 		95E9CAEF1D695F9200B84B7C /* OnlineServiceCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnlineServiceCell.h; sourceTree = "<group>"; };
@@ -1377,6 +1378,7 @@
 		95CA1BD01D10F03900AAE490 /* barrister2c */ = {
 			isa = PBXGroup;
 			children = (
+				95DFBF011D9E0968009543E9 /* barrister2c.entitlements */,
 				95EBAA151D35DACA0041A647 /* AlipaySDK */,
 				9529CC841D2E3FDC0067597A /* WeChatPay */,
 				9529CC6C1D2E28600067597A /* JPush */,
@@ -2648,6 +2650,14 @@
 					95CA1BCD1D10F03900AAE490 = {
 						CreatedOnToolsVersion = 7.2;
 						DevelopmentTeam = 7U34CFE9VJ;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+							com.apple.Siri = {
+								enabled = 0;
+							};
+						};
 					};
 				};
 			};
@@ -3195,6 +3205,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = barrister2c/barrister2c.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer: yaqian zhao (28UDM3V4JW)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -3236,6 +3247,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = barrister2c/barrister2c.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer: yaqian zhao (28UDM3V4JW)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (

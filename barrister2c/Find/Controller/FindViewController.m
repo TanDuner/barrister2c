@@ -113,6 +113,10 @@ typedef void(^ClickZXItemBlock)(ZXItemView *itemView);
 @end
 
 
+#define ItemWidth (SCREENWIDTH - 1)/2.0
+#define ItemHeight 78
+
+
 @interface FindViewController ()
 
 @property (nonatomic,strong) UIView *topSelectView;
@@ -120,12 +124,16 @@ typedef void(^ClickZXItemBlock)(ZXItemView *itemView);
 
 @property (nonatomic,strong) ZXItemView *LeftItem;
 @property (nonatomic,strong) ZXItemView *rightItem;
+@property (nonatomic,strong) ZXItemView *expertItem;
+
 
 @property (nonatomic,strong) FindNetProxy *proxy;
 
 @property (nonatomic,strong) NSMutableArray *urlArray;
 
 @property (nonatomic,strong) NSMutableArray *titleArray;
+
+@property (nonatomic,strong) UIScrollView *bottomScrollView;
 
 @end
 
@@ -151,6 +159,12 @@ typedef void(^ClickZXItemBlock)(ZXItemView *itemView);
 #pragma -mark --UI--
 -(void)configView
 {
+    
+    self.bottomScrollView = [[UIScrollView alloc] initWithFrame:RECT(0, 0, SCREENWIDTH, SCREENHEIGHT  - TABBAR_HEIGHT)];
+    [self.view addSubview:self.bottomScrollView];
+    
+    
+    
     [self configTopView];
     [self configBottomView];
 
@@ -158,12 +172,12 @@ typedef void(^ClickZXItemBlock)(ZXItemView *itemView);
 
 -(void)configTopView
 {
-    [self.view addSubview:self.topSelectView];
+    [self.bottomScrollView addSubview:self.topSelectView];
 }
 
 -(void)configBottomView
 {
-    [self.view addSubview:self.bottomCategoryView];
+    [self.bottomScrollView addSubview:self.bottomCategoryView];
 }
 
 
@@ -233,7 +247,8 @@ typedef void(^ClickZXItemBlock)(ZXItemView *itemView);
     }
     
     
-    [self.bottomCategoryView setFrame:RECT(0, 78 + 10, SCREENWIDTH, 10 + ceil(array.count/4) * (LawTopPadding + LawButtonWidth))];
+    [self.bottomCategoryView setFrame:RECT(0, ItemHeight *3 + 10, SCREENWIDTH, 10 + ceil(array.count/4) * (LawTopPadding + LawButtonWidth))];
+    [self.bottomScrollView setContentSize:CGSizeMake(0, self.topSelectView.height + self.bottomCategoryView.height + 15)];
 
 
 }
@@ -287,14 +302,13 @@ typedef void(^ClickZXItemBlock)(ZXItemView *itemView);
     return _urlArray;
 }
 
-#define ItemWidth (SCREENWIDTH - 1)/2.0
-#define ItemHeight 78
 
 -(UIView *)topSelectView
 {
     if (!_topSelectView) {
-        _topSelectView = [[UIView alloc] initWithFrame:RECT(0, 0, SCREENWIDTH, ItemHeight + 10)];
-        _LeftItem = [[ZXItemView alloc] initWithFrame:RECT(0, 0, ItemWidth, ItemHeight)];
+        _topSelectView = [[UIView alloc] initWithFrame:RECT(0, 0, SCREENWIDTH, 3 *ItemHeight + 10 + 2)];
+        
+        _LeftItem = [[ZXItemView alloc] initWithFrame:RECT(0, 0, SCREENWIDTH, ItemHeight)];
         _LeftItem.leftImageView.image = [UIImage imageNamed:@"JSZX"];
         _LeftItem.titleLabel.text = @"即时咨询";
         _LeftItem.subtitleLabel.text = @"立即与律师沟通";
@@ -304,11 +318,11 @@ typedef void(^ClickZXItemBlock)(ZXItemView *itemView);
             [weakSelf toLawerListWithType:@"IM"];
         };
         
-        UIView *sepView = [[UIView alloc] initWithFrame:RECT(ItemWidth, 0, 1, ItemHeight)];
+        UIView *sepView = [[UIView alloc] initWithFrame:RECT(0, ItemHeight + .5, SCREENWIDTH, .5)];
         sepView.backgroundColor = RGBCOLOR(204, 205, 206);
         
         
-        _rightItem = [[ZXItemView alloc] initWithFrame:RECT(ItemWidth + 1, 0, ItemWidth, ItemHeight)];
+        _rightItem = [[ZXItemView alloc] initWithFrame:RECT(0 , ItemHeight + 1, SCREENWIDTH, ItemHeight)];
         _rightItem.leftImageView.image = [UIImage imageNamed:@"YYZX"];
         _rightItem.titleLabel.text = @"预约咨询";
         _rightItem.subtitleLabel.text = @"约定时间与律师沟通";
@@ -317,12 +331,31 @@ typedef void(^ClickZXItemBlock)(ZXItemView *itemView);
             [weakSelf toLawerListWithType:@"APPOINTMENT"];
         };
         
-        UIView *horSpeView = [[UIView alloc] initWithFrame:RECT(0, ItemHeight, SCREENWIDTH, 10)];
+        
+        _expertItem = [[ZXItemView alloc] initWithFrame:RECT(0 , 2 *ItemHeight + 2, SCREENWIDTH, ItemHeight)];
+        _expertItem.leftImageView.image = [UIImage imageNamed:@"YYZX"];
+        _expertItem.titleLabel.text = @"专家咨询";
+        _expertItem.subtitleLabel.text = @"名家咨询更给力";
+        _expertItem.block = ^(ZXItemView *itemView)
+        {
+            [weakSelf toLawerListWithType:@"EXPERT"];
+        };
+        
+        UIView *sepView2 = [[UIView alloc] initWithFrame:RECT(0, ItemHeight *2 + 1, SCREENWIDTH, .5)];
+        sepView2.backgroundColor = RGBCOLOR(204, 205, 206);
+
+        
+        
+        UIView *horSpeView = [[UIView alloc] initWithFrame:RECT(0, ItemHeight *3 + 2, SCREENWIDTH, 10)];
         horSpeView.backgroundColor = RGBCOLOR(239, 239, 246);
         
         [_topSelectView addSubview:_LeftItem];
         [_topSelectView addSubview:sepView];
         [_topSelectView addSubview:_rightItem];
+        [_topSelectView addSubview:sepView2];
+        
+        [_topSelectView addSubview:_expertItem];
+        
         [_topSelectView addSubview:horSpeView];
         
         _topSelectView.backgroundColor =[UIColor whiteColor];
@@ -335,7 +368,7 @@ typedef void(^ClickZXItemBlock)(ZXItemView *itemView);
 -(UIView *)bottomCategoryView
 {
     if (!_bottomCategoryView) {
-        _bottomCategoryView = [[UIView alloc] initWithFrame:RECT(0, ItemHeight + 10, SCREENWIDTH, 1000)];
+        _bottomCategoryView = [[UIView alloc] initWithFrame:RECT(0, ItemHeight *3 + 10 + 2, SCREENWIDTH, 0)];
         _bottomCategoryView.backgroundColor = [UIColor whiteColor];
         
         UILabel *tipLabel = [[UILabel alloc] initWithFrame:RECT(LeftPadding, 15, 200, 15)];
@@ -367,6 +400,10 @@ typedef void(^ClickZXItemBlock)(ZXItemView *itemView);
 
 -(void)toLawerListWithType:(NSString *)type
 {
+    if ([type isEqualToString:@"EXPERT"]) {
+        
+        return;
+    }
     LawerListViewController *lawerListVC = [[LawerListViewController alloc] init];
     lawerListVC.type = type;
     [self.navigationController pushViewController:lawerListVC animated:YES];
