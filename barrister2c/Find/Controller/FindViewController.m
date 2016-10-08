@@ -400,10 +400,6 @@ typedef void(^ClickZXItemBlock)(ZXItemView *itemView);
 
 -(void)toLawerListWithType:(NSString *)type
 {
-    if ([type isEqualToString:@"EXPERT"]) {
-        
-        return;
-    }
     LawerListViewController *lawerListVC = [[LawerListViewController alloc] init];
     lawerListVC.type = type;
     [self.navigationController pushViewController:lawerListVC animated:YES];

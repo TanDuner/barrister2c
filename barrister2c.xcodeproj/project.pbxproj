@@ -149,6 +149,11 @@
 		955A7B2B1D1FAF5500D1DEAC /* YYZX@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 955A7B271D1FAF5500D1DEAC /* YYZX@2x.png */; };
 		955A7B2C1D1FAF5500D1DEAC /* YYZX@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 955A7B281D1FAF5500D1DEAC /* YYZX@3x.png */; };
 		955A7B3E1D1FE11100D1DEAC /* SandboxFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 955A7B3D1D1FE11100D1DEAC /* SandboxFile.m */; };
+		956DA4CA1DA4A1B200A6793A /* LawerExpertCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 956DA4C91DA4A1B200A6793A /* LawerExpertCell.m */; };
+		956DA4CF1DA4A4D600A6793A /* expert_QQ@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 956DA4CB1DA4A4D600A6793A /* expert_QQ@2x.png */; };
+		956DA4D01DA4A4D600A6793A /* expert_QQ@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 956DA4CC1DA4A4D600A6793A /* expert_QQ@3x.png */; };
+		956DA4D11DA4A4D600A6793A /* expert@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 956DA4CD1DA4A4D600A6793A /* expert@2x.png */; };
+		956DA4D21DA4A4D600A6793A /* expert@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 956DA4CE1DA4A4D600A6793A /* expert@3x.png */; };
 		958EEBA91D26B46700D4CF4C /* common_point_loading@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 958EEBA71D26B46700D4CF4C /* common_point_loading@2x.png */; };
 		958EEBAA1D26B46700D4CF4C /* common_point_loading@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 958EEBA81D26B46700D4CF4C /* common_point_loading@3x.png */; };
 		958EEBB11D27790A00D4CF4C /* guide_1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 958EEBAB1D27790A00D4CF4C /* guide_1@2x.png */; };
@@ -606,6 +611,12 @@
 		955A7B281D1FAF5500D1DEAC /* YYZX@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "YYZX@3x.png"; sourceTree = "<group>"; };
 		955A7B3C1D1FE11100D1DEAC /* SandboxFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SandboxFile.h; sourceTree = "<group>"; };
 		955A7B3D1D1FE11100D1DEAC /* SandboxFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SandboxFile.m; sourceTree = "<group>"; };
+		956DA4C81DA4A1B200A6793A /* LawerExpertCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LawerExpertCell.h; sourceTree = "<group>"; };
+		956DA4C91DA4A1B200A6793A /* LawerExpertCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LawerExpertCell.m; sourceTree = "<group>"; };
+		956DA4CB1DA4A4D600A6793A /* expert_QQ@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "expert_QQ@2x.png"; sourceTree = "<group>"; };
+		956DA4CC1DA4A4D600A6793A /* expert_QQ@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "expert_QQ@3x.png"; sourceTree = "<group>"; };
+		956DA4CD1DA4A4D600A6793A /* expert@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "expert@2x.png"; sourceTree = "<group>"; };
+		956DA4CE1DA4A4D600A6793A /* expert@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "expert@3x.png"; sourceTree = "<group>"; };
 		958EEBA71D26B46700D4CF4C /* common_point_loading@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "common_point_loading@2x.png"; sourceTree = "<group>"; };
 		958EEBA81D26B46700D4CF4C /* common_point_loading@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "common_point_loading@3x.png"; sourceTree = "<group>"; };
 		958EEBAB1D27790A00D4CF4C /* guide_1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "guide_1@2x.png"; sourceTree = "<group>"; };
@@ -1665,6 +1676,10 @@
 		95CA1BF91D10F77400AAE490 /* Find */ = {
 			isa = PBXGroup;
 			children = (
+				956DA4CB1DA4A4D600A6793A /* expert_QQ@2x.png */,
+				956DA4CC1DA4A4D600A6793A /* expert_QQ@3x.png */,
+				956DA4CD1DA4A4D600A6793A /* expert@2x.png */,
+				956DA4CE1DA4A4D600A6793A /* expert@3x.png */,
 				9597CBD81D503DF70049CF24 /* lawer_search@2x.png */,
 				9597CBD91D503DF70049CF24 /* lawer_search@3x.png */,
 				958EEBD01D27AC3400D4CF4C /* service@2x.png */,
@@ -2430,6 +2445,8 @@
 			children = (
 				955611451D15A86300366D4C /* LawerListCell.h */,
 				955611461D15A86300366D4C /* LawerListCell.m */,
+				956DA4C81DA4A1B200A6793A /* LawerExpertCell.h */,
+				956DA4C91DA4A1B200A6793A /* LawerExpertCell.m */,
 				955A7AAA1D1AD20D00D1DEAC /* LawerDetailMidCell.h */,
 				955A7AAB1D1AD20D00D1DEAC /* LawerDetailMidCell.m */,
 				955A7AAD1D1B7C9700D1DEAC /* LawerDetailBottomCell.h */,
@@ -2731,6 +2748,7 @@
 				955610F31D14B7B200366D4C /* my-account_cash@2x.png in Resources */,
 				955610F91D14B7B200366D4C /* Selected@3x.png in Resources */,
 				958EEBC51D27A17700D4CF4C /* appointmentService@3x.png in Resources */,
+				956DA4D21DA4A4D600A6793A /* expert@3x.png in Resources */,
 				958EEBEE1D282D7300D4CF4C /* Me_like@3x.png in Resources */,
 				955610F11D14B7B200366D4C /* my-account_card@2x.png in Resources */,
 				950120C01D2B4E5500FE3613 /* orderdetail_call@2x.png in Resources */,
@@ -2743,6 +2761,7 @@
 				9529CCEA1D30F7D10067597A /* icon_bank_xy.png in Resources */,
 				9529CCEB1D30F7D10067597A /* icon_bank_yc.png in Resources */,
 				95CA1DF11D10F91900AAE490 /* navigationbar_back_icon_hl@2x.png in Resources */,
+				956DA4D01DA4A4D600A6793A /* expert_QQ@3x.png in Resources */,
 				958EEBF31D282D7300D4CF4C /* Me_setting@2x.png in Resources */,
 				955A7AEB1D1D7A3100D1DEAC /* unSelectedable@3x.png in Resources */,
 				95CA1BDE1D10F03A00AAE490 /* Assets.xcassets in Resources */,
@@ -2784,6 +2803,7 @@
 				958EEBEB1D282D7300D4CF4C /* Me_Account@2x.png in Resources */,
 				9529CCC71D30E5350067597A /* addBankCard@3x.png in Resources */,
 				958EEBB21D27790A00D4CF4C /* guide_1@3x.png in Resources */,
+				956DA4CF1DA4A4D600A6793A /* expert_QQ@2x.png in Resources */,
 				9529CC981D2EA54B0067597A /* weixin@2x.png in Resources */,
 				9529CCE61D30F7D10067597A /* icon_bank_jt.png in Resources */,
 				95CA1DEC1D10F91900AAE490 /* common_icon_info@3x.png in Resources */,
@@ -2795,6 +2815,7 @@
 				9529CCE41D30F7D10067597A /* icon_bank_hx.png in Resources */,
 				9529CCBA1D30CA7D0067597A /* commom_arrow_more@3x.png in Resources */,
 				955A7B231D1FAD7700D1DEAC /* typeFlag@2x.png in Resources */,
+				956DA4D11DA4A4D600A6793A /* expert@2x.png in Resources */,
 				958EEBAA1D26B46700D4CF4C /* common_point_loading@3x.png in Resources */,
 				958EEBD21D27AC3400D4CF4C /* service@2x.png in Resources */,
 				9529CCCD1D30E5350067597A /* unagree@3x.png in Resources */,
@@ -2912,6 +2933,7 @@
 				95CA1C681D10F7B700AAE490 /* XuAlertView.m in Sources */,
 				955A7AAC1D1AD20D00D1DEAC /* LawerDetailMidCell.m in Sources */,
 				95CA1C2E1D10F7A500AAE490 /* BarristerOrderModel.m in Sources */,
+				956DA4CA1DA4A1B200A6793A /* LawerExpertCell.m in Sources */,
 				95CA1D291D10F7C900AAE490 /* MJRefreshBackStateFooter.m in Sources */,
 				95CA1C0D1D10F77F00AAE490 /* MeNetProxy.m in Sources */,
 				955610D21D14B6C000366D4C /* MyMessageModel.m in Sources */,

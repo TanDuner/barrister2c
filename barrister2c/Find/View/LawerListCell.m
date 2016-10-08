@@ -20,6 +20,8 @@
 
 @property (nonatomic,strong) UILabel *yearsLabel;
 
+@property (nonatomic,strong) UILabel *isExpertLabel;
+
 @property (nonatomic,strong) UILabel *areaLabel;
 
 @property (nonatomic,strong) UILabel *companyLabel;
@@ -38,6 +40,7 @@
         [self addSubview:self.headImageView];
         [self addSubview:self.nameLabel];
         [self addSubview:self.yearsLabel];
+        [self addSubview:self.isExpertLabel];
         [self addSubview:self.areaLabel];
         [self addSubview:self.companyLabel];
         [self addSubview:self.goodAtLabel];
@@ -61,6 +64,8 @@
 -(void)layoutSubviews{
     [super layoutSubviews];
     
+    self.model.isExpert = @"1";
+    
     [self.headImageView setFrame:RECT(LeftPadding, 20, ImageWidth, ImageWidth)];
     
     CGFloat nameWidth = [XuUtlity textWidthWithStirng:self.model.name?self.model.name:@"  " ShowFont:SystemFont(15.0f) sizeHeight:13];
@@ -69,6 +74,17 @@
     
     [self.yearsLabel setFrame:RECT(self.nameLabel.x + self.nameLabel.width + 5, self.nameLabel.y, 30, 13)];
     [self.yearsLabel setText:[NSString stringWithFormat:@"%@年",self.model.workYears?self.model.workYears:@"1"]];
+    
+    if ([self.model.isExpert isEqualToString:@"1"]) {
+        self.isExpertLabel.hidden = NO;
+        [self.isExpertLabel setFrame:RECT(CGRectGetMaxX(self.yearsLabel.frame) + 5, self.yearsLabel.frame.origin.y, 35, 13)];
+    }
+    else
+    {
+        self.isExpertLabel.hidden = YES;
+    }
+    
+    
     
     [self.areaLabel setFrame:RECT(self.nameLabel.x, self.nameLabel.y + self.nameLabel.height + 6, 240, 12)];
     self.areaLabel.text = self.model.area;
@@ -151,6 +167,21 @@
         _yearsLabel.textAlignment = NSTextAlignmentCenter;
     }
     return _yearsLabel;
+}
+
+-(UILabel *)isExpertLabel
+{
+    if (!_isExpertLabel) {
+        _isExpertLabel = [[UILabel alloc] init];
+        _isExpertLabel.textColor = [UIColor whiteColor];
+        _isExpertLabel.layer.cornerRadius = 5;
+        _isExpertLabel.backgroundColor = kNavigationBarColor;
+        _isExpertLabel.text = @"专家";
+        _isExpertLabel.font = SystemFont(12.0f);
+        _isExpertLabel.textAlignment = NSTextAlignmentCenter;
+        _isExpertLabel.layer.masksToBounds = YES;
+    }
+    return _isExpertLabel;
 }
 
 -(UILabel *)areaLabel

@@ -14,7 +14,7 @@
 #import "BussinessAreaModel.h"
 #import "BussinessTypeModel.h"
 #import "LawerSearchViewController.h"
-
+#import "BaseWebViewController.h"
 
 @interface LawerListViewController ()<UITableViewDataSource,UITableViewDelegate,IMPullDownMenuDelegate,RefreshTableViewDelegate>
 
@@ -32,9 +32,6 @@
 
 @property (nonatomic,strong) NSString *city;
 
-//@property (nonatomic,strong) BussinessAreaModel *bussinessAreaModel;
-//
-//@property (nonatomic,strong) BussinessTypeModel *bussinessTypeModel;
 
 @property (nonatomic,strong) NSString *year;
 
@@ -68,7 +65,18 @@
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     if (self.type) {
         [params setObject:self.type forKey:@"type"];
+        
+        if ([self.type isEqualToString:@"IM"]) {
+            [params setObject:@"0" forKey:@"isExpert"];
+        }
+        else if ([self.type isEqualToString:@"EXPERT"])
+        {
+            [params setObject:@"1" forKey:@"isExpert"];
+        }
     }
+    
+  
+    
     if (self.bussinessAreaModel) {
         [params setObject:self.bussinessAreaModel.areaId forKey:@"caseType"];
     }
@@ -218,6 +226,7 @@
 {
     self.title = @"律师列表";
     
+    
     self.pullDownMenu = [[IMPullDownMenu alloc] initWithArray:@[] frame:CGRectMake(0, 0, SCREENWIDTH, 44) viewController:self];
     self.pullDownMenu.backgroundColor = [UIColor whiteColor];
     self.pullDownMenu.delegate = self;
@@ -230,8 +239,21 @@
     [backBtn setFrame:CGRectMake(0, 0, 50, 30)];
     [backBtn setImageEdgeInsets:UIEdgeInsetsMake(2, 30, 0, 0)];
 
+    UIBarButtonItem *space = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:self action:@selector(toTipViewController)];
+    space.width = -10;
+    
+    
+    UIButton * tipBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [tipBtn setTitle:@"说明" forState:UIControlStateNormal];
+    tipBtn.titleLabel.font = SystemFont(16.0f);
+    [tipBtn setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
+    [tipBtn addTarget:self action:@selector(toTipViewController) forControlEvents:UIControlEventTouchUpInside];
+    [tipBtn setFrame:CGRectMake(0, 0, 30, 30)];
+
+    
     UIBarButtonItem * backBar = [[UIBarButtonItem alloc] initWithCustomView:backBtn];
-    self.navigationItem.rightBarButtonItem = backBar;
+    UIBarButtonItem * tipBar = [[UIBarButtonItem alloc] initWithCustomView:tipBtn];
+    self.navigationItem.rightBarButtonItems = @[space,backBar,tipBar];
     
     [self.view addSubview:self.tableView];
     
@@ -388,6 +410,15 @@
 
     [self.navigationController pushViewController:detailVC animated:YES];
 }
+
+-(void)toTipViewController
+{
+    BaseWebViewController *tipVC = [[BaseWebViewController alloc] init];
+    tipVC.showTitle = @"专家咨询说明";
+    tipVC.url = @"http://www.dls.com.cn/art/waplist.asp?id=683";
+    [self.navigationController pushViewController:tipVC animated:YES];
+}
+
 
 #pragma -mark ---Getter----
 

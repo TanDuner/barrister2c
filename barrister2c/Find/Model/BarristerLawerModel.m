@@ -77,6 +77,9 @@
         self.showAllIntroduceViewHeight = 35 + 12 + 15 + 52;
         self.showIntroduceViewHeight = 35 + 12 + 15 + 52;
     }
+    
+    NSString *str = [NSString stringWithFormat:@"%@",[dict objectForKey:@"isExpert"]];
+    self.isExpert = [NSString stringWithFormat:@"%@",str];
  
 }
 

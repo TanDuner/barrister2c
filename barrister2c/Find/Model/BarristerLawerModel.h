@@ -79,5 +79,13 @@
 @property (nonatomic,strong) NSMutableArray *bizTypeList;
 
 
+//是否是专家  0不是 1 是
+@property (nonatomic,strong) NSString *isExpert;
+
+//扣扣
+@property (nonatomic,strong) NSString *secretaryQQ;
+
+//电话
+@property (nonatomic,strong) NSString *secretaryPhone;
 
 @end

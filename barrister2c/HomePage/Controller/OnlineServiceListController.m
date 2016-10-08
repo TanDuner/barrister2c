@@ -12,6 +12,7 @@
 #import "OnlineServiceListModel.h"
 #import "OnlineServiceCell.h"
 #import "BarristerLoginManager.h"
+#import "BaseWebViewController.h"
 
 @interface OnlineServiceListController ()<RefreshTableViewDelegate,UITableViewDataSource,UITableViewDelegate>
 
@@ -137,6 +138,8 @@
 -(void)configView
 {
     self.title = @"线上专项服务";
+    [self initNavigationRightTextButton:@"说明" action:@selector(toTipViewController)];
+    
     self.tableView = [[RefreshTableView alloc] initWithFrame:RECT(0, 0, SCREENWIDTH, SCREENHEIGHT - NAVBAR_DEFAULT_HEIGHT) style:UITableViewStylePlain];
     [self.tableView setFootLoadMoreControl];
     self.tableView.pageSize = 10;
@@ -146,6 +149,15 @@
     self.tableView.dataSource = self;
     [self.view addSubview:self.tableView];
     
+}
+
+#pragma -mark --
+-(void)toTipViewController
+{
+    BaseWebViewController *tipVC = [[BaseWebViewController alloc] init];
+    tipVC.showTitle = @"专家咨询说明";
+    tipVC.url = @"http://www.dls.com.cn/art/waplist.asp?id=682";
+    [self.navigationController pushViewController:tipVC animated:YES];
 }
 
 #pragma -mark ---RefreshDelegate Methods ----

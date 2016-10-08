@@ -13,7 +13,7 @@
 @interface LawerListViewController : BaseViewController
 
 /**
- *  请求的type 是预约还是即时
+ *  请求的type 是预约还是即时  IM  APPOINTMENT  EXPERT
  */
 @property (nonatomic,strong) NSString *type;
 

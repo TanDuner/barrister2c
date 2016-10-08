@@ -17,6 +17,8 @@
 #import "XuAlertView.h"
 #import "MyAccountRechargeVC.h"
 #import "BarristerLoginManager.h"
+#import "LawerExpertCell.h"
+#import "BaseWebViewController.h"
 
 typedef void(^ShowTimeSelectBlock)(id object);
 
@@ -83,7 +85,7 @@ typedef void(^ShowTimeSelectBlock)(id object);
 {
     NSDictionary *laywerDict = [dict objectForKey:@"detail"];
     self.model = [[BarristerLawerModel alloc] initWithDictionary:laywerDict];
-    
+
     [self.tableView reloadData];
 }
 
@@ -292,7 +294,7 @@ typedef void(^ShowTimeSelectBlock)(id object);
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    if (![BaseDataSingleton shareInstance].loginState.integerValue  == 1) {
+    if ([BaseDataSingleton shareInstance].loginState.integerValue != 1) {
         [[BarristerLoginManager shareManager] showLoginViewControllerWithController:self];
         return;
     }
@@ -325,12 +327,62 @@ typedef void(^ShowTimeSelectBlock)(id object);
 
         }
     }
+    else if (indexPath.section == 2)
+    {
+        if (indexPath.row == 0) {
+            [self QQChatAciton];
+        }
+        else if (indexPath.row == 1)
+        {
+            [self PhoneAction];
+        }
+    }
+    
+}
+
+-(void)PhoneAction
+{
+    if ([[BaseDataSingleton shareInstance].loginState isEqualToString:@"1"]) {
+        NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"telprompt://%@",self.model.secretaryPhone];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
+    }
+    else
+    {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"NeedLoginNotificaiton" object:nil];
+    }
+    
+    
+    
+}
+
+-(void)QQChatAciton
+{
+    if ([[BaseDataSingleton shareInstance].loginState isEqualToString:@"1"]) {
+        if([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"mqq://"]])
+        {
+            //用来接收临时消息的客服QQ号码(注意此QQ号需开通QQ推广功能,否则陌生人向他发送消息会失败)
+            NSString *QQ = self.model.secretaryQQ;
+            //调用QQ客户端,发起QQ临时会话
+            NSString *url = [NSString stringWithFormat:@"mqq://im/chat?chat_type=wpa&uin=%@&version=1&src_type=web",QQ];
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
+        }
+        
+    }
+    else
+    {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"NeedLoginNotificaiton" object:nil];
+    }
+    
     
 }
 
 
+
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
+    if ([self.model.isExpert isEqualToString:@"1"]) {
+        return 3;
+    }
     return 2;
 }
 
@@ -347,11 +399,60 @@ typedef void(^ShowTimeSelectBlock)(id object);
         }
         return 1;
     }
+    else if (section == 2)
+    {
+        return 2;
+    }
     else
     {
         return 0;
     }
 }
+
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    if (section == 1) {
+        return 20;
+    }
+    else if (section == 2)
+    {
+        return 20;
+    }
+    else{
+        return 0;
+    }
+}
+
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    if (section == 1) {
+        UIView *view = [[UIView alloc] initWithFrame:RECT(0, 0, SCREENWIDTH, 20)];
+        view.backgroundColor = kBaseViewBackgroundColor;
+        UILabel *label = [[UILabel alloc] initWithFrame:RECT(10, 5, 200, 13.5)];
+        label.text = @"律师服务";
+        label.textColor = KColorGray666;
+        label.textAlignment = NSTextAlignmentLeft;
+        label.font = SystemFont(13.0f);
+        [view addSubview:label];
+        return view;
+    }
+    else if (section == 2)
+    {
+        UIView *view = [[UIView alloc] initWithFrame:RECT(0, 0, SCREENWIDTH, 20)];
+        view.backgroundColor = kBaseViewBackgroundColor;
+        UILabel *label = [[UILabel alloc] initWithFrame:RECT(10, 5, 200, 13.5)];
+        label.text = @"专家小秘书";
+        label.textColor = KColorGray666;
+        label.textAlignment = NSTextAlignmentLeft;
+        label.font = SystemFont(13.0f);
+        [view addSubview:label];
+        return view;
+    }
+    else{
+        return nil;
+    }
+}
+
 
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -367,6 +468,10 @@ typedef void(^ShowTimeSelectBlock)(id object);
 
     }
     else if (indexPath.section == 1)
+    {
+        return 60;
+    }
+    else if (indexPath.section == 2)
     {
         return 60;
     }
@@ -436,11 +541,48 @@ typedef void(^ShowTimeSelectBlock)(id object);
         }
 
     }
+    else if (indexPath.section == 2)
+    {
+        if (indexPath.row == 0) {
+            LawerExpertCell *cell = [[LawerExpertCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
+            UIImageView *leftImage = [[UIImageView alloc] initWithFrame:RECT(10, 10, 40, 40)];
+            leftImage.image = [UIImage imageNamed:@"expert_QQ.png"];
+            [cell addSubview:leftImage];
+            UILabel *label =[[UILabel alloc] initWithFrame:RECT(CGRectGetMaxX(leftImage.frame) + 10, (60 - 13)/2.0, 200, 13)];
+            label.textAlignment = NSTextAlignmentLeft;
+            label.font = SystemFont(13.0f);
+            label.text = self.model.secretaryQQ;
+            label.textColor = KColorGray333;
+            [cell addSubview:label];
+            
+           [cell addSubview:[self getLineViewWithFrame:RECT(0, 59.5, SCREENWIDTH, .5)]];
+            
+            return cell;
+            
+        }
+        else{
+            LawerExpertCell *cell = [[LawerExpertCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
+            UIImageView *leftImage = [[UIImageView alloc] initWithFrame:RECT(10, 10, 40, 40)];
+            leftImage.image = [UIImage imageNamed:@"expert.png"];
+            [cell addSubview:leftImage];
+            
+            UILabel *label =[[UILabel alloc] initWithFrame:RECT(CGRectGetMaxX(leftImage.frame) + 10, (60 - 13)/2.0, 200, 13)];
+            label.textAlignment = NSTextAlignmentLeft;
+            label.textColor = KColorGray333;
+            label.font = SystemFont(13.0f);
+            label.text = self.model.secretaryPhone;
+            [cell addSubview:label];
+            [cell addSubview:[self getLineViewWithFrame:RECT(0, 59.5, SCREENWIDTH, .5)]];
+            return cell;
+
+        }
+    }
     else
     {
         return [UITableViewCell new];
     }
 }
+
 
 #pragma -mark ---Getter---
 
