@@ -85,13 +85,11 @@
 //    self.rechargeNumTextField.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
 
     self.rechargeNumTextField = [[XWMoneyTextField alloc] initWithFrame:RECT(LeftPadding, tipLabel.y + tipLabel.height + 10, SCREENWIDTH  -LeftPadding - LeftPadding, 44)];
-    self.rechargeNumTextField.borderStyle = UITextBorderStyleRoundedRect;
     self.rechargeNumTextField.placeholder = @"请输入金额";
     self.rechargeNumTextField.keyboardType = UIKeyboardTypeDecimalPad;
     self.rechargeNumTextField.limit.delegate = self;
     self.rechargeNumTextField.limit.max = @"999999.99";
     [self.view addSubview:self.rechargeNumTextField];
-
     
     
     

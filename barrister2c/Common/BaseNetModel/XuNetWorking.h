@@ -8,6 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
+#import "AFHTTPSessionManager.h"
+
+
 /*!
  *
  *  下载进度
@@ -74,6 +77,9 @@ typedef void(^XuResponseFail)(NSError *error);
  *  @note 这里只提供公共api
  */
 @interface XuNetWorking : NSObject
+
+
++ (AFHTTPSessionManager *)manager;
 
 /*!
  *

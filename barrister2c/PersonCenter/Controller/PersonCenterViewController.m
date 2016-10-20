@@ -18,7 +18,8 @@
 #import "MyOrderListViewController.h"
 #import "BarristerLoginManager.h"
 #import "NeedHelpViewController.h"
-
+#import "MyUploadYingShowViewController.h"
+#import "MyBuyYingShowViewController.h"
 
 
 @implementation PersonCenterViewController
@@ -91,7 +92,7 @@
     
     PersonCenterModel *model = [[PersonCenterModel alloc] init];
     model.titleStr = @"我的收藏";
-    model.cellType = PersonCenterModelTypeSZ;
+    model.cellType = PersonCenterModelTypeSC;
     model.iconNameStr = @"Me_like";
     model.isShowArrow = YES;
 
@@ -117,6 +118,20 @@
     model4.cellType = PersonCenterModelTypeQiuZhu;
     model4.iconNameStr = @"Me_help";
     model4.isShowArrow = YES;
+ 
+    
+    
+    PersonCenterModel *model7 = [[PersonCenterModel alloc] init];
+    model7.titleStr = @"我上传的债权债务信息";
+    model7.cellType = PersonCenterModelTypeYSSC;
+    model7.iconNameStr = @"Me_help";
+    model7.isShowArrow = YES;
+    
+    PersonCenterModel *model8 = [[PersonCenterModel alloc] init];
+    model8.titleStr = @"我购买的债权债务信息";
+    model8.cellType = PersonCenterModelTypeYSGM;
+    model8.iconNameStr = @"Me_help";
+    model8.isShowArrow = YES;
     
     
     PersonCenterModel *model6 = [[PersonCenterModel alloc] init];
@@ -131,7 +146,6 @@
     [self.items addObject:model1];
     [self.items addObject:model];
     [self.items addObject:model5];
-
     
     if ([BaseDataSingleton shareInstance].isClosePay) {
         
@@ -149,8 +163,15 @@
     
     [self.items addObject:model3];
     [self.items addObject:model4];
+    [self.items addObject:model7];
+    [self.items addObject:model8];
+
+    
     
     [self.items addObject:model6];
+    
+    
+
 }
 
 
@@ -184,9 +205,9 @@
     else if (section == 1)
     {
         if ([BaseDataSingleton shareInstance].isClosePay) {
-            return 4;
+            return 6;
         }
-        return 5;
+        return 7;
     }
     else
     {
@@ -268,7 +289,7 @@
     
     if (indexPath.section == 0) {
         
-        if (![BaseDataSingleton shareInstance].loginState.integerValue  == 1) {
+        if ([BaseDataSingleton shareInstance].loginState.integerValue != 1) {
             [[BarristerLoginManager shareManager] showLoginViewControllerWithController:self];
             return;
         }
@@ -279,52 +300,63 @@
     else if (indexPath.section == 1)
     {
         
-        if (![BaseDataSingleton shareInstance].loginState.integerValue == 1) {
+        if ([BaseDataSingleton shareInstance].loginState.integerValue != 1) {
             [[BarristerLoginManager shareManager] showLoginViewControllerWithController:self];
             return;
         }
         
         
-        switch (indexPath.row) {
-            case 0:
+        PersonCenterModel *model = [self.items objectAtIndex:indexPath.row + 1];
+        if (!model) {
+            return;
+        }
+        
+        switch (model.cellType) {
+            case PersonCenterModelTypeSC:
             {
                 MyLikeViewController *likeVC = [[MyLikeViewController alloc] init];
                 [self.navigationController pushViewController:likeVC animated:YES];
 
             }
                 break;
-            case 1:
+            case PersonCenterModelTypeDD:
             {
                 MyOrderListViewController *orderListVC = [[MyOrderListViewController alloc] init];
                 [self.navigationController pushViewController:orderListVC animated:YES];
             }
                 break;
-            case 2:
+            case PersonCenterModelTypeZHU:
             {
-                if ([BaseDataSingleton shareInstance].isClosePay) {
-                    MyMessageViewController *messageVC = [[MyMessageViewController alloc] init];
-                    [self.navigationController pushViewController:messageVC animated:YES];
+                
+                MyAccountViewController *accountVC = [[MyAccountViewController alloc] init];
+                [self.navigationController pushViewController:accountVC animated:YES];
 
-                }
-                else
-                {
-                    MyAccountViewController *accountVC = [[MyAccountViewController alloc] init];
-                    [self.navigationController pushViewController:accountVC animated:YES];
-
-                }
             }
                 break;
-            case 3:
+            case PersonCenterModelTypeXX:
             {
                 MyMessageViewController *messageVC = [[MyMessageViewController alloc] init];
                 [self.navigationController pushViewController:messageVC animated:YES];
 
             }
                 break;
-            case 4:
+            case PersonCenterModelTypeQiuZhu:
             {
                 NeedHelpViewController *needVC = [[NeedHelpViewController alloc] init];
                 [self.navigationController pushViewController:needVC animated:YES];
+            }
+                break;
+              case PersonCenterModelTypeYSSC:
+            {
+                MyUploadYingShowViewController *uploadVC = [[MyUploadYingShowViewController alloc] init];
+                [self.navigationController pushViewController:uploadVC animated:YES];
+            }
+                break;
+                
+            case PersonCenterModelTypeYSGM:
+            {
+                MyBuyYingShowViewController *buyVC = [[MyBuyYingShowViewController alloc] init];
+                [self.navigationController pushViewController:buyVC animated:YES];
             }
                 break;
             default:

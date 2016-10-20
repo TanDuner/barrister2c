@@ -16,6 +16,8 @@
 #import "YYWebImage.h"
 #import "UIImage+Additions.h"
 #import "BarristerLoginManager.h"
+#import "YingShowViewController.h"
+
 #define ImageWidth 28
 
 #define LawButtonWidth 45
@@ -120,7 +122,12 @@ typedef void(^ClickZXItemBlock)(ZXItemView *itemView);
 @interface FindViewController ()
 
 @property (nonatomic,strong) UIView *topSelectView;
+
+@property (nonatomic,strong) UIView *midEnterView;
+
 @property (nonatomic,strong) UIView *bottomCategoryView;
+
+
 
 @property (nonatomic,strong) ZXItemView *LeftItem;
 @property (nonatomic,strong) ZXItemView *rightItem;
@@ -164,8 +171,10 @@ typedef void(^ClickZXItemBlock)(ZXItemView *itemView);
     [self.view addSubview:self.bottomScrollView];
     
     
-    
     [self configTopView];
+    
+    [self configMidEnterView];
+    
     [self configBottomView];
 
 }
@@ -173,6 +182,12 @@ typedef void(^ClickZXItemBlock)(ZXItemView *itemView);
 -(void)configTopView
 {
     [self.bottomScrollView addSubview:self.topSelectView];
+}
+
+
+-(void)configMidEnterView
+{
+    [self.bottomScrollView addSubview:self.midEnterView];
 }
 
 -(void)configBottomView
@@ -247,8 +262,8 @@ typedef void(^ClickZXItemBlock)(ZXItemView *itemView);
     }
     
     
-    [self.bottomCategoryView setFrame:RECT(0, ItemHeight *3 + 10, SCREENWIDTH, 10 + ceil(array.count/4) * (LawTopPadding + LawButtonWidth))];
-    [self.bottomScrollView setContentSize:CGSizeMake(0, self.topSelectView.height + self.bottomCategoryView.height + 15)];
+    [self.bottomCategoryView setFrame:RECT(0, ItemHeight *3 + 10 + self.midEnterView.height + 10, SCREENWIDTH, 10 + ceil(array.count/4) * (LawTopPadding + LawButtonWidth))];
+    [self.bottomScrollView setContentSize:CGSizeMake(0, self.topSelectView.height + self.midEnterView.height + self.bottomCategoryView.height + 15)];
 
 
 }
@@ -365,10 +380,43 @@ typedef void(^ClickZXItemBlock)(ZXItemView *itemView);
 }
 
 
+-(UIView *)midEnterView
+{
+    if (!_midEnterView) {
+        _midEnterView = [[UIView alloc] initWithFrame:RECT(0, CGRectGetMaxY(self.topSelectView.frame), SCREENWIDTH, ItemHeight + 45)];
+        
+        _midEnterView.backgroundColor = [UIColor whiteColor];
+        
+        UILabel *tipLabel = [[UILabel alloc] initWithFrame:RECT(LeftPadding, 15, 200, 15)];
+        tipLabel.textColor = KColorGray222;
+        tipLabel.font = SystemFont(16.0);
+        tipLabel.text = @"应收账款";
+        
+        [_midEnterView addSubview:tipLabel];
+        
+        
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+        [button setFrame:RECT(0, 5 + 45, SCREENWIDTH, ItemHeight - 10)];
+        [button addTarget:self action:@selector(toYingshouVC) forControlEvents:UIControlEventTouchUpInside];
+        button.backgroundColor = [UIColor redColor];
+        [_midEnterView addSubview:button];
+        
+        
+        UIView *horSpeView = [[UIView alloc] initWithFrame:RECT(0, 45, SCREENWIDTH, 1)];
+        horSpeView.backgroundColor = RGBCOLOR(239, 239, 246);
+        
+        [_midEnterView addSubview:horSpeView];
+
+        
+    }
+    return _midEnterView;
+}
+
+
 -(UIView *)bottomCategoryView
 {
     if (!_bottomCategoryView) {
-        _bottomCategoryView = [[UIView alloc] initWithFrame:RECT(0, ItemHeight *3 + 10 + 2, SCREENWIDTH, 0)];
+        _bottomCategoryView = [[UIView alloc] initWithFrame:RECT(0, ItemHeight *3 + 10 + 2 + self.midEnterView.height + 10, SCREENWIDTH, 0)];
         _bottomCategoryView.backgroundColor = [UIColor whiteColor];
         
         UILabel *tipLabel = [[UILabel alloc] initWithFrame:RECT(LeftPadding, 15, 200, 15)];
@@ -406,6 +454,13 @@ typedef void(^ClickZXItemBlock)(ZXItemView *itemView);
 }
 
 
+
+-(void)toYingshouVC
+{
+    YingShowViewController *yingshowVC = [[YingShowViewController alloc] init];
+    yingshowVC.title = @"应收账款";
+    [self.navigationController pushViewController:yingshowVC animated:YES];
+}
 
 
 @end

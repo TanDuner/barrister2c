@@ -23,6 +23,10 @@ typedef NS_ENUM(NSInteger, PersonCenterModelType)
     PersonCenterModelTypeInfoArea = 10,//地区
     
     PersonCenterModelTypeQiuZhu = 11,//我要求助
+    
+    PersonCenterModelTypeYSSC = 12,//应收账款上传
+    PersonCenterModelTypeYSGM = 13//应收账款购买
+    
 };
 
 typedef void (^ModelActionBlock)(NSInteger PersonCenterModelType);

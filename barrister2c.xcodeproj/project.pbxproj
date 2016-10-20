@@ -84,6 +84,9 @@
 		9529CCEE1D30F7D10067597A /* icon_bank_zx.png in Resources */ = {isa = PBXBuildFile; fileRef = 9529CCDF1D30F7D10067597A /* icon_bank_zx.png */; };
 		9529CCF21D3144C00067597A /* IMVersionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9529CCF11D3144C00067597A /* IMVersionManager.m */; };
 		9529CCFC1D3152E40067597A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9529CCFB1D3152E40067597A /* Images.xcassets */; };
+		952B3C951DB1CDD300E7E581 /* ZHPickView.m in Sources */ = {isa = PBXBuildFile; fileRef = 952B3C941DB1CDD300E7E581 /* ZHPickView.m */; };
+		952B3CBB1DB7150400E7E581 /* MyUploadYingShowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 952B3CBA1DB7150400E7E581 /* MyUploadYingShowViewController.m */; };
+		952B3CBE1DB7152200E7E581 /* MyBuyYingShowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 952B3CBD1DB7152200E7E581 /* MyBuyYingShowViewController.m */; };
 		955610871D136E2100366D4C /* LawBooksModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 955610861D136E2100366D4C /* LawBooksModel.m */; };
 		955610BA1D14B4BD00366D4C /* LearnCenterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 955610B91D14B4BD00366D4C /* LearnCenterModel.m */; };
 		955610BD1D14B4C900366D4C /* LearnCenterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 955610BC1D14B4C900366D4C /* LearnCenterCell.m */; };
@@ -154,6 +157,19 @@
 		956DA4D01DA4A4D600A6793A /* expert_QQ@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 956DA4CC1DA4A4D600A6793A /* expert_QQ@3x.png */; };
 		956DA4D11DA4A4D600A6793A /* expert@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 956DA4CD1DA4A4D600A6793A /* expert@2x.png */; };
 		956DA4D21DA4A4D600A6793A /* expert@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 956DA4CE1DA4A4D600A6793A /* expert@3x.png */; };
+		95835DC91DAD255F00A2E6CB /* YingShowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95835DC81DAD255F00A2E6CB /* YingShowViewController.m */; };
+		95835DCC1DAD277100A2E6CB /* YingShowPublishViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95835DCB1DAD277100A2E6CB /* YingShowPublishViewController.m */; };
+		95835DCF1DAD28F700A2E6CB /* YingShowInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 95835DCE1DAD28F700A2E6CB /* YingShowInfoModel.m */; };
+		95835DD21DAD2BB000A2E6CB /* YingShowUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 95835DD11DAD2BB000A2E6CB /* YingShowUserModel.m */; };
+		95835DD51DAD2CAD00A2E6CB /* YingShowProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 95835DD41DAD2CAD00A2E6CB /* YingShowProxy.m */; };
+		95835DD81DAD2D5B00A2E6CB /* YingShowListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 95835DD71DAD2D5B00A2E6CB /* YingShowListCell.m */; };
+		95835DDB1DAD3D3900A2E6CB /* YingShowDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95835DDA1DAD3D3900A2E6CB /* YingShowDetailViewController.m */; };
+		95835DE11DAD405400A2E6CB /* YingShowDetailBottomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 95835DE01DAD405400A2E6CB /* YingShowDetailBottomCell.m */; };
+		95835DE41DAF22C200A2E6CB /* YingShowHorSelectScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 95835DE31DAF22C200A2E6CB /* YingShowHorSelectScrollView.m */; };
+		95835DE71DAF297800A2E6CB /* YingShowHorSelectItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 95835DE61DAF297800A2E6CB /* YingShowHorSelectItemView.m */; };
+		95835DEA1DAF6C9900A2E6CB /* YingShowFirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95835DE91DAF6C9900A2E6CB /* YingShowFirstViewController.m */; };
+		95835DF01DAF6D9D00A2E6CB /* YingShowSecAndThirdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95835DEF1DAF6D9D00A2E6CB /* YingShowSecAndThirdViewController.m */; };
+		95835DFC1DB0800500A2E6CB /* YingShowHorSelectModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 95835DFB1DB0800500A2E6CB /* YingShowHorSelectModel.m */; };
 		958EEBA91D26B46700D4CF4C /* common_point_loading@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 958EEBA71D26B46700D4CF4C /* common_point_loading@2x.png */; };
 		958EEBAA1D26B46700D4CF4C /* common_point_loading@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 958EEBA81D26B46700D4CF4C /* common_point_loading@3x.png */; };
 		958EEBB11D27790A00D4CF4C /* guide_1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 958EEBAB1D27790A00D4CF4C /* guide_1@2x.png */; };
@@ -499,6 +515,12 @@
 		9529CCF01D3144C00067597A /* IMVersionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMVersionManager.h; sourceTree = "<group>"; };
 		9529CCF11D3144C00067597A /* IMVersionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMVersionManager.m; sourceTree = "<group>"; };
 		9529CCFB1D3152E40067597A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		952B3C931DB1CDD300E7E581 /* ZHPickView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHPickView.h; sourceTree = "<group>"; };
+		952B3C941DB1CDD300E7E581 /* ZHPickView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHPickView.m; sourceTree = "<group>"; };
+		952B3CB91DB7150400E7E581 /* MyUploadYingShowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyUploadYingShowViewController.h; sourceTree = "<group>"; };
+		952B3CBA1DB7150400E7E581 /* MyUploadYingShowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyUploadYingShowViewController.m; sourceTree = "<group>"; };
+		952B3CBC1DB7152200E7E581 /* MyBuyYingShowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyBuyYingShowViewController.h; sourceTree = "<group>"; };
+		952B3CBD1DB7152200E7E581 /* MyBuyYingShowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyBuyYingShowViewController.m; sourceTree = "<group>"; };
 		955610851D136E2100366D4C /* LawBooksModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LawBooksModel.h; sourceTree = "<group>"; };
 		955610861D136E2100366D4C /* LawBooksModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LawBooksModel.m; sourceTree = "<group>"; };
 		955610B81D14B4BD00366D4C /* LearnCenterModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LearnCenterModel.h; sourceTree = "<group>"; };
@@ -617,6 +639,32 @@
 		956DA4CC1DA4A4D600A6793A /* expert_QQ@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "expert_QQ@3x.png"; sourceTree = "<group>"; };
 		956DA4CD1DA4A4D600A6793A /* expert@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "expert@2x.png"; sourceTree = "<group>"; };
 		956DA4CE1DA4A4D600A6793A /* expert@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "expert@3x.png"; sourceTree = "<group>"; };
+		95835DC71DAD255F00A2E6CB /* YingShowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YingShowViewController.h; sourceTree = "<group>"; };
+		95835DC81DAD255F00A2E6CB /* YingShowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YingShowViewController.m; sourceTree = "<group>"; };
+		95835DCA1DAD277100A2E6CB /* YingShowPublishViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YingShowPublishViewController.h; sourceTree = "<group>"; };
+		95835DCB1DAD277100A2E6CB /* YingShowPublishViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YingShowPublishViewController.m; sourceTree = "<group>"; };
+		95835DCD1DAD28F700A2E6CB /* YingShowInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YingShowInfoModel.h; sourceTree = "<group>"; };
+		95835DCE1DAD28F700A2E6CB /* YingShowInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YingShowInfoModel.m; sourceTree = "<group>"; };
+		95835DD01DAD2BB000A2E6CB /* YingShowUserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YingShowUserModel.h; sourceTree = "<group>"; };
+		95835DD11DAD2BB000A2E6CB /* YingShowUserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YingShowUserModel.m; sourceTree = "<group>"; };
+		95835DD31DAD2CAD00A2E6CB /* YingShowProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YingShowProxy.h; sourceTree = "<group>"; };
+		95835DD41DAD2CAD00A2E6CB /* YingShowProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YingShowProxy.m; sourceTree = "<group>"; };
+		95835DD61DAD2D5B00A2E6CB /* YingShowListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YingShowListCell.h; sourceTree = "<group>"; };
+		95835DD71DAD2D5B00A2E6CB /* YingShowListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YingShowListCell.m; sourceTree = "<group>"; };
+		95835DD91DAD3D3900A2E6CB /* YingShowDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YingShowDetailViewController.h; sourceTree = "<group>"; };
+		95835DDA1DAD3D3900A2E6CB /* YingShowDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YingShowDetailViewController.m; sourceTree = "<group>"; };
+		95835DDF1DAD405400A2E6CB /* YingShowDetailBottomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YingShowDetailBottomCell.h; sourceTree = "<group>"; };
+		95835DE01DAD405400A2E6CB /* YingShowDetailBottomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YingShowDetailBottomCell.m; sourceTree = "<group>"; };
+		95835DE21DAF22C200A2E6CB /* YingShowHorSelectScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YingShowHorSelectScrollView.h; sourceTree = "<group>"; };
+		95835DE31DAF22C200A2E6CB /* YingShowHorSelectScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YingShowHorSelectScrollView.m; sourceTree = "<group>"; };
+		95835DE51DAF297800A2E6CB /* YingShowHorSelectItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YingShowHorSelectItemView.h; sourceTree = "<group>"; };
+		95835DE61DAF297800A2E6CB /* YingShowHorSelectItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YingShowHorSelectItemView.m; sourceTree = "<group>"; };
+		95835DE81DAF6C9900A2E6CB /* YingShowFirstViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YingShowFirstViewController.h; sourceTree = "<group>"; };
+		95835DE91DAF6C9900A2E6CB /* YingShowFirstViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YingShowFirstViewController.m; sourceTree = "<group>"; };
+		95835DEE1DAF6D9D00A2E6CB /* YingShowSecAndThirdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YingShowSecAndThirdViewController.h; sourceTree = "<group>"; };
+		95835DEF1DAF6D9D00A2E6CB /* YingShowSecAndThirdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YingShowSecAndThirdViewController.m; sourceTree = "<group>"; };
+		95835DFA1DB0800500A2E6CB /* YingShowHorSelectModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YingShowHorSelectModel.h; sourceTree = "<group>"; };
+		95835DFB1DB0800500A2E6CB /* YingShowHorSelectModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YingShowHorSelectModel.m; sourceTree = "<group>"; };
 		958EEBA71D26B46700D4CF4C /* common_point_loading@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "common_point_loading@2x.png"; sourceTree = "<group>"; };
 		958EEBA81D26B46700D4CF4C /* common_point_loading@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "common_point_loading@3x.png"; sourceTree = "<group>"; };
 		958EEBAB1D27790A00D4CF4C /* guide_1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "guide_1@2x.png"; sourceTree = "<group>"; };
@@ -1329,6 +1377,15 @@
 			path = SandBoxUtil;
 			sourceTree = "<group>";
 		};
+		95835DF11DB07D1A00A2E6CB /* YingShowDate */ = {
+			isa = PBXGroup;
+			children = (
+				952B3C931DB1CDD300E7E581 /* ZHPickView.h */,
+				952B3C941DB1CDD300E7E581 /* ZHPickView.m */,
+			);
+			path = YingShowDate;
+			sourceTree = "<group>";
+		};
 		958EEBDD1D27FFEC00D4CF4C /* starView */ = {
 			isa = PBXGroup;
 			children = (
@@ -1494,6 +1551,8 @@
 				95CA1C081D10F77F00AAE490 /* OrderProxy.m */,
 				955A7B1E1D1F794E00D1DEAC /* LawerListProxy.h */,
 				955A7B1F1D1F794E00D1DEAC /* LawerListProxy.m */,
+				95835DD31DAD2CAD00A2E6CB /* YingShowProxy.h */,
+				95835DD41DAD2CAD00A2E6CB /* YingShowProxy.m */,
 			);
 			path = NetProxy;
 			sourceTree = "<group>";
@@ -1611,6 +1670,7 @@
 		95CA1BF61D10F4AF00AAE490 /* Vender */ = {
 			isa = PBXGroup;
 			children = (
+				95835DF11DB07D1A00A2E6CB /* YingShowDate */,
 				95BD99761D255BAB002E5B0D /* WebView */,
 				955A7B3B1D1FE11100D1DEAC /* SandBoxUtil */,
 				955A7B111D1ED24100D1DEAC /* SplashView */,
@@ -2342,6 +2402,10 @@
 				95BD998C1D25DF8E002E5B0D /* FeedBackViewController.m */,
 				958EEBBD1D278A8500D4CF4C /* OrderPraiseViewController.h */,
 				958EEBBE1D278A8500D4CF4C /* OrderPraiseViewController.m */,
+				952B3CB91DB7150400E7E581 /* MyUploadYingShowViewController.h */,
+				952B3CBA1DB7150400E7E581 /* MyUploadYingShowViewController.m */,
+				952B3CBC1DB7152200E7E581 /* MyBuyYingShowViewController.h */,
+				952B3CBD1DB7152200E7E581 /* MyBuyYingShowViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -2421,6 +2485,16 @@
 				955A7AB41D1C3C2000D1DEAC /* LawerSelectTimeViewController.m */,
 				955A7AB61D1C3E1700D1DEAC /* LawerSelectContentViewController.h */,
 				955A7AB71D1C3E1700D1DEAC /* LawerSelectContentViewController.m */,
+				95835DC71DAD255F00A2E6CB /* YingShowViewController.h */,
+				95835DC81DAD255F00A2E6CB /* YingShowViewController.m */,
+				95835DD91DAD3D3900A2E6CB /* YingShowDetailViewController.h */,
+				95835DDA1DAD3D3900A2E6CB /* YingShowDetailViewController.m */,
+				95835DCA1DAD277100A2E6CB /* YingShowPublishViewController.h */,
+				95835DCB1DAD277100A2E6CB /* YingShowPublishViewController.m */,
+				95835DE81DAF6C9900A2E6CB /* YingShowFirstViewController.h */,
+				95835DE91DAF6C9900A2E6CB /* YingShowFirstViewController.m */,
+				95835DEE1DAF6D9D00A2E6CB /* YingShowSecAndThirdViewController.h */,
+				95835DEF1DAF6D9D00A2E6CB /* YingShowSecAndThirdViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -2436,6 +2510,12 @@
 				958EEBD51D27B70800D4CF4C /* AppointmentMoel.m */,
 				958EEBD71D27B73500D4CF4C /* AppointmentManager.h */,
 				958EEBD81D27B73500D4CF4C /* AppointmentManager.m */,
+				95835DCD1DAD28F700A2E6CB /* YingShowInfoModel.h */,
+				95835DCE1DAD28F700A2E6CB /* YingShowInfoModel.m */,
+				95835DD01DAD2BB000A2E6CB /* YingShowUserModel.h */,
+				95835DD11DAD2BB000A2E6CB /* YingShowUserModel.m */,
+				95835DFA1DB0800500A2E6CB /* YingShowHorSelectModel.h */,
+				95835DFB1DB0800500A2E6CB /* YingShowHorSelectModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2451,6 +2531,14 @@
 				955A7AAB1D1AD20D00D1DEAC /* LawerDetailMidCell.m */,
 				955A7AAD1D1B7C9700D1DEAC /* LawerDetailBottomCell.h */,
 				955A7AAE1D1B7C9700D1DEAC /* LawerDetailBottomCell.m */,
+				95835DD61DAD2D5B00A2E6CB /* YingShowListCell.h */,
+				95835DD71DAD2D5B00A2E6CB /* YingShowListCell.m */,
+				95835DDF1DAD405400A2E6CB /* YingShowDetailBottomCell.h */,
+				95835DE01DAD405400A2E6CB /* YingShowDetailBottomCell.m */,
+				95835DE21DAF22C200A2E6CB /* YingShowHorSelectScrollView.h */,
+				95835DE31DAF22C200A2E6CB /* YingShowHorSelectScrollView.m */,
+				95835DE51DAF297800A2E6CB /* YingShowHorSelectItemView.h */,
+				95835DE61DAF297800A2E6CB /* YingShowHorSelectItemView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2884,6 +2972,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				95835DCC1DAD277100A2E6CB /* YingShowPublishViewController.m in Sources */,
+				952B3CBE1DB7152200E7E581 /* MyBuyYingShowViewController.m in Sources */,
 				955A7B051D1D8EFB00D1DEAC /* OrderDetailCallRecordCell.m in Sources */,
 				95CA1D471D10F7C900AAE490 /* NSArray+MASAdditions.m in Sources */,
 				955611511D17855900366D4C /* HomeAreaCell.m in Sources */,
@@ -2891,13 +2981,16 @@
 				95EBAAF61D35DCA70041A647 /* MD5DataSigner.m in Sources */,
 				955A7B001D1D8EE100D1DEAC /* OrderDetailOrderCell.m in Sources */,
 				95EBAAF71D35DCA70041A647 /* NSDataEx.m in Sources */,
+				95835DF01DAF6D9D00A2E6CB /* YingShowSecAndThirdViewController.m in Sources */,
 				95CA1DAC1D10F85500AAE490 /* CityChooseViewController.m in Sources */,
+				95835DD81DAD2D5B00A2E6CB /* YingShowListCell.m in Sources */,
 				95C919071D67592700F190CC /* NeedHelpViewController.m in Sources */,
 				95CA1E011D10F97F00AAE490 /* FindViewController.m in Sources */,
 				95CA1C361D10F7AD00AAE490 /* BaseNetProxy.m in Sources */,
 				95CA1C641D10F7B700AAE490 /* TabItemView.m in Sources */,
 				95CA1C631D10F7B700AAE490 /* XuPointLoadingView.m in Sources */,
 				955A7B171D1F6E7A00D1DEAC /* BarristerLoginVC.m in Sources */,
+				952B3CBB1DB7150400E7E581 /* MyUploadYingShowViewController.m in Sources */,
 				955610C91D14B5E400366D4C /* PersonInfoCustomCell.m in Sources */,
 				95CA1D2E1D10F7C900AAE490 /* MJRefreshHeader.m in Sources */,
 				955610871D136E2100366D4C /* LawBooksModel.m in Sources */,
@@ -2912,6 +3005,7 @@
 				95CA1D491D10F7C900AAE490 /* View+MASAdditions.m in Sources */,
 				95CA1C311D10F7A500AAE490 /* BaseModel.m in Sources */,
 				95CA1D3E1D10F7C900AAE490 /* AJPhotoTapDetectingImageView.m in Sources */,
+				95835DE41DAF22C200A2E6CB /* YingShowHorSelectScrollView.m in Sources */,
 				95CA1DF81D10F92E00AAE490 /* HomeViewController.m in Sources */,
 				958EEBD61D27B70800D4CF4C /* AppointmentMoel.m in Sources */,
 				95CA1DA01D10F85500AAE490 /* UIColorAdditions.m in Sources */,
@@ -2952,9 +3046,11 @@
 				955A7AFD1D1D8EC000D1DEAC /* OrderDetailViewController.m in Sources */,
 				95BD99801D2567E5002E5B0D /* LearnCenterContentView.m in Sources */,
 				95CA1C601D10F7B700AAE490 /* BaseNoDataView.m in Sources */,
+				95835DD51DAD2CAD00A2E6CB /* YingShowProxy.m in Sources */,
 				95EBAB351D3691770041A647 /* XWMoneyTextField.m in Sources */,
 				955A7B1A1D1F6ECB00D1DEAC /* BarristerLoginManager.m in Sources */,
 				95CA1C211D10F79700AAE490 /* BaseNavigaitonController.m in Sources */,
+				952B3C951DB1CDD300E7E581 /* ZHPickView.m in Sources */,
 				955A7AF71D1D8D5400D1DEAC /* OrderViewCell.m in Sources */,
 				955611361D15929000366D4C /* MyAccountRechargeVC.m in Sources */,
 				95CA1C0B1D10F77F00AAE490 /* LearnCenterProxy.m in Sources */,
@@ -2983,6 +3079,7 @@
 				95B0D8151D1836AC0054567D /* BussinessTypeModel.m in Sources */,
 				9529CC391D2D4F3C0067597A /* HUMSlider.m in Sources */,
 				95CA1D5B1D10F7C900AAE490 /* UIView+YYAdd.m in Sources */,
+				95835DEA1DAF6C9900A2E6CB /* YingShowFirstViewController.m in Sources */,
 				95CA1D371D10F7C900AAE490 /* AJPhotoGroupView.m in Sources */,
 				95CA1C611D10F7B700AAE490 /* BaseTableViewCell.m in Sources */,
 				9529CC091D2BF6610067597A /* RewardSelectViewController.m in Sources */,
@@ -3005,6 +3102,7 @@
 				95CA1D411D10F7C900AAE490 /* MASCompositeConstraint.m in Sources */,
 				95BD99791D255BAB002E5B0D /* IMWebView.m in Sources */,
 				95CA1D581D10F7C900AAE490 /* UIGestureRecognizer+YYAdd.m in Sources */,
+				95835DD21DAD2BB000A2E6CB /* YingShowUserModel.m in Sources */,
 				95CA1DAA1D10F85500AAE490 /* UIView+FormAdditions.m in Sources */,
 				95C9190F1D689ED000F190CC /* CaseOrderDetailViewController.m in Sources */,
 				955610D51D14B6DA00366D4C /* MyMessgeCell.m in Sources */,
@@ -3038,6 +3136,7 @@
 				95CA1D241D10F7C900AAE490 /* MJRefreshAutoNormalFooter.m in Sources */,
 				95CA1D531D10F7C900AAE490 /* CALayer+YYAdd.m in Sources */,
 				95CA1C2F1D10F7A500AAE490 /* BarristerUserModel.m in Sources */,
+				95835DE11DAD405400A2E6CB /* YingShowDetailBottomCell.m in Sources */,
 				95CA1D3D1D10F7C900AAE490 /* AJPhotoBrowserViewController.m in Sources */,
 				95CA1D6A1D10F7C900AAE490 /* YYWebImageManager.m in Sources */,
 				951008C01D25111A00730562 /* HomeBannerModel.m in Sources */,
@@ -3049,13 +3148,16 @@
 				95EBAAF31D35DCA70041A647 /* base64.m in Sources */,
 				95CA1D5D1D10F7C900AAE490 /* YYFrameImage.m in Sources */,
 				9529CC8F1D2E6D070067597A /* XuPushManager.m in Sources */,
+				95835DDB1DAD3D3900A2E6CB /* YingShowDetailViewController.m in Sources */,
 				95CA1D501D10F7C900AAE490 /* YYKVStorage.m in Sources */,
 				95CA1D691D10F7C900AAE490 /* YYImageCache.m in Sources */,
 				9529CCBD1D30CD720067597A /* UIImage+CommonAdd.m in Sources */,
 				955611301D158BA500366D4C /* MyAccountDetailViewController.m in Sources */,
 				95CA1DA61D10F85500AAE490 /* UIImage+ImageEffects.m in Sources */,
+				95835DCF1DAD28F700A2E6CB /* YingShowInfoModel.m in Sources */,
 				958EEBD91D27B73500D4CF4C /* AppointmentManager.m in Sources */,
 				958EEBFA1D28301C00D4CF4C /* MyLikeListCell.m in Sources */,
+				95835DC91DAD255F00A2E6CB /* YingShowViewController.m in Sources */,
 				95CA1D401D10F7C900AAE490 /* AJTapDetectingView.m in Sources */,
 				955A7B141D1ED24100D1DEAC /* YKSplashView.m in Sources */,
 				95CA1D541D10F7C900AAE490 /* CALayer+YYWebImage.m in Sources */,
@@ -3084,6 +3186,7 @@
 				95CA1D521D10F7C900AAE490 /* _YYWebImageSetter.m in Sources */,
 				950120B11D2A5E0400FE3613 /* CallHistoriesModel.m in Sources */,
 				95CA1C621D10F7B700AAE490 /* BorderTextFieldView.m in Sources */,
+				95835DE71DAF297800A2E6CB /* YingShowHorSelectItemView.m in Sources */,
 				951008C61D252CDA00730562 /* NSString+CommonAdd.m in Sources */,
 				95CA1BD31D10F03900AAE490 /* main.m in Sources */,
 				95EBAAF21D35DCA70041A647 /* Order.m in Sources */,
@@ -3104,6 +3207,7 @@
 				955611261D1588A200366D4C /* MyAccountDetailCell.m in Sources */,
 				95CA1D361D10F7C900AAE490 /* AJPhotoGroupCell.m in Sources */,
 				95CA1DA11D10F85500AAE490 /* UIImage+Additions.m in Sources */,
+				95835DFC1DB0800500A2E6CB /* YingShowHorSelectModel.m in Sources */,
 				95EBAAF51D35DCA70041A647 /* DataVerifier.m in Sources */,
 				9529CCB31D308F3B0067597A /* AppMethod.m in Sources */,
 				95CA1DAE1D10F85500AAE490 /* XuUtlity.m in Sources */,

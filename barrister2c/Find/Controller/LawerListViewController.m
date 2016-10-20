@@ -66,10 +66,8 @@
     if (self.type) {
         [params setObject:self.type forKey:@"type"];
         
-        if ([self.type isEqualToString:@"IM"]) {
-            [params setObject:@"0" forKey:@"isExpert"];
-        }
-        else if ([self.type isEqualToString:@"EXPERT"])
+        
+         if ([self.type isEqualToString:@"EXPERT"])
         {
             [params setObject:@"1" forKey:@"isExpert"];
         }
@@ -245,7 +243,7 @@
     
     UIButton * tipBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [tipBtn setTitle:@"说明" forState:UIControlStateNormal];
-    tipBtn.titleLabel.font = SystemFont(16.0f);
+    tipBtn.titleLabel.font = SystemFont(15.0f);
     [tipBtn setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
     [tipBtn addTarget:self action:@selector(toTipViewController) forControlEvents:UIControlEventTouchUpInside];
     [tipBtn setFrame:CGRectMake(0, 0, 30, 30)];

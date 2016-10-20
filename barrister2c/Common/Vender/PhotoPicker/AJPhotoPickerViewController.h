@@ -66,6 +66,8 @@
 
 //是否开启多选
 @property (nonatomic, assign) BOOL multipleSelection;
+
+@property (nonatomic, assign) BOOL isPanjueType;
 @end
 // 版权属于原作者
 // http://code4app.com (cn) http://code4app.net (en)
