@@ -35,14 +35,46 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "barrister2c/NetProxy/YingShowProxy.m"
-            timestampString = "498624169.966923"
+            filePath = "barrister2c/PersonCenter/Controller/MyUploadYingShowViewController.m"
+            timestampString = "498626203.992482"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "128"
-            endingLineNumber = "128"
-            landmarkName = "-deleteMyUploadYingShowInfoWithParams:block:"
+            startingLineNumber = "177"
+            endingLineNumber = "177"
+            landmarkName = "-longPressAction:"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__50-[MyUploadYingShowViewController longPressAction:]_block_invoke"
+                  moduleName = "barrister2c"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Xu/Documents/barrister2c/barrister2c/PersonCenter/Controller/MyUploadYingShowViewController.m"
+                  timestampString = "498626210.655509"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "177"
+                  endingLineNumber = "177"
+                  offsetFromSymbolStart = "424">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__50-[MyUploadYingShowViewController longPressAction:]_block_invoke.209"
+                  moduleName = "barrister2c"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Xu/Documents/barrister2c/barrister2c/PersonCenter/Controller/MyUploadYingShowViewController.m"
+                  timestampString = "498626210.657621"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "178"
+                  endingLineNumber = "178"
+                  offsetFromSymbolStart = "60">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

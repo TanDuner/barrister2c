@@ -161,4 +161,9 @@ static NSString *JUDGE_TYPE_QITA = @"qita";
 
 @property (nonatomic,assign) CGFloat cellHeight;
 
+
+
++(NSString *)getSubmitStrWithSelectObject:(NSString *)selectObject;
+
+
 @end

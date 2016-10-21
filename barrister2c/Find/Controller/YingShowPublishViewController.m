@@ -12,6 +12,7 @@
 #import "YingShowSecAndThirdViewController.h"
 #import "YingShowProxy.h"
 #import "BarristerLoginManager.h"
+#import "YingShowInfoModel.h"
 
 @interface YingShowPublishViewController ()
 
@@ -63,15 +64,16 @@
     }
 
     
-    [params setObject:self.firstVC.typeScrollView.selectObject forKey:@"type"];
+    
+    
+    [params setObject:[YingShowInfoModel getSubmitStrWithSelectObject:self.firstVC.typeScrollView.selectObject] forKey:@"type"];
     [params setObject:self.firstVC.moneyTextField.text forKey:@"money"];
-    [params setObject:self.firstVC.statusScrollView.selectObject forKey:@"creditDebtStatus"];
-    [params setObject:self.firstVC.typeScrollView.selectObject forKey:@"type"];
+    [params setObject:[YingShowInfoModel getSubmitStrWithSelectObject:self.firstVC.statusScrollView.selectObject] forKey:@"creditDebtStatus"];
     [params setObject:self.firstVC.descTextView.text?self.firstVC.descTextView.text:@"" forKey:@"desc"];
     [params setObject:self.firstVC.timeLabel.text forKey:@"creditDebtTime"];
     
     if (self.firstVC.typeScrollView.selectObject) {
-        [params setObject:self.firstVC.typeScrollView.selectObject forKey:@"proofName"];
+        [params setObject:[YingShowInfoModel getSubmitStrWithSelectObject:self.firstVC.pingzhengScrollView.selectObject] forKey:@"proofName"];
     }
     
     
