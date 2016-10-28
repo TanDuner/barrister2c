@@ -27,7 +27,19 @@
         self.companyNameHeight = 13;
     }
 
-    self.cellHeight = 10 + (RowHeight + YingShowDetailVerSpace) *3 + self.companyNameHeight + (RowHeight + YingShowDetailVerSpace) *2 + YingShowDetailVerSpace + self.addressHeight + 10;
+    if (IS_NOT_EMPTY(self.licenseNuber)) {
+//        self.cellHeight = 10 + (RowHeight + YingShowDetailVerSpace) *3 + self.companyNameHeight + (RowHeight + YingShowDetailVerSpace) *2 + YingShowDetailVerSpace + self.addressHeight + 10;
+        self.cellHeight = 10 + 15 + 10 + self.companyNameHeight + (RowHeight + YingShowDetailVerSpace) *3 + self.addressHeight + YingShowDetailVerSpace + 10;
+        
+    }
+    else{
+    
+//        self.cellHeight = 10 + (RowHeight + YingShowDetailVerSpace) *3 + self.companyNameHeight + (RowHeight + YingShowDetailVerSpace) *2 + YingShowDetailVerSpace + self.addressHeight + 10;
+        self.cellHeight = 10 + 15 + 10 + self.companyNameHeight + (RowHeight + YingShowDetailVerSpace) *2 + self.addressHeight + YingShowDetailVerSpace + 10;
+
+    }
+    
+    
 
     
 }

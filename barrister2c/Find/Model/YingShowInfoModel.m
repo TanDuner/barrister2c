@@ -83,8 +83,33 @@
     {
         return PROOF_TYPE_QITA;
     }
+    
+    
+    else if ([selectObject isEqualToString:@"不限制"])
+    {
+        return nil;
+    }
+    else if ([selectObject isEqualToString:@"未起诉"])
+    {
+        return CREDIT_DEBT_STATUS_NOT_SUE;
+    }
+    else if ([selectObject isEqualToString:@"诉讼中"])
+    {
+        return CREDIT_DEBT_STATUS_SUING;
+    }
+    else if ([selectObject isEqualToString:@"执行中"])
+    {
+        return CREDIT_DEBT_STATUS_JUDGING;
+    }
+    else if ([selectObject isEqualToString:@"已过时效"])
+    {
+        return CREDIT_DEBT_STATUS_OUT_OF_DATE;
+    }
+    
+    
+    
     else{
-        return @"";
+        return nil;
     }
     
     

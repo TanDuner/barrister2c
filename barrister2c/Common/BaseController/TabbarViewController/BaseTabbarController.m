@@ -12,12 +12,12 @@
 #import "LearnCenterViewController.h"
 #import "PersonCenterViewController.h"
 #import "BaseNavigaitonController.h"
-
+#import "ZhaiLiFangViewController.h"
 
 #define     ImageWidth        25
 
 
-#define ItemWidth SCREENWIDTH/4.0
+#define ItemWidth SCREENWIDTH/5.0
 
 @interface BaseTabbarController ()
 
@@ -75,7 +75,7 @@
 - (void)loadViewControllers
 {
     
-    self.titleArray = [NSMutableArray arrayWithObjects:@"首页",@"发现",@"学习中心",@"个人中心", nil];
+    self.titleArray = [NSMutableArray arrayWithObjects:@"首页",@"数据中心",@"债立方",@"学习中心",@"个人中心", nil];
     
     
     self.btnArray = [NSMutableArray arrayWithCapacity:10];
@@ -91,6 +91,12 @@
     c2.title = [self.titleArray safeObjectAtIndex:1];
     BaseNavigaitonController *ctl2 = [[BaseNavigaitonController alloc] initWithRootViewController:c2];
     
+    
+    ZhaiLiFangViewController *c5 = [[ZhaiLiFangViewController alloc] init];
+    c5.title = @"债立方";
+    BaseNavigaitonController *ctl5 = [[BaseNavigaitonController alloc] initWithRootViewController:c5];
+    
+    
     LearnCenterViewController *c3 = [[LearnCenterViewController alloc] init];
     c3.title = [self.titleArray safeObjectAtIndex:2];
     BaseNavigaitonController *ctl3 = [[BaseNavigaitonController alloc] initWithRootViewController:c3];
@@ -103,7 +109,7 @@
     
     
     // 将视图控制器添加至数组中
-    NSArray *viewControllers = @[ctl1,ctl2,ctl3,ctl4];
+    NSArray *viewControllers = @[ctl1,ctl2,ctl5,ctl3,ctl4];
     
     [self setViewControllers:viewControllers animated:YES];
     
@@ -126,7 +132,7 @@
 //    [_tabBarBG addSubview:lineImageView];
     
     //tabbarItems
-    for (int i = 0; i < 4; i++) {
+    for (int i = 0; i < 5; i++) {
         NSString *imageName = [self.tabBarImageNames safeObjectAtIndex:i];
         UIImageView * imageView = [[UIImageView alloc]initWithFrame:CGRectMake((ItemWidth - ImageWidth)/2, 5, ImageWidth, ImageWidth)];
         imageView.tag = 900;
@@ -196,6 +202,7 @@
     self.tabBarImageNames = [[NSMutableArray alloc]initWithObjects:
                               @"Tab01Normal.png",
                               @"Tab02Normal.png",
+                              @"Tab05Normal.png",
                               @"Tab03Normal.png",
                               @"Tab04Normal.png",
 
@@ -204,6 +211,7 @@
     self.tabBarSelectedImageNames = [[NSMutableArray alloc]initWithObjects:
                                       @"Tab01Highlighted.png",
                                       @"Tab02Highlighted.png",
+                                      @"Tab05Highlighted.png",
                                       @"Tab03Highlighted.png",
                                       @"Tab04Highlighted.png",
                                       nil];

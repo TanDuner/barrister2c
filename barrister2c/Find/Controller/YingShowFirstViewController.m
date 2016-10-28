@@ -21,6 +21,8 @@
 
 @property (nonatomic,strong) UIView *panjueView;
 
+@property (nonatomic,strong) UIView *pingzhengView;
+
 @property (nonatomic,assign) BOOL isPanjueType;
 
 @end
@@ -124,52 +126,15 @@
     [self.timeLabel addGestureRecognizer:tap];
     
     [self.contentScrollView addSubview:self.timeLabel];
-
     
+    [self.contentScrollView addSubview:self.panjueView];
     
-    UILabel *pingzhengLabel = [[UILabel alloc] initWithFrame:RECT(LeftPadding, CGRectGetMaxY(self.timeLabel.frame) + 10, 200, 15)];
-    pingzhengLabel.textColor = KColorGray333;
-    pingzhengLabel.text = @"凭证类型";
-    pingzhengLabel.textAlignment = NSTextAlignmentLeft;
-    pingzhengLabel.font = SystemFont(15.0f);
-    [self.contentScrollView addSubview:pingzhengLabel];
+    [self.contentScrollView addSubview:self.pingzhengView];
     
-    NSArray *pingzhengTitleArray = @[@"合同",@"协议",@"欠条",@"其他"];
+    self.panjueView.hidden = YES;
     
-    NSMutableArray *pingzhengItemArray = [NSMutableArray array];
-    for (int i = 0; i < statusTitlteArray.count; i ++) {
-        YingShowHorSelectModel *model = [[YingShowHorSelectModel alloc] init];
-        if (i == 0) {
-            model.isSelected = YES;
-        }
-        model.titleStr = pingzhengTitleArray[i];
-        [pingzhengItemArray addObject:model];
-    }
-    
-    
-    self.pingzhengScrollView = [[YingShowHorSelectScrollView alloc] initWithFrame:RECT(LeftPadding, CGRectGetMaxY(pingzhengLabel.frame) + 10, SCREENWIDTH - 20, 15) items:pingzhengItemArray];
-    
-    [self.contentScrollView addSubview:self.pingzhengScrollView];
-    
-
-    UILabel *selectImageLabel = [[UILabel alloc] initWithFrame:RECT(LeftPadding, CGRectGetMaxY(self.pingzhengScrollView.frame) + 40, 200, 15)];
-    
-    selectImageLabel.font = SystemFont(15.0);
-    selectImageLabel.textAlignment = NSTextAlignmentLeft;
-    selectImageLabel.textColor = KColorGray333;
-    selectImageLabel.text = @"选择凭证图片";
-    [self.contentScrollView addSubview:selectImageLabel];
-    
-    self.addImageView = [[UIImageView alloc] initWithFrame:RECT(SCREENWIDTH - 20 - 75, CGRectGetMaxY(self.pingzhengScrollView.frame)  + 10, 75, 75)];
-    self.addImageView.image = [UIImage imageNamed:@"addBankCard.png"];
-    self.addImageView.backgroundColor = [UIColor colorWithString:@"#DDDDDD" colorAlpha:1];
-    self.addImageView.userInteractionEnabled = YES;
-    UITapGestureRecognizer *selectTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(addImageAction:)];
-    [self.addImageView addGestureRecognizer:selectTap];
-    [self.contentScrollView addSubview:self.addImageView];
     
     self.contentScrollView.contentSize = CGSizeMake(0, CGRectGetMaxY(self.addImageView.frame) + 300);
-    
     
     UITapGestureRecognizer *hideTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyBoard)];
     [self.contentScrollView addGestureRecognizer:hideTap];
@@ -228,7 +193,7 @@
         
     }
     [picker dismissViewControllerAnimated:NO completion:^{
-        [self.view setFrame:RECT(0, 0, SCREENHEIGHT, self.view.height)];
+        [self.view setFrame:RECT(SCREENWIDTH *2, 0, SCREENHEIGHT, self.view.height)];
     }];
 
 }
@@ -241,7 +206,7 @@
         }
         
         [picker dismissViewControllerAnimated:NO completion:^{
-            [self.view setFrame:RECT(0, 0, SCREENHEIGHT, self.view.height)];
+            [self.view setFrame:RECT(SCREENWIDTH *2, 0, SCREENHEIGHT, self.view.height)];
         }];
         
         UIImagePickerController *cameraUI = [UIImagePickerController new];
@@ -279,7 +244,7 @@
         
     }
     [picker dismissViewControllerAnimated:YES completion:^{
-        [self.view setFrame:RECT(0, 0, SCREENHEIGHT, self.view.height)];
+        [self.view setFrame:RECT(SCREENWIDTH *2, 0, SCREENHEIGHT, self.view.height)];
     }];
     
 }
@@ -288,7 +253,7 @@
 - (void)photoPickerDidCancel:(AJPhotoPickerViewController *)picker {
     [picker dismissViewControllerAnimated:YES completion:^{
         
-        [self.view setFrame:RECT(0, 0, SCREENHEIGHT, self.view.height)];
+        [self.view setFrame:RECT(SCREENWIDTH *2, 0, SCREENHEIGHT, self.view.height)];
     }];
 }
 
@@ -358,13 +323,67 @@
 }
 
 
+-(UIView *)pingzhengView
+{
+    if (!_pingzhengView) {
+        _pingzhengView = [[UIView alloc] initWithFrame:RECT(0, CGRectGetMaxY(self.timeLabel.frame) + 10, SCREENWIDTH, 120)];
+        
+        
+        UILabel *pingzhengLabel = [[UILabel alloc] initWithFrame:RECT(LeftPadding, 10, 200, 15)];
+        pingzhengLabel.textColor = KColorGray333;
+        pingzhengLabel.text = @"凭证类型";
+        pingzhengLabel.textAlignment = NSTextAlignmentLeft;
+        pingzhengLabel.font = SystemFont(15.0f);
+        [_pingzhengView addSubview:pingzhengLabel];
+        
+        NSArray *pingzhengTitleArray = @[@"合同",@"协议",@"欠条",@"其他"];
+        
+        NSMutableArray *pingzhengItemArray = [NSMutableArray array];
+        for (int i = 0; i < pingzhengTitleArray.count; i ++) {
+            YingShowHorSelectModel *model = [[YingShowHorSelectModel alloc] init];
+            if (i == 0) {
+                model.isSelected = YES;
+            }
+            model.titleStr = pingzhengTitleArray[i];
+            [pingzhengItemArray addObject:model];
+        }
+        
+        
+        self.pingzhengScrollView = [[YingShowHorSelectScrollView alloc] initWithFrame:RECT(LeftPadding, CGRectGetMaxY(pingzhengLabel.frame) + 5, SCREENWIDTH - 20, 15) items:pingzhengItemArray];
+        
+        [_pingzhengView addSubview:self.pingzhengScrollView];
+        
+        
+        UILabel *selectImageLabel = [[UILabel alloc] initWithFrame:RECT(LeftPadding, CGRectGetMaxY(self.pingzhengScrollView.frame) + 40, 200, 15)];
+        
+        selectImageLabel.font = SystemFont(15.0);
+        selectImageLabel.textAlignment = NSTextAlignmentLeft;
+        selectImageLabel.textColor = KColorGray333;
+        selectImageLabel.text = @"选择凭证图片";
+        [_pingzhengView addSubview:selectImageLabel];
+        
+        self.addImageView = [[UIImageView alloc] initWithFrame:RECT(SCREENWIDTH - 20 - 75, CGRectGetMaxY(self.pingzhengScrollView.frame)  + 10, 75, 75)];
+        self.addImageView.image = [UIImage imageNamed:@"addBankCard.png"];
+        self.addImageView.backgroundColor = [UIColor colorWithString:@"#DDDDDD" colorAlpha:1];
+        self.addImageView.userInteractionEnabled = YES;
+        UITapGestureRecognizer *selectTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(addImageAction:)];
+        [self.addImageView addGestureRecognizer:selectTap];
+        [_pingzhengView addSubview:self.addImageView];
+        
+        
+    }
+    return _pingzhengView;
+}
+
+
+
 -(UIView *)panjueView
 {
     if (!_panjueView) {
-        _panjueView = [[UIView alloc] initWithFrame:RECT(0, CGRectGetMaxY(self.addImageView.frame) + 10, SCREENWIDTH, 120)];
+        _panjueView = [[UIView alloc] initWithFrame:RECT(0, CGRectGetMaxY(self.timeLabel.frame) + 10, SCREENWIDTH, 120)];
         _panjueView.backgroundColor = RGBCOLOR(242, 242, 242);
         
-        UILabel *panjueLabel = [[UILabel alloc] initWithFrame:RECT(LeftPadding, 0, 200, 15)];
+        UILabel *panjueLabel = [[UILabel alloc] initWithFrame:RECT(LeftPadding, 10, 200, 15)];
         panjueLabel.textColor = KColorGray333;
         panjueLabel.text = @"判决书类型";
         panjueLabel.textAlignment = NSTextAlignmentLeft;
@@ -396,7 +415,7 @@
         selectImageLabel.textAlignment = NSTextAlignmentLeft;
         selectImageLabel.textColor = KColorGray333;
         selectImageLabel.text = @"选择判决书图片";
-        [self.panjueTypeScrollView addSubview:selectImageLabel];
+        [_panjueView addSubview:selectImageLabel];
         
         self.addPanjueImageView = [[UIImageView alloc] initWithFrame:RECT(SCREENWIDTH - 20 - 75, CGRectGetMaxY(self.panjueTypeScrollView.frame)  + 10, 75, 75)];
         self.addPanjueImageView.image = [UIImage imageNamed:@"addBankCard.png"];
@@ -404,7 +423,7 @@
         self.addPanjueImageView.userInteractionEnabled = YES;
         UITapGestureRecognizer *selectTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(addImageAction:)];
         [self.addPanjueImageView addGestureRecognizer:selectTap];
-        [self.panjueView addSubview:self.addPanjueImageView];
+        [_panjueView addSubview:self.addPanjueImageView];
         
     }
     return _panjueView;
@@ -415,18 +434,16 @@
 
 -(void)didSelectItemWithSelectObject:(NSString *)selectObject ScrollView:(YingShowHorSelectScrollView *)horScrollView
 {
-    CGSize size = self.contentScrollView.contentSize;
     if (horScrollView == self.statusScrollView) {
-        if ([selectObject isEqualToString:@"未起诉"]) {
-            if (self.panjueView && self.panjueView.superview) {
-                [self.panjueView removeFromSuperview];
-                self.contentScrollView.contentSize = CGSizeMake(0, size.height - 120);
-            }
-            
+        if ([selectObject isEqualToString:@"执行中"]) {
+            self.panjueView.hidden = NO;
+            self.pingzhengView.hidden = YES;
+            [self.contentScrollView bringSubviewToFront:self.panjueView];
         }
         else{
-            [self.contentScrollView addSubview:self.panjueView];
-            self.contentScrollView.contentSize = CGSizeMake(0, size.height + 120);
+            self.pingzhengView.hidden = NO;
+            self.panjueView.hidden = YES;
+            [self.contentScrollView bringSubviewToFront:self.pingzhengView];
         }
     }
 }

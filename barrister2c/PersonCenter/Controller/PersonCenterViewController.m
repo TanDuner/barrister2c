@@ -124,13 +124,13 @@
     PersonCenterModel *model7 = [[PersonCenterModel alloc] init];
     model7.titleStr = @"我上传的债权债务信息";
     model7.cellType = PersonCenterModelTypeYSSC;
-    model7.iconNameStr = @"Me_help";
+    model7.iconNameStr = @"zhaixitong";
     model7.isShowArrow = YES;
     
     PersonCenterModel *model8 = [[PersonCenterModel alloc] init];
     model8.titleStr = @"我购买的债权债务信息";
     model8.cellType = PersonCenterModelTypeYSGM;
-    model8.iconNameStr = @"Me_help";
+    model8.iconNameStr = @"zhaixitong";
     model8.isShowArrow = YES;
     
     

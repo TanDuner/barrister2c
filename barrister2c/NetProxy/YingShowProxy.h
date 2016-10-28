@@ -21,6 +21,25 @@
 -(void)getYingShowSearchResultWithParams:(NSMutableDictionary *)params block:(ServiceCallBlock)aBlock;
 
 
+/**
+ 应收账款查询详情接口
+
+ @param params
+ @param aBlock
+ */
+-(void)getYingShowInfoDetailWithParams:(NSMutableDictionary *)params block:(ServiceCallBlock)aBlock;
+
+
+
+/**
+ 下单接口
+
+ @param params
+ @param aBlock
+ */
+-(void)buyYingShowInfoWithParams:(NSMutableDictionary *)params block:(ServiceCallBlock)aBlock;
+
+
 
 /**
  发布应收账款

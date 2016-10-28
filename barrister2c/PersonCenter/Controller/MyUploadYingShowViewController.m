@@ -48,7 +48,7 @@
     self.tableView.backgroundColor = kBaseViewBackgroundColor;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    self.tableView.rowHeight = 87;
+    self.tableView.rowHeight = 159;
     self.tableView.refreshDelegate = self;
     
     [self.view addSubview:self.tableView];

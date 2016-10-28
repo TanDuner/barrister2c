@@ -260,12 +260,12 @@
 
 -(void)initView
 {
-    NSArray *titlesArray = @[@"债券债务信息",@"债权信息",@"债务信息"];
+    NSArray *titlesArray = @[@"填写债权人信息",@"填写债务人信息",@"债权债务信息"];
     
     NSMutableArray *VCArray = [NSMutableArray array];
-    [VCArray addObject:self.firstVC];
     [VCArray addObject:self.secondVC];
     [VCArray addObject:self.thirdVC];
+    [VCArray addObject:self.firstVC];
     
     
     NSArray *colorArray = @[

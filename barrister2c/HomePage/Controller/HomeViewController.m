@@ -348,16 +348,14 @@
 {
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
-            if ([BaseDataSingleton shareInstance].isClosePay) {
-                return [UITableViewCell new];
-            }
-            else
+            HomeMonenyCell *cell = [[HomeMonenyCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            __weak typeof(*&self) weakSelf = self;
+            cell.clickBlock = ^(NSString *type)
             {
-                HomeMonenyCell *cell = [[HomeMonenyCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
-                cell.selectionStyle = UITableViewCellSelectionStyleNone;
-                return cell;
-            }
-
+                [weakSelf ZXActionWithType:type];
+            };
+            return cell;
         }
         else if(indexPath.row == 1)
         {
@@ -422,6 +420,15 @@
 
 
 #pragma -mark -Action-
+
+-(void)ZXActionWithType:(NSString *)type
+{
+    LawerListViewController *lawerListVC = [[LawerListViewController alloc] init];
+    lawerListVC.type = type;
+    [self.navigationController pushViewController:lawerListVC animated:YES];
+
+    
+}
 
 
 

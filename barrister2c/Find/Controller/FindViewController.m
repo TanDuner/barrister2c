@@ -20,7 +20,7 @@
 
 #define ImageWidth 28
 
-#define LawButtonWidth 45
+#define LawButtonWidth 40
 #define LawLeftPadding 17.5
 #define LawTopPadding 17.5 + 45
 #define LawHorSpacing (SCREENWIDTH - LawLeftPadding *2 - LawButtonWidth *4)/3
@@ -123,7 +123,7 @@ typedef void(^ClickZXItemBlock)(ZXItemView *itemView);
 
 @property (nonatomic,strong) UIView *topSelectView;
 
-@property (nonatomic,strong) UIView *midEnterView;
+//@property (nonatomic,strong) UIView *midEnterView;
 
 @property (nonatomic,strong) UIView *bottomCategoryView;
 
@@ -171,24 +171,19 @@ typedef void(^ClickZXItemBlock)(ZXItemView *itemView);
     [self.view addSubview:self.bottomScrollView];
     
     
-    [self configTopView];
+//    [self configTopView];
     
-    [self configMidEnterView];
     
     [self configBottomView];
 
 }
 
--(void)configTopView
-{
-    [self.bottomScrollView addSubview:self.topSelectView];
-}
+//-(void)configTopView
+//{
+//    [self.bottomScrollView addSubview:self.topSelectView];
+//}
 
 
--(void)configMidEnterView
-{
-    [self.bottomScrollView addSubview:self.midEnterView];
-}
 
 -(void)configBottomView
 {
@@ -262,8 +257,8 @@ typedef void(^ClickZXItemBlock)(ZXItemView *itemView);
     }
     
     
-    [self.bottomCategoryView setFrame:RECT(0, ItemHeight *3 + 10 + self.midEnterView.height + 10, SCREENWIDTH, 10 + ceil(array.count/4) * (LawTopPadding + LawButtonWidth))];
-    [self.bottomScrollView setContentSize:CGSizeMake(0, self.topSelectView.height + self.midEnterView.height + self.bottomCategoryView.height + 15)];
+    [self.bottomCategoryView setFrame:RECT(0, 10, SCREENWIDTH, 10 + ceil(array.count/4) * (LawTopPadding + LawButtonWidth))];
+    [self.bottomScrollView setContentSize:CGSizeMake(0, self.topSelectView.height + self.bottomCategoryView.height + 15)];
 
 
 }
@@ -318,105 +313,56 @@ typedef void(^ClickZXItemBlock)(ZXItemView *itemView);
 }
 
 
--(UIView *)topSelectView
-{
-    if (!_topSelectView) {
-        _topSelectView = [[UIView alloc] initWithFrame:RECT(0, 0, SCREENWIDTH, 3 *ItemHeight + 10 + 2)];
-        
-        _LeftItem = [[ZXItemView alloc] initWithFrame:RECT(0, 0, SCREENWIDTH, ItemHeight)];
-        _LeftItem.leftImageView.image = [UIImage imageNamed:@"JSZX"];
-        _LeftItem.titleLabel.text = @"即时咨询";
-        _LeftItem.subtitleLabel.text = @"立即与律师沟通";
-        __weak typeof(*&self) weakSelf = self;
-        _LeftItem.block = ^(ZXItemView *itemView)
-        {
-            [weakSelf toLawerListWithType:@"IM"];
-        };
-        
-        UIView *sepView = [[UIView alloc] initWithFrame:RECT(0, ItemHeight + .5, SCREENWIDTH, .5)];
-        sepView.backgroundColor = RGBCOLOR(204, 205, 206);
-        
-        
-        _rightItem = [[ZXItemView alloc] initWithFrame:RECT(0 , ItemHeight + 1, SCREENWIDTH, ItemHeight)];
-        _rightItem.leftImageView.image = [UIImage imageNamed:@"YYZX"];
-        _rightItem.titleLabel.text = @"预约咨询";
-        _rightItem.subtitleLabel.text = @"约定时间与律师沟通";
-        _rightItem.block = ^(ZXItemView *itemView)
-        {
-            [weakSelf toLawerListWithType:@"APPOINTMENT"];
-        };
-        
-        
-        _expertItem = [[ZXItemView alloc] initWithFrame:RECT(0 , 2 *ItemHeight + 2, SCREENWIDTH, ItemHeight)];
-        _expertItem.leftImageView.image = [UIImage imageNamed:@"YYZX"];
-        _expertItem.titleLabel.text = @"专家咨询";
-        _expertItem.subtitleLabel.text = @"名家咨询更给力";
-        _expertItem.block = ^(ZXItemView *itemView)
-        {
-            [weakSelf toLawerListWithType:@"EXPERT"];
-        };
-        
-        UIView *sepView2 = [[UIView alloc] initWithFrame:RECT(0, ItemHeight *2 + 1, SCREENWIDTH, .5)];
-        sepView2.backgroundColor = RGBCOLOR(204, 205, 206);
 
-        
-        
-        UIView *horSpeView = [[UIView alloc] initWithFrame:RECT(0, ItemHeight *3 + 2, SCREENWIDTH, 10)];
-        horSpeView.backgroundColor = RGBCOLOR(239, 239, 246);
-        
-        [_topSelectView addSubview:_LeftItem];
-        [_topSelectView addSubview:sepView];
-        [_topSelectView addSubview:_rightItem];
-        [_topSelectView addSubview:sepView2];
-        
-        [_topSelectView addSubview:_expertItem];
-        
-        [_topSelectView addSubview:horSpeView];
-        
-        _topSelectView.backgroundColor =[UIColor whiteColor];
-    }
-    
-    return _topSelectView;
-}
-
-
--(UIView *)midEnterView
-{
-    if (!_midEnterView) {
-        _midEnterView = [[UIView alloc] initWithFrame:RECT(0, CGRectGetMaxY(self.topSelectView.frame), SCREENWIDTH, ItemHeight + 45)];
-        
-        _midEnterView.backgroundColor = [UIColor whiteColor];
-        
-        UILabel *tipLabel = [[UILabel alloc] initWithFrame:RECT(LeftPadding, 15, 200, 15)];
-        tipLabel.textColor = KColorGray222;
-        tipLabel.font = SystemFont(16.0);
-        tipLabel.text = @"应收账款";
-        
-        [_midEnterView addSubview:tipLabel];
-        
-        
-        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-        [button setFrame:RECT(0, 5 + 45, SCREENWIDTH, ItemHeight - 10)];
-        [button addTarget:self action:@selector(toYingshouVC) forControlEvents:UIControlEventTouchUpInside];
-        button.backgroundColor = [UIColor redColor];
-        [_midEnterView addSubview:button];
-        
-        
-        UIView *horSpeView = [[UIView alloc] initWithFrame:RECT(0, 45, SCREENWIDTH, 1)];
-        horSpeView.backgroundColor = RGBCOLOR(239, 239, 246);
-        
-        [_midEnterView addSubview:horSpeView];
-
-        
-    }
-    return _midEnterView;
-}
+//-(UIView *)midEnterView
+//{
+//    if (!_midEnterView) {
+//        _midEnterView = [[UIView alloc] initWithFrame:RECT(0, 0, SCREENWIDTH, 60)];
+//        _midEnterView.userInteractionEnabled = YES;
+//        
+//        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(toYingshouVC)];
+//        
+//        [_midEnterView addGestureRecognizer:tap];
+//        
+//        
+//        _midEnterView.backgroundColor = [UIColor whiteColor];
+//        
+//        
+//        
+//        UIImageView *leftImageView = [[UIImageView alloc] initWithFrame:RECT(LeftPadding, (_midEnterView.height - 30) / 2.0, 30, 30)];
+//        [leftImageView setImage:[UIImage imageNamed:@"JSZX"]];
+//        [_midEnterView addSubview:leftImageView];
+//        
+//        
+//        UILabel *tipLabel = [[UILabel alloc] initWithFrame:RECT(LeftPadding + 30 + LeftPadding, 22.5, 200, 15)];
+//        tipLabel.textColor = KColorGray222;
+//        tipLabel.font = SystemFont(16.0);
+//        tipLabel.text = @"应收账款";
+//        
+//        [_midEnterView addSubview:tipLabel];
+//        
+//        
+//        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+//        [button setFrame:RECT(0, 5 + 45, SCREENWIDTH, 50)];
+//        [button addTarget:self action:@selector(toYingshouVC) forControlEvents:UIControlEventTouchUpInside];
+//        [_midEnterView addSubview:button];
+//        
+//        
+////        UIView *horSpeView = [[UIView alloc] initWithFrame:RECT(0, 45, SCREENWIDTH, 1)];
+////        horSpeView.backgroundColor = RGBCOLOR(239, 239, 246);
+//        
+////        [_midEnterView addSubview:horSpeView];
+//
+//        
+//    }
+//    return _midEnterView;
+//}
 
 
 -(UIView *)bottomCategoryView
 {
     if (!_bottomCategoryView) {
-        _bottomCategoryView = [[UIView alloc] initWithFrame:RECT(0, ItemHeight *3 + 10 + 2 + self.midEnterView.height + 10, SCREENWIDTH, 0)];
+        _bottomCategoryView = [[UIView alloc] initWithFrame:RECT(0, 10, SCREENWIDTH, 0)];
         _bottomCategoryView.backgroundColor = [UIColor whiteColor];
         
         UILabel *tipLabel = [[UILabel alloc] initWithFrame:RECT(LeftPadding, 15, 200, 15)];

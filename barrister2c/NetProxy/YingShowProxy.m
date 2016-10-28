@@ -13,6 +13,8 @@
 #define MyBuyYingShowUrl   @"myPurchasedCreditDebtList.do"
 #define MyUploadYingShowUrl @"myUploadCreditDebtList.do"
 #define DeleteYingShowInfoUrl @"delCreditDebtInfo.do"
+#define YingshowDetailUrl       @"creditDebtInfoDetail.do"
+#define BuyYingShowUrl          @"buyCreditDebtDetail.do"
 
 @implementation YingShowProxy
 
@@ -49,6 +51,80 @@
 
 
 }
+
+
+
+/**
+ 应收账款查询详情接口
+ 
+ @param params
+ @param aBlock
+ */
+-(void)getYingShowInfoDetailWithParams:(NSMutableDictionary *)params block:(ServiceCallBlock)aBlock
+{
+    [self appendCommonParamsWithDict:params];
+    [XuNetWorking postWithUrl:YingshowDetailUrl params:params success:^(id response) {
+        if ([self isCommonCorrectResultCodeWithResponse:response]) {
+            if (aBlock) {
+                aBlock(response,YES);
+            }
+            else
+            {
+                NSDictionary *dict = (NSDictionary *)response;
+                NSString *resultCode = [dict objectForKey:@"resultCode"];
+
+                if (resultCode.integerValue == 605) {
+                    aBlock(@"未购买",YES);
+                }
+                else{
+                    aBlock(CommonNetErrorTip,NO);
+ 
+                }
+                
+            
+                
+            }
+        }
+    } fail:^(NSError *error) {
+        if (aBlock) {
+            aBlock(error,NO);
+        }
+    }];
+
+
+}
+
+
+
+/**
+ 下单接口
+ 
+ @param params
+ @param aBlock
+ */
+-(void)buyYingShowInfoWithParams:(NSMutableDictionary *)params block:(ServiceCallBlock)aBlock
+{
+
+    [self appendCommonParamsWithDict:params];
+    [XuNetWorking postWithUrl:BuyYingShowUrl params:params success:^(id response) {
+        if ([self isCommonCorrectResultCodeWithResponse:response]) {
+            if (aBlock) {
+                aBlock(response,YES);
+            }
+            else
+            {
+              
+                aBlock(CommonNetErrorTip,NO);
+            }
+        }
+    } fail:^(NSError *error) {
+        if (aBlock) {
+            aBlock(error,NO);
+        }
+    }];
+}
+
+
 
 
 /**

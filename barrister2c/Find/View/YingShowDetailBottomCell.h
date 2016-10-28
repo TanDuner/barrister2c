@@ -7,13 +7,16 @@
 //
 
 #import "BaseTableViewCell.h"
-#import "YingShowInfoModel.h"
-
+#import "YingShowUserModel.h"
 
 @interface YingShowDetailBottomCell : BaseTableViewCell
 
-@property (nonatomic,strong) YingShowInfoModel *model;
+-(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier isBuy:(BOOL)isBuy;
 
-+(CGFloat)getCellHeightWithModel:(YingShowInfoModel *)model;
+@property (nonatomic,strong) YingShowUserModel *model;
+
+@property (nonatomic,assign) BOOL isCreadit;
+
++(CGFloat)getCellHeightWithModel:(YingShowUserModel *)model;
 
 @end

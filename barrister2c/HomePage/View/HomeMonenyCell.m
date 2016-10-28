@@ -10,14 +10,12 @@
 
 #define LabelWidht (SCREENWIDTH - 1)/2.0
 #define SelfHeight 68
+#define ButtonWidth  (SCREENWIDTH - 1)/3.0
 
 @implementation HomeMonenyCell
 
 +(CGFloat)getCellHeight
 {
-    if ([BaseDataSingleton shareInstance].isClosePay) {
-        return 0;
-    }
     return SelfHeight;
 }
 
@@ -26,13 +24,11 @@
 {
     
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
-        [self addSubview:self.remainTipLabel];
-        [self addSubview:self.remainLabel];
         
-        [self addSubview:[self getLineViewWithRect:RECT(LabelWidht, 18, 1, 32)]];
-        
-        [self addSubview:self.costTipLabel];
-        [self addSubview:self.costLabel];
+        self.backgroundColor = kBaseViewBackgroundColor;
+        [self addSubview:self.jishiButton];
+        [self addSubview:self.yuyueButton];
+        [self addSubview:self.zhuanjiaButton];
     }
     return self;
 }
@@ -41,10 +37,10 @@
 {
     [super layoutSubviews];
     
-    self.remainLabel.text = [BaseDataSingleton shareInstance].remainingBalance?[NSString stringWithFormat:@"%.2f",[BaseDataSingleton shareInstance].remainingBalance.floatValue]:@"0";
     
-    self.costLabel.text = [BaseDataSingleton shareInstance].totalConsume?[NSString stringWithFormat:@"%.2f",[BaseDataSingleton shareInstance].totalConsume.floatValue]:@"0";
-    
+    [self.jishiButton setFrame:RECT(0, 0, ButtonWidth, SelfHeight)];
+    [self.yuyueButton setFrame:RECT(ButtonWidth + .5, 0, ButtonWidth, SelfHeight)];
+    [self.zhuanjiaButton setFrame:RECT(2 *ButtonWidth + 1, 0, ButtonWidth, SelfHeight)];
 }
 
 
@@ -52,59 +48,75 @@
 #pragma -mark ---Getter--
 
 
--(UILabel *)remainTipLabel
+-(UIButton *)jishiButton
 {
-    if (!_remainTipLabel) {
-        _remainTipLabel = [[UILabel alloc] initWithFrame:RECT(0, 17, LabelWidht, 12)];
-        _remainTipLabel.textColor = RGBCOLOR(151, 152, 153);
-        _remainTipLabel.font = SystemFont(14.0f);
-        _remainTipLabel.text = @"余额";
-        _remainTipLabel.textAlignment = NSTextAlignmentCenter;
+    if (!_jishiButton) {
+        _jishiButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_jishiButton setTitle:@"即时咨询" forState:UIControlStateNormal];
+        _jishiButton.titleLabel.font = SystemFont(14.0f);
+        _jishiButton.backgroundColor = [UIColor whiteColor];
+        [_jishiButton setTitleColor:KColorGray333 forState:UIControlStateNormal];
+        _jishiButton.titleEdgeInsets = UIEdgeInsetsMake(0, 10, 0, 0);
+        [_jishiButton setImage:[UIImage imageNamed:@"JSZX"] forState:UIControlStateNormal];
+        [_jishiButton addTarget:self action:@selector(clickAction:) forControlEvents:UIControlEventTouchUpInside];
     }
-    return _remainTipLabel;
+    return _jishiButton;
+}
+
+-(UIButton *)yuyueButton
+{
+    if (!_yuyueButton) {
+        _yuyueButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_yuyueButton setTitle:@"预约咨询" forState:UIControlStateNormal];
+        _yuyueButton.titleLabel.font = SystemFont(14.0f);
+        _yuyueButton.backgroundColor = [UIColor whiteColor];
+        [_yuyueButton setTitleColor:KColorGray333 forState:UIControlStateNormal];
+        _yuyueButton.titleEdgeInsets = UIEdgeInsetsMake(0, 10, 0, 0);
+        [_yuyueButton setImage:[UIImage imageNamed:@"YYZX"] forState:UIControlStateNormal];
+        [_yuyueButton addTarget:self action:@selector(clickAction:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _yuyueButton;
 }
 
 
 
--(UILabel *)remainLabel
+-(UIButton *)zhuanjiaButton
 {
-    if (!_remainLabel) {
-        _remainLabel = [[UILabel alloc] initWithFrame:RECT(0, SelfHeight - 16 - 14, LabelWidht, 14)];
-        _remainLabel.textColor = RGBCOLOR(251, 156, 39);
-        _remainLabel.font = SystemFont(18.0f);
-        _remainLabel.textAlignment = NSTextAlignmentCenter;
+    if (!_zhuanjiaButton) {
+        _zhuanjiaButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_zhuanjiaButton setTitle:@"专家咨询" forState:UIControlStateNormal];
+        _zhuanjiaButton.titleLabel.font = SystemFont(14.0f);
+        _zhuanjiaButton.backgroundColor = [UIColor whiteColor];
+        [_zhuanjiaButton setTitleColor:KColorGray333 forState:UIControlStateNormal];
+        _zhuanjiaButton.titleEdgeInsets = UIEdgeInsetsMake(0, 10, 0, 0);
+        [_zhuanjiaButton setImage:[UIImage imageNamed:@"zhuanjia"] forState:UIControlStateNormal];
+        [_zhuanjiaButton addTarget:self action:@selector(clickAction:) forControlEvents:UIControlEventTouchUpInside];
     }
-    return _remainLabel;
+    return _zhuanjiaButton;
 }
 
 
-
-
--(UILabel *)costTipLabel
+-(void)clickAction:(UIButton *)button
 {
-    if (!_costTipLabel) {
-        _costTipLabel = [[UILabel alloc] initWithFrame:RECT(LabelWidht +  1 + 0, 17, LabelWidht, 12)];
-        _costTipLabel.textColor = RGBCOLOR(151, 152, 153);
-        _costTipLabel.text = @"累计消费";
-        _costTipLabel.textAlignment = NSTextAlignmentCenter;
-        _costTipLabel.font = SystemFont(14.0f);
+    NSString *type;
+    
+    if (button == self.jishiButton) {
+        type = @"IM";
     }
-    return _costTipLabel;
-}
-
-
-
--(UILabel *)costLabel
-{
-    if (!_costLabel) {
-        _costLabel = [[UILabel alloc] initWithFrame:RECT(LabelWidht +  1 + 0, SelfHeight - 16 - 14, LabelWidht, 14)];
-        _costLabel.textColor = RGBCOLOR(251, 156, 39);
-        _costLabel.textAlignment = NSTextAlignmentCenter;
-        _costLabel.font = SystemFont(18.0f);
+    else if (button == self.yuyueButton)
+    {
+        type = @"APPOINMENT";
     }
-    return _costLabel;
+    else if (button == self.zhuanjiaButton)
+    {
+        type = @"EXPERT";
+    }
+    
+    if (self.clickBlock) {
+        self.clickBlock(type);
+    }
+    
+    
 }
-
-
 
 @end

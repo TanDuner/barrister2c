@@ -41,7 +41,7 @@ static  NSString *TYPE_DEBT = @"debt";//债务人
 
 @property (nonatomic,strong) NSString *companyPhone;
 
-@property (nonatomic,strong) NSString *liceseeNuber;
+@property (nonatomic,strong) NSString *licenseNuber;
 
 @property (nonatomic,strong) NSString *ID_number;
 

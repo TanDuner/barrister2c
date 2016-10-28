@@ -8,15 +8,20 @@
 
 #import "BaseTableViewCell.h"
 
+
+typedef void(^ClickBlock)(NSString *type);
+
 @interface HomeMonenyCell : BaseTableViewCell
 
-@property (nonatomic,strong) UILabel *remainTipLabel;
-
-@property (nonatomic,strong) UILabel *remainLabel;
-
-@property (nonatomic,strong) UILabel *costTipLabel;
-
-@property (nonatomic,strong) UILabel *costLabel;
 
 +(CGFloat)getCellHeight;
+
+@property (nonatomic,strong) UIButton *jishiButton;
+
+@property (nonatomic,strong) UIButton *yuyueButton;
+
+@property (nonatomic,strong) UIButton *zhuanjiaButton;
+
+@property (nonatomic,copy) ClickBlock clickBlock;
+
 @end

@@ -141,7 +141,7 @@
     _pickerView=pickView;
     pickView.delegate=self;
     pickView.dataSource=self;
-    pickView.frame=CGRectMake(0, ZHToobarHeight, pickView.frame.size.width, pickView.frame.size.height);
+    pickView.frame=CGRectMake(0, ZHToobarHeight, SCREENWIDTH, pickView.frame.size.height);
     _pickeviewHeight=pickView.frame.size.height;
     [self addSubview:pickView];
 }
@@ -155,7 +155,7 @@
         [datePicker setDate:_defaulDate];
     }
     _datePicker=datePicker;
-    datePicker.frame=CGRectMake(0, ZHToobarHeight, datePicker.frame.size.width, datePicker.frame.size.height);
+    datePicker.frame=CGRectMake(0, ZHToobarHeight, SCREENWIDTH, datePicker.frame.size.height);
     _pickeviewHeight=datePicker.frame.size.height;
     [self addSubview:datePicker];
 }

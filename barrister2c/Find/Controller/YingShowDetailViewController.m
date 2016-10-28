@@ -8,12 +8,19 @@
 
 #import "YingShowDetailViewController.h"
 #import "YingShowDetailBottomCell.h"
-#import "YingShowListCell.h"
+#import "YingShowDetailListCell.h"
+#import "YingShowProxy.h"
+
 
 @interface YingShowDetailViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic,strong) UITableView *tableView;
 
+@property (nonatomic,strong) YingShowProxy *proxy;
+
+@property (nonatomic,assign) BOOL isBuy;
+
+@property (nonatomic,strong) UIBarButtonItem *payButton;
 
 @end
 
@@ -37,44 +44,98 @@
 }
 
 
+- (void)initNavigationRightTextButton:(NSString *)btnText action:(SEL)action
+{
+    NSDictionary  *attributes = @{ NSFontAttributeName : SystemFont(16.0f), NSForegroundColorAttributeName : [UIColor whiteColor] } ;
+    NSDictionary  *disableAttributes = @{ NSFontAttributeName : SystemFont(16.0f), NSForegroundColorAttributeName : kButtonColor1Highlight } ;
+    self.payButton = [[UIBarButtonItem alloc]initWithTitle:btnText
+                                                                 style:UIBarButtonItemStylePlain
+                                                                target:self
+                                                                action:action];
+    [self.payButton setTitleTextAttributes:attributes forState:UIControlStateNormal];
+    [self.payButton setTitleTextAttributes:disableAttributes forState:UIControlStateDisabled];
+    self.navigationItem.rightBarButtonItem = self.payButton;
+}
+
 -(void)payAction
 {
+    
+    [XuUItlity showYesOrNoAlertView:@"" noText:@"取消" title:@"提示" mesage:@"查看债权详细信息，系统将从余额扣除16元" callback:^(NSInteger buttonIndex, NSString *inputString) {
+        if (buttonIndex == 1) {
+            NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:self.model.yingShowInfoId,@"id", nil];
+            
+            __weak typeof(*& self) weakSelf = self;
+            self.payButton.enabled = NO;
+            
+            [XuUItlity showLoading:@"正在支付..."];
+            [self.proxy buyYingShowInfoWithParams:params block:^(id returnData, BOOL success) {
+                [XuUItlity hideLoading];
+                if (success) {
+                    NSDictionary *dict = (NSDictionary *)returnData;
+                    NSDictionary *infoDict = [dict objectForKey:@"detail"];
+                    if (infoDict) {
+                        YingShowInfoModel *model = [[YingShowInfoModel alloc] initWithDictionary:infoDict];
+                        self.model = model;
+                        [weakSelf HandleDetailInfoWithisBuy:YES];
+                    }
+                    
+                }
+                else{
+                    
+                    self.payButton.enabled = YES;
+                }
+            }];
+
+        }
+        else
+        {
+        
+            
+        }
+    }];
+    
+    
     
 }
 
 
 -(void)initData
 {
+    __weak typeof(*&self) weakSelf = self;
     
-    YingShowUserModel *userModel = [[YingShowUserModel alloc] init];
-    userModel.name = @"张三";
-    userModel.company = @"58同城";
-    userModel.companyPhone = @"010-59565858";
-    userModel.address = @"酒仙桥北路甲10号院";
-    userModel.liceseeNuber = @"848248958394849";
-    userModel.ID_number = @"103847593785959550";
-    userModel.phone = @"13333333333";
-    
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:self.model.yingShowInfoId,@"id", nil];
+    [self.proxy getYingShowInfoDetailWithParams:params block:^(id returnData, BOOL success) {
+        if (success) {
+            if ([returnData isKindOfClass:[NSString class]] && [returnData isEqualToString:@"未购买"]) {
+                [weakSelf HandleDetailInfoWithisBuy:NO];
+            }
+            else{
+                
+                NSDictionary *dict = (NSDictionary *)returnData;
+                NSDictionary *infoDict = [dict objectForKey:@"detail"];
+                if (infoDict) {
+                    YingShowInfoModel *model = [[YingShowInfoModel alloc] initWithDictionary:infoDict];
+                    self.model = model;
+                }
+                self.payButton.enabled = NO;
+                
+                [weakSelf HandleDetailInfoWithisBuy:YES];
 
+            }
+        }
+        else{
+            
+        }
+    }];
+   
+}
+
+
+
+-(void)HandleDetailInfoWithisBuy:(BOOL)isBuy
+{
     
-    YingShowInfoModel *model = [[YingShowInfoModel alloc] init];
-    
-    model.creditUser = userModel;
-    
-    [model handlePropretyWithDict:nil];
-    
-    
-    model.type = @"合同欠款";
-    model.updateTime = @"2016-10-12";
-    model.addTime = @"2016-03-04";
-    model.status = @"已通过";
-    model.money = @"10000";
-    
-    model.cellHeight = 141;
-    
-    
-    self.model = model;
-    
+    _isBuy = isBuy;
     [self.tableView reloadData];
 }
 
@@ -113,11 +174,11 @@
     }
     else if (indexPath.section == 1)
     {
-       return [YingShowDetailBottomCell getCellHeightWithModel:self.model];
+       return [YingShowDetailBottomCell getCellHeightWithModel:self.model.creditUser];
     }
     else if (indexPath.section == 2)
     {
-       return [YingShowDetailBottomCell getCellHeightWithModel:self.model];
+       return [YingShowDetailBottomCell getCellHeightWithModel:self.model.debtUser];
     }
     else{
         return 0;
@@ -127,20 +188,22 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 0) {
-        YingShowListCell *cell = [[YingShowListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+        YingShowDetailListCell *cell = [[YingShowDetailListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
         cell.model = self.model;
         return cell;
     }
     else if (indexPath.section == 1)
     {
-        YingShowDetailBottomCell *cell = [[YingShowDetailBottomCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
-        cell.model = self.model;
+        YingShowDetailBottomCell *cell = [[YingShowDetailBottomCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil isBuy:self.isBuy];
+        cell.model = self.model.creditUser;
+        cell.isCreadit = YES;
         return cell;
     }
     else if (indexPath.section == 2)
     {
-        YingShowDetailBottomCell *cell = [[YingShowDetailBottomCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
-        cell.model = self.model;
+        YingShowDetailBottomCell *cell = [[YingShowDetailBottomCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil isBuy:self.isBuy];
+        cell.isCreadit = NO;
+        cell.model = self.model.debtUser;
         return cell;
     }
     return nil;
@@ -153,11 +216,21 @@
 {
     if (!_tableView) {
         _tableView = [[UITableView alloc] initWithFrame:RECT(0, 0, SCREENWIDTH, SCREENHEIGHT - NAVBAR_HIGHTIOS_7) style:UITableViewStylePlain];
+        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.tableFooterView = [UIView new];
     }
     return _tableView;
+}
+
+
+-(YingShowProxy *)proxy
+{
+    if (!_proxy) {
+        _proxy = [[YingShowProxy alloc] init];
+    }
+    return _proxy;
 }
 
 
