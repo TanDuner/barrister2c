@@ -141,7 +141,7 @@
         
         
         _ID_NumberTextField = [[BorderTextFieldView alloc] initWithFrame:RECT(0, CGRectGetMaxY(_phoneTextField.frame) + 10, SCREENWIDTH, TextHeight)];
-        _ID_NumberTextField.keyboardType = UIKeyboardTypeNumberPad;
+        _ID_NumberTextField.keyboardType = UIKeyboardTypeDefault;
         _ID_NumberTextField.textColor = kFormTextColor;
         _ID_NumberTextField.cleanBtnOffset_x = _ID_NumberTextField.width - 100;
         _ID_NumberTextField.delegate = self;

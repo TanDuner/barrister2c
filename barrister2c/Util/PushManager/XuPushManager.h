@@ -14,6 +14,15 @@
  */
 #define Push_Type_Order_Status_Change   @"type.order.status.changed"
 
+
+/**
+ *
+ * 有线上专项服务
+ */
+#define Push_Type_TYPE_ONLINE_ORDER   @"type.online.order"
+
+
+
 /**
  *
  * 收到评价 跳转到订单详情
