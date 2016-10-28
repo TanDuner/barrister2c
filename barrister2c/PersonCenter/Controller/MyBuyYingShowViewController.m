@@ -11,7 +11,7 @@
 #import "RefreshTableView.h"
 #import "YingShowInfoModel.h"
 #import "YingShowListCell.h"
-
+#import "YingShowDetailViewController.h"
 
 @interface MyBuyYingShowViewController ()<UITableViewDelegate,UITableViewDataSource,RefreshTableViewDelegate>
 
@@ -65,7 +65,7 @@
     [self.proxy getYingShowMyBuyListWithParams:params block:^(id returnData, BOOL success) {
         if (success) {
             NSDictionary *msg = (NSDictionary *)returnData;
-            NSArray *array = [msg objectForKey:@"msgs"];
+            NSArray *array = [msg objectForKey:@"list"];
             if ([XuUtlity isValidArray:array]) {
                 [weakSelf praiseDataWithArray:array];
             }
@@ -149,12 +149,15 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     
-    YingShowInfoModel *model = [self.items safeObjectAtIndex:indexPath.row];
-    
-    if (!model) {
-        return;
+    if (self.items.count > indexPath.row) {
+        YingShowInfoModel *model = [self.items objectAtIndex:indexPath.row];
+        YingShowDetailViewController *detailVC = [[YingShowDetailViewController alloc] init];
+        detailVC.model = model;
+        detailVC.title = @"详情";
+        [self.navigationController pushViewController:detailVC animated:YES];
+        
     }
-
+    
     
 }
 
