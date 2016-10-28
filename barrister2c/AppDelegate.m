@@ -271,7 +271,7 @@
     BaseNavigaitonController * navigationController = [mainTabVC.viewControllers objectAtIndex:mainTabVC.selectedIndex];
     
     
-    if ([type isEqualToString:Push_Type_Order_Status_Change]||[type isEqualToString:Push_Type_Receive_Star]||[type isEqualToString:Push_Type_New_AppointmentOrder]) {
+    if ([type isEqualToString:Push_Type_Order_Status_Change]||[type isEqualToString:Push_Type_Receive_Star]||[type isEqualToString:Push_Type_New_AppointmentOrder]||[type isEqualToString:Push_Type_TYPE_ONLINE_ORDER]) {
         NSString *contentId = [params objectForKey:@"contentId"];
         
         OrderDetailViewController *detailVC = [[OrderDetailViewController alloc] initWithOrderId:contentId];
