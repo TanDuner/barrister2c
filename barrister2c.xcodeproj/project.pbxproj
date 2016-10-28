@@ -438,6 +438,7 @@
 		95D8D8871DC31C7800769EB5 /* zhifubao@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 95D8D85B1DC31C7800769EB5 /* zhifubao@2x.png */; };
 		95D8D8881DC31C7800769EB5 /* zhifubao@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 95D8D85C1DC31C7800769EB5 /* zhifubao@3x.png */; };
 		95D8D88A1DC3878C00769EB5 /* jpush-ios-2.2.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 95D8D8891DC3878C00769EB5 /* jpush-ios-2.2.0.a */; };
+		95D8D8901DC38D3C00769EB5 /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 95D8D88F1DC38D3C00769EB5 /* libresolv.tbd */; };
 		95E675401D9181DE007B57A2 /* Me_help@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 95E6753E1D9181DE007B57A2 /* Me_help@2x.png */; };
 		95E675411D9181DE007B57A2 /* Me_help@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 95E6753F1D9181DE007B57A2 /* Me_help@3x.png */; };
 		95E9CAF11D695F9200B84B7C /* OnlineServiceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E9CAF01D695F9200B84B7C /* OnlineServiceCell.m */; };
@@ -1146,6 +1147,7 @@
 		95D8D85B1DC31C7800769EB5 /* zhifubao@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zhifubao@2x.png"; sourceTree = "<group>"; };
 		95D8D85C1DC31C7800769EB5 /* zhifubao@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zhifubao@3x.png"; sourceTree = "<group>"; };
 		95D8D8891DC3878C00769EB5 /* jpush-ios-2.2.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "jpush-ios-2.2.0.a"; sourceTree = "<group>"; };
+		95D8D88F1DC38D3C00769EB5 /* libresolv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.tbd; path = usr/lib/libresolv.tbd; sourceTree = SDKROOT; };
 		95DFBF011D9E0968009543E9 /* barrister2c.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = barrister2c.entitlements; sourceTree = "<group>"; };
 		95E6753E1D9181DE007B57A2 /* Me_help@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Me_help@2x.png"; sourceTree = "<group>"; };
 		95E6753F1D9181DE007B57A2 /* Me_help@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Me_help@3x.png"; sourceTree = "<group>"; };
@@ -1274,6 +1276,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				95D8D8901DC38D3C00769EB5 /* libresolv.tbd in Frameworks */,
 				95EBAAFC1D35DDE20041A647 /* CoreMotion.framework in Frameworks */,
 				9529CC771D2E28A40067597A /* CoreGraphics.framework in Frameworks */,
 				95EBAAEF1D35DCA70041A647 /* AlipaySDK.framework in Frameworks */,
@@ -2871,6 +2874,7 @@
 		FC8B3722513233B124AC9E13 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				95D8D88F1DC38D3C00769EB5 /* libresolv.tbd */,
 				95EBAAFB1D35DDE20041A647 /* CoreMotion.framework */,
 				95EBAA131D35B8370041A647 /* CoreText.framework */,
 				95EBAA111D35B81D0041A647 /* QuartzCore.framework */,
