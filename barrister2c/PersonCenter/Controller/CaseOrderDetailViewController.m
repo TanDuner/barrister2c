@@ -12,6 +12,10 @@
 #import "OrderDetailViewController.h"
 #import "OnlineWaitPayCell.h"
 #import "MyAccountRechargeVC.h"
+#import "OrderDetailCustomInfoCell.h"
+#import "UIImageView+YYWebImage.h"
+
+
 
 @interface CaseOrderDetailViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
@@ -21,9 +25,10 @@
 
 @property (nonatomic,strong) UITableView *orderTableView;
 @property (nonatomic,strong) NSMutableArray *items;
-@property (nonatomic,strong) NSString *orderId;
 @property (nonatomic,strong) OrderProxy *proxy;
 
+
+@property (nonatomic,strong) BarristerOrderDetailModel *detailModel;
 
 @property (nonatomic,strong) NSString *moneny;
 
@@ -66,18 +71,61 @@
 
 -(void)initData
 {
+    
     self.items = [NSMutableArray arrayWithCapacity:1];
+    
+    NSMutableDictionary *aParams = [NSMutableDictionary dictionary];
+    if (self.orderId) {
+        [aParams setObject:self.orderId forKey:@"orderId"];
+    }
+    else
+    {
+        //没有订单id 进入详情
+        [XuUItlity showFailedHint:@"数据异常" completionBlock:^{
+            [self.navigationController popViewControllerAnimated:YES];
+        }];
+        return;
+    }
+    
+    [aParams setObject:[BaseDataSingleton shareInstance].userModel.userId forKey:@"userId"];
+    [aParams setObject:[BaseDataSingleton shareInstance].userModel.verifyCode forKey:@"verifyCode"];
+    
+    [XuUItlity showLoading:@"正在加载..."];
+    
+    __weak typeof(*&self) weakSelf = self;
+    [self.proxy getOrderDetailWithParams:aParams Block:^(id returnData, BOOL success) {
+        [XuUItlity hideLoading];
+        if (success) {
+            NSDictionary *dict = (NSDictionary *)returnData;
+            self.detailModel = [[BarristerOrderDetailModel alloc] initWithDictionary:dict];
+            
+            [weakSelf configData];
+        }
+        else
+        {
+            [XuUItlity showFailedHint:@"加载失败" completionBlock:^{
+                [weakSelf.navigationController popViewControllerAnimated:YES];
+            }];
+        }
+    }];
+}
+
+
+-(void)configData
+{
+    
+    self.detailModel.type = ONLINE;
     
     OrderDetailCellModel *model1 = [[OrderDetailCellModel alloc] init];
     model1.showType = OrderDetailShowTypeOrderInfo;
     [self.items addObject:model1];
-
     
-    if ([self.orderModel.payStatus isEqualToString:@"0"]) {//未支付
+    
+    if ([self.detailModel.status isEqualToString:@"0" ]) {//未支付
         OrderDetailCellModel *model2 = [[OrderDetailCellModel alloc] init];
         model2.showType = OrderDetailShowTypeOnlineWaitPay;
         [self.items addObject:model2];
-   
+        
     }
     
     OrderDetailCellModel *model3 = [[OrderDetailCellModel alloc] init];
@@ -89,31 +137,39 @@
     OrderDetailCellModel *model4 = [[OrderDetailCellModel alloc] init];
     model4.showType = OrderDetailShowTypeOnlinePhone;
     
+
     [self.items addObject:model4];
-
-
-//    g *payStatus;
-//    @property (nonatomic,strong) NSString *orderTime;
-//    @property (nonatomic,strong) NSString *qq;
-//    @property (nonatomic,strong) NSString *phone;
     
     
-    orderDetailModel = [[BarristerOrderDetailModel alloc] init];
-
+    OrderDetailCellModel *model5 = [[OrderDetailCellModel alloc] init];
+    model5.showType = OrderDetailShowTypeOnlineLawerInfo;
     
-    orderDetailModel.type = ONLINE;
+    [self.items addObject:model5];
     
-    orderDetailModel.payStatus = self.orderModel.payStatus;
+    [self.orderTableView reloadData];
     
-    orderDetailModel.orderTime = self.orderModel.date;
+    //    g *payStatus;
+    //    @property (nonatomic,strong) NSString *orderTime;
+    //    @property (nonatomic,strong) NSString *qq;
+    //    @property (nonatomic,strong) NSString *phone;
     
-    orderDetailModel.qq = self.orderModel.qq;
     
-    orderDetailModel.phone = self.orderModel.phone;
-    
-    orderDetailModel.paymentAmount = self.orderModel.paymentAmount;
-    
+//    orderDetailModel = [[BarristerOrderDetailModel alloc] init];
+//    
+//    
+//    orderDetailModel.type = ONLINE;
+//    
+//    orderDetailModel.payStatus = self.detailModel.payStatus;
+//    
+//    orderDetailModel.orderTime = self.detailModel.date;
+//    
+//    orderDetailModel.qq = self.detailModel.secretaryQq;
+//    
+//    orderDetailModel.phone = self.detailModel.phone;
+//    
+//    orderDetailModel.paymentAmount = self.orderModel.paymentAmount;
 }
+
 
 #pragma -mark --------UITableView DataSource Methods------
 
@@ -130,7 +186,7 @@
         case OrderDetailShowTypeOrderInfo:
         {
             OrderDetailOrderCell * cellTemp = [[OrderDetailOrderCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
-            cellTemp.model = orderDetailModel;
+            cellTemp.model = self.detailModel;
             return cellTemp;
         }
             break;
@@ -150,14 +206,14 @@
         {
             UITableViewCell *qqCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
             UIImageView *leftImage = [[UIImageView alloc] initWithFrame:RECT(10, 10, 30, 30)];
-            leftImage.image = [UIImage imageNamed:@""];
+            leftImage.image = [UIImage imageNamed:@"expert_QQ.png"];
             [qqCell.contentView addSubview:leftImage];
             
             UILabel *label = [[UILabel alloc] initWithFrame:RECT(50, 0, 200, 50)];
             label.font = SystemFont(14.0f);
             label.textAlignment = NSTextAlignmentLeft;
             label.textColor = KColorGray333;
-            label.text = self.orderModel.qq?self.orderModel.qq:@"";
+            label.text = self.detailModel.secretaryQq?self.detailModel.secretaryQq:@"";
             [qqCell.contentView addSubview:label];
             
             UIImageView *lineView = [[UIImageView alloc] init];
@@ -174,18 +230,58 @@
         
             UITableViewCell *phoneCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
             UIImageView *leftImage = [[UIImageView alloc] initWithFrame:RECT(10, 10, 30, 30)];
-            leftImage.image = [UIImage imageNamed:@""];
+            leftImage.image = [UIImage imageNamed:@"orderdetail_call.png"];
             [phoneCell.contentView addSubview:leftImage];
             
             UILabel *label = [[UILabel alloc] initWithFrame:RECT(50, 0, 200, 50)];
             label.font = SystemFont(14.0f);
-            label.text = self.orderModel.phone?self.orderModel.phone:@"";
+            label.text = self.detailModel.secretaryPhone?self.detailModel.secretaryPhone:@"";
             label.textAlignment = NSTextAlignmentLeft;
             label.textColor = KColorGray333;
             
             [phoneCell.contentView addSubview:label];
             return phoneCell;
             
+        }
+            break;
+        case OrderDetailShowTypeOnlineLawerInfo:
+        {
+            
+            UITableViewCell *lawerInfoCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+            
+            lawerInfoCell.selectionStyle = UITableViewCellSelectionStyleNone;
+            
+            
+            UIView *sepView = [[UIView alloc] initWithFrame:RECT(0, 0, SCREENWIDTH, 10)];
+            sepView.backgroundColor = kBaseViewBackgroundColor;
+            [lawerInfoCell.contentView addSubview:sepView];
+            
+            UILabel *titleLabel = [[UILabel alloc] initWithFrame:RECT(LeftPadding, 10 + 10, 200, 15)];
+            titleLabel.font = SystemFont(14.0f);
+            titleLabel.text = @"律师信息";
+            titleLabel.textAlignment = NSTextAlignmentLeft;
+            titleLabel.textColor = KColorGray333;
+
+            [lawerInfoCell.contentView addSubview:titleLabel];
+            
+            [lawerInfoCell.contentView addSubview:[self getLineViewWithFrame:RECT(0, CGRectGetMaxY(titleLabel.frame) + 10, SCREENWIDTH, .5)]];
+            
+            
+            UIImageView *leftImage = [[UIImageView alloc] initWithFrame:RECT(10, 10 + 35 + 10, 50, 50)];
+//            leftImage.image = [UIImage imageNamed:@"orderdetail_call.png"];
+            [leftImage yy_setImageWithURL:[NSURL URLWithString:self.detailModel.userIcon] placeholder:[UIImage imageNamed:@"commom_default_head@2x"]];
+            
+            [lawerInfoCell.contentView addSubview:leftImage];
+            
+            UILabel *label = [[UILabel alloc] initWithFrame:RECT(70, 35 + (70 - 15)/2.0, 200, 15)];
+            label.font = SystemFont(14.0f);
+            label.text = self.detailModel.barristerNickname?self.detailModel.barristerNickname:@"";
+            label.textAlignment = NSTextAlignmentLeft;
+            label.textColor = KColorGray666;
+            
+            [lawerInfoCell.contentView addSubview:label];
+            return lawerInfoCell;
+        
         }
             break;
             
@@ -221,6 +317,10 @@
         {
             return 50;
         }
+        case OrderDetailShowTypeOnlineLawerInfo:
+        {
+            return 10 + 70 + 35;
+        }
             break;
             default:
             return 0;
@@ -230,12 +330,12 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if ([self.orderModel.payStatus isEqualToString:@"1"]) {
+    if ([self.detailModel.payStatus isEqualToString:@"1"]) {
         if (indexPath.row == 1) {
             if([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"mqq://"]])
             {
                 //用来接收临时消息的客服QQ号码(注意此QQ号需开通QQ推广功能,否则陌生人向他发送消息会失败)
-                NSString *QQ = self.orderModel.qq;
+                NSString *QQ = self.detailModel.secretaryQq;
                 //调用QQ客户端,发起QQ临时会话
                 NSString *url = [NSString stringWithFormat:@"mqq://im/chat?chat_type=wpa&uin=%@&version=1&src_type=web",QQ];
                 [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
@@ -244,7 +344,7 @@
         }
         else if(indexPath.row == 2){
             if ([[BaseDataSingleton shareInstance].loginState isEqualToString:@"1"]) {
-                NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"telprompt://%@",self.orderModel.phone];
+                NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"telprompt://%@",self.detailModel.secretaryPhone];
                 [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
             }
 
@@ -256,7 +356,7 @@
             if([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"mqq://"]])
             {
                 //用来接收临时消息的客服QQ号码(注意此QQ号需开通QQ推广功能,否则陌生人向他发送消息会失败)
-                NSString *QQ = self.orderModel.qq;
+                NSString *QQ = self.detailModel.secretaryQq;
                 //调用QQ客户端,发起QQ临时会话
                 NSString *url = [NSString stringWithFormat:@"mqq://im/chat?chat_type=wpa&uin=%@&version=1&src_type=web",QQ];
                 [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
@@ -265,7 +365,7 @@
         }
         else if(indexPath.row == 3){
             if ([[BaseDataSingleton shareInstance].loginState isEqualToString:@"1"]) {
-                NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"telprompt://%@",self.orderModel.phone];
+                NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"telprompt://%@",self.detailModel.secretaryPhone];
                 [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
             }
             
@@ -280,18 +380,18 @@
 -(void)pay
 {
 
-    NSString *tip  =[NSString stringWithFormat:@"您将支付线上服务费用%@元",self.orderModel.paymentAmount];
+    NSString *tip  =[NSString stringWithFormat:@"您将支付线上服务费用%@元",self.detailModel.paymentAmount];
     
     [XuUItlity showYesOrNoAlertView:@"确认" noText:@"取消" title:@"提示" mesage:tip callback:^(NSInteger buttonIndex, NSString *inputString) {
         if (buttonIndex == 1) {
             
-            NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObject:self.orderModel.orderId forKey:@"orderId"];
+            NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObject:self.detailModel.orderId forKey:@"orderId"];
             [XuUItlity showLoading:@"正在支付..."];
             __weak typeof(*&self) weakSelf = self;
             [self.proxy payOnlineServiceWithParams:params Block:^(id returnData, BOOL success) {
                 [XuUItlity hideLoading];
                 if (success) {
-                    weakSelf.orderModel.payStatus = @"1";
+                    weakSelf.detailModel.payStatus = @"1";
                     [weakSelf initData];
                     [XuUItlity showSucceedHint:@"支付成功" completionBlock:nil];
                     
@@ -300,7 +400,7 @@
                 else
                 {
                     NSDictionary *dict = (NSDictionary *)returnData;
-                    weakSelf.orderModel.payStatus= @"0";
+                    weakSelf.detailModel.payStatus= @"0";
                     NSString *resultCode = [dict objectForKey:@"resultCode"];
                     if (resultCode.integerValue == 3000) {
                         [XuUItlity showYesOrNoAlertView:@"充值" noText:@"取消" title:@"提示" mesage:@"余额不足，请充值" callback:^(NSInteger buttonIndex, NSString *inputString) {

@@ -42,7 +42,7 @@
 
 
 @property (nonatomic,strong) NSString *payStatus;//支付状态 专门为线上专项服务
-@property (nonatomic,strong) NSString *qq;
+@property (nonatomic,strong) NSString *secretaryQq;
 @property (nonatomic,strong) NSString *paymentAmount;
 
 

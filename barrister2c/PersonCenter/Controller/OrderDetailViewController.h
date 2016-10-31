@@ -25,6 +25,7 @@ typedef NS_ENUM(NSInteger,OrderDetailShowType)
     OrderDetailShowTypeOnlineWaitPay,
     OrderDetailShowTypeOnlineQQ,
     OrderDetailShowTypeOnlinePhone,
+    OrderDetailShowTypeOnlineLawerInfo,
 };
 
 

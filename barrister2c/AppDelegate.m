@@ -26,6 +26,8 @@
 #import "MyMessageViewController.h"
 #import <AlipaySDK/AlipaySDK.h>
 #import "BarristerLoginManager.h"
+#import "CaseOrderDetailViewController.h"
+
 
 //13301096303
 //700953
@@ -303,12 +305,25 @@
     BaseNavigaitonController * navigationController = [mainTabVC.viewControllers objectAtIndex:mainTabVC.selectedIndex];
     
     
-    if ([type isEqualToString:Push_Type_Order_Status_Change]||[type isEqualToString:Push_Type_Receive_Star]||[type isEqualToString:Push_Type_New_AppointmentOrder]||[type isEqualToString:Push_Type_TYPE_ONLINE_ORDER]) {
+    if ([type isEqualToString:Push_Type_Order_Status_Change]||[type isEqualToString:Push_Type_Receive_Star]||[type isEqualToString:Push_Type_New_AppointmentOrder]) {
         NSString *contentId = [params objectForKey:@"contentId"];
         
         OrderDetailViewController *detailVC = [[OrderDetailViewController alloc] initWithOrderId:contentId];
         [navigationController pushViewController:detailVC animated:YES];
     }
+    
+    else if ([type isEqualToString:Push_Type_TYPE_ONLINE_ORDER])
+    {
+        //线上专项服务订单
+        NSString *contentId = [params objectForKey:@"contentId"];
+
+        CaseOrderDetailViewController *orderDetailVC = [[CaseOrderDetailViewController alloc] init];
+        orderDetailVC.orderId = contentId;
+        
+        [navigationController pushViewController:orderDetailVC animated:YES];
+
+    }
+    
     else if ([type isEqualToString:Push_Type_Order_Receive_Reward]||[type isEqualToString:Push_Type_Order_Receive_Moneny]||[type isEqualToString:Push_TYpe_Tixian_Status]||[type isEqualToString:@"type.recharge"])
     {
         //去我的账户

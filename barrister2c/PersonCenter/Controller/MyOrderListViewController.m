@@ -175,7 +175,7 @@
         else if ([model.type isEqualToString:ONLINE])
         {
             CaseOrderDetailViewController *onlineDetail  = [[CaseOrderDetailViewController alloc] init];
-            onlineDetail.orderModel = model;
+            onlineDetail.orderId = model.orderId;
             [self.navigationController pushViewController:onlineDetail animated:YES];
         }
         

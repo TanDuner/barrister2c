@@ -55,6 +55,10 @@
         
         self.customCommonHeight = commonHeight;
 
+        if (IS_EMPTY(self.isStart)) {
+            self.isStart = ISSTAR_NO;
+        }
+        
         
     }
 

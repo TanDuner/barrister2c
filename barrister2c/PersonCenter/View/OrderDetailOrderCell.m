@@ -73,10 +73,9 @@
 
     if ([self.model.type isEqualToString:ONLINE]) {
         self.orderTypeLabel.text = [NSString stringWithFormat:@"订单类型：%@",@"线上专项服务"];
-        self.orderTimeLabel.text = [NSString stringWithFormat:@"下单时间：%@",self.model.orderTime?self.model.orderTime:@""];
         self.orderNoLabel.text = [NSString stringWithFormat:@"订单号：%@",self.model.orderId?self.model.orderId:@"无"];
 
-        if ([self.model.payStatus isEqualToString:@"1"]) {
+        if ([self.model.status isEqualToString:@"1"]) {
             self.stateLabel.text = @"已支付";
         }
         else

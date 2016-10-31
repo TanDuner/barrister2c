@@ -11,7 +11,8 @@
 
 @interface CaseOrderDetailViewController : BaseViewController
 
-@property (nonatomic,strong) BarristerOrderModel *orderModel;
+//@property (nonatomic,strong) BarristerOrderModel *orderModel;
 
+@property (nonatomic,strong) NSString *orderId;
 
 @end
