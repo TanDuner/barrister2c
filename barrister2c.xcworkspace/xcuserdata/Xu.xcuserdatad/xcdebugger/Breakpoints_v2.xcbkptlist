@@ -35,54 +35,6 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "barrister2c/PersonCenter/Controller/MyUploadYingShowViewController.m"
-            timestampString = "498626203.992482"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "177"
-            endingLineNumber = "177"
-            landmarkName = "-longPressAction:"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__50-[MyUploadYingShowViewController longPressAction:]_block_invoke"
-                  moduleName = "barrister2c"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Xu/Documents/barrister2c/barrister2c/PersonCenter/Controller/MyUploadYingShowViewController.m"
-                  timestampString = "499617002.320247"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "177"
-                  endingLineNumber = "177"
-                  offsetFromSymbolStart = "424">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__50-[MyUploadYingShowViewController longPressAction:]_block_invoke.209"
-                  moduleName = "barrister2c"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Xu/Documents/barrister2c/barrister2c/PersonCenter/Controller/MyUploadYingShowViewController.m"
-                  timestampString = "499617002.324143"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "178"
-                  endingLineNumber = "178"
-                  offsetFromSymbolStart = "60">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "barrister2c/Find/Controller/YingShowViewController.m"
             timestampString = "499313191.43669"
             startingColumnNumber = "9223372036854775807"
@@ -180,11 +132,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "barrister2c/Find/Controller/YingShowDetailViewController.m"
-            timestampString = "499326123.023927"
+            timestampString = "500123622.74892"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "108"
-            endingLineNumber = "108"
+            startingLineNumber = "111"
+            endingLineNumber = "111"
             landmarkName = "-initData"
             landmarkType = "7">
          </BreakpointContent>
@@ -196,11 +148,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "barrister2c/Find/Controller/YingShowDetailViewController.m"
-            timestampString = "499326123.023927"
+            timestampString = "500123622.74892"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "106"
-            endingLineNumber = "106"
+            startingLineNumber = "109"
+            endingLineNumber = "109"
             landmarkName = "-initData"
             landmarkType = "7">
          </BreakpointContent>
@@ -212,11 +164,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "barrister2c/Find/Controller/YingShowDetailViewController.m"
-            timestampString = "499326123.023927"
+            timestampString = "500123622.74892"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "119"
-            endingLineNumber = "119"
+            startingLineNumber = "122"
+            endingLineNumber = "122"
             landmarkName = "-initData"
             landmarkType = "7">
          </BreakpointContent>
@@ -228,11 +180,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "barrister2c/Find/Controller/YingShowDetailViewController.m"
-            timestampString = "499326123.023927"
+            timestampString = "500123622.74892"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "104"
-            endingLineNumber = "104"
+            startingLineNumber = "107"
+            endingLineNumber = "107"
             landmarkName = "-initData"
             landmarkType = "7">
          </BreakpointContent>

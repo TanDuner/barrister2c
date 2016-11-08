@@ -38,7 +38,10 @@
 
 -(void)initView
 {
-    [self initNavigationRightTextButton:@"支付" action:@selector(payAction)];
+    if (![BaseDataSingleton shareInstance].isClosePay) {
+        [self initNavigationRightTextButton:@"支付" action:@selector(payAction)];
+    }
+    
     
     [self.view addSubview:self.tableView];
 }
@@ -189,12 +192,14 @@
 {
     if (indexPath.section == 0) {
         YingShowDetailListCell *cell = [[YingShowDetailListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.model = self.model;
         return cell;
     }
     else if (indexPath.section == 1)
     {
         YingShowDetailBottomCell *cell = [[YingShowDetailBottomCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil isBuy:self.isBuy];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.model = self.model.creditUser;
         cell.isCreadit = YES;
         return cell;
@@ -203,6 +208,7 @@
     {
         YingShowDetailBottomCell *cell = [[YingShowDetailBottomCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil isBuy:self.isBuy];
         cell.isCreadit = NO;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.model = self.model.debtUser;
         return cell;
     }

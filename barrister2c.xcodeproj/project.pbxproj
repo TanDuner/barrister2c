@@ -437,8 +437,6 @@
 		95D8D8881DC31C7800769EB5 /* zhifubao@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 95D8D85C1DC31C7800769EB5 /* zhifubao@3x.png */; };
 		95D8D88A1DC3878C00769EB5 /* jpush-ios-2.2.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 95D8D8891DC3878C00769EB5 /* jpush-ios-2.2.0.a */; };
 		95D8D8901DC38D3C00769EB5 /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 95D8D88F1DC38D3C00769EB5 /* libresolv.tbd */; };
-		95E675401D9181DE007B57A2 /* Me_help@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 95E6753E1D9181DE007B57A2 /* Me_help@2x.png */; };
-		95E675411D9181DE007B57A2 /* Me_help@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 95E6753F1D9181DE007B57A2 /* Me_help@3x.png */; };
 		95E9CAF11D695F9200B84B7C /* OnlineServiceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E9CAF01D695F9200B84B7C /* OnlineServiceCell.m */; };
 		95E9CAF41D69A5B800B84B7C /* OnlineWaitPayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E9CAF31D69A5B800B84B7C /* OnlineWaitPayCell.m */; };
 		95EBA9981D35453E0041A647 /* ESVoiceDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 95EBA9971D35453E0041A647 /* ESVoiceDownloader.m */; };
@@ -1145,8 +1143,6 @@
 		95D8D8891DC3878C00769EB5 /* jpush-ios-2.2.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "jpush-ios-2.2.0.a"; sourceTree = "<group>"; };
 		95D8D88F1DC38D3C00769EB5 /* libresolv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.tbd; path = usr/lib/libresolv.tbd; sourceTree = SDKROOT; };
 		95DFBF011D9E0968009543E9 /* barrister2c.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = barrister2c.entitlements; sourceTree = "<group>"; };
-		95E6753E1D9181DE007B57A2 /* Me_help@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Me_help@2x.png"; sourceTree = "<group>"; };
-		95E6753F1D9181DE007B57A2 /* Me_help@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Me_help@3x.png"; sourceTree = "<group>"; };
 		95E9CAEF1D695F9200B84B7C /* OnlineServiceCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnlineServiceCell.h; sourceTree = "<group>"; };
 		95E9CAF01D695F9200B84B7C /* OnlineServiceCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnlineServiceCell.m; sourceTree = "<group>"; };
 		95E9CAF21D69A5B800B84B7C /* OnlineWaitPayCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnlineWaitPayCell.h; sourceTree = "<group>"; };
@@ -1887,8 +1883,6 @@
 			isa = PBXGroup;
 			children = (
 				95D8D8301DC31C7800769EB5 /* PersonCenter */,
-				95E6753E1D9181DE007B57A2 /* Me_help@2x.png */,
-				95E6753F1D9181DE007B57A2 /* Me_help@3x.png */,
 				9529CC941D2EA54B0067597A /* weixin@2x.png */,
 				9529CC951D2EA54B0067597A /* weixin@3x.png */,
 				9529CC961D2EA54B0067597A /* zhifubao@2x.png */,
@@ -2921,6 +2915,7 @@
 					95CA1BCD1D10F03900AAE490 = {
 						CreatedOnToolsVersion = 7.2;
 						DevelopmentTeam = 7U34CFE9VJ;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.Push = {
 								enabled = 1;
@@ -3050,7 +3045,6 @@
 				95CA1DCD1D10F8F800AAE490 /* Tab01Highlighted@3x.png in Resources */,
 				9529CCB91D30CA7D0067597A /* commom_arrow_more@2x.png in Resources */,
 				9529CC9F1D2EADF60067597A /* icon_recharge@3x.png in Resources */,
-				95E675411D9181DE007B57A2 /* Me_help@3x.png in Resources */,
 				9597CBDA1D503DF70049CF24 /* lawer_search@2x.png in Resources */,
 				9529CCE11D30F7D10067597A /* icon_bank_gd.png in Resources */,
 				958EEBF41D282D7300D4CF4C /* Me_setting@3x.png in Resources */,
@@ -3065,7 +3059,6 @@
 				9529CCE91D30F7D10067597A /* icon_bank_pf.png in Resources */,
 				955A7AEA1D1D7A3100D1DEAC /* unSelectedable@2x.png in Resources */,
 				95CA1DD81D10F8F800AAE490 /* Tab04Highlighted@2x.png in Resources */,
-				95E675401D9181DE007B57A2 /* Me_help@2x.png in Resources */,
 				95CA1DD21D10F8F800AAE490 /* Tab02Normal@2x.png in Resources */,
 				95D8D8701DC31C7800769EB5 /* my-account_card@3x.png in Resources */,
 				958EEBB11D27790A00D4CF4C /* guide_1@2x.png in Resources */,
@@ -3548,7 +3541,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = barrister2c/barrister2c.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer: yaqian zhao (28UDM3V4JW)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: yaqian zhao (7U34CFE9VJ)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: yaqian zhao (7U34CFE9VJ)";
+				DEVELOPMENT_TEAM = 7U34CFE9VJ;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3578,7 +3573,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.xsc.barrister2c;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "10aa843b-9b41-44cb-9bd7-0d4cb951b396";
+				PROVISIONING_PROFILE = "cb1524a6-bfd9-4d94-abbc-c407fba748ab";
+				PROVISIONING_PROFILE_SPECIFIER = barrister2c_Dis_Push_provisioning;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -3590,7 +3586,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = barrister2c/barrister2c.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer: yaqian zhao (28UDM3V4JW)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: yaqian zhao (7U34CFE9VJ)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: yaqian zhao (7U34CFE9VJ)";
+				DEVELOPMENT_TEAM = 7U34CFE9VJ;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3620,7 +3618,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.xsc.barrister2c;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "10aa843b-9b41-44cb-9bd7-0d4cb951b396";
+				PROVISIONING_PROFILE = "cb1524a6-bfd9-4d94-abbc-c407fba748ab";
+				PROVISIONING_PROFILE_SPECIFIER = barrister2c_Dis_Push_provisioning;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
