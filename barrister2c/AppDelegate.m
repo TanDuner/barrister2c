@@ -146,7 +146,7 @@
     [MobClick startWithConfigure:UMConfigInstance];
 
     //设置友盟appkey
-    [[UMSocialManager defaultManager] setUmSocialAppkey:@"57b432afe0f55a9832001a0a"];
+    [[UMSocialManager defaultManager] setUmSocialAppkey:@"577b216967e58e8175000689"];
 
     //weixin
     [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_WechatSession appKey:@"wx719e35ccbca02039" appSecret:@"8aac25361765227616fed5718daa3653" redirectURL:@"http://mobile.umeng.com/social"];

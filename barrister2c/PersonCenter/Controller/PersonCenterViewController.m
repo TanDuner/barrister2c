@@ -312,7 +312,7 @@
             [[BarristerLoginManager shareManager] showLoginViewControllerWithController:self];
             return;
         }
-        
+
         
         PersonCenterModel *model = [self.items objectAtIndex:indexPath.row + 1];
         if (!model) {
