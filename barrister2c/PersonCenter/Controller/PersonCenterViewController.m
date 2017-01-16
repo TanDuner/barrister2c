@@ -20,7 +20,8 @@
 #import "NeedHelpViewController.h"
 #import "MyUploadYingShowViewController.h"
 #import "MyBuyYingShowViewController.h"
-
+#import <UMSocialCore/UMSocialManager.h>
+#import <UShareUI/UShareUI.h>
 
 @implementation PersonCenterViewController
 - (void)viewDidLoad {
@@ -132,7 +133,13 @@
     model8.cellType = PersonCenterModelTypeYSGM;
     model8.iconNameStr = @"zhaixitong";
     model8.isShowArrow = YES;
+   
     
+    PersonCenterModel *model9 = [[PersonCenterModel alloc] init];
+    model9.titleStr = @"推荐给好友";
+    model9.cellType = PersonCenterModelTypeTJHY;
+    model9.iconNameStr = @"zhaixitong";
+    model9.isShowArrow = YES;
     
     PersonCenterModel *model6 = [[PersonCenterModel alloc] init];
     model6.titleStr = @"设置";
@@ -165,6 +172,7 @@
     [self.items addObject:model4];
     [self.items addObject:model7];
     [self.items addObject:model8];
+    [self.items addObject:model9];
 
     
     
@@ -205,9 +213,9 @@
     else if (section == 1)
     {
         if ([BaseDataSingleton shareInstance].isClosePay) {
-            return 6;
+            return 7;
         }
-        return 7;
+        return 8;
     }
     else
     {
@@ -359,6 +367,17 @@
                 [self.navigationController pushViewController:buyVC animated:YES];
             }
                 break;
+            case PersonCenterModelTypeTJHY:
+            {
+                [UMSocialUIManager setPreDefinePlatforms:@[@(UMSocialPlatformType_QQ),@(UMSocialPlatformType_Qzone),@(UMSocialPlatformType_WechatSession),@(UMSocialPlatformType_WechatTimeLine),@(UMSocialPlatformType_Sina)]];
+                [UMSocialUIManager showShareMenuViewInWindowWithPlatformSelectionBlock:^(UMSocialPlatformType platformType, NSDictionary *userInfo) {
+                    // 根据获取的platformType确定所选平台进行下一步操作
+                    
+                    [self shareContentWithPlatFormType:platformType];
+                    
+                }];
+                
+            }
             default:
                 break;
         }
@@ -370,5 +389,35 @@
     }
 }
 
+-(void)shareContentWithPlatFormType:(UMSocialPlatformType)platformType
+{
 
+        //创建分享消息对象
+//    UMShareWebpageObject *messageObject = [[UMShareWebpageObject alloc] init];
+//    messageObject.title = @"中国大律师";
+//    messageObject.descr = @"端起法律武器，纠纷业务一键了解;权威律师一键预约，应用法律全面搜集;书籍视频随时学习，做生活中的大律师";
+//    
+    
+    UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:@"中国大律师" descr:@"端起法律武器，纠纷业务一键了解;权威律师一键预约，应用法律全面搜集;书籍视频随时学习，做生活中的大律师" thumImage:[UIImage imageNamed:@"logoForShare"]];
+    
+    shareObject.webpageUrl = [NSString stringWithFormat:@"http://app.dls.com.cn:8080/clientservice/wap/barrister2c.do?uid=%@",[BaseDataSingleton shareInstance].userModel.userId];
+
+    
+    UMSocialMessageObject *object  = [UMSocialMessageObject messageObjectWithMediaObject:shareObject];
+    
+    
+    
+        //调用分享接口
+        [[UMSocialManager defaultManager] shareToPlatform:platformType messageObject:object currentViewController:self completion:^(id data, NSError *error) {
+            if (error) {
+                [XuUItlity showFailedHint:@"分享失败" completionBlock:nil];
+            }else{
+                [XuUItlity showSucceedHint:@"分享成功" completionBlock:nil];
+            }
+        }];
+
+}
+    
+    
+    
 @end

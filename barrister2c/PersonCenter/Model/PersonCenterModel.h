@@ -25,7 +25,8 @@ typedef NS_ENUM(NSInteger, PersonCenterModelType)
     PersonCenterModelTypeQiuZhu = 11,//我要求助
     
     PersonCenterModelTypeYSSC = 12,//应收账款上传
-    PersonCenterModelTypeYSGM = 13//应收账款购买
+    PersonCenterModelTypeYSGM = 13,//应收账款购买
+    PersonCenterModelTypeTJHY = 14 //分享给好友
     
 };
 

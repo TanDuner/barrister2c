@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		242C6CF2A427FE9AB164E737 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CE61524527A7610BA559202 /* libPods.a */; };
+		68C21C14425B6EF87E4471FC /* libPods-barrister2c.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F7B35BA5950F4260BA5D011A /* libPods-barrister2c.a */; };
 		950120AE1D2A5D8E00FE3613 /* BarristerOrderDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 950120AD1D2A5D8E00FE3613 /* BarristerOrderDetailModel.m */; };
 		950120B11D2A5E0400FE3613 /* CallHistoriesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 950120B01D2A5E0400FE3613 /* CallHistoriesModel.m */; };
 		950120B61D2AA46D00FE3613 /* OrderDetailCancelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 950120B31D2AA46D00FE3613 /* OrderDetailCancelCell.m */; };
@@ -385,6 +385,7 @@
 		95CA1E031D10F9EA00AAE490 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 95CA1E021D10F9EA00AAE490 /* libsqlite3.tbd */; };
 		95CA1E051D10F9F500AAE490 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 95CA1E041D10F9F500AAE490 /* libz.tbd */; };
 		95CA1E081D123F6A00AAE490 /* FindNetProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 95CA1E071D123F6A00AAE490 /* FindNetProxy.m */; };
+		95D3EE5D1E2C865200AE439F /* logoForShare.png in Resources */ = {isa = PBXBuildFile; fileRef = 95D3EE5C1E2C865200AE439F /* logoForShare.png */; };
 		95D8D8241DC1971C00769EB5 /* ZhaiLiFangViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95D8D8231DC1971C00769EB5 /* ZhaiLiFangViewController.m */; };
 		95D8D8271DC2F89F00769EB5 /* YingShowDetailListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 95D8D8261DC2F89F00769EB5 /* YingShowDetailListCell.m */; };
 		95D8D82C1DC31C5F00769EB5 /* Tab05Highlighted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 95D8D8281DC31C5F00769EB5 /* Tab05Highlighted@2x.png */; };
@@ -464,8 +465,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		3CE61524527A7610BA559202 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		86316290D8B7B144F0F16CE2 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		950120AC1D2A5D8E00FE3613 /* BarristerOrderDetailModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BarristerOrderDetailModel.h; sourceTree = "<group>"; };
 		950120AD1D2A5D8E00FE3613 /* BarristerOrderDetailModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BarristerOrderDetailModel.m; sourceTree = "<group>"; };
 		950120AF1D2A5E0400FE3613 /* CallHistoriesModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CallHistoriesModel.h; sourceTree = "<group>"; };
@@ -1088,6 +1087,7 @@
 		95CA1E041D10F9F500AAE490 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		95CA1E061D123F6A00AAE490 /* FindNetProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FindNetProxy.h; sourceTree = "<group>"; };
 		95CA1E071D123F6A00AAE490 /* FindNetProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FindNetProxy.m; sourceTree = "<group>"; };
+		95D3EE5C1E2C865200AE439F /* logoForShare.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logoForShare.png; sourceTree = "<group>"; };
 		95D8D8221DC1971C00769EB5 /* ZhaiLiFangViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZhaiLiFangViewController.h; sourceTree = "<group>"; };
 		95D8D8231DC1971C00769EB5 /* ZhaiLiFangViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZhaiLiFangViewController.m; sourceTree = "<group>"; };
 		95D8D8251DC2F89F00769EB5 /* YingShowDetailListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YingShowDetailListCell.h; sourceTree = "<group>"; };
@@ -1260,7 +1260,9 @@
 		95EBAB341D3691770041A647 /* XWMoneyTextFieldLimit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XWMoneyTextFieldLimit.m; sourceTree = "<group>"; };
 		95FBF0441D602B750091017A /* OrderDetialRewardCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderDetialRewardCell.h; sourceTree = "<group>"; };
 		95FBF0451D602B750091017A /* OrderDetialRewardCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderDetialRewardCell.m; sourceTree = "<group>"; };
-		BB2FAA4FB209AF9A57D3750A /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		E904C3B112782B6CD1FA4358 /* Pods-barrister2c.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-barrister2c.release.xcconfig"; path = "Pods/Target Support Files/Pods-barrister2c/Pods-barrister2c.release.xcconfig"; sourceTree = "<group>"; };
+		F076C0BF733BBF11977EBE64 /* Pods-barrister2c.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-barrister2c.debug.xcconfig"; path = "Pods/Target Support Files/Pods-barrister2c/Pods-barrister2c.debug.xcconfig"; sourceTree = "<group>"; };
+		F7B35BA5950F4260BA5D011A /* libPods-barrister2c.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-barrister2c.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1286,19 +1288,19 @@
 				9529CC8A1D2E3FDC0067597A /* libWeChatSDK.a in Frameworks */,
 				9529CC711D2E28840067597A /* CFNetwork.framework in Frameworks */,
 				95CA1E031D10F9EA00AAE490 /* libsqlite3.tbd in Frameworks */,
-				242C6CF2A427FE9AB164E737 /* libPods.a in Frameworks */,
 				95D8D88A1DC3878C00769EB5 /* jpush-ios-2.2.0.a in Frameworks */,
+				68C21C14425B6EF87E4471FC /* libPods-barrister2c.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		65074868D58B2C9942E9360A /* Pods */ = {
+		1DB730768B178742AC2D1AE1 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				BB2FAA4FB209AF9A57D3750A /* Pods.debug.xcconfig */,
-				86316290D8B7B144F0F16CE2 /* Pods.release.xcconfig */,
+				F076C0BF733BBF11977EBE64 /* Pods-barrister2c.debug.xcconfig */,
+				E904C3B112782B6CD1FA4358 /* Pods-barrister2c.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -1531,8 +1533,8 @@
 			children = (
 				95CA1BD01D10F03900AAE490 /* barrister2c */,
 				95CA1BCF1D10F03900AAE490 /* Products */,
-				65074868D58B2C9942E9360A /* Pods */,
 				FC8B3722513233B124AC9E13 /* Frameworks */,
+				1DB730768B178742AC2D1AE1 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -2677,6 +2679,7 @@
 		95D8D8301DC31C7800769EB5 /* PersonCenter */ = {
 			isa = PBXGroup;
 			children = (
+				95D3EE5C1E2C865200AE439F /* logoForShare.png */,
 				95D8D8311DC31C7800769EB5 /* dashang@2x.png */,
 				95D8D8321DC31C7800769EB5 /* dashang@3x.png */,
 				95D8D8331DC31C7800769EB5 /* icon_recharge@2x.png */,
@@ -2876,7 +2879,7 @@
 				950120CE1D2B7CD100FE3613 /* CoreTelephony.framework */,
 				95CA1E041D10F9F500AAE490 /* libz.tbd */,
 				95CA1E021D10F9EA00AAE490 /* libsqlite3.tbd */,
-				3CE61524527A7610BA559202 /* libPods.a */,
+				F7B35BA5950F4260BA5D011A /* libPods-barrister2c.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -2888,11 +2891,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 95CA1BE51D10F03A00AAE490 /* Build configuration list for PBXNativeTarget "barrister2c" */;
 			buildPhases = (
-				829BD716BCD620C9F31BD4DE /* Check Pods Manifest.lock */,
+				4E19E681E1CDC137E662EFC5 /* [CP] Check Pods Manifest.lock */,
 				95CA1BCA1D10F03900AAE490 /* Sources */,
 				95CA1BCC1D10F03900AAE490 /* Resources */,
-				C5D022C7EBDB81999E6A6936 /* Copy Pods Resources */,
 				95CA1BCB1D10F03900AAE490 /* Frameworks */,
+				171FABAA46988450B4B3DFC8 /* [CP] Embed Pods Frameworks */,
+				3BC5693A6AAC4D1F937D5167 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -2915,7 +2919,7 @@
 					95CA1BCD1D10F03900AAE490 = {
 						CreatedOnToolsVersion = 7.2;
 						DevelopmentTeam = 7U34CFE9VJ;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Push = {
 								enabled = 1;
@@ -3094,6 +3098,7 @@
 				9529CCE51D30F7D10067597A /* icon_bank_js.png in Resources */,
 				958EEBF11D282D7300D4CF4C /* Me_order@2x.png in Resources */,
 				95D8D85F1DC31C7800769EB5 /* icon_recharge@2x.png in Resources */,
+				95D3EE5D1E2C865200AE439F /* logoForShare.png in Resources */,
 				95D8D82C1DC31C5F00769EB5 /* Tab05Highlighted@2x.png in Resources */,
 				955610FD1D14B7B200366D4C /* uploadImage@2x.png in Resources */,
 				9529CCE41D30F7D10067597A /* icon_bank_hx.png in Resources */,
@@ -3142,34 +3147,49 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		829BD716BCD620C9F31BD4DE /* Check Pods Manifest.lock */ = {
+		171FABAA46988450B4B3DFC8 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-barrister2c/Pods-barrister2c-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		C5D022C7EBDB81999E6A6936 /* Copy Pods Resources */ = {
+		3BC5693A6AAC4D1F937D5167 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-barrister2c/Pods-barrister2c-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4E19E681E1CDC137E662EFC5 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -3536,14 +3556,14 @@
 		};
 		95CA1BE61D10F03A00AAE490 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BB2FAA4FB209AF9A57D3750A /* Pods.debug.xcconfig */;
+			baseConfigurationReference = F076C0BF733BBF11977EBE64 /* Pods-barrister2c.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = barrister2c/barrister2c.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: yaqian zhao (7U34CFE9VJ)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: yaqian zhao (7U34CFE9VJ)";
-				DEVELOPMENT_TEAM = 7U34CFE9VJ;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3573,22 +3593,22 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.xsc.barrister2c;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "cb1524a6-bfd9-4d94-abbc-c407fba748ab";
-				PROVISIONING_PROFILE_SPECIFIER = barrister2c_Dis_Push_provisioning;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
 		95CA1BE71D10F03A00AAE490 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 86316290D8B7B144F0F16CE2 /* Pods.release.xcconfig */;
+			baseConfigurationReference = E904C3B112782B6CD1FA4358 /* Pods-barrister2c.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = barrister2c/barrister2c.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: yaqian zhao (7U34CFE9VJ)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: yaqian zhao (7U34CFE9VJ)";
-				DEVELOPMENT_TEAM = 7U34CFE9VJ;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3618,8 +3638,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.xsc.barrister2c;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "cb1524a6-bfd9-4d94-abbc-c407fba748ab";
-				PROVISIONING_PROFILE_SPECIFIER = barrister2c_Dis_Push_provisioning;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

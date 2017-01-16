@@ -20,7 +20,7 @@
 
 #define ImageWidth 28
 
-#define LawButtonWidth 40
+#define LawButtonWidth 35
 #define LawLeftPadding 17.5
 #define LawTopPadding 17.5 + 45
 #define LawHorSpacing (SCREENWIDTH - LawLeftPadding *2 - LawButtonWidth *4)/3

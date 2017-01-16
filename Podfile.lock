@@ -15,11 +15,22 @@ PODS:
   - AFNetworking/UIKit (3.0.4):
     - AFNetworking/NSURLSession
   - Reachability (3.2)
-  - SDWebImage (3.8.1):
-    - SDWebImage/Core (= 3.8.1)
-  - SDWebImage/Core (3.8.1)
+  - SDWebImage (3.8.2):
+    - SDWebImage/Core (= 3.8.2)
+  - SDWebImage/Core (3.8.2)
   - Toast (2.4)
-  - UMengAnalytics-NO-IDFA (4.0.5)
+  - UMengAnalytics-NO-IDFA (4.1.9)
+  - UMengUShare/Core (6.2.1):
+    - UMengUShare/Network
+  - UMengUShare/Network (6.2.1)
+  - UMengUShare/Social/QQ (6.2.1):
+    - UMengUShare/Core
+  - UMengUShare/Social/Sina (6.2.1):
+    - UMengUShare/Core
+  - UMengUShare/Social/WeChat (6.2.1):
+    - UMengUShare/Core
+  - UMengUShare/UI (6.2.1):
+    - UMengUShare/Core
 
 DEPENDENCIES:
   - AFNetworking (~> 3.0.4)
@@ -27,12 +38,19 @@ DEPENDENCIES:
   - SDWebImage
   - Toast (~> 2.4)
   - UMengAnalytics-NO-IDFA
+  - UMengUShare/Social/QQ
+  - UMengUShare/Social/Sina
+  - UMengUShare/Social/WeChat
+  - UMengUShare/UI
 
 SPEC CHECKSUMS:
   AFNetworking: a0075feb321559dc78d9d85b55d11caa19eabb93
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
-  SDWebImage: 35f9627a3e44b4f292a8a8ce6a531fa488239b91
+  SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
   Toast: 0773b8fc0e97352ca6054517bec7ebdd4110029d
-  UMengAnalytics-NO-IDFA: 965a219b05475ff2a4c09a164139a27bbaa0e25b
+  UMengAnalytics-NO-IDFA: 985292af177111685325c90c321094172b95d2cb
+  UMengUShare: 583ac067e747c66429d5063896da0e77c4fe7688
 
-COCOAPODS: 0.37.2
+PODFILE CHECKSUM: 97aa802e37db9a2e969e240799b55e22208d648d
+
+COCOAPODS: 1.2.0.rc.1

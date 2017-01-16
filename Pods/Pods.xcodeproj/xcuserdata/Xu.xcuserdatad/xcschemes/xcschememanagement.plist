@@ -4,27 +4,27 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>Pods-AFNetworking.xcscheme</key>
+		<key>AFNetworking.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-Reachability.xcscheme</key>
+		<key>Pods-barrister2c.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-SDWebImage.xcscheme</key>
+		<key>Reachability.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-Toast.xcscheme</key>
+		<key>SDWebImage.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods.xcscheme</key>
+		<key>Toast.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -32,27 +32,27 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>1D975660681A5F8280C34FEA</key>
+		<key>42B737AA00ECD31641C54397D687B0FD</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>55D08916FCCFC78CDA05B75B</key>
+		<key>436D69D90D7FE47FF397A4A7803BF351</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9E7A9A478003A45943988A0A</key>
+		<key>9E033EDB5EC0819481B0546434FA577B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>CC826C47D38576A51B5C9C33</key>
+		<key>CFBB783F841BF2E0F8958F161C9FB6F4</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>FDD0D65DB6A3D5D22C5CF810</key>
+		<key>F45A32A76FA2E0206A4A3B50ABED283B</key>
 		<dict>
 			<key>primary</key>
 			<true/>

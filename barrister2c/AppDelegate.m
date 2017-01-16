@@ -27,7 +27,7 @@
 #import <AlipaySDK/AlipaySDK.h>
 #import "BarristerLoginManager.h"
 #import "CaseOrderDetailViewController.h"
-
+#import <UMSocialCore/UMSocialManager.h>
 
 //13301096303
 //700953
@@ -145,6 +145,19 @@
     UMConfigInstance.appKey = @"577b216967e58e8175000689";
     [MobClick startWithConfigure:UMConfigInstance];
 
+    //设置友盟appkey
+    [[UMSocialManager defaultManager] setUmSocialAppkey:@"57b432afe0f55a9832001a0a"];
+
+    //weixin
+    [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_WechatSession appKey:@"wx719e35ccbca02039" appSecret:@"8aac25361765227616fed5718daa3653" redirectURL:@"http://mobile.umeng.com/social"];
+
+    [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_QQ appKey:@"1105336139" appSecret:nil redirectURL:@"http://mobile.umeng.com/social"];
+
+    
+    [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_Sina appKey:@"2086685069"  appSecret:@"f38cba7eb06b85187d79ac6a09fef0a7" redirectURL:@"http://sns.whalecloud.com/sina2/callback"];
+
+    
+    
 }
 
 -(void)initCallAction
@@ -187,15 +200,9 @@
      *  注册极光push
      */
     
-//    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:1];
-//    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
-//    
-//    [JPUSHService registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge |
-//                                                      UIRemoteNotificationTypeSound |
-//                                                      UIRemoteNotificationTypeAlert)
-//                                          categories:nil];
-//    
-//    
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:1];
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
+    
     NSDictionary *remoteDic = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
     if (remoteDic) {
         NSLog(@"%@",[[remoteDic objectForKey:@"aps"] objectForKey:@"alert"]);
@@ -262,39 +269,35 @@
 
 
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
-    return  [WXApi handleOpenURL:url delegate:[WXApiManager sharedManager]];
+    
+    BOOL result = [[UMSocialManager defaultManager] handleOpenURL:url];
+    if (!result) {
+        return  [WXApi handleOpenURL:url delegate:[WXApiManager sharedManager]];
+    }
+    return result;
+
 }
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 {
-//    如果极简开发包不可用，会跳转支付宝钱包进行支付，需要将支付宝钱包的支付结果回传给开发包
-    if ([url.host isEqualToString:@"safepay"]) {
-        [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
-            //【由于在跳转支付宝客户端支付的过程中，商户app在后台很可能被系统kill了，所以pay接口的callback就会失效，请商户对standbyCallback返回的回调结果进行处理,就是在这个方法里面处理跟callback一样的逻辑】
-//            NSString *message = @"";
-//            switch([[resultDic objectForKey:@"resultStatus"] integerValue])
-//            {
-//                case 9000:message = @"订单支付成功";break;
-//                case 8000:message = @"正在处理中";break;
-//                case 4000:message = @"订单支付失败";break;
-//                case 6001:message = @"用户中途取消";break;
-//                case 6002:message = @"网络连接错误";break;
-//                default:message = @"未知错误";
-//            }
-//            
-//            UIAlertController *aalert = [UIAlertController alertControllerWithTitle:nil message:message preferredStyle:UIAlertControllerStyleAlert];
-//            [aalert addAction:[UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleCancel handler:nil]];
-//            UIViewController *root = self.window.rootViewController;
-//            [root presentViewController:aalert animated:YES completion:nil];
-            
-            NSLog(@"result = %@",resultDic);
-        }];
+    
+    
+    BOOL result = [[UMSocialManager defaultManager] handleOpenURL:url];
+    if (!result) {
+        //    如果极简开发包不可用，会跳转支付宝钱包进行支付，需要将支付宝钱包的支付结果回传给开发包
+        if ([url.host isEqualToString:@"safepay"]) {
+            [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
+                NSLog(@"result = %@",resultDic);
+            }];
+        }
+        else
+        {
+            return [WXApi handleOpenURL:url delegate:[WXApiManager sharedManager]];
+        }
     }
-    else
-    {
-        return [WXApi handleOpenURL:url delegate:[WXApiManager sharedManager]];
-    }
-    return YES;
+    
+    return result;
+
 }
 
 
