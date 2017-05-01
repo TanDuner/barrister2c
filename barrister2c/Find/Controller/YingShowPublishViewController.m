@@ -34,6 +34,8 @@
     
     [self initView];
     
+    self.title = @"发布债权债务信息";
+    
     [self initNavigationRightTextButton:@"发布" action:@selector(submitAction)];
     
 }

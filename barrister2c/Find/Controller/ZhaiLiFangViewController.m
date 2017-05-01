@@ -16,7 +16,7 @@
 #import "BarristerLoginManager.h"
 #import "AppDelegate.h"
 
-#define SearchViewHeight 50
+#define SearchViewHeight 0
 
 
 @interface ZhaiLiFangViewController ()<UITableViewDelegate,UITableViewDataSource,RefreshTableViewDelegate>
@@ -30,9 +30,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"债立方";
+    self.title = @"上榜债务人";
     [self configView];
-    [self initNavigationRightTextButton:@"发布" action:@selector(toPublishYinShowVC)];
+//    [self initNavigationRightTextButton:@"发布" action:@selector(toPublishYinShowVC)];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeOtherVC) name:NOTIFICATION_BACK_LOGINVC object:nil];
 
 }
@@ -46,48 +46,48 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self initData];
-    [self showTabbar:YES];
+    [self showTabbar:NO];
 }
 
--(void)toPublishYinShowVC
-{
-    YingShowPublishViewController *publishVC = [[YingShowPublishViewController alloc] init];
-    publishVC.title = @"发布";
-    [self.navigationController pushViewController:publishVC animated:YES];
-    
-}
+//-(void)toPublishYinShowVC
+//{
+//    YingShowPublishViewController *publishVC = [[YingShowPublishViewController alloc] init];
+//    publishVC.title = @"发布";
+//    [self.navigationController pushViewController:publishVC animated:YES];
+//    
+//}
 
 
 -(void)configView
 {
-    [self initSearchEnteryView];
+//    [self initSearchEnteryView];
     
     [self.view addSubview:self.tableView];
 
 }
 
--(void)initSearchEnteryView
-{
-    UIView *searchEnteryView = [[UIView alloc] initWithFrame:RECT(0, 0, SCREENWIDTH, SearchViewHeight)];
-    UIImageView *leftImageView = [[UIImageView alloc] initWithFrame:RECT(LeftPadding, 10, 30, 30)];
-    leftImageView.image = [UIImage imageNamed:@"zhaixitong.png"];
-    [searchEnteryView addSubview:leftImageView];
-    
-    UIButton *searchEnterButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [searchEnterButton setFrame:RECT(50, 0, 250, searchEnteryView.height)];
-    [searchEnterButton setTitle:@"债权债务信息查询系统" forState:UIControlStateNormal];
-    [searchEnterButton setTitleColor:KColorGray666 forState:UIControlStateNormal];
-    [searchEnterButton addTarget:self action:@selector(toSearchViewController) forControlEvents:UIControlEventTouchUpInside];
-    [searchEnterButton setTitleEdgeInsets:UIEdgeInsetsMake(0, -80, 0, 0)];
-    [searchEnteryView addSubview:searchEnterButton];
-    searchEnterButton.titleLabel.font = SystemFont(15.0);
-    
-    searchEnteryView.backgroundColor = [UIColor whiteColor];
-    
-    [self.view addSubview:searchEnteryView];
-    
-    
-}
+//-(void)initSearchEnteryView
+//{
+//    UIView *searchEnteryView = [[UIView alloc] initWithFrame:RECT(0, 0, SCREENWIDTH, SearchViewHeight)];
+//    UIImageView *leftImageView = [[UIImageView alloc] initWithFrame:RECT(LeftPadding, 10, 30, 30)];
+//    leftImageView.image = [UIImage imageNamed:@"zhaixitong.png"];
+//    [searchEnteryView addSubview:leftImageView];
+//    
+//    UIButton *searchEnterButton = [UIButton buttonWithType:UIButtonTypeCustom];
+//    [searchEnterButton setFrame:RECT(50, 0, 250, searchEnteryView.height)];
+//    [searchEnterButton setTitle:@"债权债务信息查询系统" forState:UIControlStateNormal];
+//    [searchEnterButton setTitleColor:KColorGray666 forState:UIControlStateNormal];
+//    [searchEnterButton addTarget:self action:@selector(toSearchViewController) forControlEvents:UIControlEventTouchUpInside];
+//    [searchEnterButton setTitleEdgeInsets:UIEdgeInsetsMake(0, -80, 0, 0)];
+//    [searchEnteryView addSubview:searchEnterButton];
+//    searchEnterButton.titleLabel.font = SystemFont(15.0);
+//    
+//    searchEnteryView.backgroundColor = [UIColor whiteColor];
+//    
+//    [self.view addSubview:searchEnteryView];
+//    
+//    
+//}
 
 -(void)toSearchViewController
 {
@@ -218,7 +218,7 @@
 -(RefreshTableView *)tableView
 {
     if (!_tableView) {
-        _tableView = [[RefreshTableView alloc] initWithFrame:RECT(0, SearchViewHeight, SCREENWIDTH, SCREENHEIGHT - NAVBAR_DEFAULT_HEIGHT - SearchViewHeight - TABBAR_HEIGHT) style:UITableViewStylePlain];
+        _tableView = [[RefreshTableView alloc] initWithFrame:RECT(0, SearchViewHeight, SCREENWIDTH, SCREENHEIGHT - NAVBAR_DEFAULT_HEIGHT - SearchViewHeight) style:UITableViewStylePlain];
         _tableView.delegate = self;
         _tableView.backgroundColor = kBaseViewBackgroundColor;
         _tableView.dataSource = self;

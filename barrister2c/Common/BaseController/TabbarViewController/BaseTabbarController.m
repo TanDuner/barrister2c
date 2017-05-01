@@ -13,6 +13,7 @@
 #import "PersonCenterViewController.h"
 #import "BaseNavigaitonController.h"
 #import "ZhaiLiFangViewController.h"
+#import "ZhaiLiFangNewViewController.h"
 
 #define     ImageWidth        25
 
@@ -92,7 +93,7 @@
     BaseNavigaitonController *ctl2 = [[BaseNavigaitonController alloc] initWithRootViewController:c2];
     
     
-    ZhaiLiFangViewController *c5 = [[ZhaiLiFangViewController alloc] init];
+    ZhaiLiFangNewViewController *c5 = [[ZhaiLiFangNewViewController alloc] init];
     c5.title = @"债立方";
     BaseNavigaitonController *ctl5 = [[BaseNavigaitonController alloc] initWithRootViewController:c5];
     

@@ -63,7 +63,7 @@
 -(void)payAction
 {
     
-    [XuUItlity showYesOrNoAlertView:@"" noText:@"取消" title:@"提示" mesage:@"查看债权详细信息，系统将从余额扣除16元" callback:^(NSInteger buttonIndex, NSString *inputString) {
+    [XuUItlity showYesOrNoAlertView:@"确认" noText:@"取消" title:@"提示" mesage:@"查看债权详细信息，系统将从余额扣除16元" callback:^(NSInteger buttonIndex, NSString *inputString) {
         if (buttonIndex == 1) {
             NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:self.model.yingShowInfoId,@"id", nil];
             

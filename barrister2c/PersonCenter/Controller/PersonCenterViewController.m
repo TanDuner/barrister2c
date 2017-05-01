@@ -138,7 +138,7 @@
     PersonCenterModel *model9 = [[PersonCenterModel alloc] init];
     model9.titleStr = @"推荐给好友";
     model9.cellType = PersonCenterModelTypeTJHY;
-    model9.iconNameStr = @"zhaixitong";
+    model9.iconNameStr = @"me_share";
     model9.isShowArrow = YES;
     
     PersonCenterModel *model6 = [[PersonCenterModel alloc] init];
