@@ -23,6 +23,11 @@
 
 
 - (void)changeViewController:(UIButton *)button;
+
+
+-(void)changeSelectIndex:(NSInteger)index;
+
+
 - (void)showTabBar;
 - (void)hiddenTabBar;
 

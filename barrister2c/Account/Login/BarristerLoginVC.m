@@ -95,6 +95,8 @@ const float MidViewHeight = 190 / 2.0;
 
 -(void)backAction:(id)sender
 {
+    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_BACK_LOGINVC object:nil];
+    
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

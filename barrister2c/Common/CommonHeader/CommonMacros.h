@@ -42,7 +42,7 @@
 #define NOTIFICATION_WXPAY_RESULT              @"wechatPayResultNotification"
 #define NOTIFICATION_ALIPAY_RESULT              @"aliPayResultNotification"
 #define NOTIFICATION_PAYSWITCH_NOTIFICATION   @"payop"
-
+#define NOTIFICATION_BACK_LOGINVC               @"didbackloginvc"
 
 
 #define APPOINTMENT @"APPOINTMENT" //预约
@@ -87,6 +87,7 @@
 #define CARD_STATUS_BOUND  @"1";//已绑定
 
 
+#define Delegate    (AppDelegate *)[UIApplication sharedApplication].delegate
 
 #define TYPE_ORDER  @"income.type.order"// 订单
 #define TYPE_GET_MONEY  @"income.type.getmoney"// 提现

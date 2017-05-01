@@ -38,7 +38,7 @@
         else
         {
             if (aBlock) {
-                aBlock(CommonNetErrorTip,NO);
+                aBlock(response,NO);
             }
             
         }

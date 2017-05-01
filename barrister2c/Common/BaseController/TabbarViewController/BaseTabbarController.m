@@ -253,6 +253,20 @@
 
 }
 
+
+-(void)changeSelectIndex:(NSInteger)index
+{
+    UIButton *button = (UIButton *)[self.btnArray safeObjectAtIndex:index];
+    
+    if (button) {
+        [self changeViewController:button];
+    }
+    
+    
+    
+}
+
+
 #pragma mark- 设置tabbar 角标
 
 

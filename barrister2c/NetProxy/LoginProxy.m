@@ -19,6 +19,9 @@
 
 -(void)loginWithParams:(NSDictionary *)params Block:(ServiceCallBlock)aBlock
 {
+    if (params.allKeys.count == 0) {
+        return;
+    }
     [XuNetWorking postWithUrl:LoginUrl params:params success:^(id response) {
         NSString  *resultCode = [response objectForKey:@"resultCode"];
         NSString *resultMsg = [response objectForKey:@"resultMsg"];

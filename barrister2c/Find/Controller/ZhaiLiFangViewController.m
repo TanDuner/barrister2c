@@ -13,6 +13,8 @@
 #import "YingShowListCell.h"
 #import "YingShowDetailViewController.h"
 #import "YingShowPublishViewController.h"
+#import "BarristerLoginManager.h"
+#import "AppDelegate.h"
 
 #define SearchViewHeight 50
 
@@ -30,13 +32,20 @@
     [super viewDidLoad];
     self.title = @"债立方";
     [self configView];
-    [self initData];
     [self initNavigationRightTextButton:@"发布" action:@selector(toPublishYinShowVC)];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeOtherVC) name:NOTIFICATION_BACK_LOGINVC object:nil];
 
+}
+
+-(void)changeOtherVC
+{
+    AppDelegate *delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    [delegate.tabBarCTL changeSelectIndex:0];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    [self initData];
     [self showTabbar:YES];
 }
 
@@ -149,6 +158,11 @@
             
         }
         else{
+            NSString *resultCode = [NSString stringWithFormat:@"%@",[returnData objectForKey:@"resultCode"]];
+            if (resultCode.integerValue == 901) {
+                [[BarristerLoginManager shareManager] showLoginViewControllerWithController:self];
+                return;
+            }
 
             [weakSelf showNoContentView];
         }
