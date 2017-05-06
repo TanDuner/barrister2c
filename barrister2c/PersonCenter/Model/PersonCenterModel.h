@@ -26,8 +26,8 @@ typedef NS_ENUM(NSInteger, PersonCenterModelType)
     
     PersonCenterModelTypeYSSC = 12,//应收账款上传
     PersonCenterModelTypeYSGM = 13,//应收账款购买
-    PersonCenterModelTypeTJHY = 14 //分享给好友
-    
+    PersonCenterModelTypeTJHY = 14, //分享给好友
+    PersonCenterModelTypeFXXF = 15 //分享给好友
 };
 
 typedef void (^ModelActionBlock)(NSInteger PersonCenterModelType);

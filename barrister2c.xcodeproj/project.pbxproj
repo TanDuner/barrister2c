@@ -396,6 +396,9 @@
 		95CA1E031D10F9EA00AAE490 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 95CA1E021D10F9EA00AAE490 /* libsqlite3.tbd */; };
 		95CA1E051D10F9F500AAE490 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 95CA1E041D10F9F500AAE490 /* libz.tbd */; };
 		95CA1E081D123F6A00AAE490 /* FindNetProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 95CA1E071D123F6A00AAE490 /* FindNetProxy.m */; };
+		95CD2B281EBD547F00DBD2A7 /* ShareCosumeListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95CD2B271EBD547F00DBD2A7 /* ShareCosumeListViewController.m */; };
+		95CD2B2B1EBD561600DBD2A7 /* ShareCosumeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 95CD2B2A1EBD561600DBD2A7 /* ShareCosumeModel.m */; };
+		95CD2B2E1EBD569300DBD2A7 /* ShareCosumeListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 95CD2B2D1EBD569300DBD2A7 /* ShareCosumeListCell.m */; };
 		95D3EE5D1E2C865200AE439F /* logoForShare.png in Resources */ = {isa = PBXBuildFile; fileRef = 95D3EE5C1E2C865200AE439F /* logoForShare.png */; };
 		95D8D8241DC1971C00769EB5 /* ZhaiLiFangViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95D8D8231DC1971C00769EB5 /* ZhaiLiFangViewController.m */; };
 		95D8D8271DC2F89F00769EB5 /* YingShowDetailListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 95D8D8261DC2F89F00769EB5 /* YingShowDetailListCell.m */; };
@@ -1110,6 +1113,12 @@
 		95CA1E041D10F9F500AAE490 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		95CA1E061D123F6A00AAE490 /* FindNetProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FindNetProxy.h; sourceTree = "<group>"; };
 		95CA1E071D123F6A00AAE490 /* FindNetProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FindNetProxy.m; sourceTree = "<group>"; };
+		95CD2B261EBD547F00DBD2A7 /* ShareCosumeListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareCosumeListViewController.h; sourceTree = "<group>"; };
+		95CD2B271EBD547F00DBD2A7 /* ShareCosumeListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareCosumeListViewController.m; sourceTree = "<group>"; };
+		95CD2B291EBD561600DBD2A7 /* ShareCosumeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareCosumeModel.h; sourceTree = "<group>"; };
+		95CD2B2A1EBD561600DBD2A7 /* ShareCosumeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareCosumeModel.m; sourceTree = "<group>"; };
+		95CD2B2C1EBD569300DBD2A7 /* ShareCosumeListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareCosumeListCell.h; sourceTree = "<group>"; };
+		95CD2B2D1EBD569300DBD2A7 /* ShareCosumeListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareCosumeListCell.m; sourceTree = "<group>"; };
 		95D3EE5C1E2C865200AE439F /* logoForShare.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logoForShare.png; sourceTree = "<group>"; };
 		95D8D8221DC1971C00769EB5 /* ZhaiLiFangViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZhaiLiFangViewController.h; sourceTree = "<group>"; };
 		95D8D8231DC1971C00769EB5 /* ZhaiLiFangViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZhaiLiFangViewController.m; sourceTree = "<group>"; };
@@ -2511,6 +2520,8 @@
 			children = (
 				95CA1DFC1D10F95E00AAE490 /* PersonCenterViewController.h */,
 				95CA1DFD1D10F95E00AAE490 /* PersonCenterViewController.m */,
+				95CD2B261EBD547F00DBD2A7 /* ShareCosumeListViewController.h */,
+				95CD2B271EBD547F00DBD2A7 /* ShareCosumeListViewController.m */,
 				955610CD1D14B69900366D4C /* PersonInfoViewController.h */,
 				955610CE1D14B69900366D4C /* PersonInfoViewController.m */,
 				95C919051D67592700F190CC /* NeedHelpViewController.h */,
@@ -2548,6 +2559,8 @@
 			children = (
 				955610BE1D14B5C600366D4C /* PersonCenterModel.h */,
 				955610BF1D14B5C600366D4C /* PersonCenterModel.m */,
+				95CD2B291EBD561600DBD2A7 /* ShareCosumeModel.h */,
+				95CD2B2A1EBD561600DBD2A7 /* ShareCosumeModel.m */,
 				955610D01D14B6C000366D4C /* MyMessageModel.h */,
 				955610D11D14B6C000366D4C /* MyMessageModel.m */,
 				950120AC1D2A5D8E00FE3613 /* BarristerOrderDetailModel.h */,
@@ -2567,6 +2580,8 @@
 				955610C21D14B5E400366D4C /* PersonCenterAccountCell.m */,
 				955610C31D14B5E400366D4C /* PersonCenterCustomCell.h */,
 				955610C41D14B5E400366D4C /* PersonCenterCustomCell.m */,
+				95CD2B2C1EBD569300DBD2A7 /* ShareCosumeListCell.h */,
+				95CD2B2D1EBD569300DBD2A7 /* ShareCosumeListCell.m */,
 				955610C51D14B5E400366D4C /* PersonInfoCustomCell.h */,
 				955610C61D14B5E400366D4C /* PersonInfoCustomCell.m */,
 				955610D31D14B6DA00366D4C /* MyMessgeCell.h */,
@@ -3268,6 +3283,7 @@
 				955610871D136E2100366D4C /* LawBooksModel.m in Sources */,
 				95EBAAED1D35DCA70041A647 /* AlipayHelper.m in Sources */,
 				95EBAB361D3691770041A647 /* XWMoneyTextFieldLimit.m in Sources */,
+				95CD2B281EBD547F00DBD2A7 /* ShareCosumeListViewController.m in Sources */,
 				95CA1C661D10F7B700AAE490 /* RefreshTableView.m in Sources */,
 				95E9CAF41D69A5B800B84B7C /* OnlineWaitPayCell.m in Sources */,
 				95D8D8241DC1971C00769EB5 /* ZhaiLiFangViewController.m in Sources */,
@@ -3436,6 +3452,7 @@
 				955A7B141D1ED24100D1DEAC /* YKSplashView.m in Sources */,
 				95CA1D541D10F7C900AAE490 /* CALayer+YYWebImage.m in Sources */,
 				955610CC1D14B67100366D4C /* MyMessageViewController.m in Sources */,
+				95CD2B2B1EBD561600DBD2A7 /* ShareCosumeModel.m in Sources */,
 				95EBA9981D35453E0041A647 /* ESVoiceDownloader.m in Sources */,
 				95CA1D431D10F7C900AAE490 /* MASConstraintMaker.m in Sources */,
 				955610C81D14B5E400366D4C /* PersonCenterCustomCell.m in Sources */,
@@ -3445,6 +3462,7 @@
 				95CA1D5F1D10F7C900AAE490 /* YYImageCoder.m in Sources */,
 				95CA1D551D10F7C900AAE490 /* MKAnnotationView+YYWebImage.m in Sources */,
 				95CA1D201D10F7C900AAE490 /* MBProgressHUD.m in Sources */,
+				95CD2B2E1EBD569300DBD2A7 /* ShareCosumeListCell.m in Sources */,
 				95CA1D9F1D10F85500AAE490 /* UIButton+EnlargeEdge.m in Sources */,
 				95CA1D5A1D10F7C900AAE490 /* UIImageView+YYWebImage.m in Sources */,
 				95EBAAF41D35DCA70041A647 /* DataSigner.m in Sources */,

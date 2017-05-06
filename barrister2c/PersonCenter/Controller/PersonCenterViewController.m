@@ -22,6 +22,7 @@
 #import "MyBuyYingShowViewController.h"
 #import <UMSocialCore/UMSocialManager.h>
 #import <UShareUI/UShareUI.h>
+#import "ShareCosumeListViewController.h"
 
 @implementation PersonCenterViewController
 - (void)viewDidLoad {
@@ -141,6 +142,14 @@
     model9.iconNameStr = @"me_share";
     model9.isShowArrow = YES;
     
+   
+    PersonCenterModel *model10 = [[PersonCenterModel alloc] init];
+    model10.titleStr = @"分享消费记录";
+    model10.cellType = PersonCenterModelTypeFXXF;
+    model10.iconNameStr = @"me_share";
+    model10.isShowArrow = YES;
+    
+    
     PersonCenterModel *model6 = [[PersonCenterModel alloc] init];
     model6.titleStr = @"设置";
     model6.cellType = PersonCenterModelTypeSZ;
@@ -174,6 +183,7 @@
     [self.items addObject:model8];
     [self.items addObject:model9];
 
+    [self.items addObject:model10];
     
     
     [self.items addObject:model6];
@@ -213,9 +223,9 @@
     else if (section == 1)
     {
         if ([BaseDataSingleton shareInstance].isClosePay) {
-            return 7;
+            return 8;
         }
-        return 8;
+        return 9;
     }
     else
     {
@@ -378,6 +388,14 @@
                 }];
                 
             }
+                break;
+                case PersonCenterModelTypeFXXF:
+            {
+                ShareCosumeListViewController *shareComsumeList = [[ShareCosumeListViewController alloc] init];
+                [self.navigationController pushViewController:shareComsumeList animated:YES];
+                
+            }
+                break;
             default:
                 break;
         }

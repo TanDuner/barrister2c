@@ -99,11 +99,11 @@
     
     
     LearnCenterViewController *c3 = [[LearnCenterViewController alloc] init];
-    c3.title = [self.titleArray safeObjectAtIndex:2];
+    c3.title = [self.titleArray safeObjectAtIndex:3];
     BaseNavigaitonController *ctl3 = [[BaseNavigaitonController alloc] initWithRootViewController:c3];
     
     PersonCenterViewController *c4 = [[PersonCenterViewController alloc] init];
-    c4.title = [self.titleArray safeObjectAtIndex:3];
+    c4.title = [self.titleArray safeObjectAtIndex:4];
     BaseNavigaitonController *ctl4 = [[BaseNavigaitonController alloc] initWithRootViewController:c4];
     
     

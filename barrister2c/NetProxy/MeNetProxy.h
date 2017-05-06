@@ -89,6 +89,17 @@
  */
 -(void)publishCaseSourceWithParams:(NSMutableDictionary *)params block:(ServiceCallBlock)aBlock;
 
+
+
+/**
+ *  分享消费记录
+ *
+ *  @param params
+ *  @param aBlock
+ */
+
+-(void)getShareCosumeListDataWithParmas:(NSMutableDictionary *)params block:(ServiceCallBlock)aBlock;
+
 @end
 
 

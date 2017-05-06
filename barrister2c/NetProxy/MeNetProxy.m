@@ -18,6 +18,8 @@
 #define AliaPayUrl @"aliPrepayInfo.do"
 
 #define PublishCaseSource @"uploadCase.do"
+#define ShareCosumeListUrl  @"com"
+
 @implementation MeNetProxy
 /**
  *  上传头像
@@ -266,6 +268,37 @@
         
     }];
 
+}
+
+
+/**
+ *  分享消费记录
+ *
+ *  @param params
+ *  @param aBlock
+ */
+
+-(void)getShareCosumeListDataWithParmas:(NSMutableDictionary *)params block:(ServiceCallBlock)aBlock
+{
+    [self appendCommonParamsWithDict:params];
+    
+    [XuNetWorking postWithUrl:ShareCosumeListUrl params:params success:^(id response) {
+        if ([self isCommonCorrectResultCodeWithResponse:response]) {
+            if (aBlock) {
+                aBlock(response,YES);
+            }
+        }
+        else{
+            aBlock(CommonNetErrorTip,NO);
+        }
+        
+    } fail:^(NSError *error) {
+        if (aBlock) {
+            aBlock(error,NO);
+        }
+        
+    }];
+    
 }
 
 
