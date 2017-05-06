@@ -179,7 +179,7 @@
         case 113:
         {
             
-            url = [NSString stringWithFormat:@"%@/wap/clientservice/wap/toShowOneDebtLoopData.do?cduserId=%@",BaseUrl,self.userModel.yingShowUserId];
+            url = [NSString stringWithFormat:@"%@/wap/toShowOneDebtLoopData.do?cduserId=%@",BaseUrl,self.userModel.yingShowUserId];
             showTitle = @"债务关系图";
             
         }
