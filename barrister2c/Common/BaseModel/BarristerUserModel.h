@@ -118,4 +118,10 @@
 @property (nonatomic,strong) NSString *company;
 
 
+/**
+ 是否是业务员 0 不是业务员 1 是业务员
+ */
+@property (strong, nonatomic) NSString *salesman;
+
+
 @end

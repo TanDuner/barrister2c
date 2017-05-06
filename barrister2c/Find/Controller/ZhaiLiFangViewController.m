@@ -89,11 +89,11 @@
 //    
 //}
 
--(void)toSearchViewController
-{
-    YingShowViewController *searchVC = [[YingShowViewController alloc] init];
-    [self.navigationController pushViewController:searchVC animated:YES];
-}
+//-(void)toSearchViewController
+//{
+//    YingShowViewController *searchVC = [[YingShowViewController alloc] init];
+//    [self.navigationController pushViewController:searchVC animated:YES];
+//}
 
 
 

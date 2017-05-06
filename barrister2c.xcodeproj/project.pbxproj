@@ -399,6 +399,9 @@
 		95CD2B281EBD547F00DBD2A7 /* ShareCosumeListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95CD2B271EBD547F00DBD2A7 /* ShareCosumeListViewController.m */; };
 		95CD2B2B1EBD561600DBD2A7 /* ShareCosumeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 95CD2B2A1EBD561600DBD2A7 /* ShareCosumeModel.m */; };
 		95CD2B2E1EBD569300DBD2A7 /* ShareCosumeListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 95CD2B2D1EBD569300DBD2A7 /* ShareCosumeListCell.m */; };
+		95CD2B311EBD6D1200DBD2A7 /* ZLFGXSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95CD2B301EBD6D1200DBD2A7 /* ZLFGXSearchViewController.m */; };
+		95CD2B341EBD70B400DBD2A7 /* ZLFGXSearchListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 95CD2B331EBD70B400DBD2A7 /* ZLFGXSearchListCell.m */; };
+		95CD2B371EBDA5A800DBD2A7 /* ZLFGXDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95CD2B361EBDA5A800DBD2A7 /* ZLFGXDetailViewController.m */; };
 		95D3EE5D1E2C865200AE439F /* logoForShare.png in Resources */ = {isa = PBXBuildFile; fileRef = 95D3EE5C1E2C865200AE439F /* logoForShare.png */; };
 		95D8D8241DC1971C00769EB5 /* ZhaiLiFangViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95D8D8231DC1971C00769EB5 /* ZhaiLiFangViewController.m */; };
 		95D8D8271DC2F89F00769EB5 /* YingShowDetailListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 95D8D8261DC2F89F00769EB5 /* YingShowDetailListCell.m */; };
@@ -1119,6 +1122,12 @@
 		95CD2B2A1EBD561600DBD2A7 /* ShareCosumeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareCosumeModel.m; sourceTree = "<group>"; };
 		95CD2B2C1EBD569300DBD2A7 /* ShareCosumeListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareCosumeListCell.h; sourceTree = "<group>"; };
 		95CD2B2D1EBD569300DBD2A7 /* ShareCosumeListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareCosumeListCell.m; sourceTree = "<group>"; };
+		95CD2B2F1EBD6D1200DBD2A7 /* ZLFGXSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLFGXSearchViewController.h; sourceTree = "<group>"; };
+		95CD2B301EBD6D1200DBD2A7 /* ZLFGXSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLFGXSearchViewController.m; sourceTree = "<group>"; };
+		95CD2B321EBD70B400DBD2A7 /* ZLFGXSearchListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLFGXSearchListCell.h; sourceTree = "<group>"; };
+		95CD2B331EBD70B400DBD2A7 /* ZLFGXSearchListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLFGXSearchListCell.m; sourceTree = "<group>"; };
+		95CD2B351EBDA5A800DBD2A7 /* ZLFGXDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLFGXDetailViewController.h; sourceTree = "<group>"; };
+		95CD2B361EBDA5A800DBD2A7 /* ZLFGXDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLFGXDetailViewController.m; sourceTree = "<group>"; };
 		95D3EE5C1E2C865200AE439F /* logoForShare.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logoForShare.png; sourceTree = "<group>"; };
 		95D8D8221DC1971C00769EB5 /* ZhaiLiFangViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZhaiLiFangViewController.h; sourceTree = "<group>"; };
 		95D8D8231DC1971C00769EB5 /* ZhaiLiFangViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZhaiLiFangViewController.m; sourceTree = "<group>"; };
@@ -2637,6 +2646,10 @@
 				95835DC81DAD255F00A2E6CB /* YingShowViewController.m */,
 				95D8D8221DC1971C00769EB5 /* ZhaiLiFangViewController.h */,
 				95D8D8231DC1971C00769EB5 /* ZhaiLiFangViewController.m */,
+				95CD2B2F1EBD6D1200DBD2A7 /* ZLFGXSearchViewController.h */,
+				95CD2B301EBD6D1200DBD2A7 /* ZLFGXSearchViewController.m */,
+				95CD2B351EBDA5A800DBD2A7 /* ZLFGXDetailViewController.h */,
+				95CD2B361EBDA5A800DBD2A7 /* ZLFGXDetailViewController.m */,
 				95600F4E1EB6D25C0028E15A /* ZhaiLiFangNewViewController.h */,
 				95600F4F1EB6D25C0028E15A /* ZhaiLiFangNewViewController.m */,
 				95835DD91DAD3D3900A2E6CB /* YingShowDetailViewController.h */,
@@ -2689,6 +2702,8 @@
 				95D8D8261DC2F89F00769EB5 /* YingShowDetailListCell.m */,
 				95835DDF1DAD405400A2E6CB /* YingShowDetailBottomCell.h */,
 				95835DE01DAD405400A2E6CB /* YingShowDetailBottomCell.m */,
+				95CD2B321EBD70B400DBD2A7 /* ZLFGXSearchListCell.h */,
+				95CD2B331EBD70B400DBD2A7 /* ZLFGXSearchListCell.m */,
 				95835DE21DAF22C200A2E6CB /* YingShowHorSelectScrollView.h */,
 				95835DE31DAF22C200A2E6CB /* YingShowHorSelectScrollView.m */,
 				95835DE51DAF297800A2E6CB /* YingShowHorSelectItemView.h */,
@@ -3385,6 +3400,7 @@
 				95CA1D4A1D10F7C900AAE490 /* NinaBaseView.m in Sources */,
 				955611471D15A86300366D4C /* LawerListCell.m in Sources */,
 				95CA1D2A1D10F7C900AAE490 /* MJRefreshComponent.m in Sources */,
+				95CD2B311EBD6D1200DBD2A7 /* ZLFGXSearchViewController.m in Sources */,
 				95BD99911D260681002E5B0D /* IMActionSheet.m in Sources */,
 				95CA1D9B1D10F85500AAE490 /* NSDate+Addition.m in Sources */,
 				9529CCB61D3090330067597A /* WXApiManager.m in Sources */,
@@ -3431,6 +3447,7 @@
 				95CA1D6A1D10F7C900AAE490 /* YYWebImageManager.m in Sources */,
 				951008C01D25111A00730562 /* HomeBannerModel.m in Sources */,
 				95CA1DA81D10F85500AAE490 /* UINavigationBar+Background.m in Sources */,
+				95CD2B341EBD70B400DBD2A7 /* ZLFGXSearchListCell.m in Sources */,
 				95CA1DFE1D10F95E00AAE490 /* PersonCenterViewController.m in Sources */,
 				951008C31D25248A00730562 /* NSArray+CommonAdd.m in Sources */,
 				955611431D159FBB00366D4C /* BankCardModel.m in Sources */,
@@ -3510,6 +3527,7 @@
 				955611441D159FBB00366D4C /* MyBankCardController.m in Sources */,
 				95CA1D3F1D10F7C900AAE490 /* AJPhotoZoomingScrollView.m in Sources */,
 				9529CC171D2C0D520067597A /* DownloadVoiceManager.m in Sources */,
+				95CD2B371EBDA5A800DBD2A7 /* ZLFGXDetailViewController.m in Sources */,
 				9556113A1D159ED300366D4C /* TiXianViewControlleer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

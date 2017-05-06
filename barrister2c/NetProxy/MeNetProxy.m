@@ -18,7 +18,7 @@
 #define AliaPayUrl @"aliPrepayInfo.do"
 
 #define PublishCaseSource @"uploadCase.do"
-#define ShareCosumeListUrl  @"com"
+#define ShareCosumeListUrl  @"shareConsumeList.do"
 
 @implementation MeNetProxy
 /**

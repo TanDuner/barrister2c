@@ -16,6 +16,9 @@
 #define YingshowDetailUrl       @"creditDebtInfoDetail.do"
 #define BuyYingShowUrl          @"buyCreditDebtDetail.do"
 
+#define ZLFSearchUrl            @"searchCreditDetbtUser.do"
+
+
 @implementation YingShowProxy
 
 
@@ -259,6 +262,42 @@
             aBlock(@"网络错误,请稍后重试",NO);
         }
     }];
+}
+
+
+
+
+/**
+
+ 债立方 关系查询列表接口
+ @param params
+ @param aBlock
+ */
+-(void)getZLFSearchResultWithParams:(NSMutableDictionary *)params Block:(ServiceCallBlock)aBlock
+{
+    [self appendCommonParamsWithDict:params];
+    [XuNetWorking getWithUrl:ZLFSearchUrl params:params success:^(id response) {
+        if ([self isCommonCorrectResultCodeWithResponse:response]) {
+            if (aBlock) {
+                aBlock(response,YES);
+            }
+        }
+        else
+        {
+            if (aBlock) {
+                aBlock(CommonNetErrorTip,NO);
+            }
+            
+        }
+        
+    } fail:^(NSError *error) {
+        if (aBlock) {
+            aBlock(error,NO);
+        }
+    }];
+    
+
+
 }
 
 

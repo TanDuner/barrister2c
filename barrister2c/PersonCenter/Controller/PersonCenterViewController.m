@@ -71,6 +71,12 @@
 
 -(void)configData
 {
+    
+    if (self.items) {
+        [self.items removeAllObjects];    
+    }
+    
+    
     PersonCenterModel *model1 = [[PersonCenterModel alloc] init];
     model1.cellType = PersonCenterModelTypeZH;
 
@@ -143,12 +149,6 @@
     model9.isShowArrow = YES;
     
    
-    PersonCenterModel *model10 = [[PersonCenterModel alloc] init];
-    model10.titleStr = @"分享消费记录";
-    model10.cellType = PersonCenterModelTypeFXXF;
-    model10.iconNameStr = @"me_share";
-    model10.isShowArrow = YES;
-    
     
     PersonCenterModel *model6 = [[PersonCenterModel alloc] init];
     model6.titleStr = @"设置";
@@ -183,7 +183,18 @@
     [self.items addObject:model8];
     [self.items addObject:model9];
 
-    [self.items addObject:model10];
+    if ([[BaseDataSingleton shareInstance].userModel.salesman isEqualToString:@"1"]) {
+        PersonCenterModel *model10 = [[PersonCenterModel alloc] init];
+        model10.titleStr = @"分享消费记录";
+        model10.cellType = PersonCenterModelTypeFXXF;
+        model10.iconNameStr = @"me_share";
+        model10.isShowArrow = YES;
+        
+        [self.items addObject:model10];
+
+    }
+    
+
     
     
     [self.items addObject:model6];
@@ -222,10 +233,7 @@
     }
     else if (section == 1)
     {
-        if ([BaseDataSingleton shareInstance].isClosePay) {
-            return 8;
-        }
-        return 9;
+        return self.items.count - 2;
     }
     else
     {

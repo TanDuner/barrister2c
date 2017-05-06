@@ -13,4 +13,5 @@
 
 @property (nonatomic,strong) ShareCosumeModel *model;
 
++(CGFloat)getCellHeightWithModel:(ShareCosumeModel *)model;
 @end

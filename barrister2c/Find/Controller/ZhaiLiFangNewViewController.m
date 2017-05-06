@@ -10,7 +10,7 @@
 #import "ZhaiLiFangViewController.h"
 #import "YingShowPublishViewController.h"
 #import "YingShowViewController.h"
-
+#import "ZLFGXSearchViewController.h"
 
 @interface ZhaiLiFangNewViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -65,7 +65,8 @@
     }
     else if (indexPath.row == 1)
     {
-        
+        ZLFGXSearchViewController *ZLDGXSearchVC = [[ZLFGXSearchViewController alloc] init];
+        [self.navigationController pushViewController:ZLDGXSearchVC animated:YES];
     }
     else if (indexPath.row == 2)
     {

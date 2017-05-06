@@ -81,4 +81,15 @@
  */
 -(void)deleteMyUploadYingShowInfoWithParams:(NSMutableDictionary *)params block:(ServiceCallBlock)aBlock;
 
+
+
+/**
+ 
+ 债立方 关系查询列表接口
+ @param params
+ @param aBlock
+ */
+-(void)getZLFSearchResultWithParams:(NSMutableDictionary *)params Block:(ServiceCallBlock)aBlock;
+
+
 @end
