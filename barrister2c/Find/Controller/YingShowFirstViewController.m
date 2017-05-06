@@ -134,7 +134,7 @@
     self.panjueView.hidden = YES;
     
     
-    self.contentScrollView.contentSize = CGSizeMake(0, CGRectGetMaxY(self.addImageView.frame) + 300);
+    self.contentScrollView.contentSize = CGSizeMake(0, CGRectGetMaxY(self.addImageView.frame) + 300 + 400);
     
     UITapGestureRecognizer *hideTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyBoard)];
     [self.contentScrollView addGestureRecognizer:hideTap];
