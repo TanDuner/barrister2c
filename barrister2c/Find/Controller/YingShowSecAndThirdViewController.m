@@ -82,7 +82,7 @@
         _companyPhoneTextField.textColor = kFormTextColor;
         _companyPhoneTextField.cleanBtnOffset_x = _companyPhoneTextField.width - 100;
         _companyPhoneTextField.delegate = self;
-        _companyPhoneTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"公司电话" attributes:@{NSForegroundColorAttributeName:RGBCOLOR(199, 199, 205)}];
+        _companyPhoneTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"手机号" attributes:@{NSForegroundColorAttributeName:RGBCOLOR(199, 199, 205)}];
         
         [_companyContentScrollView addSubview:_companyPhoneTextField];
         

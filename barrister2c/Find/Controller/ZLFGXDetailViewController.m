@@ -21,7 +21,7 @@
 
 #import "BaseWebViewController.h"
 
-#define ButtonHeight 80
+#define ButtonHeight 100
 
 @interface ZLFGXDetailViewController ()
 
@@ -36,6 +36,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    
+    self.title = @"详情";
     
     [self.view addSubview:self.cell];
     
@@ -72,47 +74,72 @@
         _bottomView.backgroundColor = KColorGray999;
         
         UIButton *button1 = [UIButton buttonWithType:UIButtonTypeCustom];
-        [button1 setFrame:RECT(LeftPadding, 0, ButtonWidth, ButtonHeight)];
-        [button1 setTitle:@"他的债权图" forState:UIControlStateNormal];
-        button1.imageEdgeInsets = UIEdgeInsetsMake(30, 0, 0, 0);
-        button1.titleLabel.font = SystemFont(12.0);
+        [button1 setFrame:RECT(0, 0, ButtonWidth, ButtonHeight)];
         button1.tag = 110;
         button1.titleLabel.textAlignment = NSTextAlignmentCenter;
         [button1 setImage:[UIImage imageNamed:@"zlf_list_2"] forState:UIControlStateNormal];
         [button1 addTarget:self action:@selector(clickAciton:) forControlEvents:UIControlEventTouchUpInside];
+        
+        UILabel *label1 = [[UILabel alloc] initWithFrame:RECT(0, button1.bounds.size.height - 23, ButtonWidth, 13)];
+        label1.text = @"他的债权图";
+        label1.font = SystemFont(12.0f);
+        label1.textColor = [UIColor whiteColor];
+        label1.textAlignment = NSTextAlignmentCenter;
+        [button1 addSubview:label1];
         [_bottomView addSubview:button1];
         
         UIButton *button2 = [UIButton buttonWithType:UIButtonTypeCustom];
-        [button2 setFrame:RECT(LeftPadding + ButtonWidth, 0, ButtonWidth, ButtonHeight)];
+        [button2 setFrame:RECT(ButtonWidth, 0, ButtonWidth, ButtonHeight)];
         button2.titleLabel.textAlignment = NSTextAlignmentCenter;
         button2.tag = 111;
-        [button2 setTitle:@"他的债务图" forState:UIControlStateNormal];
         [button2 setImage:[UIImage imageNamed:@"zlf_list_2"] forState:UIControlStateNormal];
         [button2 addTarget:self action:@selector(clickAciton:) forControlEvents:UIControlEventTouchUpInside];
-        button2.titleLabel.font = SystemFont(12.0);
-        button2.imageEdgeInsets = UIEdgeInsetsMake(30, 0, 0, 0);
+        
+        UILabel *label2 = [[UILabel alloc] initWithFrame:RECT(0, button2.bounds.size.height - 23, ButtonWidth, 13)];
+        label2.text = @"他的债务图";
+        label2.font = SystemFont(12.0f);
+        label2.textAlignment = NSTextAlignmentCenter;
+        label2.textColor = [UIColor whiteColor];
+
+        [button2 addSubview:label2];
+        
         [_bottomView addSubview:button2];
         
         UIButton *button3 = [UIButton buttonWithType:UIButtonTypeCustom];
-        [button3 setFrame:RECT(LeftPadding + ButtonWidth *2, 0, ButtonWidth, ButtonHeight)];
+        [button3 setFrame:RECT(ButtonWidth *2, 0, ButtonWidth, ButtonHeight)];
         button3.titleLabel.textAlignment = NSTextAlignmentCenter;
-        [button3 setTitle:@"债权关系图" forState:UIControlStateNormal];
         button3.tag = 112;
         [button3 addTarget:self action:@selector(clickAciton:) forControlEvents:UIControlEventTouchUpInside];
         [button3 setImage:[UIImage imageNamed:@"zlf_list_3"] forState:UIControlStateNormal];
-        button3.titleLabel.font = SystemFont(12.0);
-        button3.titleEdgeInsets = UIEdgeInsetsMake(30, 0, 0, 0);
+        
+        UILabel *label3 = [[UILabel alloc] initWithFrame:RECT(0, button3.bounds.size.height - 23, ButtonWidth, 13)];
+        label3.text = @"债权关系图";
+        label3.font = SystemFont(12.0f);
+        label3.textAlignment = NSTextAlignmentCenter;
+        label3.textColor = [UIColor whiteColor];
+
+        [button3 addSubview:label3];
+
+        
         [_bottomView addSubview:button3];
         
+        
+        
         UIButton *button4 = [UIButton buttonWithType:UIButtonTypeCustom];
-        [button4 setFrame:RECT(LeftPadding + ButtonWidth *3, 0, ButtonWidth, ButtonHeight)];
+        [button4 setFrame:RECT(ButtonWidth *3, 0, ButtonWidth, ButtonHeight)];
         button4.titleLabel.textAlignment = NSTextAlignmentCenter;
         button4.tag = 113;
-        [button4 setTitle:@"债务关系图" forState:UIControlStateNormal];
         [button4 addTarget:self action:@selector(clickAciton:) forControlEvents:UIControlEventTouchUpInside];
         [button4 setImage:[UIImage imageNamed:@"zlf_list_3"] forState:UIControlStateNormal];
-        button4.titleLabel.font = SystemFont(12.0);
-        button4.titleEdgeInsets = UIEdgeInsetsMake(30, 0, 0, 0);
+        
+        UILabel *label4 = [[UILabel alloc] initWithFrame:RECT(0, button3.bounds.size.height - 23, ButtonWidth, 13)];
+        label4.text = @"债务关系图";
+        label4.font = SystemFont(12.0f);
+        label4.textAlignment = NSTextAlignmentCenter;
+        label4.textColor = [UIColor whiteColor];
+
+        [button4 addSubview:label4];
+
         [_bottomView addSubview:button4];
         
         
