@@ -7,7 +7,7 @@
 //
 
 #import "ZLFGXSearchListCell.h"
-#define VSpace 5
+#define VSpace 10
 #import "YingShowInfoModel.h"
 #define XingHao @"***********************"
 

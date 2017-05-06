@@ -52,9 +52,14 @@
     
     //初始化组件
     CGRect webRect = self.view.bounds;
-    webRect.size.height = webRect.size.height - NAVBAR_DEFAULT_HEIGHT;
+    webRect.size.height = webRect.size.height;
     _webView = [[IMWebView alloc] initWithFrame:webRect];
     _webView.delegate = self;
+    
+    _webView.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
+    _webView.scalesPageToFit=YES;
+    _webView.multipleTouchEnabled=YES;
+    _webView.userInteractionEnabled=YES;
     [self.view addSubview:_webView];
 
     [self loadWebViewRequest];
@@ -76,6 +81,7 @@
 {
     NSURL *myurl = [NSURL URLWithString:self.url];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:myurl cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
+    
     
     [_webView loadRequest:request];
 }

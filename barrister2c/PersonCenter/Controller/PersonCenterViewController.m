@@ -185,7 +185,7 @@
 
     if ([[BaseDataSingleton shareInstance].userModel.salesman isEqualToString:@"1"]) {
         PersonCenterModel *model10 = [[PersonCenterModel alloc] init];
-        model10.titleStr = @"分享消费记录";
+        model10.titleStr = @"分销记录";
         model10.cellType = PersonCenterModelTypeFXXF;
         model10.iconNameStr = @"me_share";
         model10.isShowArrow = YES;

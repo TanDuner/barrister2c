@@ -17,8 +17,8 @@
 #import "CommonMacros.h"
 
 
-#define BaseUrl  @"http://app.dls.com.cn:8080/clientservice/"
-
+#define BaseUrl  @"http://app.htgls.com:8080/clientservice/"
+//http://app.htgls.com:8080/clientservice/
 
 #define kLoadingViewTag 100000      // LoadingView tag
 #define kNetworkErrorViewTag 100001 // NetworkErrorView.xib tag

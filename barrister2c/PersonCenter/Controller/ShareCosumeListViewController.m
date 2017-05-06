@@ -45,7 +45,7 @@
 
 -(void)configView
 {
-    self.title = @"分享消费记录";
+    self.title = @"分销记录";
     
     [self.view addSubview:self.topTipView];
     
