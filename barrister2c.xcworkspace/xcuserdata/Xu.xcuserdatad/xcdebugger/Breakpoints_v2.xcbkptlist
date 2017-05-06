@@ -36,7 +36,7 @@
                   moduleName = "barrister2c"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Xu/Documents/barrister2c/barrister2c/NetProxy/YingShowProxy.m"
-                  timestampString = "515755221.410716"
+                  timestampString = "515756420.43744"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "142"
@@ -51,7 +51,7 @@
                   moduleName = "barrister2c"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Xu/Documents/barrister2c/barrister2c/NetProxy/YingShowProxy.m"
-                  timestampString = "515755221.413664"
+                  timestampString = "515756420.443564"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "142"
@@ -388,7 +388,7 @@
                   moduleName = "barrister2c"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Xu/Documents/barrister2c/barrister2c/NetProxy/LoginProxy.m"
-                  timestampString = "515755221.503382"
+                  timestampString = "515756420.594411"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "60"
@@ -403,7 +403,7 @@
                   moduleName = "barrister2c"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Xu/Documents/barrister2c/barrister2c/NetProxy/LoginProxy.m"
-                  timestampString = "515755221.506758"
+                  timestampString = "515756420.597323"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "60"
@@ -522,22 +522,6 @@
             startingLineNumber = "116"
             endingLineNumber = "116"
             landmarkName = "-layoutSubviews"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "barrister2c/Find/Controller/YingShowSecAndThirdViewController.m"
-            timestampString = "515748488.657719"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "58"
-            endingLineNumber = "58"
-            landmarkName = "-companyContentScrollView"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -826,6 +810,22 @@
             startingLineNumber = "82"
             endingLineNumber = "82"
             landmarkName = "-handlePropretyWithDict:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "barrister2c/Find/Controller/YingShowPublishViewController.m"
+            timestampString = "515756422.786606"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "126"
+            endingLineNumber = "126"
+            landmarkName = "-checkZhaiQuanInfoWithParams:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

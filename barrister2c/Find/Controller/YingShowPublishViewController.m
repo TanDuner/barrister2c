@@ -85,9 +85,15 @@
     NSData *panjueData = [XuUtlity p_compressImage:self.firstVC.selectPanjueImage];
     
     
-    [self checkZhaiQuanInfoWithParams:params];
+    
+    
+    if (![self checkZhaiQuanInfoWithParams:params]) {
+        return;
+    };
 
-    [self checkZhaiWuInfoWithParams:params];
+    if (![self checkZhaiWuInfoWithParams:params]) {
+        return;
+    }
     
     [self.proxy publishYingShowWithParams:params imageData:imageData panjueshuImageData:panjueData Block:^(id returnData, BOOL success) {
         if (success) {
@@ -114,7 +120,7 @@
 }
 
 
--(void)checkZhaiQuanInfoWithParams:(NSMutableDictionary *)params
+-(BOOL)checkZhaiQuanInfoWithParams:(NSMutableDictionary *)params
 {
     //债权人
     //是公司
@@ -122,27 +128,27 @@
         
         if (IS_EMPTY(self.secondVC.contactTextField.text)) {
             [XuUItlity showFailedHint:@"请填写联系人" completionBlock:nil];
-            return;
+            return NO;
         }
         
         if (IS_EMPTY(self.secondVC.companyNameTextField.text)) {
             [XuUItlity showFailedHint:@"请填写公司名称" completionBlock:nil];
-            return;
+            return NO;
         }
         
         if (IS_EMPTY(self.secondVC.companyPhoneTextField.text)) {
             [XuUItlity showFailedHint:@"请填写公司电话" completionBlock:nil];
-            return;
+            return NO;
         }
         
         if (IS_EMPTY(self.secondVC.licenseCodeTextField.text)) {
             [XuUItlity showFailedHint:@"请填写信用代码" completionBlock:nil];
-            return;
+            return NO;
         }
         
         if (IS_EMPTY(self.secondVC.companyAddressTextField.text)) {
             [XuUItlity showFailedHint:@"请填写公司地址" completionBlock:nil];
-            return;
+            return NO;
         }
         
         
@@ -158,22 +164,22 @@
         
         if (IS_EMPTY(self.secondVC.nameTextField.text)) {
             [XuUItlity showFailedHint:@"请填写联系人" completionBlock:nil];
-            return;
+            return NO;
         }
         
         if (IS_EMPTY(self.secondVC.phoneTextField.text)) {
             [XuUItlity showFailedHint:@"请填写联系电话" completionBlock:nil];
-            return;
+            return NO;
         }
         
         if (IS_EMPTY(self.secondVC.ID_NumberTextField.text)) {
             [XuUItlity showFailedHint:@"请填写身份证" completionBlock:nil];
-            return;
+            return NO;
         }
         
         if (IS_EMPTY(self.secondVC.addressTextField.text)) {
             [XuUItlity showFailedHint:@"请填写联系地址" completionBlock:nil];
-            return;
+            return NO;
         }
         
         
@@ -182,12 +188,12 @@
         [params setObject:self.secondVC.ID_NumberTextField.text forKey:@"creditID_number"];
         [params setObject:self.secondVC.addressTextField.text forKey:@"creditAddress"];
         
-
     }
+    return YES;
 }
 
 
--(void)checkZhaiWuInfoWithParams:(NSMutableDictionary *)params
+-(BOOL)checkZhaiWuInfoWithParams:(NSMutableDictionary *)params
 {
     //债务
     //公司
@@ -195,27 +201,27 @@
         
         if (IS_EMPTY(self.thirdVC.contactTextField.text)) {
             [XuUItlity showFailedHint:@"请填写联系人" completionBlock:nil];
-            return;
+            return NO;
         }
         
         if (IS_EMPTY(self.thirdVC.companyNameTextField.text)) {
             [XuUItlity showFailedHint:@"请填写公司名称" completionBlock:nil];
-            return;
+            return NO;
         }
         
         if (IS_EMPTY(self.thirdVC.companyPhoneTextField.text)) {
             [XuUItlity showFailedHint:@"请填写公司电话" completionBlock:nil];
-            return;
+            return NO;
         }
         
         if (IS_EMPTY(self.thirdVC.licenseCodeTextField.text)) {
             [XuUItlity showFailedHint:@"请填写信用代码" completionBlock:nil];
-            return;
+            return NO;
         }
         
         if (IS_EMPTY(self.thirdVC.companyAddressTextField.text)) {
             [XuUItlity showFailedHint:@"请填写公司地址" completionBlock:nil];
-            return;
+            return NO;
         }
         
         
@@ -230,22 +236,22 @@
         
         if (IS_EMPTY(self.thirdVC.nameTextField.text)) {
             [XuUItlity showFailedHint:@"请填写联系人" completionBlock:nil];
-            return;
+            return NO;
         }
         
         if (IS_EMPTY(self.thirdVC.phoneTextField.text)) {
             [XuUItlity showFailedHint:@"请填写联系电话" completionBlock:nil];
-            return;
+            return NO;
         }
         
         if (IS_EMPTY(self.thirdVC.ID_NumberTextField.text)) {
             [XuUItlity showFailedHint:@"请填写身份证" completionBlock:nil];
-            return;
+            return NO;
         }
         
         if (IS_EMPTY(self.thirdVC.addressTextField.text)) {
             [XuUItlity showFailedHint:@"请填写联系地址" completionBlock:nil];
-            return;
+            return NO;
         }
         
         
@@ -255,6 +261,8 @@
         [params setObject:self.thirdVC.addressTextField.text forKey:@"debtAddress"];
 
     }
+    
+    return YES;
 
 }
 
