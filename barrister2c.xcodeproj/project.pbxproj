@@ -402,6 +402,8 @@
 		95CD2B311EBD6D1200DBD2A7 /* ZLFGXSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95CD2B301EBD6D1200DBD2A7 /* ZLFGXSearchViewController.m */; };
 		95CD2B341EBD70B400DBD2A7 /* ZLFGXSearchListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 95CD2B331EBD70B400DBD2A7 /* ZLFGXSearchListCell.m */; };
 		95CD2B371EBDA5A800DBD2A7 /* ZLFGXDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95CD2B361EBDA5A800DBD2A7 /* ZLFGXDetailViewController.m */; };
+		95CD2B3A1EBDC39F00DBD2A7 /* ZLFGX@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 95CD2B381EBDC39F00DBD2A7 /* ZLFGX@2x.png */; };
+		95CD2B3B1EBDC39F00DBD2A7 /* ZLFGX@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 95CD2B391EBDC39F00DBD2A7 /* ZLFGX@3x.png */; };
 		95D3EE5D1E2C865200AE439F /* logoForShare.png in Resources */ = {isa = PBXBuildFile; fileRef = 95D3EE5C1E2C865200AE439F /* logoForShare.png */; };
 		95D8D8241DC1971C00769EB5 /* ZhaiLiFangViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95D8D8231DC1971C00769EB5 /* ZhaiLiFangViewController.m */; };
 		95D8D8271DC2F89F00769EB5 /* YingShowDetailListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 95D8D8261DC2F89F00769EB5 /* YingShowDetailListCell.m */; };
@@ -1128,6 +1130,8 @@
 		95CD2B331EBD70B400DBD2A7 /* ZLFGXSearchListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLFGXSearchListCell.m; sourceTree = "<group>"; };
 		95CD2B351EBDA5A800DBD2A7 /* ZLFGXDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLFGXDetailViewController.h; sourceTree = "<group>"; };
 		95CD2B361EBDA5A800DBD2A7 /* ZLFGXDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLFGXDetailViewController.m; sourceTree = "<group>"; };
+		95CD2B381EBDC39F00DBD2A7 /* ZLFGX@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ZLFGX@2x.png"; sourceTree = "<group>"; };
+		95CD2B391EBDC39F00DBD2A7 /* ZLFGX@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ZLFGX@3x.png"; sourceTree = "<group>"; };
 		95D3EE5C1E2C865200AE439F /* logoForShare.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logoForShare.png; sourceTree = "<group>"; };
 		95D8D8221DC1971C00769EB5 /* ZhaiLiFangViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZhaiLiFangViewController.h; sourceTree = "<group>"; };
 		95D8D8231DC1971C00769EB5 /* ZhaiLiFangViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZhaiLiFangViewController.m; sourceTree = "<group>"; };
@@ -1888,6 +1892,8 @@
 				95600F561EB6DA6A0028E15A /* zlf_list_3@3x.png */,
 				95600F571EB6DA6A0028E15A /* zlf_list_4@2x.png */,
 				95600F581EB6DA6A0028E15A /* zlf_list_4@3x.png */,
+				95CD2B381EBDC39F00DBD2A7 /* ZLFGX@2x.png */,
+				95CD2B391EBDC39F00DBD2A7 /* ZLFGX@3x.png */,
 				952B3CC71DBC930C00E7E581 /* zhuanjia@2x.png */,
 				952B3CC81DBC930C00E7E581 /* zhuanjia@3x.png */,
 				956DA4CB1DA4A4D600A6793A /* expert_QQ@2x.png */,
@@ -3136,6 +3142,7 @@
 				955A7AEA1D1D7A3100D1DEAC /* unSelectedable@2x.png in Resources */,
 				95CA1DD81D10F8F800AAE490 /* Tab04Highlighted@2x.png in Resources */,
 				95CA1DD21D10F8F800AAE490 /* Tab02Normal@2x.png in Resources */,
+				95CD2B3B1EBDC39F00DBD2A7 /* ZLFGX@3x.png in Resources */,
 				95600F5A1EB6DA6A0028E15A /* zlf_list_1@3x.png in Resources */,
 				95D8D8701DC31C7800769EB5 /* my-account_card@3x.png in Resources */,
 				958EEBB11D27790A00D4CF4C /* guide_1@2x.png in Resources */,
@@ -3167,6 +3174,7 @@
 				95CA1DEC1D10F91900AAE490 /* common_icon_info@3x.png in Resources */,
 				95D8D8831DC31C7800769EB5 /* weixin@2x.png in Resources */,
 				9529CCE21D30F7D10067597A /* icon_bank_gf.png in Resources */,
+				95CD2B3A1EBDC39F00DBD2A7 /* ZLFGX@2x.png in Resources */,
 				95CA1DAB1D10F85500AAE490 /* city.plist in Resources */,
 				9529CCE51D30F7D10067597A /* icon_bank_js.png in Resources */,
 				958EEBF11D282D7300D4CF4C /* Me_order@2x.png in Resources */,

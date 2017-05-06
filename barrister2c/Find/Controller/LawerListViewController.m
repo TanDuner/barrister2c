@@ -118,10 +118,13 @@
 
 -(void)handleLawerDataWithArray:(NSArray *)array
 {
-    __weak typeof(*&self)weakSelf = self;
+    
+    if (self.tableView.pageNum == 1) {
+        [self.items removeAllObjects];
+    }
     
     [self handleTableRefreshOrLoadMoreWithTableView:self.tableView array:array aBlock:^{
-        [weakSelf.items removeAllObjects];
+
     }];
     
     for ( int i = 0; i < array.count; i ++) {
@@ -243,10 +246,10 @@
     
     UIButton * tipBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [tipBtn setTitle:@"说明" forState:UIControlStateNormal];
-    tipBtn.titleLabel.font = SystemFont(15.0f);
+    tipBtn.titleLabel.font = SystemFont(14.0f);
     [tipBtn setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
     [tipBtn addTarget:self action:@selector(toTipViewController) forControlEvents:UIControlEventTouchUpInside];
-    [tipBtn setFrame:CGRectMake(0, 0, 30, 30)];
+    [tipBtn setFrame:CGRectMake(0, 0, 40, 30)];
 
     
     UIBarButtonItem * backBar = [[UIBarButtonItem alloc] initWithCustomView:backBtn];
@@ -402,8 +405,9 @@
     
     LawerDetailViewController *detailVC = [[LawerDetailViewController alloc] init];
     if (self.items.count > indexPath.row) {
-        BarristerLawerModel *model = [self.items  safeObjectAtIndex:indexPath.row];
+        BarristerLawerModel *model = [self.items safeObjectAtIndex:indexPath.row];
         detailVC.lawyerId = model.laywerId;
+        detailVC.model = model;
     }
 
     [self.navigationController pushViewController:detailVC animated:YES];

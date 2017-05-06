@@ -64,8 +64,6 @@
 -(void)layoutSubviews{
     [super layoutSubviews];
     
-    self.model.isExpert = @"1";
-    
     [self.headImageView setFrame:RECT(LeftPadding, 20, ImageWidth, ImageWidth)];
     
     CGFloat nameWidth = [XuUtlity textWidthWithStirng:self.model.name?self.model.name:@"  " ShowFont:SystemFont(15.0f) sizeHeight:13];

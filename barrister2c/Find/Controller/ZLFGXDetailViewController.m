@@ -71,13 +71,13 @@
     if (!_bottomView) {
         _bottomView = [[UIView alloc] initWithFrame:RECT(0, 170, SCREENWIDTH, ButtonHeight)];
         
-        _bottomView.backgroundColor = KColorGray999;
+        _bottomView.backgroundColor = kSeparatorColor;
         
         UIButton *button1 = [UIButton buttonWithType:UIButtonTypeCustom];
         [button1 setFrame:RECT(0, 0, ButtonWidth, ButtonHeight)];
         button1.tag = 110;
         button1.titleLabel.textAlignment = NSTextAlignmentCenter;
-        [button1 setImage:[UIImage imageNamed:@"zlf_list_2"] forState:UIControlStateNormal];
+        [button1 setImage:[UIImage imageNamed:@"zlf_list_3"] forState:UIControlStateNormal];
         [button1 addTarget:self action:@selector(clickAciton:) forControlEvents:UIControlEventTouchUpInside];
         
         UILabel *label1 = [[UILabel alloc] initWithFrame:RECT(0, button1.bounds.size.height - 23, ButtonWidth, 13)];
@@ -92,7 +92,7 @@
         [button2 setFrame:RECT(ButtonWidth, 0, ButtonWidth, ButtonHeight)];
         button2.titleLabel.textAlignment = NSTextAlignmentCenter;
         button2.tag = 111;
-        [button2 setImage:[UIImage imageNamed:@"zlf_list_2"] forState:UIControlStateNormal];
+        [button2 setImage:[UIImage imageNamed:@"zlf_list_3"] forState:UIControlStateNormal];
         [button2 addTarget:self action:@selector(clickAciton:) forControlEvents:UIControlEventTouchUpInside];
         
         UILabel *label2 = [[UILabel alloc] initWithFrame:RECT(0, button2.bounds.size.height - 23, ButtonWidth, 13)];
@@ -110,7 +110,7 @@
         button3.titleLabel.textAlignment = NSTextAlignmentCenter;
         button3.tag = 112;
         [button3 addTarget:self action:@selector(clickAciton:) forControlEvents:UIControlEventTouchUpInside];
-        [button3 setImage:[UIImage imageNamed:@"zlf_list_3"] forState:UIControlStateNormal];
+        [button3 setImage:[UIImage imageNamed:@"ZLFGX"] forState:UIControlStateNormal];
         
         UILabel *label3 = [[UILabel alloc] initWithFrame:RECT(0, button3.bounds.size.height - 23, ButtonWidth, 13)];
         label3.text = @"债权关系图";
@@ -130,7 +130,7 @@
         button4.titleLabel.textAlignment = NSTextAlignmentCenter;
         button4.tag = 113;
         [button4 addTarget:self action:@selector(clickAciton:) forControlEvents:UIControlEventTouchUpInside];
-        [button4 setImage:[UIImage imageNamed:@"zlf_list_3"] forState:UIControlStateNormal];
+        [button4 setImage:[UIImage imageNamed:@"ZLFGX"] forState:UIControlStateNormal];
         
         UILabel *label4 = [[UILabel alloc] initWithFrame:RECT(0, button3.bounds.size.height - 23, ButtonWidth, 13)];
         label4.text = @"债务关系图";
