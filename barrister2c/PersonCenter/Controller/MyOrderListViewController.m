@@ -165,6 +165,11 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 
+    if ([BaseDataSingleton shareInstance].isClosePay) {
+        return;
+    }
+   
+    
     if (self.items.count > indexPath.row) {
         BarristerOrderModel *model = [self.items safeObjectAtIndex:indexPath.row];
         if ([model.type isEqualToString:@"APPOINTMENT"] || [model.type isEqualToString:@"IM"]) {
