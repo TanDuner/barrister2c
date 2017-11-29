@@ -47,6 +47,12 @@
       "scale" : "3x"
     },
     {
+      "size" : "1024x1024",
+      "idiom" : "ios-marketing",
+      "filename" : "直角LOGO_ 用户端.png",
+      "scale" : "1x"
+    },
+    {
       "idiom" : "mac",
       "size" : "16x16",
       "scale" : "1x"
