@@ -26,8 +26,6 @@
 		9529CC261D2CA4870067597A /* Appraisalstar3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9529CC231D2CA4870067597A /* Appraisalstar3@2x.png */; };
 		9529CC291D2CDE500067597A /* OrderDetailVoiceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9529CC281D2CDE500067597A /* OrderDetailVoiceView.m */; };
 		9529CC391D2D4F3C0067597A /* HUMSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 9529CC381D2D4F3C0067597A /* HUMSlider.m */; };
-		9529CC3C1D2D59BD0067597A /* orderdetail_play@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9529CC3A1D2D59BD0067597A /* orderdetail_play@2x.png */; };
-		9529CC3D1D2D59BD0067597A /* orderdetail_play@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9529CC3B1D2D59BD0067597A /* orderdetail_play@3x.png */; };
 		9529CC4B1D2D5A420067597A /* VolumePlayHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 9529CC4A1D2D5A420067597A /* VolumePlayHelper.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		9529CC711D2E28840067597A /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9529CC701D2E28840067597A /* CFNetwork.framework */; };
 		9529CC731D2E288F0067597A /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9529CC721D2E288F0067597A /* CoreFoundation.framework */; };
@@ -500,8 +498,6 @@
 		9529CC281D2CDE500067597A /* OrderDetailVoiceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderDetailVoiceView.m; sourceTree = "<group>"; };
 		9529CC371D2D4F3C0067597A /* HUMSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HUMSlider.h; sourceTree = "<group>"; };
 		9529CC381D2D4F3C0067597A /* HUMSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HUMSlider.m; sourceTree = "<group>"; };
-		9529CC3A1D2D59BD0067597A /* orderdetail_play@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "orderdetail_play@2x.png"; sourceTree = "<group>"; };
-		9529CC3B1D2D59BD0067597A /* orderdetail_play@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "orderdetail_play@3x.png"; sourceTree = "<group>"; };
 		9529CC491D2D5A420067597A /* VolumePlayHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VolumePlayHelper.h; sourceTree = "<group>"; };
 		9529CC4A1D2D5A420067597A /* VolumePlayHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VolumePlayHelper.m; sourceTree = "<group>"; };
 		9529CC6E1D2E28600067597A /* JPUSHService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPUSHService.h; sourceTree = "<group>"; };
@@ -1924,8 +1920,6 @@
 				9529CC951D2EA54B0067597A /* weixin@3x.png */,
 				9529CC961D2EA54B0067597A /* zhifubao@2x.png */,
 				9529CC971D2EA54B0067597A /* zhifubao@3x.png */,
-				9529CC3A1D2D59BD0067597A /* orderdetail_play@2x.png */,
-				9529CC3B1D2D59BD0067597A /* orderdetail_play@3x.png */,
 				950120BE1D2B4E5500FE3613 /* orderdetail_call@2x.png */,
 				950120BF1D2B4E5500FE3613 /* orderdetail_call@3x.png */,
 				9529CCAC1D2F429A0067597A /* orderdetail_stop@2x.png */,
@@ -3047,7 +3041,6 @@
 				9529CCE01D30F7D10067597A /* icon_bank_bj.png in Resources */,
 				9529CCAE1D2F429A0067597A /* orderdetail_stop@2x.png in Resources */,
 				95CA1DCF1D10F8F800AAE490 /* Tab01Normal@3x.png in Resources */,
-				9529CC3C1D2D59BD0067597A /* orderdetail_play@2x.png in Resources */,
 				955610F41D14B7B200366D4C /* my-account_cash@3x.png in Resources */,
 				958EEBCD1D27AA8400D4CF4C /* collect@3x.png in Resources */,
 				958EEBB61D27790A00D4CF4C /* guide_3@3x.png in Resources */,
@@ -3117,7 +3110,6 @@
 				9529CCFC1D3152E40067597A /* Images.xcassets in Resources */,
 				9529CCCA1D30E5350067597A /* canCard@2x.png in Resources */,
 				95D8D86A1DC31C7800769EB5 /* Me_message@3x.png in Resources */,
-				9529CC3D1D2D59BD0067597A /* orderdetail_play@3x.png in Resources */,
 				9529CC241D2CA4870067597A /* Appraisalstar1@2x.png in Resources */,
 				952B3CC91DBC930C00E7E581 /* zhuanjia@2x.png in Resources */,
 				95D8D8631DC31C7800769EB5 /* Me_Account@2x.png in Resources */,
