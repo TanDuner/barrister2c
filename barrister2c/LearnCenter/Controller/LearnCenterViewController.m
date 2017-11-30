@@ -67,9 +67,13 @@
                 [weakSelf toLearnWebViewWithModel:model];
             };
             contentVC.chanelId = model.channelId;
+            
+            
             [vcArray addObject:contentVC];
         }
     }
+    
+    
     
     NSArray *colorArray = @[
                             kNavigationBarColor, /**< 选中的标题颜色 Title SelectColor  **/
@@ -79,6 +83,8 @@
                             ];
     
     _slideView = [[NinaPagerView alloc] initWithTitles:self.titleStrArray WithVCs:vcArray WithColorArrays:colorArray isAlertShow:NO];
+
+  
     [self.view addSubview:_slideView];
 
 }
@@ -126,6 +132,11 @@
         NSDictionary *dict = [arrray safeObjectAtIndex:i];
         LearnCenterChannelModel *model = [[LearnCenterChannelModel alloc] initWithDictionary:dict];
         [self.chanelItems addObject:model];
+        if (ISEscapeAccount) {
+            if ([model.title isEqualToString:@"视频课件"]) {
+                continue;
+            }
+        }
         [self.titleStrArray addObject:model.title];
     }
     

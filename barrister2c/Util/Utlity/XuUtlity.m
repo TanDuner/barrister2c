@@ -1651,5 +1651,24 @@ typedef struct PhoneSate PhoneSate;
 
 }
 
++ (BOOL)getIsIpad
+{
+    NSString *deviceType = [UIDevice currentDevice].model;
+    
+    if([deviceType isEqualToString:@"iPhone"]) {
+        //iPhone
+        return NO;
+    }
+    else if([deviceType isEqualToString:@"iPod touch"]) {
+        //iPod Touch
+        return NO;
+    }
+    else if([deviceType isEqualToString:@"iPad"] || [deviceType isEqualToString:@"iPad Simulator"]) {
+        //iPad
+        return YES;
+    }
+    return NO;
+}
+
 
 @end

@@ -274,4 +274,8 @@ typedef enum
 + (NSData *)p_compressImage:(UIImage *)soruceImage;
 
 
+//如果想要判断设备是ipad，要用如下方法
++ (BOOL)getIsIpad;
+
+
 @end

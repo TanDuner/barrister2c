@@ -72,7 +72,7 @@
 
 
 
-
+#define IOS11 @available(iOS 11.0, *)
 
 #define ISSTAR_YES 	@"isStart.yes"
 #define ISSTAR_NO   @"isStart.no"
@@ -98,4 +98,6 @@
 
 #define ORDER_STATUS_CAN   @"can"; //可以接单
 #define ORDER_STATUS_NOT   @"can_not"; //不可以接单
+
+#define ISEscapeAccount ([[BaseDataSingleton shareInstance].userModel.userId isEqualToString:@"5"] && [[BaseDataSingleton shareInstance].userModel.phone isEqualToString:@"13301096303"])
 

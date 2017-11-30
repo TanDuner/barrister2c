@@ -53,6 +53,9 @@
     
     [self initData];
     
+    if (IOS11) {
+        [self.tableView setFrame:RECT(0, 0, SCREENWIDTH, SCREENHEIGHT - NAVBAR_DEFAULT_HEIGHT - TABBAR_HEIGHT)];
+    }
     
 }
 

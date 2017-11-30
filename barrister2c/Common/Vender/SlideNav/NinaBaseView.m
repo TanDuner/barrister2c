@@ -62,6 +62,9 @@
     arrayCount = titleArray.count;
     self.topTab.frame = CGRectMake(0, 0, (self.isAlertShow ?(FUll_VIEW_WIDTH - 30):FUll_VIEW_WIDTH), PageBtn);
     self.scrollView.frame = CGRectMake(0, PageBtn, self.isAlertShow?(FUll_VIEW_WIDTH - 30):FUll_VIEW_WIDTH, FUll_CONTENT_HEIGHT - PageBtn);
+    if ([XuUtlity getIsIpad]) {
+        self.scrollView.frame = CGRectMake(0, PageBtn, self.isAlertShow?(FUll_VIEW_WIDTH - 30):FUll_VIEW_WIDTH, FUll_CONTENT_HEIGHT - PageBtn + 20);
+    }
     [self addSubview:self.topTab];
     [self addSubview:self.scrollView];
 }

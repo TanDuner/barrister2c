@@ -121,6 +121,9 @@
 -(void)initView
 {
     self.tableView = [[RefreshTableView alloc] initWithFrame:RECT(0, 0, SCREENWIDTH, SCREENHEIGHT - 49 - 49- NAVBAR_DEFAULT_HEIGHT) style:UITableViewStylePlain];
+    if ([XuUtlity getIsIpad]) {
+        self.tableView = [[RefreshTableView alloc] initWithFrame:RECT(0, 0, SCREENWIDTH, SCREENHEIGHT - 49 - 20- NAVBAR_DEFAULT_HEIGHT) style:UITableViewStylePlain];
+    }
     self.tableView.backgroundColor = kBaseViewBackgroundColor;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
